@@ -47,6 +47,10 @@ Quedan tres decisiones transversales que los demás ADRs presuponen: lenguaje y 
    - **Sin tests** de páginas estáticas de contenido (las cubren el build, Lighthouse CI y la revisión humana YMYL).
 5. **Definición de hecho** para cualquier PR: lint + tipos + paridad i18n + tests + build estático + Lighthouse ≥ 95 en verde (la cadena completa del ADR-0008).
 
+## Nota post-aprobación (2026-08-06): componentización obligatoria
+
+Directriz del responsable del proyecto que endurece la decisión 2: **todo elemento visual repetible vive en un componente compartido y todo valor de estilo vive en un token del tema** — botones, inputs, tarjetas, CTAs, secciones, colores, tipografía, espaciados. Ninguna página define estilos ad hoc: un cambio en el token o en el componente debe propagarse a toda la web desde un único punto. Estructura: tokens en la configuración del tema de Tailwind (`@theme` / CSS custom properties) y componentes en `components/ui/`. Los reviewers de cada tarea tratan un botón "suelto" (clases utilitarias repetidas fuera de un componente) como defecto Important.
+
 ## Consecuencias
 
 ### Positivas
