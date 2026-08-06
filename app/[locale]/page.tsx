@@ -74,7 +74,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </Container>
       </section>
       <Band tone="sand">
-        <div className="grid items-center gap-6 px-5 py-8 lg:grid-cols-[400px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
+        <div className="grid items-center gap-6 py-8 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-16">
           <PhotoPlate image={davidImg} alt={t('about.photoAlt')} caption={t('about.caption')} />
           <div className="flex flex-col gap-4 lg:gap-5">
             <SectionHeading eyebrow={t('about.eyebrow')} title={t('about.title')} />
@@ -87,7 +87,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </Band>
       <Band tone="navy">
-        <div className="flex flex-col gap-8 px-5 py-12 lg:flex-row lg:items-center lg:justify-between lg:px-[72px] lg:py-[84px]">
+        <div className="flex flex-col gap-8 py-12 lg:flex-row lg:items-center lg:justify-between lg:py-[84px]">
           <h2 className="max-w-[760px] font-display text-h2 font-light text-paper [text-wrap:pretty] [&_em]:italic">
             {t.rich('ctaBand.title', em)}
           </h2>
