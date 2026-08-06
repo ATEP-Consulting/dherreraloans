@@ -62,6 +62,8 @@ Resto del kit: `Button` (variantes: `paper` sobre navy/foto, `navy` sobre claro;
 
 ## 4. Páginas (estructura EN = ES; copy espejado, no traducción literal)
 
+**Base de contenido (usuario, 2026-08-06):** estructura, temas y flujos basados en aimsmtg.com — ver `docs/referencia-contenido-aimsmtg.md` (vinculante para el copy de programas/about/shells; redacción propia, nunca copia literal; David valida todo). El template de programa pasa a: hero beneficio + intro + «¿Qué es?» + «¿Qué se requiere?» + «Cómo funciona» (bullets) + banda CTA.
+
 Todas prerenderizadas (gate `check:static`), todas con `generateMetadata` vía `buildPageMetadata` existente, y **todas abren con el mismo `PageHero` con imagen de background** (requisito del cliente) — la home con la variante alta con CTAs; las interiores con la variante corta (eyebrow + H1 + sub).
 
 1. **Home** — el handoff, con paridad móvil completa: top strip (≥980) → header transparente sobre hero → hero (foto + scrim + eyebrow + H1 + párrafo + GET A QUOTE + WhatsApp) → cities strip → índice de programas (5 `IndexRow` → páginas de programa) → banda About sand (PhotoPlate David + «a person, not a portal» + CTA + @dherrera_loans) → banda CTA navy → footer.
