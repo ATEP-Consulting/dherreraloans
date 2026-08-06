@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { pathnames, programSlugs, locales } from '@/config/routes.mjs';
-import { hreflangAlternates, SITE_URL } from '@/lib/metadata';
+import { hreflangAlternates } from '@/lib/metadata';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = Object.keys(pathnames).filter((p) => !p.includes('['));

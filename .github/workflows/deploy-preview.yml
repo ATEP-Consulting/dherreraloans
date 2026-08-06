@@ -16,10 +16,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 24, cache: npm }
       - run: npm ci
-      - run: npx vercel@latest pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      - run: npx vercel@latest build --token=${{ secrets.VERCEL_TOKEN }}
+      - run: npx vercel@58.7.1 pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - run: npx vercel@58.7.1 build --token=${{ secrets.VERCEL_TOKEN }}
       - id: deploy
-        run: echo "url=$(npx vercel@latest deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> "$GITHUB_OUTPUT"
+        run: echo "url=$(npx vercel@58.7.1 deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> "$GITHUB_OUTPUT"
       - uses: actions/github-script@v7
         with:
           script: |
@@ -40,3 +40,5 @@ jobs:
             ${{ steps.deploy.outputs.url }}/es/opciones-de-prestamo/prestamos-fha
             ${{ steps.deploy.outputs.url }}/en/quote
             ${{ steps.deploy.outputs.url }}/es/cotizacion
+            ${{ steps.deploy.outputs.url }}/en/contact
+            ${{ steps.deploy.outputs.url }}/es/contacto

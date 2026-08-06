@@ -1,19 +1,15 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing, Link } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/locale-switcher';
+import { SITE_URL } from '@/lib/metadata';
 import './../globals.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
   subsets: ['latin'],
 });
 
@@ -22,7 +18,7 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dherreraloans.vercel.app'),
+  metadataBase: new URL(SITE_URL),
 };
 
 export default async function LocaleLayout({
@@ -44,7 +40,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={locale} className={geistSans.variable}>
       <body className="min-h-svh bg-white text-slate-900 antialiased">
         <NextIntlClientProvider messages={{ common: messages.common }}>
           <header className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 p-4">

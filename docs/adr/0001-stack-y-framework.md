@@ -53,6 +53,10 @@ La web es mayoritariamente estática (Home, Loan Options, 5 páginas de programa
 
 La ventaja real de Astro (menos JS por defecto) se compensa con un presupuesto de JS vigilado en CI (ADR-0003); la ventaja de Next.js (una sola pieza, i18n-SEO maduro, velocidad con IA) reduce el riesgo del plazo de 2 semanas y concentra la complejidad donde está el valor: el cuestionario.
 
+## Nota post-aprobación (2026-08-06): versión instalada
+
+El scaffolding instaló Next.js 16.3.0 (el major estable actual en el momento de implementar), mientras que este ADR se redactó y discutió sobre la base de Next.js 15. App Router y el resto de decisiones de este documento aplican sin cambios sobre la 16. Se observa que Next 16 renombra el fichero `middleware` a `proxy` (deprecation activa de `middleware`); se abordará explícitamente en Fase 1 al implementar el proxy de i18n.
+
 ## Consecuencias
 
 ### Positivas
