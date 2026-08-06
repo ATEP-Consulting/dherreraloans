@@ -1,0 +1,32 @@
+{
+  "common": {
+    "brand": "DherreraLoans",
+    "nav": {
+      "home": "Home",
+      "loanOptions": "Loan Options",
+      "quote": "Get a Quote",
+      "calculator": "Calculator",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "localeSwitcher": { "en": "English", "es": "Español", "label": "Language" },
+    "footer": { "tagline": "Mortgage solutions in Miami, FL.", "nmls": "NMLS # pending" }
+  },
+  "home": { "title": "Mortgage solutions in Miami", "description": "Purchase or refinance with a licensed loan originator in Florida.", "heading": "Your path to homeownership starts here" },
+  "loanOptions": { "title": "Loan Options", "description": "Explore mortgage programs available in Florida.", "heading": "Loan Options" },
+  "programs": {
+    "fha": { "title": "FHA Loans", "description": "Flexible requirements for FHA loans in Florida.", "heading": "FHA Loans" },
+    "conventional": { "title": "Conventional Loans", "description": "Conventional mortgage options in Florida.", "heading": "Conventional Loans" },
+    "va": { "title": "VA Loans", "description": "VA loan benefits for veterans and service members.", "heading": "VA Loans" },
+    "firstTimeHomebuyer": { "title": "First Time Homebuyer", "description": "Programs for first time homebuyers in Florida.", "heading": "First Time Homebuyer" },
+    "refinance": { "title": "Refinance", "description": "Refinance your mortgage and save.", "heading": "Refinance" }
+  },
+  "quote": { "title": "Get a Quote", "description": "Answer a few questions and get your personalized quote.", "heading": "Get a Quote" },
+  "calculator": { "title": "Mortgage Calculator", "description": "Estimate your monthly mortgage payment.", "heading": "Mortgage Calculator" },
+  "about": { "title": "About David Herrera", "description": "Licensed Mortgage Loan Originator in Miami, FL.", "heading": "About me" },
+  "contact": { "title": "Contact", "description": "Get in touch by phone, email or WhatsApp.", "heading": "Contact" },
+  "legal": {
+    "privacy": { "title": "Privacy Policy", "description": "How we handle your personal information.", "heading": "Privacy Policy" },
+    "accessibility": { "title": "Accessibility Statement", "description": "Our commitment to an accessible website.", "heading": "Accessibility Statement" }
+  }
+}
