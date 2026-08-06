@@ -1,18 +1,69 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Paleta handoff «Fachada 4a» — ÚNICA definición de color del proyecto */
+  --color-paper: #f7f5f0;
+  --color-sand: #efebe2;
+  --color-ink: #1e2124;
+  --color-body: #4a5158;
+  --color-muted: #6b7076;
+  --color-faint: #9aa0a6;
+  --color-hairline: #d9d4c8;
+  --color-leader: #b9b2a4;
+  --color-navy: #10314a;
+  --color-azure: #17618f;
+  --color-azure-light: #9bc4df;
+  --color-azure-soft: #7faecd;
+  --color-azure-logo: #2287c6; /* SOLO decorativo/focus: falla AA en texto pequeño sobre claro */
+  --color-focus: #2287c6;
+  --color-paper-a75: rgb(247 245 240 / 0.75);
+  --color-paper-a55: rgb(247 245 240 / 0.55);
+  --color-paper-a25: rgb(247 245 240 / 0.25);
+  --color-paper-a85: rgb(247 245 240 / 0.85);
+
+  /* Tipografía */
+  --font-display: var(--font-spectral), Georgia, serif;
+  --font-sans: var(--font-instrument), system-ui, sans-serif;
+  --text-display: clamp(2.5rem, 1.1rem + 4.6vw, 4.5rem);      /* H1 40→72 */
+  --text-display--line-height: 1.08;
+  --text-h2: clamp(1.625rem, 1rem + 2vw, 2.75rem);            /* H2 26→44 */
+  --text-h2--line-height: 1.18;
+  --text-h3: clamp(1.5rem, 1.2rem + 1.2vw, 2.375rem);         /* 24→38 */
+  --text-h3--line-height: 1.2;
+  --text-index: clamp(1.1875rem, 1rem + 0.8vw, 1.5625rem);    /* filas índice 19→25 */
+  --text-index--line-height: 1.3;
+  --text-lede: 1.0625rem;                                      /* 17px */
+  --text-lede--line-height: 1.65;
+  --text-btn: 0.8125rem;                                       /* 13px */
+  --text-micro: 0.75rem;                                       /* 12px */
+  --text-fine: 0.6875rem;                                      /* 11px legal */
+  --text-fine--line-height: 1.65;
+
+  --tracking-label: 0.24em;
+  --tracking-label-wide: 0.26em;
+  --tracking-button: 0.14em;
+  --tracking-cities: 0.18em;
+
+  /* Breakpoint del handoff (~980px) */
+  --breakpoint-lg: 61.25rem;
+
+  --radius-none: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+:root {
+  --scrim-hero-desktop: linear-gradient(72deg, rgb(9 26 40 / 0.88) 0%, rgb(9 26 40 / 0.62) 38%, rgb(9 26 40 / 0.18) 70%, rgb(9 26 40 / 0.3) 100%);
+  --scrim-hero-mobile: linear-gradient(180deg, rgb(9 26 40 / 0.72) 0%, rgb(9 26 40 / 0.3) 34%, rgb(9 26 40 / 0.55) 62%, rgb(9 26 40 / 0.9) 100%);
+  --scrim-interior: linear-gradient(72deg, rgb(9 26 40 / 0.9) 0%, rgb(9 26 40 / 0.6) 55%, rgb(9 26 40 / 0.35) 100%);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist } from 'next/font/google';
+import { Spectral, Instrument_Sans } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
@@ -8,9 +8,18 @@ import { LocaleSwitcher } from '@/components/locale-switcher';
 import { SITE_URL } from '@/lib/metadata';
 import './../globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const spectral = Spectral({
+  weight: ['300', '400'],
+  style: ['normal', 'italic'],
   subsets: ['latin'],
+  variable: '--font-spectral',
+  display: 'swap',
+});
+const instrument = Instrument_Sans({
+  weight: ['400', '500', '600'],
+  subsets: ['latin'],
+  variable: '--font-instrument',
+  display: 'swap',
 });
 
 export function generateStaticParams() {
@@ -40,7 +49,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={geistSans.variable}>
+    <html lang={locale} className={`${spectral.variable} ${instrument.variable}`}>
       <body className="min-h-svh bg-white text-slate-900 antialiased">
         <NextIntlClientProvider messages={{ common: messages.common }}>
           <header className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 p-4">
