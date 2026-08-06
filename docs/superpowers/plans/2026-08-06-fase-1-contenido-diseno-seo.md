@@ -874,8 +874,8 @@ gh pr merge --repo ATEP-Consulting/dherreraloans --squash --delete-branch
 **Files:**
 - Modify: `messages/en.json`, `messages/es.json`
 
-**Interfaces:**
-- Produces: `programs.{key}` gana `heroSub`, `what.title`, `what.body`, `who.title`, `who.items` (array de 3 strings), `start.title`, `start.body`; `loanOptions` gana `helper` y `programs.{key}.blurb` se añade como `programs.{key}.blurb`. `notFound.{title,heading,body,cta}` se añade aquí también (lo consume PR D).
+**Interfaces (ACTUALIZADO 2026-08-06 — template aimsmtg, ver docs/referencia-contenido-aimsmtg.md que es VINCULANTE):**
+- Produces: `programs.{key}` gana `heroTitle` (H1 beneficio-primero, ≠ heading), `heroSub` (nombra el problema del lector), `blurb` (1-2 líneas para Loan Options), `intro` (párrafo), `whatIs.title` + `whatIs.body` («¿Qué es un préstamo X?»: definición, quién lo respalda, cifra clave, diferencia con convencional), `required.title` + `required.body` («¿Qué se requiere?»: documentación, entrada, restricciones, flexibilidad de crédito), `how.title` + `how.items` (array de 4 bullets concretos: entrada mínima, plazos, variantes, condiciones — en genérico prudente, David valida cifras); `loanOptions` gana `helper`. `notFound.{title,heading,body,cta}` se añade aquí también (lo consume PR D). Redacción PROPIA basada en los temas de aimsmtg (nunca copia literal), voz personal de David, tono del handoff, sin métricas inventadas.
 
 - [ ] **Step 1: EN — añadir a cada programa** (contenido íntegro; estructura idéntica en los 5):
 
@@ -985,7 +985,7 @@ export function JsonLd({ data }: { data: object }) {
 - Modify: `app/[locale]/loan-options/[program]/page.tsx`, `app/[locale]/loan-options/page.tsx`
 - Test: ampliar `tests/e2e/home.spec.ts` con un spec de programa
 
-- [ ] **Step 1: Página de programa** — `PageHero` interior (`heroPrograms`, eyebrow = `t('indexName')` + stat, title = `heading`, body = `heroSub`, `params={{program:key}}`) → breadcrumb visible (`nav aria-label` con Links Home → Loan Options → programa, text-micro tracking-label) → sección `what` (SectionHeading + body, medida 65ch) → `who` (título + 3 items con hairlines, patrón IndexRow sin stat ni href — usar lista con `border-b border-hairline py-4`) → `start` (título + body) → `Band navy` CTA (reutilizar el bloque de la home con `ctaBand.title`) → `<JsonLd data={mortgageLoanJsonLd(locale, key)} />` + `<JsonLd data={breadcrumbJsonLd(locale, key)} />`.
+- [ ] **Step 1: Página de programa (template aimsmtg — docs/referencia-contenido-aimsmtg.md)** — `PageHero` interior (`heroPrograms`, eyebrow = `t('indexName')` + stat, title = `heroTitle` (beneficio), body = `heroSub`, `params={{program:key}}`) → breadcrumb visible (`nav aria-label` con Links Home → Loan Options → programa, text-micro tracking-label) → `intro` (párrafo lede, medida 65ch) → sección `whatIs` (SectionHeading + body) → `required` (SectionHeading + body) → `how` (título + 4 bullets con hairlines, lista `border-b border-hairline py-4`) → `Band navy` CTA (reutilizar el bloque de la home con `ctaBand.title`) → `<JsonLd data={mortgageLoanJsonLd(locale, key)} />` + `<JsonLd data={breadcrumbJsonLd(locale, key)} />`.
 - [ ] **Step 2: Loan Options** — PageHero interior + lista `IndexRow` con `children={tp(`${key}.blurb`)}` + numeración.
 - [ ] **Step 3: E2E**
 
