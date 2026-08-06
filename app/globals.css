@@ -48,6 +48,9 @@
   --breakpoint-lg: 61.25rem;
 
   --radius-none: 0;
+
+  /* Ancho del artboard de handoff — contenido centrado, fondos full-bleed */
+  --container-max: 90rem; /* 1440px */
 }
 
 :root {

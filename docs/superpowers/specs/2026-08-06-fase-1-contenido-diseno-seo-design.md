@@ -39,6 +39,8 @@ Decisiones de brainstorm que el handoff supersede: no hay acento ámbar; 2 famil
 
 Radius **0 en todo**; **sin sombras** (bordes 1px = lenguaje visual); espaciado en múltiplos de 8 (gutters 72px desktop / 20px móvil); tipografía y tamaños como tokens `--text-*` según la escala del handoff (H1 72/40, H2 44/38/36/30/26, índice 25/19, body 16–17, micro 11–12 con tracking .2–.26em).
 
+Contenedor: contenido centrado a máx. 1440px (--container-max) con fondos full-bleed; hero de home a 100svh (decisión del usuario 2026-08-06 tras ver ultrawide).
+
 ### 3.2 Tipografía
 
 `next/font` self-hosted, subset latin, `display: swap` (ADR-0003 §6, máx. 2 familias — cumplido):

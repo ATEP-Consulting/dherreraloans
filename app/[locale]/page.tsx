@@ -14,6 +14,7 @@ import { IndexRow } from '@/components/ui/index-row';
 import { Band } from '@/components/ui/band';
 import { PhotoPlate } from '@/components/ui/photo-plate';
 import { TextLink } from '@/components/ui/text-link';
+import { Container } from '@/components/ui/container';
 import { slugFor } from '@/lib/programs';
 import { INSTAGRAM_URL } from '@/lib/site';
 
@@ -56,19 +57,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         }
       />
       <CitiesStrip lead={t('cities.lead')} list={t('cities.list')} />
-      <section className="grid gap-6 px-5 py-8 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-[72px]">
-        <SectionHeading eyebrow={t('programsIndex.eyebrow')} title={t('programsIndex.title')} helper={t('programsIndex.helper')} />
-        <div className="flex flex-col">
-          {programKeys.map((key, i) => (
-            <IndexRow
-              key={key}
-              number={t('programsIndex.rowLabel', { number: i + 1 })}
-              name={tp(`${key}.indexName`)}
-              stat={tp(`${key}.stat`)}
-              href={{ pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } }}
-            />
-          ))}
-        </div>
+      <section>
+        <Container className="grid gap-6 px-5 py-8 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-[72px]">
+          <SectionHeading eyebrow={t('programsIndex.eyebrow')} title={t('programsIndex.title')} helper={t('programsIndex.helper')} />
+          <div className="flex flex-col">
+            {programKeys.map((key, i) => (
+              <IndexRow
+                key={key}
+                number={t('programsIndex.rowLabel', { number: i + 1 })}
+                name={tp(`${key}.indexName`)}
+                stat={tp(`${key}.stat`)}
+                href={{ pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } }}
+              />
+            ))}
+          </div>
+        </Container>
       </section>
       <Band tone="sand">
         <div className="grid items-center gap-6 px-5 py-8 lg:grid-cols-[400px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
