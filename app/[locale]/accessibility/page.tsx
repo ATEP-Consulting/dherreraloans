@@ -1,6 +1,8 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
+import heroPersonal from '@/assets/img/hero-personal.jpg';
+import { PageHero } from '@/components/layout/page-hero';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -15,5 +17,7 @@ export default async function AccessibilityPage({ params }: { params: Promise<{ 
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('legal.accessibility');
-  return <h1 className="text-2xl font-bold">{t('heading')}</h1>;
+  return (
+    <PageHero locale={locale} pathname="/accessibility" image={heroPersonal} imageAlt={t('title')} eyebrow={t('title')} title={t('heading')} />
+  );
 }

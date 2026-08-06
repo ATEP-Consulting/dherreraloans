@@ -1,6 +1,8 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
+import heroPrograms from '@/assets/img/hero-programs.jpg';
+import { PageHero } from '@/components/layout/page-hero';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -15,5 +17,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ loc
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('calculator');
-  return <h1 className="text-2xl font-bold">{t('heading')}</h1>;
+  return (
+    <PageHero locale={locale} pathname="/calculator" image={heroPrograms} imageAlt={t('title')} eyebrow={t('title')} title={t('heading')} />
+  );
 }
