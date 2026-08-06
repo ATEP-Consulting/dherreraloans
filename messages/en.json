@@ -201,8 +201,48 @@
   },
   "quote": { "title": "Get a Quote", "description": "Answer a few questions and get your personalized quote.", "heading": "Get a Quote" },
   "calculator": { "title": "Mortgage Calculator", "description": "Estimate your monthly mortgage payment.", "heading": "Mortgage Calculator" },
-  "about": { "title": "About David Herrera", "description": "Licensed Mortgage Loan Originator in Miami, FL.", "heading": "About me" },
-  "contact": { "title": "Contact", "description": "Get in touch by phone, email or WhatsApp.", "heading": "Contact" },
+  "about": {
+    "title": "About David Herrera",
+    "description": "Licensed Mortgage Loan Originator in Miami, FL.",
+    "heading": "About me",
+    "heroTitle": "One person, start to closing.",
+    "heroSub": "Mortgage loan originator in Miami. No call center, no hand-offs — the person who answers your first question is the same one at your closing table.",
+    "mission": "My mission is to get you a mortgage you actually understand, from someone who answers the phone.",
+    "story": {
+      "title": "How I work",
+      "body": "I work with you in English or Spanish, whichever is more comfortable, and I stay on your file from the first call to the day you get your keys. Most of the people I work with are buying their first home, or their first home in the United States, so I explain each step before I ask you to sign anything."
+    },
+    "values": {
+      "title": "What matters to me",
+      "items": [
+        "Clarity — you'll know what you qualify for and what it costs before you commit to anything.",
+        "Availability — call, text, or WhatsApp, and I reply the same day.",
+        "No pressure — you set the pace, not a sales quota.",
+        "Bilingual by default — English or Spanish, whichever you need."
+      ]
+    },
+    "license": {
+      "title": "Licensed, personally",
+      "body": "I hold my own mortgage license, NMLS #{nmls} — not a company ID that gets handed to whoever picks up. You can confirm my license status and history on NMLS Consumer Access, the public database maintained by state regulators.",
+      "linkLabel": "Look me up on NMLS Consumer Access"
+    },
+    "reach": {
+      "title": "Where to find me",
+      "body": "I share loan tips and notes on the Miami market on Instagram. If you'd rather just talk, WhatsApp is the fastest way to reach me."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Get in touch by phone, email or WhatsApp.",
+    "heading": "Contact",
+    "heroTitle": "Let's talk about your mortgage.",
+    "heroSub": "Call, text, email, or WhatsApp — whichever is easiest for you. I answer personally, in English or Spanish.",
+    "phone": { "label": "Phone" },
+    "email": { "label": "Email", "value": "hola@dherreraloans.com" },
+    "whatsapp": { "label": "WhatsApp", "note": "Fastest way to reach me — most messages get a same-day reply." },
+    "pendingNote": "The phone number and email above are placeholders while we confirm David's business contact details.",
+    "quoteNudge": "Prefer a form? The full questionnaire is the fastest way to get real numbers on your loan."
+  },
   "legal": {
     "privacy": { "title": "Privacy Policy", "description": "How we handle your personal information.", "heading": "Privacy Policy" },
     "accessibility": { "title": "Accessibility Statement", "description": "Our commitment to an accessible website.", "heading": "Accessibility Statement" }

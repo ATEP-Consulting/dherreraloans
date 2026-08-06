@@ -201,8 +201,48 @@
   },
   "quote": { "title": "Cotización", "description": "Responde unas preguntas y recibe tu cotización personalizada.", "heading": "Obtén tu cotización" },
   "calculator": { "title": "Calculadora de hipoteca", "description": "Estima tu pago mensual de hipoteca.", "heading": "Calculadora de hipoteca" },
-  "about": { "title": "Sobre David Herrera", "description": "Originador de préstamos hipotecarios licenciado en Miami, FL.", "heading": "Sobre mí" },
-  "contact": { "title": "Contacto", "description": "Comunícate por teléfono, email o WhatsApp.", "heading": "Contacto" },
+  "about": {
+    "title": "Sobre David Herrera",
+    "description": "Originador de préstamos hipotecarios licenciado en Miami, FL.",
+    "heading": "Sobre mí",
+    "heroTitle": "Una sola persona, del inicio al cierre.",
+    "heroSub": "Originador de préstamos hipotecarios en Miami. Sin call center, sin traspasos — quien contesta tu primera pregunta es el mismo que está en la mesa de cierre.",
+    "mission": "Mi misión es conseguirte una hipoteca que realmente entiendas, de alguien que contesta el teléfono.",
+    "story": {
+      "title": "Cómo trabajo",
+      "body": "Trabajo contigo en español o en inglés, como te sientas más cómodo, y te acompaño desde la primera llamada hasta el día que recibes las llaves. La mayoría de las personas con las que trabajo compran su primera casa, o su primera casa en Estados Unidos, así que te explico cada paso antes de pedirte que firmes algo."
+    },
+    "values": {
+      "title": "Lo que me importa",
+      "items": [
+        "Claridad — sabrás para qué calificas y cuánto cuesta antes de comprometerte a nada.",
+        "Disponibilidad — llama, escribe o manda WhatsApp, y te respondo el mismo día.",
+        "Sin presión — tú marcas el ritmo, no una cuota de ventas.",
+        "Bilingüe por defecto — español o inglés, el que necesites."
+      ]
+    },
+    "license": {
+      "title": "Licenciado, a título personal",
+      "body": "Tengo mi propia licencia hipotecaria, NMLS #{nmls} — no un número de empresa que le toca a quien conteste. Puedes confirmar mi estado y mi historial de licencia en NMLS Consumer Access, la base de datos pública que mantienen los reguladores estatales.",
+      "linkLabel": "Búscame en NMLS Consumer Access"
+    },
+    "reach": {
+      "title": "Dónde encontrarme",
+      "body": "Comparto consejos sobre préstamos y notas del mercado de Miami en Instagram. Si prefieres simplemente hablar, WhatsApp es la forma más rápida de encontrarme."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "Comunícate por teléfono, email o WhatsApp.",
+    "heading": "Contacto",
+    "heroTitle": "Hablemos de tu hipoteca.",
+    "heroSub": "Llama, escribe, envía un email o un WhatsApp — lo que te resulte más fácil. Contesto en persona, en español o en inglés.",
+    "phone": { "label": "Teléfono" },
+    "email": { "label": "Email", "value": "hola@dherreraloans.com" },
+    "whatsapp": { "label": "WhatsApp", "note": "La forma más rápida de encontrarme — la mayoría de los mensajes reciben respuesta el mismo día." },
+    "pendingNote": "El teléfono y el email de arriba son provisionales mientras confirmamos los datos de contacto de David con la empresa.",
+    "quoteNudge": "¿Prefieres un formulario? El cuestionario completo es la forma más rápida de obtener números reales para tu préstamo."
+  },
   "legal": {
     "privacy": { "title": "Política de privacidad", "description": "Cómo tratamos tu información personal.", "heading": "Política de privacidad" },
     "accessibility": { "title": "Declaración de accesibilidad", "description": "Nuestro compromiso con una web accesible.", "heading": "Declaración de accesibilidad" }

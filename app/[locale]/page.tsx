@@ -3,9 +3,11 @@ import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
 import { programSlugs } from '@/config/routes.mjs';
 import { NMLS_ID } from '@/lib/site';
+import { financialServiceJsonLd } from '@/lib/jsonld';
 import heroHome from '@/assets/img/hero-home.jpg';
 import davidImg from '@/assets/img/david.png';
 import { PageHero } from '@/components/layout/page-hero';
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { WhatsAppButton } from '@/components/ui/whatsapp-button';
 import { CitiesStrip } from '@/components/ui/cities-strip';
@@ -94,6 +96,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <span className="shrink-0"><Button href="/quote" variant="paper" size="lg">{tc('cta.quote')}</Button></span>
         </div>
       </Band>
+      <JsonLd data={financialServiceJsonLd(locale)} />
     </>
   );
 }

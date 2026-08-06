@@ -38,3 +38,26 @@ test('página de programa: contenido y JSON-LD', async ({ page }) => {
   expect(ld.join('')).toContain('"MortgageLoan"');
   expect(ld.join('')).toContain('"BreadcrumbList"');
 });
+
+test('about: NMLS del originador y enlace a Consumer Access, con FinancialService JSON-LD', async ({ page }) => {
+  await page.goto('/en/about');
+  await expect(page.locator('body')).toContainText('NMLS #1459301');
+  await expect(page.getByRole('link', { name: en.about.license.linkLabel })).toHaveAttribute(
+    'href',
+    'https://www.nmlsconsumeraccess.org/',
+  );
+  const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
+  expect(ld.join('')).toContain('"FinancialService"');
+});
+
+test('contact: teléfono placeholder y enlace de WhatsApp con deep link', async ({ page }) => {
+  await page.goto('/en/contact');
+  await expect(page.getByRole('link', { name: '+1 (305) 000-0000' })).toHaveAttribute(
+    'href',
+    'tel:+13050000000',
+  );
+  await expect(page.getByRole('link', { name: en.contact.whatsapp.note })).toHaveAttribute(
+    'href',
+    /wa\.me\/13050000000/,
+  );
+});
