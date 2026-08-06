@@ -1,0 +1,14 @@
+# Dependencias y builds (para cuando arranque la implementación)
+node_modules/
+.next/
+out/
+coverage/
+.vercel/
+
+# Entorno y credenciales — NUNCA commitear
+.env
+.env.*
+!.env.example
+
+# Sistema
+.DS_Store
