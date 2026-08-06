@@ -16,6 +16,8 @@ Decisiones de brainstorm que el handoff supersede: no hay acento ámbar; 2 famil
 
 ## 3. Sistema de diseño (primera tarea de la fase — todo lo demás se monta encima)
 
+**Requisito explícito del cliente (2026-08-06):** todo lo que se repite vive en UN componente y todo valor de estilo en UN token — si David quiere cambiar un color (o un botón, un espaciado…), debe bastar un cambio o dos que se propaguen a toda la web. Un reviewer trata cualquier estilo repetido fuera de `components/ui/`/tokens como defecto Important (ADR-0010).
+
 ### 3.1 Tokens (Tailwind v4 `@theme` en `app/globals.css` — única definición, ADR-0010)
 
 | Token | Valor | Uso |
@@ -45,21 +47,23 @@ Radius **0 en todo**; **sin sombras** (bordes 1px = lenguaje visual); espaciado 
 
 ### 3.3 Inventario `components/ui/` (cero estilos ad hoc en páginas — ADR-0010)
 
-`Button` (variantes: `paper` sobre navy/foto, `navy` sobre claro; uppercase, radius 0) · `TextLink` (subrayado 1px / azure) · `WhatsAppButton` (outlined claro, icono SVG propio, deep link) · `Eyebrow` (microlabel tracked) · `SectionHeading` (eyebrow + H2 Spectral + helper) · `IndexRow` (No. + nombre Spectral + leader punteado + stat; el patrón del índice de programas, reutilizable en listados) · `PhotoPlate` (marco blanco borde ink + caption italic) · `Band` (variantes `sand` / `navy`) · `CitiesStrip` · `TopStrip` · `SiteHeader` (variante `transparent` sobre hero con logo-light; variante `solid` navy para páginas interiores y estado sticky — extrapolación del README «if sticky → solid #10314A + dark logo swap») · `MobileNav` (hamburguesa accesible, panel; CSS-first) · `LangToggle` (EN — ES, server-rendered) · `SiteFooter` (4 col + EHO + disclaimer + bottom row) · `EhoMark` (glifo SVG en referencia; logo oficial HUD en producción) · `JsonLd` (componente tipado propio, ADR-0003 §4).
+**`PageHero`** — EL componente central (requisito del cliente: el hero es EL MISMO en todas las páginas, con imagen de background): foto full-bleed + scrim de gradiente + top strip (≥980) + header transparente con logo-light + eyebrow + H1 Spectral (+ párrafo y CTAs opcionales). Variantes solo de altura/contenido vía props (home 820/680px con CTAs; interiores más corto con solo eyebrow+H1+sub), nunca de estilo. El header vive dentro del hero en todas las páginas; la variante sólida navy existe únicamente como estado sticky al scrollear (README: «if sticky → solid #10314A + dark logo swap»).
+
+Resto del kit: `Button` (variantes: `paper` sobre navy/foto, `navy` sobre claro; uppercase, radius 0) · `TextLink` (subrayado 1px / azure) · `WhatsAppButton` (outlined claro, icono SVG propio, deep link) · `Eyebrow` (microlabel tracked) · `SectionHeading` (eyebrow + H2 Spectral + helper) · `IndexRow` (No. + nombre Spectral + leader punteado + stat; el patrón del índice de programas, reutilizable en listados) · `PhotoPlate` (marco blanco borde ink + caption italic) · `Band` (variantes `sand` / `navy`) · `CitiesStrip` · `MobileNav` (hamburguesa accesible, panel; CSS-first) · `LangToggle` (EN — ES, server-rendered) · `SiteFooter` (4 col + EHO + disclaimer + bottom row) · `EhoMark` (glifo SVG en referencia; logo oficial HUD en producción) · `JsonLd` (componente tipado propio, ADR-0003 §4).
 
 ### 3.4 Assets
 
 - Logos: `logo.png` (oscuro, fondos claros) y `logo-light.png` (marfil+azure, sobre foto/navy) → optimizar (recorte ya hecho); servir como imagen con dimensiones explícitas.
 - `david.png`: temporal en baja resolución — se usa hasta recibir la foto profesional.
-- **Foto de hero: placeholder de Unsplash en la referencia.** Para Fase 1 se usa una foto equivalente con licencia libre verificada (casa Florida) marcada TEMPORAL; la definitiva (licenciada o propia del cliente) es bloqueante de Fase 4, no de Fase 1. Presupuesto ADR-0003: ninguna imagen >200KB servida, hero con `priority`/`fetchpriority=high`, AVIF/WebP responsive.
+- **Fotos de hero: placeholder de Unsplash en la referencia.** Para Fase 1 se usan fotos con licencia libre verificada (casa/entorno Florida) marcadas TEMPORALES; las definitivas (licenciadas o del cliente) son bloqueantes de Fase 4, no de Fase 1. Como el hero es común a todas las páginas: una foto para la home y 1–3 compartidas para las interiores (por grupo: programas, about/contacto, legales) — añadir fotos por página después es cambiar una prop. Presupuesto ADR-0003: ninguna imagen >200KB servida, hero con `priority`/`fetchpriority=high`, AVIF/WebP responsive.
 - Iconos: SVG inline propios (WhatsApp, hamburguesa, EHO); sin librerías.
 
 ## 4. Páginas (estructura EN = ES; copy espejado, no traducción literal)
 
-Todas prerenderizadas (gate `check:static`), todas con `generateMetadata` vía `buildPageMetadata` existente.
+Todas prerenderizadas (gate `check:static`), todas con `generateMetadata` vía `buildPageMetadata` existente, y **todas abren con el mismo `PageHero` con imagen de background** (requisito del cliente) — la home con la variante alta con CTAs; las interiores con la variante corta (eyebrow + H1 + sub).
 
 1. **Home** — el handoff, con paridad móvil completa: top strip (≥980) → header transparente sobre hero → hero (foto + scrim + eyebrow + H1 + párrafo + GET A QUOTE + WhatsApp) → cities strip → índice de programas (5 `IndexRow` → páginas de programa) → banda About sand (PhotoPlate David + «a person, not a portal» + CTA + @dherrera_loans) → banda CTA navy → footer.
-2. **Loan Options** — índice extendido: mismo patrón `IndexRow` con 1–2 líneas de descripción por programa; hero interior tipográfico (sin foto), header solid.
+2. **Loan Options** — índice extendido: mismo patrón `IndexRow` con 1–2 líneas de descripción por programa bajo el `PageHero` corto.
 3. **5 páginas de programa** (template único) — H1 Spectral + stat clave, cuerpo editorial (qué es, para quién, requisitos orientativos, pasos), banda CTA navy, breadcrumb visible; JSON-LD `MortgageLoan` + `BreadcrumbList`.
 4. **Get a Quote** — shell estilizado: promesa del cuestionario, qué te va a preguntar, tiempo estimado, CTA a contacto/WhatsApp mientras el cuestionario llega en Fase 2. Sin formulario.
 5. **Calculator** — shell estilizado equivalente (la calculadora funcional es Fase 2): explica qué calcula y muestra un resultado de muestra estático («$300,000 · 30 años · 6.5% → $1,896/mes», verificado matemáticamente) etiquetado «Ejemplo ilustrativo, no es una oferta».
