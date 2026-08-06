@@ -10,16 +10,53 @@
       "contact": "Contact"
     },
     "localeSwitcher": { "en": "English", "es": "Español", "label": "Language" },
-    "footer": { "tagline": "Mortgage solutions in Miami, FL.", "nmls": "NMLS # pending" }
+    "topStrip": { "left": "David Herrera — Mortgage Loan Originator", "right": "NMLS #{nmls} · Miami, Florida" },
+    "cta": { "quote": "Get a Quote", "apply": "Apply Online", "whatsApp": "WhatsApp — same-day reply", "whatsAppMessage": "Hi David, I found your website and I'd like to talk about a mortgage." },
+    "menu": { "open": "Open menu", "close": "Close menu" },
+    "footer": {
+      "explore": "Explore",
+      "legal": "Legal",
+      "links": { "loanOptions": "Loan Options", "calculator": "Mortgage Calculator", "quote": "Get a Quote", "about": "About David", "contact": "Contact", "privacy": "Privacy Policy", "accessibility": "Accessibility Statement", "consumerAccess": "NMLS Consumer Access" },
+      "licenseLine1": "David Herrera · Mortgage Loan Originator",
+      "licenseLine2": "NMLS #{nmls} · Licensed in Florida · Miami, FL",
+      "instagram": "@dherrera_loans",
+      "eho": "Equal Housing Opportunity",
+      "disclaimer": "This is not an offer to enter into an agreement. Not all customers will qualify. Information, rates and programs are subject to change without notice. All products are subject to credit and property approval. Not all products are available in all states or for all dollar amounts. Other restrictions and limitations may apply. David Herrera is a licensed Mortgage Loan Originator, NMLS #{nmls}.",
+      "pendingValidation": "Draft content — pending review by the licensing company.",
+      "copyright": "© 2026 DherreraLoans. All rights reserved.",
+      "languages": "English — Español"
+    }
   },
-  "home": { "title": "Mortgage solutions in Miami", "description": "Purchase or refinance with a licensed loan originator in Florida.", "heading": "Your path to homeownership starts here" },
+  "home": {
+    "title": "Mortgage solutions in Miami",
+    "description": "Purchase or refinance with a licensed loan originator in Florida.",
+    "heading": "Your path to homeownership starts here",
+    "hero": {
+      "eyebrow": "David Herrera · Mortgage Loan Originator",
+      "eyebrowMobile": "David Herrera · NMLS #{nmls}",
+      "title": "Buying a home in Florida, <em>without the guesswork.</em>",
+      "body": "Straight answers about your mortgage — first home, new to the country, or refinancing. In English or in Spanish, before you commit to anything.",
+      "bodyMobile": "Straight answers, in English or Spanish, before you commit to anything.",
+      "imageAlt": "Florida home with a bright exterior"
+    },
+    "cities": { "lead": "Working with buyers across Florida", "list": "— Miami · Fort Lauderdale · Orlando · Tampa · Naples" },
+    "programsIndex": { "eyebrow": "Index — Section I", "title": "Loan programs", "helper": "Five ways to finance a home in Florida. If none of them fits, we'll talk anyway.", "rowLabel": "No. {number}" },
+    "about": {
+      "eyebrow": "Section II — A person, not a portal",
+      "title": "One person answers your questions. The same one, every time.",
+      "body": "Most of my clients are buying their first home, or their first home in the United States. I'll tell you what you qualify for and what it really costs — and I stay with you from the first call to the keys.",
+      "caption": "David Herrera — your loan originator, start to closing.",
+      "photoAlt": "David Herrera, mortgage loan originator in Miami"
+    },
+    "ctaBand": { "title": "Know your number <em>before</em> you fall in love with the house." }
+  },
   "loanOptions": { "title": "Loan Options", "description": "Explore mortgage programs available in Florida.", "heading": "Loan Options" },
   "programs": {
-    "fha": { "title": "FHA Loans", "description": "Flexible requirements for FHA loans in Florida.", "heading": "FHA Loans" },
-    "conventional": { "title": "Conventional Loans", "description": "Conventional mortgage options in Florida.", "heading": "Conventional Loans" },
-    "va": { "title": "VA Loans", "description": "VA loan benefits for veterans and service members.", "heading": "VA Loans" },
-    "firstTimeHomebuyer": { "title": "First Time Homebuyer", "description": "Programs for first time homebuyers in Florida.", "heading": "First Time Homebuyer" },
-    "refinance": { "title": "Refinance", "description": "Refinance your mortgage and save.", "heading": "Refinance" }
+    "fha": { "title": "FHA Loans", "description": "Flexible requirements for FHA loans in Florida.", "heading": "FHA Loans", "indexName": "FHA Loans", "stat": "3.5% down" },
+    "conventional": { "title": "Conventional Loans", "description": "Conventional mortgage options in Florida.", "heading": "Conventional Loans", "indexName": "Conventional", "stat": "3% down" },
+    "va": { "title": "VA Loans", "description": "VA loan benefits for veterans and service members.", "heading": "VA Loans", "indexName": "VA Loans", "stat": "$0 down" },
+    "firstTimeHomebuyer": { "title": "First Time Homebuyer", "description": "Programs for first time homebuyers in Florida.", "heading": "First Time Homebuyer", "indexName": "First-Time Homebuyer", "stat": "FL assistance" },
+    "refinance": { "title": "Refinance", "description": "Refinance your mortgage and save.", "heading": "Refinance", "indexName": "Refinance", "stat": "Rate · cash-out" }
   },
   "quote": { "title": "Get a Quote", "description": "Answer a few questions and get your personalized quote.", "heading": "Get a Quote" },
   "calculator": { "title": "Mortgage Calculator", "description": "Estimate your monthly mortgage payment.", "heading": "Mortgage Calculator" },
