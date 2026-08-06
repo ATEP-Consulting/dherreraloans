@@ -20,7 +20,7 @@ test('navegador en español → /es', async ({ browser }) => {
 
 test('pathnames localizados: /es/opciones-de-prestamo/prestamos-fha', async ({ page }) => {
   await page.goto('/es/opciones-de-prestamo/prestamos-fha');
-  await expect(page.locator('h1')).toHaveText(es.programs.fha.heading);
+  await expect(page.locator('h1')).toHaveText(es.programs.fha.heroTitle);
   expect(page.url()).toContain('/es/opciones-de-prestamo/prestamos-fha');
 });
 

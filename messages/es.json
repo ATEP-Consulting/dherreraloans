@@ -7,7 +7,8 @@
       "quote": "Cotización",
       "calculator": "Calculadora",
       "about": "Sobre mí",
-      "contact": "Contacto"
+      "contact": "Contacto",
+      "breadcrumb": "Estás aquí"
     },
     "localeSwitcher": { "en": "English", "es": "Español", "label": "Idioma" },
     "topStrip": { "left": "David Herrera — Originador de Préstamos Hipotecarios", "right": "NMLS #{nmls} · Miami, Florida" },

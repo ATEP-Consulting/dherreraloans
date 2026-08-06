@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import en from '../../messages/en.json';
+import es from '../../messages/es.json';
 
 test('la home monta las 5 filas del índice con enlaces a programas', async ({ page }) => {
   await page.goto('/en');
@@ -27,4 +28,13 @@ test('footer compliance: NMLS, EHO y Consumer Access', async ({ page }) => {
   await expect(page.locator('footer')).toContainText('NMLS #1459301');
   await expect(page.locator('footer')).toContainText(en.common.footer.eho);
   await expect(page.locator('footer').getByRole('link', { name: en.common.footer.links.consumerAccess })).toHaveAttribute('href', /nmlsconsumeraccess\.org/);
+});
+
+test('página de programa: contenido y JSON-LD', async ({ page }) => {
+  await page.goto('/es/opciones-de-prestamo/prestamos-fha');
+  await expect(page.locator('h1')).toContainText(es.programs.fha.heroTitle);
+  await expect(page.locator('main')).toContainText(es.programs.fha.whatIs.title);
+  const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
+  expect(ld.join('')).toContain('"MortgageLoan"');
+  expect(ld.join('')).toContain('"BreadcrumbList"');
 });
