@@ -1,5 +1,0 @@
-# Solo se sirve el placeholder. Los documentos internos (propuesta con
-# precios, ADRs, logos sin optimizar) NUNCA deben publicarse en la URL.
-# Este archivo se revisará al llegar el scaffolding de la Fase 0.
-*
-!index.html
