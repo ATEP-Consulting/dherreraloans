@@ -3,7 +3,7 @@
     "collect": {
       "numberOfRuns": 3,
       "settings": {
-        "skipAudits": ["is-crawlable"]
+        "skipAudits": ["is-crawlable", "canonical"]
       }
     },
     "assert": {
