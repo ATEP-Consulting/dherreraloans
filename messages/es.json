@@ -50,13 +50,153 @@
     },
     "ctaBand": { "title": "Conoce tu número <em>antes</em> de enamorarte de la casa." }
   },
-  "loanOptions": { "title": "Opciones de préstamo", "description": "Explora los programas hipotecarios disponibles en Florida.", "heading": "Opciones de préstamo" },
+  "loanOptions": {
+    "title": "Opciones de préstamo",
+    "description": "Explora los programas hipotecarios disponibles en Florida.",
+    "heading": "Opciones de préstamo",
+    "helper": "Todos los programas están disponibles en toda Florida. Compáralos abajo, o cuéntame tu situación y te oriento hacia el correcto."
+  },
   "programs": {
-    "fha": { "title": "Préstamos FHA", "description": "Requisitos flexibles para préstamos FHA en Florida.", "heading": "Préstamos FHA", "indexName": "Préstamos FHA", "stat": "3.5% de entrada" },
-    "conventional": { "title": "Préstamos convencionales", "description": "Opciones de hipoteca convencional en Florida.", "heading": "Préstamos convencionales", "indexName": "Convencional", "stat": "3% de entrada" },
-    "va": { "title": "Préstamos VA", "description": "Beneficios de préstamos VA para veteranos y militares.", "heading": "Préstamos VA", "indexName": "Préstamos VA", "stat": "$0 de entrada" },
-    "firstTimeHomebuyer": { "title": "Primer comprador", "description": "Programas para compradores de primera vivienda en Florida.", "heading": "Primer comprador", "indexName": "Primer comprador", "stat": "Asistencia FL" },
-    "refinance": { "title": "Refinanciamiento", "description": "Refinancia tu hipoteca y ahorra.", "heading": "Refinanciamiento", "indexName": "Refinanciamiento", "stat": "Tasa · cash-out" }
+    "fha": {
+      "title": "Préstamos FHA",
+      "description": "Requisitos flexibles para préstamos FHA en Florida.",
+      "heading": "Préstamos FHA",
+      "indexName": "Préstamos FHA",
+      "stat": "3.5% de entrada",
+      "heroTitle": "Entra a tu casa con apenas 3.5% de entrada",
+      "heroSub": "Si tus ahorros son limitados o tu historial de crédito no es perfecto, un préstamo FHA te deja la puerta abierta.",
+      "blurb": "Requisitos de crédito flexibles y una entrada desde 3.5%. Muchas veces, el primer paso hacia tu casa propia.",
+      "intro": "Un préstamo FHA está asegurado por el gobierno federal, por eso los prestamistas pueden aprobar a compradores que los programas convencionales a veces rechazan. Está pensado para quien todavía está construyendo su crédito o sus ahorros, no para quien ya tiene ambos resueltos. Lo uso mucho con compradores de primera vez.",
+      "whatIs": {
+        "title": "¿Qué es un préstamo FHA?",
+        "body": "Un préstamo FHA es una hipoteca asegurada por la Administración Federal de Vivienda, una agencia del gobierno, así que el prestamista asume menos riesgo que con un préstamo convencional. Ese respaldo es lo que te permite calificar con una entrada desde 3.5% y un puntaje de crédito que un programa convencional quizá no acepte. A cambio, pagas seguro hipotecario durante parte o todo el plazo del préstamo, a diferencia del convencional, donde normalmente puedes eliminarlo al construir suficiente valor en la propiedad."
+      },
+      "required": {
+        "title": "¿Qué necesitas para un préstamo FHA?",
+        "body": "Necesitas comprobante de ingresos, dos años de historial laboral y un puntaje de crédito que cumpla el mínimo del programa — flexible, pero no sin requisitos. La casa tiene que ser tu residencia principal, no una propiedad de alquiler ni de vacaciones. Una bancarrota o una ejecución hipotecaria anterior no te descalifica automáticamente, pero hay un período de espera que confirmo contigo caso por caso. Te digo qué documentos reunir antes de que empieces a ver casas."
+      },
+      "how": {
+        "title": "Cómo funciona un préstamo FHA",
+        "items": [
+          "Entrada desde 3.5% del precio de compra.",
+          "Plazos fijos disponibles comúnmente a 15 o 30 años.",
+          "Seguro hipotecario incluido en tu pago mensual, por parte o todo el plazo.",
+          "Sin penalización por pagar el préstamo antes de tiempo."
+        ]
+      }
+    },
+    "conventional": {
+      "title": "Préstamos convencionales",
+      "description": "Opciones de hipoteca convencional en Florida.",
+      "heading": "Préstamos convencionales",
+      "indexName": "Convencional",
+      "stat": "3% de entrada",
+      "heroTitle": "Buen crédito, mejores condiciones",
+      "heroSub": "Si tu crédito y tus ingresos ya son sólidos, un préstamo convencional suele costarte menos con el tiempo.",
+      "blurb": "Tasas y condiciones competitivas si tu crédito es sólido. Entrada desde alrededor de 3%.",
+      "intro": "Un préstamo convencional es la hipoteca estándar — no está respaldado por una agencia del gobierno, y suele ser la mejor opción una vez que tu crédito y tus ahorros están consolidados. Premia un perfil financiero más fuerte con menores costos a largo plazo. Lo comparo con FHA para casi todo comprador que califica para ambos.",
+      "whatIs": {
+        "title": "¿Qué es un préstamo convencional?",
+        "body": "Un préstamo convencional es una hipoteca que no está asegurada ni garantizada por una agencia del gobierno, así que el prestamista se apoya más en tu crédito e ingresos. Con buen crédito, normalmente viene con una entrada desde alrededor de 3%, tasas competitivas y condiciones que pueden ser más flexibles que las de FHA. A diferencia de FHA, el seguro hipotecario de un préstamo convencional normalmente se puede eliminar al alcanzar cierto nivel de valor en la propiedad — a menudo alrededor del 20%."
+      },
+      "required": {
+        "title": "¿Qué necesitas para un préstamo convencional?",
+        "body": "Los prestamistas generalmente buscan un puntaje de crédito más alto que el que pide FHA, junto con ingresos estables y dos años de historial laboral. La entrada empieza alrededor de 3%, aunque una entrada mayor puede bajar tu tasa y eliminar el seguro hipotecario antes. Puedes usarlo para tu residencia principal, una segunda casa o una propiedad de inversión, algo que FHA no permite. Reviso tu reporte de crédito contigo antes de aplicar, para que no haya sorpresas."
+      },
+      "how": {
+        "title": "Cómo funciona un préstamo convencional",
+        "items": [
+          "Entrada desde alrededor de 3%, más alta para segundas casas o propiedades de inversión.",
+          "Plazos fijos disponibles comúnmente a 15, 20 o 30 años.",
+          "Seguro hipotecario que se puede eliminar al construir suficiente valor en la propiedad.",
+          "Sin penalización por pagar el préstamo antes de tiempo."
+        ]
+      }
+    },
+    "va": {
+      "title": "Préstamos VA",
+      "description": "Beneficios de préstamos VA para veteranos y militares.",
+      "heading": "Préstamos VA",
+      "indexName": "Préstamos VA",
+      "stat": "$0 de entrada",
+      "heroTitle": "Compra con $0 de entrada, respaldado por tu servicio",
+      "heroSub": "Si serviste, tu beneficio puede cubrir la entrada que otros compradores tienen que ahorrar.",
+      "blurb": "Un beneficio ganado por tu servicio — muchas veces sin entrada y sin seguro hipotecario mensual.",
+      "intro": "Un préstamo VA es un beneficio para veteranos elegibles, militares en servicio activo y algunos cónyuges sobrevivientes, garantizado por el Departamento de Asuntos de Veteranos. Es uno de los pocos programas que puede financiar una casa sin ninguna entrada. Primero confirmo tu elegibilidad, antes de hablar de cualquier otra cosa.",
+      "whatIs": {
+        "title": "¿Qué es un préstamo VA?",
+        "body": "Un préstamo VA es una hipoteca garantizada por el Departamento de Asuntos de Veteranos de Estados Unidos para veteranos elegibles, militares en servicio activo y ciertos cónyuges sobrevivientes. Esa garantía es lo que permite a los prestamistas ofrecerlo sin entrada y sin seguro hipotecario mensual, algo que lo distingue tanto de FHA como del convencional. En la mayoría de los casos pagas una cuota de financiamiento única, aunque algunos prestatarios están exentos."
+      },
+      "required": {
+        "title": "¿Qué necesitas para un préstamo VA?",
+        "body": "Necesitas un Certificado de Elegibilidad, que confirma que tu servicio cumple los requisitos del programa — te ayudo a solicitarlo si todavía no lo tienes. El VA no exige una entrada mínima ni un puntaje de crédito mínimo fijo, aunque cada prestamista aplica sus propios criterios. La casa debe ser tu residencia principal. La flexibilidad de crédito es real, pero tus ingresos y deudas todavía tienen que sostener el pago."
+      },
+      "how": {
+        "title": "Cómo funciona un préstamo VA",
+        "items": [
+          "Sin entrada requerida en la mayoría de los casos.",
+          "Sin seguro hipotecario mensual.",
+          "Plazos fijos disponibles comúnmente a 15 o 30 años.",
+          "Cuota de financiamiento única, exenta para algunos prestatarios con discapacidad relacionada con el servicio."
+        ]
+      }
+    },
+    "firstTimeHomebuyer": {
+      "title": "Primer comprador",
+      "description": "Programas para compradores de primera vivienda en Florida.",
+      "heading": "Primer comprador",
+      "indexName": "Primer comprador",
+      "stat": "Asistencia FL",
+      "heroTitle": "Ayuda de Florida para tu primera entrada",
+      "heroSub": "Si ahorrar para la entrada te parece lo más difícil, los programas de asistencia de Florida pueden cubrir más de lo que piensas.",
+      "blurb": "Asistencia para la entrada y los costos de cierre para compradores de primera vez en Florida, junto con financiamiento FHA o convencional.",
+      "intro": "Los programas para compradores de primera vez no son un préstamo aparte — son asistencia que se suma a una hipoteca FHA o convencional para ayudarte con la entrada y los costos de cierre. Florida ofrece varios, y la mayoría de los compradores nunca pregunta por ellos. Reviso para qué calificas antes de que empieces a ver casas, no después.",
+      "whatIs": {
+        "title": "¿Qué es la asistencia para compradores de primera vez?",
+        "body": "La asistencia para compradores de primera vez combina una hipoteca estándar — normalmente FHA o convencional — con un programa de Florida que ayuda a cubrir tu entrada o tus costos de cierre, a veces como una subvención y a veces como un segundo préstamo a bajo interés. No es un tipo distinto de hipoteca; es ayuda que se suma a una para la que ya calificarías. Los programas disponibles y cuánto cubren cambian según tus ingresos, la ubicación y el precio de la casa."
+      },
+      "required": {
+        "title": "¿Qué necesitas para la asistencia de primer comprador?",
+        "body": "Generalmente necesitas estar comprando tu primera casa — o tu primera casa en varios años, dependiendo del programa — y el ingreso de tu hogar debe estar dentro de los límites del programa. Pasas por la misma aprobación de crédito e ingresos que cualquier préstamo FHA o convencional. Algunos programas piden un curso corto de educación para compradores, que te indico si aplica en tu caso. Te digo desde el principio para cuáles programas es probable que califiques."
+      },
+      "how": {
+        "title": "Cómo funciona la asistencia de primer comprador",
+        "items": [
+          "Se combina con un préstamo FHA o convencional, no es una hipoteca aparte.",
+          "Cubre parte de tu entrada o de los costos de cierre, como subvención o segundo préstamo.",
+          "Límites de ingreso que varían según el condado y el tamaño del hogar.",
+          "Algunos programas piden un curso corto de educación para compradores."
+        ]
+      }
+    },
+    "refinance": {
+      "title": "Refinanciamiento",
+      "description": "Refinancia tu hipoteca y ahorra.",
+      "heading": "Refinanciamiento",
+      "indexName": "Refinanciamiento",
+      "stat": "Tasa · cash-out",
+      "heroTitle": "Baja tu pago, o pon tu valor acumulado a trabajar",
+      "heroSub": "Si tu tasa, tu plazo o tu pago mensual ya no te funcionan, refinanciar puede valer la pena revisarlo.",
+      "blurb": "Baja tu tasa, acorta tu plazo, elimina el seguro hipotecario, o saca efectivo del valor acumulado en tu casa.",
+      "intro": "Refinanciar reemplaza tu hipoteca actual por una nueva, con condiciones distintas. A veces se trata de bajar el pago mensual, a veces de terminar de pagar la casa más rápido, y a veces de sacar el valor que ya construiste. Solo tiene sentido en algunos casos — te digo con honestidad cuándo no lo tiene.",
+      "whatIs": {
+        "title": "¿Qué es un refinanciamiento?",
+        "body": "Refinanciar significa pagar tu hipoteca actual con un préstamo nuevo, idealmente en mejores condiciones. Eso puede significar una tasa de interés más baja, un plazo más corto o más largo, la eliminación del seguro hipotecario una vez que tienes suficiente valor acumulado, o un refinanciamiento con retiro de efectivo que te permite pedir prestado contra el valor que ya construiste. La decisión correcta depende de tu tasa actual, cuánto tiempo planeas quedarte y qué problema quieres resolver."
+      },
+      "required": {
+        "title": "¿Qué necesitas para refinanciar?",
+        "body": "Necesitas suficiente valor acumulado en tu casa — la cantidad exacta depende del tipo de refinanciamiento — junto con ingresos y crédito que sostengan el nuevo préstamo. Un refinanciamiento con retiro de efectivo generalmente requiere más valor acumulado que uno solo de tasa y plazo. Se aplican costos de cierre, similares a los de una compra, así que calculo cuánto tiempo toma recuperar esa inversión. Si los números no te favorecen, te lo digo."
+      },
+      "how": {
+        "title": "Cómo funciona un refinanciamiento",
+        "items": [
+          "Reemplaza tu hipoteca actual con una nueva tasa, plazo o monto.",
+          "La opción con retiro de efectivo te permite pedir prestado contra el valor de tu casa.",
+          "Se aplican costos de cierre, similares a los de una compra.",
+          "Un punto de equilibrio te dice cuánto tiempo toma salir ganando."
+        ]
+      }
+    }
   },
   "quote": { "title": "Cotización", "description": "Responde unas preguntas y recibe tu cotización personalizada.", "heading": "Obtén tu cotización" },
   "calculator": { "title": "Calculadora de hipoteca", "description": "Estima tu pago mensual de hipoteca.", "heading": "Calculadora de hipoteca" },
@@ -65,5 +205,11 @@
   "legal": {
     "privacy": { "title": "Política de privacidad", "description": "Cómo tratamos tu información personal.", "heading": "Política de privacidad" },
     "accessibility": { "title": "Declaración de accesibilidad", "description": "Nuestro compromiso con una web accesible.", "heading": "Declaración de accesibilidad" }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "heading": "Esta página no existe",
+    "body": "La página que buscas no está aquí — puede que se haya movido, o que la dirección esté incorrecta. Te ayudo a volver al camino.",
+    "cta": "Volver al inicio"
   }
 }
