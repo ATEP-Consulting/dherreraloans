@@ -61,7 +61,7 @@ lighthouserc.json            # asserts ≥ 0.95 × 4, móvil, 3 runs
 - Consumes: repo existente (docs/, propuesta, index.html placeholder — no se tocan aún).
 - Produces: `npm run build` funcional; alias `@/*`; TS `strict: true`. Tasks posteriores asumen `npm run dev/build/lint` operativos.
 
-- [ ] **Step 1: Scaffolding en directorio temporal y copia al repo**
+- [x] **Step 1: Scaffolding en directorio temporal y copia al repo**
 
 `create-next-app` rechaza directorios con archivos en conflicto, así que se genera fuera y se copia (sin tocar `.gitignore` todavía):
 
@@ -72,11 +72,11 @@ cd dhl-scaffold
 rsync -a --exclude .git --exclude .gitignore --exclude README.md ./ /Users/pablo/Projects/DHerreraLoans/
 ```
 
-- [ ] **Step 2: Fusionar .gitignore y limpiar boilerplate**
+- [x] **Step 2: Fusionar .gitignore y limpiar boilerplate**
 
 Añadir al `.gitignore` existente (mantener lo que ya hay) las entradas del generado: `node_modules/`, `.next/`, `out/`, `next-env.d.ts`, `*.tsbuildinfo`, `test-results/`, `playwright-report/`. Borrar los SVG de ejemplo (`app/favicon.ico` se conserva; `public/*.svg` de Vercel/Next se eliminan) y dejar `app/page.tsx` con un `<main>` mínimo (se sustituye en Task 3). El placeholder `index.html` de la raíz **no se borra aún** (lo hace Task 9).
 
-- [ ] **Step 3: Verificar TS estricto y build**
+- [x] **Step 3: Verificar TS estricto y build**
 
 ```bash
 grep '"strict": true' tsconfig.json   # debe existir (default de create-next-app)
@@ -86,7 +86,7 @@ npm ls next typescript tailwindcss | cat   # anotar versiones instaladas en el c
 
 Esperado: build en verde. Si la major de Next instalada es superior a 15, se mantiene y se anota en el mensaje de commit (el ADR-0001 se redactó sobre la 15; App Router estable es lo decidido).
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A && git commit -m "feat: scaffolding Next.js + TS estricto + Tailwind (versiones en package.json)"
@@ -103,7 +103,7 @@ git add -A && git commit -m "feat: scaffolding Next.js + TS estricto + Tailwind 
 **Interfaces:**
 - Produces: `config/routes.mjs` exporta `locales: string[]`, `defaultLocale: string`, `pathnames: Record<string, Record<string,string>>`, `programSlugs: Record<string, Record<string,string>>`. `messages/{en,es}.json` con namespaces: `common`, `home`, `loanOptions`, `programs.{fha,conventional,va,firstTimeHomebuyer,refinance}`, `quote`, `calculator`, `about`, `contact`, `legal.privacy`, `legal.accessibility`. Todo lo posterior (routing, sitemap, check-static, sitemap, páginas) consume ESTOS nombres.
 
-- [ ] **Step 1: Instalar Vitest**
+- [x] **Step 1: Instalar Vitest**
 
 ```bash
 npm i -D vitest @vitest/coverage-v8
@@ -123,7 +123,7 @@ export default defineConfig({
 
 En `package.json`: `"test": "vitest run"`, `"test:watch": "vitest"`.
 
-- [ ] **Step 2: Escribir los tests que fallan**
+- [x] **Step 2: Escribir los tests que fallan**
 
 `tests/unit/routes.test.ts`:
 
@@ -194,11 +194,11 @@ describe('paridad de mensajes EN/ES', () => {
 });
 ```
 
-- [ ] **Step 3: Verificar que fallan**
+- [x] **Step 3: Verificar que fallan**
 
 Run: `npm test` — Esperado: FAIL (no existen `config/routes.mjs` ni los JSON).
 
-- [ ] **Step 4: Implementar `config/routes.mjs` y los mensajes**
+- [x] **Step 4: Implementar `config/routes.mjs` y los mensajes**
 
 `config/routes.mjs`:
 
@@ -310,7 +310,7 @@ export const programSlugs = {
 }
 ```
 
-- [ ] **Step 5: Verificar que pasan y commit**
+- [x] **Step 5: Verificar que pasan y commit**
 
 Run: `npm test` — Esperado: PASS (los 6 tests).
 
@@ -332,7 +332,7 @@ git add -A && git commit -m "feat: fuente única de rutas + mensajes EN/ES con t
 - Consumes: `config/routes.mjs` (Task 2) y los namespaces de mensajes definidos en Task 2.
 - Produces: `routing` (export de `i18n/routing.ts`) con `Link`/`redirect`/`usePathname` de `createNavigation`; `lib/programs.ts` exporta `programKeyFromSlug(locale: string, slug: string): string | undefined` y `slugFor(locale: string, key: string): string`. Las páginas usan `setRequestLocale` + `getTranslations` (patrón que la Fase 1 replicará).
 
-- [ ] **Step 1: Instalar y configurar next-intl**
+- [x] **Step 1: Instalar y configurar next-intl**
 
 ```bash
 npm i next-intl
@@ -395,7 +395,7 @@ const nextConfig: NextConfig = {};
 export default withNextIntl(nextConfig);
 ```
 
-- [ ] **Step 2: Test que falla para `lib/programs.ts`**
+- [x] **Step 2: Test que falla para `lib/programs.ts`**
 
 `tests/unit/programs.test.ts`:
 
@@ -420,7 +420,7 @@ describe('lib/programs', () => {
 
 Run: `npm test` — Esperado: FAIL (`lib/programs` no existe).
 
-- [ ] **Step 3: Implementar `lib/programs.ts`**
+- [x] **Step 3: Implementar `lib/programs.ts`**
 
 ```ts
 import { programSlugs } from '@/config/routes.mjs';
@@ -436,7 +436,7 @@ export function programKeyFromSlug(locale: string, slug: string): string | undef
 
 Run: `npm test` — Esperado: PASS.
 
-- [ ] **Step 4: Layout raíz y componentes**
+- [x] **Step 4: Layout raíz y componentes**
 
 `app/[locale]/layout.tsx`:
 
@@ -530,7 +530,7 @@ export function LocaleSwitcher() {
 }
 ```
 
-- [ ] **Step 5: Páginas esqueleto (todas con el mismo patrón)**
+- [x] **Step 5: Páginas esqueleto (todas con el mismo patrón)**
 
 Patrón — `app/[locale]/about/page.tsx` (idéntico para home (`page.tsx`, namespace `home`), `loan-options` (`loanOptions`), `quote`, `calculator`, `contact`, `privacy` (`legal.privacy`), `accessibility` (`legal.accessibility`), cambiando solo el namespace):
 
@@ -581,7 +581,7 @@ export default async function ProgramPage({
 }
 ```
 
-- [ ] **Step 6: Verificar build estático y ambos idiomas**
+- [x] **Step 6: Verificar build estático y ambos idiomas**
 
 ```bash
 npm run build
@@ -589,7 +589,7 @@ npm run build
 
 Esperado: build verde; en el output, todas las rutas `[locale]/…` con símbolo `●` (SSG) — ninguna `ƒ`. Arrancar `npm run start` y comprobar a mano: `http://localhost:3000/` → redirige a `/en`; `/es/opciones-de-prestamo/prestamos-fha` → h1 "Préstamos FHA"; el selector de idioma en `/en/loan-options` lleva a `/es/opciones-de-prestamo`.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add -A && git commit -m "feat: enrutado bilingüe next-intl con pathnames localizados y páginas esqueleto"
@@ -608,7 +608,7 @@ git add -A && git commit -m "feat: enrutado bilingüe next-intl con pathnames lo
 - Consumes: `config/routes.mjs`, `getPathname` de `i18n/routing.ts`, namespaces `*.title` / `*.description` de Task 2.
 - Produces: `buildPageMetadata({ locale, namespace, pathname, params? }): Promise<Metadata>` — la Fase 1 la usará en cada página nueva. `SITE_URL` exportada desde `lib/metadata.ts`.
 
-- [ ] **Step 1: Tests que fallan**
+- [x] **Step 1: Tests que fallan**
 
 `tests/unit/metadata.test.ts`:
 
@@ -654,7 +654,7 @@ describe('sitemap multiidioma (ADR-0003 §3)', () => {
 
 Run: `npm test` — Esperado: FAIL.
 
-- [ ] **Step 2: Implementar `lib/metadata.ts`**
+- [x] **Step 2: Implementar `lib/metadata.ts`**
 
 ```ts
 import type { Metadata } from 'next';
@@ -708,7 +708,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 ```
 
-- [ ] **Step 3: Implementar `app/robots.ts` y `app/sitemap.ts`**
+- [x] **Step 3: Implementar `app/robots.ts` y `app/sitemap.ts`**
 
 `app/robots.ts` (noindex pre-lanzamiento — Global Constraints):
 
@@ -763,7 +763,7 @@ NEXT_PUBLIC_SITE_URL=https://dherreraloans.vercel.app
 SITE_INDEXABLE=
 ```
 
-- [ ] **Step 4: Verificar y commit**
+- [x] **Step 4: Verificar y commit**
 
 Run: `npm test` — Esperado: PASS. `npm run build` verde; `/robots.txt` local muestra `Disallow: /`; `/sitemap.xml` lista 26 URLs con `xhtml:link`.
 
@@ -783,7 +783,7 @@ git add -A && git commit -m "feat: metadata hreflang/canonical, robots noindex p
 - Consumes: `config/routes.mjs`; `.next/prerender-manifest.json` (existe tras `next build`).
 - Produces: `npm run check:static` — exit 0 si TODAS las rutas esperadas están prerenderizadas; exit 1 con listado de faltantes. CI lo ejecuta tras el build (Task 7).
 
-- [ ] **Step 1: Implementar el script**
+- [x] **Step 1: Implementar el script**
 
 ```js
 // Gate del ADR-0003 §1: toda página de contenido debe estar prerenderizada.
@@ -818,7 +818,7 @@ console.log(`✅ ${expected.length} rutas de contenido prerenderizadas.`);
 
 En `package.json`: `"check:static": "node scripts/check-static.mjs"`.
 
-- [ ] **Step 2: Verificar en ambos sentidos**
+- [x] **Step 2: Verificar en ambos sentidos**
 
 ```bash
 npm run build && npm run check:static   # Esperado: ✅ 26 rutas
@@ -826,7 +826,7 @@ npm run build && npm run check:static   # Esperado: ✅ 26 rutas
 
 Prueba negativa (el gate detecta regresiones): añadir temporalmente `export const dynamic = 'force-dynamic'` a `app/[locale]/about/page.tsx`, rebuild, `npm run check:static` — Esperado: exit 1 listando `/en/about` y `/es/sobre-mi`. **Revertir el cambio** y verificar que vuelve a ✅.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add -A && git commit -m "feat: gate check:static — falla si una página de contenido deja de prerenderizarse"
@@ -844,7 +844,7 @@ git add -A && git commit -m "feat: gate check:static — falla si una página de
 - Consumes: build de producción (`npm run build` previo) y los textos de `messages/{en,es}.json`.
 - Produces: `npm run test:e2e`. La Fase 2/3 añadirán specs a `tests/e2e/` con esta misma config.
 
-- [ ] **Step 1: Instalar y configurar**
+- [x] **Step 1: Instalar y configurar**
 
 ```bash
 npm i -D @playwright/test && npx playwright install chromium
@@ -869,7 +869,7 @@ export default defineConfig({
 
 En `package.json`: `"test:e2e": "playwright test"`.
 
-- [ ] **Step 2: Escribir el smoke test (falla si el enrutado miente)**
+- [x] **Step 2: Escribir el smoke test (falla si el enrutado miente)**
 
 `tests/e2e/smoke.spec.ts`:
 
@@ -911,7 +911,7 @@ test('slug de programa desconocido → 404', async ({ page }) => {
 });
 ```
 
-- [ ] **Step 3: Ejecutar y verificar**
+- [x] **Step 3: Ejecutar y verificar**
 
 ```bash
 npm run build && npm run test:e2e
@@ -919,7 +919,7 @@ npm run build && npm run test:e2e
 
 Esperado: 5 tests PASS. (Si el selector de idioma falla, el bug estará en `router.replace` con `params` — revisar la firma de `createNavigation` de la versión instalada de next-intl antes de tocar el test.)
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A && git commit -m "test: smoke E2E móvil — redirect por idioma, pathnames localizados y 404"
@@ -936,7 +936,7 @@ git add -A && git commit -m "test: smoke E2E móvil — redirect por idioma, pat
 - Consumes: scripts npm de Tasks 2–6 (`lint`, `test`, `check:static`, `test:e2e`) y `tsc --noEmit`.
 - Produces: check `quality` requerido en PRs. Task 8 añade los checks de deploy/Lighthouse.
 
-- [ ] **Step 1: Escribir el workflow**
+- [x] **Step 1: Escribir el workflow**
 
 ```yaml
 name: CI
@@ -965,7 +965,7 @@ jobs:
         with: { name: playwright-report, path: playwright-report, retention-days: 7 }
 ```
 
-- [ ] **Step 2: Verificación local equivalente y commit**
+- [x] **Step 2: Verificación local equivalente y commit**
 
 ```bash
 npm run lint && npx tsc --noEmit && npm test && npm run build && npm run check:static && npm run test:e2e
@@ -986,7 +986,7 @@ git add .github && git commit -m "ci: pipeline de calidad — lint, tipos, unit,
 - Consumes: proyecto Vercel `dherreraloans` ya enlazado (org `atep-consultings-projects`); secrets de GitHub `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
 - Produces: en cada PR, deployment de preview + comentario con URL + check de Lighthouse ≥ 95; en cada push a `main`, deploy de producción.
 
-- [ ] **Step 1: Configurar secrets (⚠️ incluye un paso manual del usuario)**
+- [x] **Step 1: Configurar secrets (⚠️ incluye un paso manual del usuario)**
 
 ```bash
 # Los IDs salen del enlace ya hecho con `vercel link`:
@@ -998,7 +998,7 @@ gh secret set VERCEL_PROJECT_ID --repo ATEP-Consulting/dherreraloans --body "$VE
 
 **BLOQUEANTE — acción del usuario:** crear un token en https://vercel.com/account/settings/tokens (scope: la cuenta `atepconsulting`, expiración 1 año) y pasárnoslo o ejecutar: `gh secret set VERCEL_TOKEN --repo ATEP-Consulting/dherreraloans --body "<token>"`. Sin este secret, los workflows de deploy fallan con credenciales; el resto del plan no se bloquea (se puede seguir y verificar al final).
 
-- [ ] **Step 2: `lighthouserc.json` (el gate contractual)**
+- [x] **Step 2: `lighthouserc.json` (el gate contractual)**
 
 ```json
 {
@@ -1023,7 +1023,7 @@ gh secret set VERCEL_PROJECT_ID --repo ATEP-Consulting/dherreraloans --body "$VE
 
 `is-crawlable` se omite **a propósito**: los previews llevan noindex (Vercel añade `X-Robots-Tag` y nuestro robots.ts deniega pre-lanzamiento — Global Constraints); sin omitirlo, la categoría SEO nunca podría llegar a 95 en preview. La crawlabilidad real se valida en Fase 4 al abrir la indexación con el dominio. (Lighthouse audita en móvil por defecto — es exactamente la condición contractual.)
 
-- [ ] **Step 3: Workflow de preview con Lighthouse**
+- [x] **Step 3: Workflow de preview con Lighthouse**
 
 `.github/workflows/deploy-preview.yml`:
 
@@ -1071,7 +1071,7 @@ jobs:
             ${{ steps.deploy.outputs.url }}/es/cotizacion
 ```
 
-- [ ] **Step 4: Workflow de producción**
+- [x] **Step 4: Workflow de producción**
 
 `.github/workflows/deploy-production.yml`:
 
@@ -1098,7 +1098,7 @@ jobs:
       - run: npx vercel@latest deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 ```
 
-- [ ] **Step 5: Nota de limitación conocida + commit**
+- [x] **Step 5: Nota de limitación conocida + commit**
 
 GitHub Free para organizaciones **no ofrece branch protection en repos privados**: los checks (quality, preview+Lighthouse) se ven en rojo en el PR pero el merge no queda bloqueado técnicamente. Disciplina de proceso: **no se mergea con checks en rojo**. Si el repo pasara a público o el plan a Team, activar la protección es un paso de 1 minuto (documentado aquí para entonces).
 
@@ -1118,7 +1118,7 @@ git add .github lighthouserc.json && git commit -m "ci: deploys por Vercel CLI +
 - Consumes: todo lo anterior; secrets de Task 8 configurados (incluido `VERCEL_TOKEN`).
 - Produces: `https://dherreraloans.vercel.app` sirviendo el esqueleto bilingüe con noindex; pipeline completo verde en el primer PR real del repo.
 
-- [ ] **Step 1: Variables de entorno en Vercel**
+- [x] **Step 1: Variables de entorno en Vercel**
 
 ```bash
 printf 'https://dherreraloans.vercel.app' | npx vercel@latest env add NEXT_PUBLIC_SITE_URL production
@@ -1126,7 +1126,7 @@ printf 'https://dherreraloans.vercel.app' | npx vercel@latest env add NEXT_PUBLI
 # SITE_INDEXABLE no se define: robots deniega por defecto (se activará en Fase 4 con el dominio real)
 ```
 
-- [ ] **Step 2: Retirar el placeholder en una rama y abrir el primer PR**
+- [x] **Step 2: Retirar el placeholder en una rama y abrir el primer PR**
 
 ```bash
 git checkout -b feat/fase-0-esqueleto
@@ -1138,11 +1138,11 @@ gh pr create --repo ATEP-Consulting/dherreraloans \
   --body "Cierra la Fase 0: Next.js + next-intl + tests + CI + Lighthouse gate. Ver docs/superpowers/plans/2026-08-06-fase-0-fundacion.md"
 ```
 
-- [ ] **Step 3: Verificar el pipeline completo en el PR**
+- [x] **Step 3: Verificar el pipeline completo en el PR**
 
 Esperado en el PR: check `quality` verde; workflow de preview publica el comentario con la URL; Lighthouse ≥ 95 en las 4 categorías en las 6 URLs. Si Lighthouse falla aquí (con este esqueleto casi vacío), la causa será de infraestructura (headers, fuentes, imágenes del placeholder) — investigarla con la skill de systematic-debugging antes de tocar umbrales: **los umbrales no se bajan**.
 
-- [ ] **Step 4: Merge y verificación de producción**
+- [x] **Step 4: Merge y verificación de producción**
 
 ```bash
 gh pr merge --repo ATEP-Consulting/dherreraloans --squash --delete-branch
@@ -1153,7 +1153,7 @@ gh pr merge --repo ATEP-Consulting/dherreraloans --squash --delete-branch
 /usr/bin/curl -s https://dherreraloans.vercel.app/sitemap.xml | /usr/bin/head -5            # sitemap con xhtml:link
 ```
 
-- [ ] **Step 5: Cierre de fase**
+- [x] **Step 5: Cierre de fase**
 
 Marcar la Fase 0 como completada en este plan (checkboxes) y commitear. La Fase 1 (contenido + SEO completo) arranca con su propio plan sobre esta base.
 
