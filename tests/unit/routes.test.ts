@@ -10,7 +10,7 @@ describe('config/routes', () => {
   it('todo pathname tiene slug para cada locale', () => {
     for (const [route, byLocale] of Object.entries(pathnames)) {
       for (const locale of locales) {
-        expect(byLocale[locale], `${route} sin slug ${locale}`).toBeTypeOf('string');
+        expect(byLocale[locale as 'en' | 'es'], `${route} sin slug ${locale}`).toBeTypeOf('string');
       }
     }
   });
@@ -27,7 +27,7 @@ describe('config/routes', () => {
       ['conventional', 'fha', 'firstTimeHomebuyer', 'refinance', 'va'],
     );
     for (const locale of locales) {
-      const slugs = Object.values(programSlugs).map((s) => s[locale]);
+      const slugs = Object.values(programSlugs).map((s) => s[locale as 'en' | 'es']);
       expect(new Set(slugs).size).toBe(slugs.length);
     }
   });
