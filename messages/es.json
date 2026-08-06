@@ -1,0 +1,32 @@
+{
+  "common": {
+    "brand": "DherreraLoans",
+    "nav": {
+      "home": "Inicio",
+      "loanOptions": "Opciones de préstamo",
+      "quote": "Cotización",
+      "calculator": "Calculadora",
+      "about": "Sobre mí",
+      "contact": "Contacto"
+    },
+    "localeSwitcher": { "en": "English", "es": "Español", "label": "Idioma" },
+    "footer": { "tagline": "Soluciones hipotecarias en Miami, FL.", "nmls": "NMLS # pendiente" }
+  },
+  "home": { "title": "Soluciones hipotecarias en Miami", "description": "Compra o refinancia con un originador de préstamos licenciado en Florida.", "heading": "Tu camino a la casa propia empieza aquí" },
+  "loanOptions": { "title": "Opciones de préstamo", "description": "Explora los programas hipotecarios disponibles en Florida.", "heading": "Opciones de préstamo" },
+  "programs": {
+    "fha": { "title": "Préstamos FHA", "description": "Requisitos flexibles para préstamos FHA en Florida.", "heading": "Préstamos FHA" },
+    "conventional": { "title": "Préstamos convencionales", "description": "Opciones de hipoteca convencional en Florida.", "heading": "Préstamos convencionales" },
+    "va": { "title": "Préstamos VA", "description": "Beneficios de préstamos VA para veteranos y militares.", "heading": "Préstamos VA" },
+    "firstTimeHomebuyer": { "title": "Primer comprador", "description": "Programas para compradores de primera vivienda en Florida.", "heading": "Primer comprador" },
+    "refinance": { "title": "Refinanciamiento", "description": "Refinancia tu hipoteca y ahorra.", "heading": "Refinanciamiento" }
+  },
+  "quote": { "title": "Cotización", "description": "Responde unas preguntas y recibe tu cotización personalizada.", "heading": "Obtén tu cotización" },
+  "calculator": { "title": "Calculadora de hipoteca", "description": "Estima tu pago mensual de hipoteca.", "heading": "Calculadora de hipoteca" },
+  "about": { "title": "Sobre David Herrera", "description": "Originador de préstamos hipotecarios licenciado en Miami, FL.", "heading": "Sobre mí" },
+  "contact": { "title": "Contacto", "description": "Comunícate por teléfono, email o WhatsApp.", "heading": "Contacto" },
+  "legal": {
+    "privacy": { "title": "Política de privacidad", "description": "Cómo tratamos tu información personal.", "heading": "Política de privacidad" },
+    "accessibility": { "title": "Declaración de accesibilidad", "description": "Nuestro compromiso con una web accesible.", "heading": "Declaración de accesibilidad" }
+  }
+}
