@@ -20,7 +20,7 @@ jobs:
         with: { node-version: 24, cache: npm }
       - run: npm ci
       - run: npm run lint
-      - run: npx tsc --noEmit
+      - run: npx next typegen && npx tsc --noEmit
       - run: npm test            # unit: paridad i18n, rutas, metadata, sitemap, programs
       - run: npm run build       # falla también si una página pierde SSG…
       - run: npm run check:static  # …y este gate lo hace explícito (ADR-0003 §1)
