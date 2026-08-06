@@ -38,6 +38,12 @@ Hace falta hosting con: dominio custom del cliente, HTTPS, CDN para las páginas
 6. **Secretos** (Sheets service account, Pipedrive token, Resend API key, HMAC secret anti-spam): variables de entorno en Vercel, con `.env.example` versionado documentando cada una. Nunca en el repo. Las previews usan credenciales de sandbox (hoja de Sheets de prueba, Resend en modo test, Pipedrive sandbox si el cliente lo tiene — o mock) para no ensuciar datos reales del cliente.
 7. **Analytics de Vercel: no se activa.** GA4 (ADR-0009) es la analítica del proyecto; dos scripts de medición es pagar dos veces el coste de rendimiento.
 
+## Nota post-aprobación (2026-08-06): integración Git nativa no disponible
+
+Al crear la infraestructura se constató que **el plan Hobby no permite conectar la integración GitHub nativa de Vercel con un repositorio privado propiedad de una organización** (error 409: requiere Pro). Alternativas evaluadas: hacer público el repo (expondría código del cliente y documentación interna — descartada), pagar Pro (rompe la restricción de presupuesto — descartada), mover el repo a la cuenta personal (contradice la decisión de alojarlo en la organización — descartada).
+
+**Mitigación adoptada**: los despliegues se ejecutan con el **CLI de Vercel desde GitHub Actions** (patrón documentado por Vercel): `vercel pull` + `vercel build` + `vercel deploy --prebuilt` — preview en cada PR (la Action comenta la URL en el PR) y `--prod` en cada push a `main`. Requiere un `VERCEL_TOKEN` creado en el dashboard de Vercel y guardado como secret de GitHub (paso manual del setup, documentado en el runbook). El resto del ADR (previews por PR, gate de Lighthouse contra la URL de preview, producción en `main`) se mantiene intacto — solo cambia quién invoca el deploy: GitHub Actions en lugar del webhook nativo de Vercel.
+
 ## Consecuencias
 
 ### Positivas
