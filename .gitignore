@@ -14,3 +14,11 @@ coverage/
 .DS_Store
 .vercel
 .env*
+
+# TypeScript
+next-env.d.ts
+*.tsbuildinfo
+
+# Testing
+test-results/
+playwright-report/
