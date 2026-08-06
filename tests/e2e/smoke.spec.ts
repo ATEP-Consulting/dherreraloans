@@ -26,13 +26,13 @@ test('pathnames localizados: /es/opciones-de-prestamo/prestamos-fha', async ({ p
 
 test('el selector de idioma traduce también el pathname', async ({ page }) => {
   await page.goto('/en/loan-options');
-  await page.getByRole('link', { name: 'ES' }).click();
+  await page.getByRole('link', { name: 'ES', exact: true }).click();
   await expect(page).toHaveURL(/\/es\/opciones-de-prestamo$/);
 });
 
 test('el selector traduce el slug del programa', async ({ page }) => {
   await page.goto('/en/loan-options/fha-loans');
-  await page.getByRole('link', { name: 'ES' }).click();
+  await page.getByRole('link', { name: 'ES', exact: true }).click();
   await expect(page).toHaveURL(/\/es\/opciones-de-prestamo\/prestamos-fha$/);
 });
 
