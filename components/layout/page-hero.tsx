@@ -43,7 +43,7 @@ export async function PageHero({ locale, pathname, params, image, imageAlt, eyeb
           </nav>
           <div className="flex items-center gap-4 lg:gap-[26px]">
             <LangToggle locale={locale} pathname={pathname} params={params} />
-            <a href={APPLY_URL} target="_blank" rel="noopener" className="sr-only border-b border-paper-a55 pb-px font-sans text-[13.5px] font-medium text-paper hover:border-paper lg:not-sr-only lg:inline">
+            <a href={APPLY_URL} target="_blank" rel="noopener" className="sr-only border-b border-paper-a55 pb-px font-sans text-[13.5px] font-medium text-paper hover:border-paper focus-visible:not-sr-only lg:not-sr-only lg:inline">
               {t('cta.apply')}
             </a>
             <span className="hidden lg:inline"><Button href="/quote" variant="paper">{t('cta.quote')}</Button></span>
