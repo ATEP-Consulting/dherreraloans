@@ -205,19 +205,43 @@
     "description": "Answer a few questions and get your personalized quote.",
     "heading": "Get a Quote",
     "heroTitle": "A few minutes of questions. Real numbers back.",
-    "heroSub": "A few minutes of questions, real numbers back — no guesswork. The full questionnaire is coming online shortly.",
-    "steps": {
-      "title": "How it works",
-      "items": [
-        { "title": "Your goal", "line": "Buying your first home, moving up, or refinancing — the questions start with what you're trying to do." },
-        { "title": "Your numbers", "line": "Income, credit, down payment, timeline — enough for me to give you a real range, not a guess." },
-        { "title": "We talk", "line": "I call you with what I found and what it means for your search — same day, in English or Spanish." }
-      ]
-    },
-    "meanwhile": {
-      "title": "In the meantime",
-      "body": "The questionnaire isn't live yet, but you don't have to wait for it. WhatsApp me or call, and I'll ask the same questions myself — same answers, same person, today instead of in a few weeks.",
-      "cta": "Contact me"
+    "heroSub": "This is my pre-qualification questionnaire: a few minutes of questions, real numbers back — no commitment and no credit pull.",
+    "quiz": {
+      "progress": { "label": "Step {current} of {total}" },
+      "nav": { "back": "Back", "continue": "Continue", "submit": "Send my request", "sending": "Sending…", "retry": "Try again" },
+      "errors": {
+        "choice": "Select an option to continue.",
+        "location": "Enter your city or ZIP code.",
+        "money": "Enter a valid amount.",
+        "rate": "Enter a valid rate.",
+        "firstName": "Enter your first name.",
+        "lastName": "Enter your last name.",
+        "email": "Enter a valid email.",
+        "phone": "Enter a valid phone number.",
+        "submit": "Something went wrong sending your request. Your answers are safe — try again."
+      },
+      "steps": {
+        "goal": { "title": "What brings you here today?", "options": { "buy": "Buy a home", "refinance": "Refinance my home" } },
+        "location": { "titleBuy": "Where in Florida are you looking to buy?", "titleRefi": "Where's the property?", "label": "City or ZIP code", "placeholder": "Miami or 33130" },
+        "propertyType": { "title": "What type of property?", "options": { "singleFamily": "Single-family home", "townhouse": "Townhouse", "condo": "Condo", "multiUnit": "Multi-unit (2–4)", "other": "Other" } },
+        "stage": { "title": "Where are you in the process?", "options": { "research": "Just starting to research", "looking": "Actively looking at homes", "offerAccepted": "Offer accepted", "underContract": "Under contract" } },
+        "use": { "title": "How will you use this property?", "options": { "primary": "Primary residence", "second": "Second home", "investment": "Investment" } },
+        "military": { "title": "Have you or your spouse served in the U.S. military?", "helper": "It can unlock VA loan benefits.", "options": { "yes": "Yes", "no": "No" } },
+        "militaryBranch": { "title": "Which branch?", "options": { "army": "Army", "navy": "Navy", "airForce": "Air Force", "marines": "Marines", "coastGuard": "Coast Guard", "guardReserves": "National Guard or Reserves" } },
+        "hasAgent": { "title": "Are you working with a real estate agent?", "options": { "yes": "Yes", "notYet": "Not yet" } },
+        "firstTime": { "title": "Is this your first home purchase?", "helper": "There are programs specifically for first-time buyers.", "options": { "yes": "Yes", "no": "No" } },
+        "purchaseNumbers": { "title": "Your purchase numbers", "priceLabel": "Estimated price", "downLabel": "Down payment available", "escape": "I'm not sure yet" },
+        "refiNumbers": { "title": "Your current mortgage", "valueLabel": "Estimated property value", "balanceLabel": "Current loan balance", "rateLabel": "Current interest rate", "escape": "I don't remember" },
+        "secondMortgage": { "title": "Do you have a second mortgage on the property?", "options": { "yes": "Yes", "no": "No" } },
+        "cashOut": { "title": "Are you looking to take cash out?", "helper": "Cash-out uses your equity for renovations, debt, or other goals.", "options": { "yes": "Yes", "no": "No", "unsure": "Not sure yet" } },
+        "employment": { "title": "What's your employment situation?", "options": { "employed": "Employed", "selfEmployed": "Self-employed or business owner", "retired": "Retired", "other": "Other" } },
+        "income": { "title": "What's your annual household income?", "helper": "A range is enough.", "options": { "under50k": "Under $50,000", "50to100k": "$50,000–$100,000", "100to150k": "$100,000–$150,000", "over150k": "Over $150,000", "discuss": "I'd rather discuss it with you" } },
+        "credit": { "title": "How's your credit?", "helper": "An estimate is fine — nothing is checked here.", "options": { "excellent": "Excellent (740+)", "good": "Good (680–739)", "fair": "Fair (620–679)", "needsWork": "Needs work (below 620)", "unknown": "I don't know" } },
+        "history": { "title": "Any bankruptcy or foreclosure in your past?", "helper": "It doesn't disqualify you — it just changes which programs fit.", "options": { "none": "No", "over4y": "Yes, more than 4 years ago", "within4y": "Yes, within the last 4 years" } },
+        "status": { "title": "Which best describes your status in the U.S.?", "helper": "This helps me match you with the right programs — there are options with ITIN and for foreign buyers.", "options": { "citizen": "U.S. citizen", "permanentResident": "Permanent resident", "workVisa": "Work visa or permit", "otherStatus": "Other status (ITIN / foreign national)", "discuss": "I'd rather discuss it with you" } },
+        "contact": { "title": "Last step — where do I send your numbers?", "firstName": "First name", "lastName": "Last name", "email": "Email", "phone": "Phone", "consent": "By sending, you agree that David Herrera may contact you about your request by phone, text, or email." }
+      },
+      "thanks": { "title": "Got it, {name}.", "body": "Your request is in — I'll review your numbers and reach out shortly, usually the same day.", "noWait": "If you'd rather not wait:", "explore": "Explore loan options" }
     }
   },
   "calculator": {

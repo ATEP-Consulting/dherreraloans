@@ -3,9 +3,16 @@ import { useEffect, useRef, useState } from 'react';
 import { parseRate } from '@/lib/format';
 import { controlClass } from './text-input';
 
-type Props = { id: string; value: number | null; onValueChange: (v: number | null) => void; invalid?: boolean; disabled?: boolean };
+type Props = {
+  id: string;
+  value: number | null;
+  onValueChange: (v: number | null) => void;
+  invalid?: boolean;
+  disabled?: boolean;
+  'aria-describedby'?: string;
+};
 
-export function PercentInput({ id, value, onValueChange, invalid, disabled }: Props) {
+export function PercentInput({ id, value, onValueChange, invalid, disabled, 'aria-describedby': describedBy }: Props) {
   const [raw, setRaw] = useState(value === null ? '' : String(value));
   const lastNotifiedValue = useRef(value);
 
@@ -28,6 +35,7 @@ export function PercentInput({ id, value, onValueChange, invalid, disabled }: Pr
         value={raw}
         disabled={disabled}
         aria-invalid={invalid || undefined}
+        aria-describedby={describedBy}
         onChange={(e) => {
           const newRaw = e.target.value;
           setRaw(newRaw);

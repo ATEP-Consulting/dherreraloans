@@ -205,19 +205,43 @@
     "description": "Responde unas preguntas y recibe tu cotización personalizada.",
     "heading": "Obtén tu cotización",
     "heroTitle": "Unos minutos de preguntas. Números reales de vuelta.",
-    "heroSub": "Unos minutos de preguntas, números reales de vuelta — sin adivinar. El cuestionario completo llega pronto.",
-    "steps": {
-      "title": "Cómo funciona",
-      "items": [
-        { "title": "Tu meta", "line": "Comprar tu primera casa, mudarte a una mejor, o refinanciar — las preguntas empiezan por lo que quieres lograr." },
-        { "title": "Tus números", "line": "Ingresos, crédito, entrada, plazos — lo suficiente para darte un rango real, no una adivinanza." },
-        { "title": "Hablamos", "line": "Te llamo con lo que encontré y qué significa para tu búsqueda — el mismo día, en inglés o en español." }
-      ]
-    },
-    "meanwhile": {
-      "title": "Mientras tanto",
-      "body": "El cuestionario todavía no está en línea, pero no tienes que esperarlo. Escríbeme por WhatsApp o llama, y te hago las mismas preguntas yo mismo — las mismas respuestas, la misma persona, hoy en lugar de en unas semanas.",
-      "cta": "Contáctame"
+    "heroSub": "Este es mi cuestionario de precalificación: unos minutos de preguntas y vuelves con números reales — sin compromiso y sin consultar tu crédito.",
+    "quiz": {
+      "progress": { "label": "Paso {current} de {total}" },
+      "nav": { "back": "Atrás", "continue": "Continuar", "submit": "Enviar mi solicitud", "sending": "Enviando…", "retry": "Reintentar" },
+      "errors": {
+        "choice": "Selecciona una opción para continuar.",
+        "location": "Escribe tu ciudad o código ZIP.",
+        "money": "Escribe una cantidad válida.",
+        "rate": "Escribe una tasa válida.",
+        "firstName": "Escribe tu nombre.",
+        "lastName": "Escribe tu apellido.",
+        "email": "Escribe un email válido.",
+        "phone": "Escribe un teléfono válido.",
+        "submit": "Algo falló al enviar tu solicitud. Tus respuestas están a salvo — inténtalo otra vez."
+      },
+      "steps": {
+        "goal": { "title": "¿Qué quieres lograr?", "options": { "buy": "Comprar casa", "refinance": "Refinanciar mi casa" } },
+        "location": { "titleBuy": "¿En qué zona de Florida estás buscando?", "titleRefi": "¿Dónde está la propiedad?", "label": "Ciudad o código ZIP", "placeholder": "Miami o 33130" },
+        "propertyType": { "title": "¿Qué tipo de propiedad?", "options": { "singleFamily": "Casa unifamiliar", "townhouse": "Townhouse", "condo": "Condo", "multiUnit": "Multi-unidad (2–4)", "other": "Otro" } },
+        "stage": { "title": "¿En qué punto del proceso estás?", "options": { "research": "Empezando a investigar", "looking": "Buscando casa activamente", "offerAccepted": "Oferta aceptada", "underContract": "Bajo contrato" } },
+        "use": { "title": "¿Cómo usarás la propiedad?", "options": { "primary": "Residencia principal", "second": "Segunda vivienda", "investment": "Inversión" } },
+        "military": { "title": "¿Tú o tu cónyuge han servido en las fuerzas armadas de EE. UU.?", "helper": "Puede darte acceso a los beneficios del préstamo VA.", "options": { "yes": "Sí", "no": "No" } },
+        "militaryBranch": { "title": "¿En qué rama?", "options": { "army": "Army", "navy": "Navy", "airForce": "Air Force", "marines": "Marines", "coastGuard": "Coast Guard", "guardReserves": "Guardia Nacional o Reservas" } },
+        "hasAgent": { "title": "¿Trabajas ya con un agente inmobiliario?", "options": { "yes": "Sí", "notYet": "Todavía no" } },
+        "firstTime": { "title": "¿Es tu primera compra de casa?", "helper": "Hay programas pensados justo para primeros compradores.", "options": { "yes": "Sí", "no": "No" } },
+        "purchaseNumbers": { "title": "Tus números de compra", "priceLabel": "Precio estimado", "downLabel": "Entrada disponible", "escape": "Aún no lo sé" },
+        "refiNumbers": { "title": "Tu hipoteca actual", "valueLabel": "Valor estimado", "balanceLabel": "Balance actual", "rateLabel": "Tasa actual", "escape": "No la recuerdo" },
+        "secondMortgage": { "title": "¿Tienes una segunda hipoteca sobre la propiedad?", "options": { "yes": "Sí", "no": "No" } },
+        "cashOut": { "title": "¿Quieres sacar efectivo (cash-out)?", "helper": "El cash-out usa tu plusvalía para renovaciones, deudas u otras metas.", "options": { "yes": "Sí", "no": "No", "unsure": "No estoy seguro" } },
+        "employment": { "title": "¿Cuál es tu situación laboral?", "options": { "employed": "Empleado", "selfEmployed": "Negocio propio o independiente", "retired": "Jubilado", "other": "Otra" } },
+        "income": { "title": "¿Cuáles son los ingresos anuales de tu hogar?", "helper": "Con un rango es suficiente.", "options": { "under50k": "Menos de $50,000", "50to100k": "$50,000–$100,000", "100to150k": "$100,000–$150,000", "over150k": "Más de $150,000", "discuss": "Prefiero comentarlo contigo" } },
+        "credit": { "title": "¿Cómo está tu crédito?", "helper": "Con una estimación basta — aquí no se consulta tu crédito.", "options": { "excellent": "Excelente (740+)", "good": "Bueno (680–739)", "fair": "Regular (620–679)", "needsWork": "Necesita trabajo (menos de 620)", "unknown": "No lo sé" } },
+        "history": { "title": "¿Has tenido bancarrota o foreclosure?", "helper": "No te descalifica — solo cambia qué programas encajan.", "options": { "none": "No", "over4y": "Sí, hace más de 4 años", "within4y": "Sí, en los últimos 4 años" } },
+        "status": { "title": "¿Cuál describe mejor tu estatus en EE. UU.?", "helper": "Me ayuda a identificar los programas correctos — hay opciones con ITIN y para compradores extranjeros.", "options": { "citizen": "Ciudadano de EE. UU.", "permanentResident": "Residente permanente", "workVisa": "Visa o permiso de trabajo", "otherStatus": "Otro estatus (ITIN / extranjero)", "discuss": "Prefiero comentarlo contigo" } },
+        "contact": { "title": "Último paso — ¿dónde te mando tus números?", "firstName": "Nombre", "lastName": "Apellido", "email": "Email", "phone": "Teléfono", "consent": "Al enviar aceptas que David Herrera te contacte sobre tu solicitud por teléfono, mensaje o email." }
+      },
+      "thanks": { "title": "Recibido, {name}.", "body": "Tu solicitud está dentro — reviso tus números y te contacto en breve, normalmente el mismo día.", "noWait": "Si prefieres no esperar:", "explore": "Explora los programas" }
     }
   },
   "calculator": {

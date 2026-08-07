@@ -14,6 +14,11 @@ const base =
 const variants = { paper: 'bg-paper text-navy', navy: 'bg-navy text-paper' };
 const sizes = { md: 'px-[26px] py-3.5', lg: 'px-9 py-[18px]' };
 
+/** Clases del Button expuestas para elementos no-link (p. ej. <button> del quiz) que deben verse idénticos. */
+export function buttonVariantClass(variant: 'paper' | 'navy', size: 'md' | 'lg' = 'md'): string {
+  return `${base} ${variants[variant]} ${sizes[size]}`;
+}
+
 export function Button({ href, variant, size = 'md', external, children }: Props) {
   const className = `${base} ${variants[variant]} ${sizes[size]}`;
   if (external && typeof href === 'string') {
