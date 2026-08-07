@@ -79,3 +79,26 @@ test('el quiz embebido en home avanza y comparte progreso con /quote', async ({ 
   await page.goto('/en/quote');
   await expect(page.getByText(stepTwo)).toBeVisible();
 });
+
+test('un visitante a mitad de flujo que reabre la home no sufre robo de foco ni salto de scroll', async ({ page }) => {
+  // Progreso guardado de una sesión anterior, sembrado ANTES de que cargue cualquier script
+  // de la página (mismo `dhl-quiz-v1` que usa lib/quiz/engine.ts). El quiz vive a mitad de la
+  // home (sección #quiz, muy por debajo del hero): si la rehidratación post-montaje del quiz
+  // (components/quiz/quiz.tsx) llamase a `headingRef.current?.focus()` en este paso, el
+  // navegador robaría el foco Y haría scroll automático hasta el heading — justo el bug que
+  // este test cubre (la rehidratación no es una navegación real del usuario).
+  await page.addInitScript(
+    ({ key, value }) => window.sessionStorage.setItem(key, value),
+    {
+      key: 'dhl-quiz-v1',
+      value: JSON.stringify({ answers: { goal: 'buy', location: 'Miami' }, stepId: 'propertyType', status: 'idle' }),
+    },
+  );
+  await page.goto('/en');
+  // Confirma que la rehidratación sí ocurrió (retoma en 'propertyType', no en 'goal').
+  await expect(page.getByRole('heading', { name: en.quote.quiz.steps.propertyType.title })).toBeVisible();
+  const activeTag = await page.evaluate(() => document.activeElement?.tagName);
+  expect(activeTag).toBe('BODY');
+  const scrollY = await page.evaluate(() => window.scrollY);
+  expect(scrollY).toBe(0);
+});
