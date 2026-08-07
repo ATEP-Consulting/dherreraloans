@@ -230,20 +230,23 @@
       "title": "What this estimates",
       "body": "A mortgage payment estimate covers principal and interest — what you borrow, plus what it costs to borrow it, spread over the loan term. It won't include property taxes, homeowners insurance, or HOA dues, which vary by property and change your total payment. I always show you the full number, not just the part that looks smaller."
     },
-    "example": {
-      "title": "A worked example",
+    "calc": {
+      "sectionTitle": "Run your numbers",
       "priceLabel": "Home price",
-      "price": "$300,000",
-      "termLabel": "Term",
-      "term": "30 years",
-      "rateLabel": "Rate",
-      "rate": "6.5%",
-      "paymentLabel": "Est. monthly payment",
-      "payment": "$1,896/mo",
-      "note": "Illustrative example, not an offer."
-    },
-    "comingSoon": {
-      "body": "The full interactive calculator — built around your own numbers — arrives with the questionnaire, coming online shortly."
+      "downLabel": "Down payment",
+      "downPct": "{pct} of the price",
+      "rateLabel": "Interest rate",
+      "termLabel": "Loan term",
+      "termOption": "{years} years",
+      "resultLabel": "Monthly payment (P&I)",
+      "resultEmpty": "Fill in the numbers above to see your payment.",
+      "firstSplitLabel": "Your first payment",
+      "interestLabel": "Interest",
+      "principalLabel": "Principal",
+      "totalInterestLabel": "Total interest over the life of the loan",
+      "totalCostLabel": "Total cost (principal + interest)",
+      "errorDown": "The down payment must be smaller than the home price.",
+      "disclaimer": "Estimate for educational purposes only. Principal & interest — excludes taxes, insurance, and HOA. Not a loan offer or a pre-qualification."
     }
   },
   "about": {
