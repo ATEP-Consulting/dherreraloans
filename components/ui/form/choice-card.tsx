@@ -14,7 +14,13 @@ export function ChoiceCard({ name, value, label, checked, onSelect, onPointerSel
   const viaPointer = useRef(false);
   return (
     <label
-      onPointerDown={() => (viaPointer.current = true)}
+      onPointerDown={() => {
+        viaPointer.current = true;
+        // Reset after event cycle to prevent keyboard from triggering onPointerSelect if click doesn't fire onChange
+        setTimeout(() => {
+          viaPointer.current = false;
+        }, 0);
+      }}
       className={`flex cursor-pointer items-center justify-between border px-5 py-4 font-sans text-base transition has-focus-visible:outline-2 has-focus-visible:outline-focus ${
         checked ? 'border-navy bg-sand text-ink' : 'border-leader bg-plate text-body hover:border-navy'
       }`}
