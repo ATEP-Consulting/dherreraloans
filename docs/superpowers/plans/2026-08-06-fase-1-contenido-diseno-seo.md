@@ -62,13 +62,13 @@ Borra: `components/locale-switcher.tsx` (PR A).
 **Interfaces:**
 - Produces: clases Tailwind `bg-paper/sand/navy…`, `text-ink/body/muted/faint/azure…`, `font-display/font-sans`, `text-btn/micro/index/h2/display`, `tracking-label/button`; variables `--font-spectral`, `--font-instrument`. TODO el estilado posterior consume ESTOS nombres.
 
-- [ ] **Step 1: Rama**
+- [x] **Step 1: Rama**
 
 ```bash
 git checkout -b feat/fase-1-tornasol
 ```
 
-- [ ] **Step 2: Fuentes en el layout**
+- [x] **Step 2: Fuentes en el layout**
 
 En `app/[locale]/layout.tsx`, sustituir el import de Geist por:
 
@@ -92,7 +92,7 @@ const instrument = Instrument_Sans({
 
 y en el `<html>`: `className={`${spectral.variable} ${instrument.variable}`}`. (El resto del layout se reescribe en Task 5; aquí solo fuentes para poder compilar.)
 
-- [ ] **Step 3: Reescribir `app/globals.css` con los tokens del spec §3.1**
+- [x] **Step 3: Reescribir `app/globals.css` con los tokens del spec §3.1**
 
 ```css
 @import 'tailwindcss';
@@ -168,11 +168,11 @@ body {
 
 (Eliminar el bloque `:root`/`@theme inline` anterior de Geist.)
 
-- [ ] **Step 4: Verificar build**
+- [x] **Step 4: Verificar build**
 
 Run: `npm run build` — Esperado: verde (las páginas siguen con el markup viejo; solo cambian fuentes/tokens).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add app/globals.css 'app/[locale]/layout.tsx'
@@ -190,7 +190,7 @@ git commit -m "feat: tokens del handoff Fachada 4a y fuentes Spectral + Instrume
 **Interfaces:**
 - Produces: `NMLS_ID`, `APPLY_URL`, `INSTAGRAM_URL`, `NMLS_CONSUMER_ACCESS_URL`, `WHATSAPP_NUMBER`, `whatsAppHref(message)`. Namespaces nuevos: `common.topStrip`, `common.cta`, `common.footer.*`, `home.hero/cities/programsIndex/about/ctaBand`, `programs.{key}.indexName/stat`. Las claves con `<em>` se renderizan con `t.rich`.
 
-- [ ] **Step 1: `lib/site.ts`**
+- [x] **Step 1: `lib/site.ts`**
 
 ```ts
 // Valores de negocio no-copy. Cambiar aquí = cambia toda la web (requisito cliente).
@@ -207,7 +207,7 @@ export function whatsAppHref(message: string): string {
 }
 ```
 
-- [ ] **Step 2: Añadir claves a `messages/en.json`** (fusionar con lo existente; `nav.calculator` pasa a "Calculator", resto de nav igual)
+- [x] **Step 2: Añadir claves a `messages/en.json`** (fusionar con lo existente; `nav.calculator` pasa a "Calculator", resto de nav igual)
 
 ```json
 {
@@ -262,7 +262,7 @@ y dentro de `programs.{key}` (añadir a cada uno): `"indexName"` y `"stat"`:
 | firstTimeHomebuyer | First-Time Homebuyer | FL assistance |
 | refinance | Refinance | Rate · cash-out |
 
-- [ ] **Step 3: Añadir el espejo a `messages/es.json`**
+- [x] **Step 3: Añadir el espejo a `messages/es.json`**
 
 ```json
 {
@@ -309,11 +309,11 @@ y dentro de `programs.{key}` (añadir a cada uno): `"indexName"` y `"stat"`:
 
 `programs.{key}`: `indexName` ES = «Préstamos FHA», «Convencional», «Préstamos VA», «Primer comprador», «Refinanciamiento»; `stat` ES = «3.5% de entrada», «3% de entrada», «$0 de entrada», «Asistencia FL», «Tasa · cash-out».
 
-- [ ] **Step 4: Verificar paridad**
+- [x] **Step 4: Verificar paridad**
 
 Run: `npm test` — Esperado: PASS (el test de paridad valida las claves nuevas en ambos idiomas; si falla, lista la clave que difiere — corregir).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add lib/site.ts messages
@@ -330,14 +330,14 @@ git commit -m "feat: constantes de sitio y copy de home/común EN-ES (borrador Y
 **Interfaces:**
 - Produces: imports estáticos `import heroHome from '@/assets/img/hero-home.jpg'` etc. (StaticImageData con width/height/blur). `hero-programs` la usan loan-options/programas/quote/calculator; `hero-personal` la usan about/contact/legales/404.
 
-- [ ] **Step 1: Copiar assets del handoff**
+- [x] **Step 1: Copiar assets del handoff**
 
 ```bash
 mkdir -p assets/img
 cp design_handoff_home_fachada/assets/logo.png design_handoff_home_fachada/assets/logo-light.png design_handoff_home_fachada/assets/david.png assets/img/
 ```
 
-- [ ] **Step 2: Descargar y optimizar las fotos de hero (Unsplash, licencia Unsplash)**
+- [x] **Step 2: Descargar y optimizar las fotos de hero (Unsplash, licencia Unsplash)**
 
 La del hero de la home es LA MISMA del handoff. Candidatas para interiores (elegir 2 tras verlas):
 
@@ -360,7 +360,7 @@ cp /tmp/cand-2-opt.jpg assets/img/hero-personal.jpg   # la elegida para about/co
 ls -la assets/img/   # ninguna > 350 KB
 ```
 
-- [ ] **Step 3: `docs/CREDITS.md`**
+- [x] **Step 3: `docs/CREDITS.md`**
 
 ```markdown
 # Créditos de imágenes (TEMPORALES hasta materiales del cliente — bloquea Fase 4, no Fase 1)
@@ -374,7 +374,7 @@ ls -la assets/img/   # ninguna > 350 KB
 (Rellenar autor/id reales al elegir las candidatas; no dejar los ángulos.)
 ```
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add assets docs/CREDITS.md
@@ -404,7 +404,7 @@ git commit -m "feat: assets de marca y fotos de hero temporales optimizadas (cr�
 
 Sin tests unitarios propios (componentes sin lógica — ADR-0010; los cubren build, e2e y Lighthouse). No repetir aquí todos los ficheros: el patrón de estilo es SIEMPRE clases de tokens. Dos ejemplos canónicos que fijan el patrón (el resto se escribe igual):
 
-- [ ] **Step 1: `components/ui/button.tsx`**
+- [x] **Step 1: `components/ui/button.tsx`**
 
 ```tsx
 import type { ReactNode } from 'react';
@@ -440,7 +440,7 @@ export function Button({ href, variant, size = 'md', external, children }: Props
 }
 ```
 
-- [ ] **Step 2: `components/ui/index-row.tsx`**
+- [x] **Step 2: `components/ui/index-row.tsx`**
 
 ```tsx
 import type { ReactNode } from 'react';
@@ -472,13 +472,13 @@ export function IndexRow({ number, name, stat, href, children }: Props) {
 }
 ```
 
-- [ ] **Step 3: Escribir el resto de componentes de la lista con el mismo patrón** (todas las medidas del handoff: eyebrow 11.5–12px tracking-label(-wide) uppercase; SectionHeading = Eyebrow + `h2 font-display font-light text-h2` + helper `text-sm text-muted`; Band sand `bg-sand border-y border-ink`; navy `bg-navy` con padding 84/72→móvil 48/20; PhotoPlate fondo blanco `border border-ink` + caption `border-t border-ink px-4 py-2.5 font-sans text-micro italic text-muted`; CitiesStrip centrada `border-b border-ink py-[18px]`, lead `font-display italic text-[15px] text-body`, lista `font-sans text-micro tracking-cities text-muted uppercase`; WhatsAppButton `border border-paper-a55 text-paper px-6 py-4 inline-flex gap-2.5 items-center font-sans text-[13.5px] font-medium hover:bg-paper-a25` con el SVG del handoff; EhoMark con el SVG casita del handoff, `text-muted`).
+- [x] **Step 3: Escribir el resto de componentes de la lista con el mismo patrón** (todas las medidas del handoff: eyebrow 11.5–12px tracking-label(-wide) uppercase; SectionHeading = Eyebrow + `h2 font-display font-light text-h2` + helper `text-sm text-muted`; Band sand `bg-sand border-y border-ink`; navy `bg-navy` con padding 84/72→móvil 48/20; PhotoPlate fondo blanco `border border-ink` + caption `border-t border-ink px-4 py-2.5 font-sans text-micro italic text-muted`; CitiesStrip centrada `border-b border-ink py-[18px]`, lead `font-display italic text-[15px] text-body`, lista `font-sans text-micro tracking-cities text-muted uppercase`; WhatsAppButton `border border-paper-a55 text-paper px-6 py-4 inline-flex gap-2.5 items-center font-sans text-[13.5px] font-medium hover:bg-paper-a25` con el SVG del handoff; EhoMark con el SVG casita del handoff, `text-muted`).
 
-- [ ] **Step 4: Verificar tipos y lint**
+- [x] **Step 4: Verificar tipos y lint**
 
 Run: `npx tsc --noEmit && npm run lint` — Esperado: verde.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add components/ui
@@ -501,7 +501,7 @@ git commit -m "feat: ui kit base del sistema Fachada (Button, IndexRow, Band, Ph
   - `LangToggle({ locale, pathname, params? })` — enlaces `<Link locale=…>` server-rendered; traduce el slug de programa con `slugFor`.
   - `SiteFooter({ locale })` — footer completo compliance.
 
-- [ ] **Step 1: `components/layout/lang-toggle.tsx`**
+- [x] **Step 1: `components/layout/lang-toggle.tsx`**
 
 ```tsx
 import { Link } from '@/i18n/routing';
@@ -535,11 +535,11 @@ export function LangToggle({ locale, pathname, params }: Props) {
 }
 ```
 
-- [ ] **Step 2: `components/layout/mobile-nav.tsx`** — `<details className="lg:hidden">`; `<summary aria-label={t('common.menu.open')}>` con SVG hamburguesa del handoff (24px, stroke paper); panel `absolute inset-x-0 top-full border-t border-paper-a25 bg-navy px-5 py-6 flex flex-col gap-5` con los 4 enlaces de nav (`NavLinks`), `Apply Online` (TextLink tone paper, external) y `Button paper` GET A QUOTE (href `/quote`). La navegación carga página nueva ⇒ el `<details>` se resetea solo; cero JS.
+- [x] **Step 2: `components/layout/mobile-nav.tsx`** — `<details className="lg:hidden">`; `<summary aria-label={t('common.menu.open')}>` con SVG hamburguesa del handoff (24px, stroke paper); panel `absolute inset-x-0 top-full border-t border-paper-a25 bg-navy px-5 py-6 flex flex-col gap-5` con los 4 enlaces de nav (`NavLinks`), `Apply Online` (TextLink tone paper, external) y `Button paper` GET A QUOTE (href `/quote`). La navegación carga página nueva ⇒ el `<details>` se resetea solo; cero JS.
 
-- [ ] **Step 3: `components/layout/nav-links.tsx`** — lista `Loan Options · Calculator · About · Contact` (claves `common.nav.*`) como `Link` con `text-[13.5px] font-medium text-paper-a85 hover:text-paper` (se reutiliza en header desktop y MobileNav; recibe `className`).
+- [x] **Step 3: `components/layout/nav-links.tsx`** — lista `Loan Options · Calculator · About · Contact` (claves `common.nav.*`) como `Link` con `text-[13.5px] font-medium text-paper-a85 hover:text-paper` (se reutiliza en header desktop y MobileNav; recibe `className`).
 
-- [ ] **Step 4: `components/layout/page-hero.tsx`** (estructura; alturas y scrims exactos del handoff)
+- [x] **Step 4: `components/layout/page-hero.tsx`** (estructura; alturas y scrims exactos del handoff)
 
 ```tsx
 import Image, { type StaticImageData } from 'next/image';
@@ -616,15 +616,15 @@ export async function PageHero({ locale, pathname, params, image, imageAlt, eyeb
 
 (`TopStrip`: `hidden lg:flex justify-between border-b border-paper-a25 px-[72px] py-3 font-sans text-fine font-medium uppercase tracking-label text-paper-a75`.)
 
-- [ ] **Step 5: `components/layout/site-footer.tsx`** — traducción del footer del handoff: grid `lg:grid-cols-[1.3fr_1fr_1fr_auto]` con marca (logo.png + `licenseLine1/2` interpolando `NMLS_ID` + instagram como TextLink external), columna EXPLORE (links internos), columna LEGAL (privacy, accessibility, consumerAccess external a `NMLS_CONSUMER_ACCESS_URL`), `EhoMark`; debajo `disclaimer` (text-fine text-faint, max-w-[1100px]) + línea `pendingValidation` en text-fine italic + fila © / languages. Móvil: una columna, orden marca→explore→legal→EHO.
+- [x] **Step 5: `components/layout/site-footer.tsx`** — traducción del footer del handoff: grid `lg:grid-cols-[1.3fr_1fr_1fr_auto]` con marca (logo.png + `licenseLine1/2` interpolando `NMLS_ID` + instagram como TextLink external), columna EXPLORE (links internos), columna LEGAL (privacy, accessibility, consumerAccess external a `NMLS_CONSUMER_ACCESS_URL`), `EhoMark`; debajo `disclaimer` (text-fine text-faint, max-w-[1100px]) + línea `pendingValidation` en text-fine italic + fila © / languages. Móvil: una columna, orden marca→explore→legal→EHO.
 
-- [ ] **Step 6: Reescribir `app/[locale]/layout.tsx`** — conserva fuentes (Task 1), `generateStaticParams`, `metadataBase`, `hasLocale`; el body queda `<body><main>{children}</main><SiteFooter locale={locale} /></body>`. **Eliminar** `NextIntlClientProvider`, el `<header>` viejo y el import de `LocaleSwitcher`; borrar `components/locale-switcher.tsx`. El `aria-label` del nav ya queda correcto en PageHero (deuda saldada).
+- [x] **Step 6: Reescribir `app/[locale]/layout.tsx`** — conserva fuentes (Task 1), `generateStaticParams`, `metadataBase`, `hasLocale`; el body queda `<body><main>{children}</main><SiteFooter locale={locale} /></body>`. **Eliminar** `NextIntlClientProvider`, el `<header>` viejo y el import de `LocaleSwitcher`; borrar `components/locale-switcher.tsx`. El `aria-label` del nav ya queda correcto en PageHero (deuda saldada).
 
 ```bash
 git rm components/locale-switcher.tsx
 ```
 
-- [ ] **Step 7: Actualizar `tests/e2e/smoke.spec.ts`**
+- [x] **Step 7: Actualizar `tests/e2e/smoke.spec.ts`**
 
 El h1 y el switcher cambian. Sustituir las aserciones afectadas:
 
@@ -653,9 +653,9 @@ test('el selector traduce el slug del programa', async ({ page }) => {
 
 (El test del h1 de `/es/opciones-de-prestamo` seguirá pasando: la página interior renombra su heading en Task 6/PR B pero mantiene `loanOptions.heading` hasta PR B.)
 
-- [ ] **Step 8: Las páginas existentes aún no usan PageHero** — para que build/e2e pasen en este commit, las páginas esqueleto siguen renderizando su `<h1>` plano (sin header ahora). Run: `npm run build && npm run test:e2e` — Esperado: los tests de switcher del Step 7 FALLAN todavía (no hay LangToggle en pantalla: las páginas no montan PageHero). Es el «rojo» esperado; Task 6 los pone en verde al montar la home, y el resto de páginas montan PageHero en Task 6 Step 3.
+- [x] **Step 8: Las páginas existentes aún no usan PageHero** — para que build/e2e pasen en este commit, las páginas esqueleto siguen renderizando su `<h1>` plano (sin header ahora). Run: `npm run build && npm run test:e2e` — Esperado: los tests de switcher del Step 7 FALLAN todavía (no hay LangToggle en pantalla: las páginas no montan PageHero). Es el «rojo» esperado; Task 6 los pone en verde al montar la home, y el resto de páginas montan PageHero en Task 6 Step 3.
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add components/layout 'app/[locale]/layout.tsx' tests/e2e/smoke.spec.ts
@@ -673,7 +673,7 @@ git commit -m "feat: PageHero con header integrado, LangToggle server-rendered y
 **Interfaces:**
 - Consumes: todo lo anterior. Patrón por página esqueleto: `PageHero` interior con `image={heroProgramsImg | heroPersonalImg}`, `eyebrow={t('…title') de topStrip}`… — el contenido real de interiores llega en PRs B–D; aquí solo hero + `heading` existente como intro.
 
-- [ ] **Step 1: `app/[locale]/page.tsx` — home del handoff completa**
+- [x] **Step 1: `app/[locale]/page.tsx` — home del handoff completa**
 
 ```tsx
 import { setRequestLocale, getTranslations } from 'next-intl/server';
@@ -775,7 +775,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
 **Nota IndexRow ↔ LangToggle**: `href.params.program` recibe la CLAVE interna; `IndexRow` la pasa a `Link`, que espera el SLUG público — resolver en `IndexRow` con `slugFor(locale, key)` igual que `LangToggle`, pasando `locale` como prop… Para no duplicar: `IndexRow` acepta `href={{ pathname, params: { program: <slug ya resuelto> } }}` y la HOME resuelve `slugFor(locale, key)` al construirlo. (Interfaz definitiva: el consumidor pasa slugs públicos; `LangToggle` es el ÚNICO que recibe claves internas.)
 
-- [ ] **Step 2: Montar `PageHero` interior en las 8 páginas esqueleto** — patrón (ejemplo `about`; idéntico cambiando namespace/imagen/pathname):
+- [x] **Step 2: Montar `PageHero` interior en las 8 páginas esqueleto** — patrón (ejemplo `about`; idéntico cambiando namespace/imagen/pathname):
 
 ```tsx
 import heroPersonal from '@/assets/img/hero-personal.jpg';
@@ -792,7 +792,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
 `loan-options`, `quote`, `calculator` usan `heroPrograms`; `about`, `contact`, `privacy`, `accessibility` usan `heroPersonal`. La página de programa pasa además `params={{ program: key }}` (clave interna) a `PageHero` — esto arregla el switcher en programas.
 
-- [ ] **Step 3: `tests/e2e/home.spec.ts`**
+- [x] **Step 3: `tests/e2e/home.spec.ts`**
 
 ```ts
 import { test, expect } from '@playwright/test';
@@ -827,12 +827,12 @@ test('footer compliance: NMLS, EHO y Consumer Access', async ({ page }) => {
 });
 ```
 
-- [ ] **Step 4: Gate local completo**
+- [x] **Step 4: Gate local completo**
 
 Run: `npm run lint && npx tsc --noEmit && npm test && npm run build && npm run check:static && npm run test:e2e`
 Esperado: TODO verde (incluidos los tests de switcher de Task 5 — ahora hay LangToggle en todas las páginas — y `check:static` con 26 rutas `●`).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add 'app/[locale]' tests/e2e/home.spec.ts
@@ -843,7 +843,7 @@ git commit -m "feat: home Fachada 4a completa y PageHero en todas las páginas"
 
 ### Task 7: PR tornasol + gate visual del usuario
 
-- [ ] **Step 1: Push + PR**
+- [x] **Step 1: Push + PR**
 
 ```bash
 git push -u origin feat/fase-1-tornasol
@@ -854,11 +854,11 @@ gh pr create --repo ATEP-Consulting/dherreraloans \
 🤖 Generated with [Claude Code](https://claude.com/claude-code)"
 ```
 
-- [ ] **Step 2: Checks verdes** — `quality` + preview + Lighthouse ≥95×4. Si Lighthouse cae: sospechosos en orden — peso de fotos hero (recomprimir a q60/1600), fuentes (confirmar subsets/weights exactos), CLS del hero (dimensiones/fill correctos). Umbrales NO se tocan.
+- [x] **Step 2: Checks verdes** — `quality` + preview + Lighthouse ≥95×4. Si Lighthouse cae: sospechosos en orden — peso de fotos hero (recomprimir a q60/1600), fuentes (confirmar subsets/weights exactos), CLS del hero (dimensiones/fill correctos). Umbrales NO se tocan.
 
-- [ ] **Step 3: ⛔ GATE DE USUARIO** — pasar la URL de preview al usuario; él la compara con el handoff en su móvil. **No mergear ni seguir con PR B sin su aprobación explícita del visual.** Iterar aquí lo que pida (los cambios son baratos: tokens/componentes).
+- [x] **Step 3: ⛔ GATE DE USUARIO** — pasar la URL de preview al usuario; él la compara con el handoff en su móvil. **No mergear ni seguir con PR B sin su aprobación explícita del visual.** Iterar aquí lo que pida (los cambios son baratos: tokens/componentes).
 
-- [ ] **Step 4: Squash merge + verificación de producción**
+- [x] **Step 4: Squash merge + verificación de producción**
 
 ```bash
 gh pr merge --repo ATEP-Consulting/dherreraloans --squash --delete-branch
@@ -877,7 +877,7 @@ gh pr merge --repo ATEP-Consulting/dherreraloans --squash --delete-branch
 **Interfaces (ACTUALIZADO 2026-08-06 — template aimsmtg, ver docs/referencia-contenido-aimsmtg.md que es VINCULANTE):**
 - Produces: `programs.{key}` gana `heroTitle` (H1 beneficio-primero, ≠ heading), `heroSub` (nombra el problema del lector), `blurb` (1-2 líneas para Loan Options), `intro` (párrafo), `whatIs.title` + `whatIs.body` («¿Qué es un préstamo X?»: definición, quién lo respalda, cifra clave, diferencia con convencional), `required.title` + `required.body` («¿Qué se requiere?»: documentación, entrada, restricciones, flexibilidad de crédito), `how.title` + `how.items` (array de 4 bullets concretos: entrada mínima, plazos, variantes, condiciones — en genérico prudente, David valida cifras); `loanOptions` gana `helper`. `notFound.{title,heading,body,cta}` se añade aquí también (lo consume PR D). Redacción PROPIA basada en los temas de aimsmtg (nunca copia literal), voz personal de David, tono del handoff, sin métricas inventadas.
 
-- [ ] **Step 1: EN — añadir a cada programa** (contenido íntegro; estructura idéntica en los 5):
+- [x] **Step 1: EN — añadir a cada programa** (contenido íntegro; estructura idéntica en los 5):
 
 ```json
 "fha": {
@@ -919,9 +919,9 @@ gh pr merge --repo ATEP-Consulting/dherreraloans --squash --delete-branch
 
 y `loanOptions.helper`: "Every program below is available across Florida. Compare them, or ask me which one fits your case."
 
-- [ ] **Step 2: ES — espejo completo** (misma estructura; redactar en el tono del handoff, tú directo; p. ej. fha.what.body: "Un préstamo FHA es una hipoteca asegurada por el gobierno pensada para compradores que necesitan flexibilidad en historial de crédito o ahorros. Puedes calificar con un 3.5% de entrada y un puntaje que los programas convencionales quizá no acepten." — completar los 5 programas + loanOptions.helper: "Todos los programas están disponibles en toda Florida. Compáralos, o pregúntame cuál encaja con tu caso.").
+- [x] **Step 2: ES — espejo completo** (misma estructura; redactar en el tono del handoff, tú directo; p. ej. fha.what.body: "Un préstamo FHA es una hipoteca asegurada por el gobierno pensada para compradores que necesitan flexibilidad en historial de crédito o ahorros. Puedes calificar con un 3.5% de entrada y un puntaje que los programas convencionales quizá no acepten." — completar los 5 programas + loanOptions.helper: "Todos los programas están disponibles en toda Florida. Compáralos, o pregúntame cuál encaja con tu caso.").
 
-- [ ] **Step 3: `npm test`** — paridad PASS. Commit: `git commit -m "feat: contenido de los 5 programas y loan options EN-ES (borrador YMYL)"`.
+- [x] **Step 3: `npm test`** — paridad PASS. Commit: `git commit -m "feat: contenido de los 5 programas y loan options EN-ES (borrador YMYL)"`.
 
 ### Task 9: JSON-LD tipado (TDD)
 
@@ -932,7 +932,7 @@ y `loanOptions.helper`: "Every program below is available across Florida. Compar
 **Interfaces:**
 - Produces: `personJsonLd()`, `financialServiceJsonLd(locale)`, `mortgageLoanJsonLd(locale, programKey)`, `breadcrumbJsonLd(locale, programKey)` — objetos planos serializables; `<JsonLd data={obj} />` renderiza `<script type="application/ld+json">`.
 
-- [ ] **Step 1: Test que falla** (`tests/unit/jsonld.test.ts`)
+- [x] **Step 1: Test que falla** (`tests/unit/jsonld.test.ts`)
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -967,9 +967,9 @@ describe('JSON-LD (ADR-0003 §4)', () => {
 
 Run: `npm test` — FAIL (`lib/jsonld` no existe).
 
-- [ ] **Step 2: Implementar `lib/jsonld.ts`** — con `SITE_URL`, `hreflangAlternates` (para URLs), constantes de `lib/site.ts` y nombres desde `messages` cargados con `createTranslator` o valores estáticos EN (los JSON-LD usan el nombre localizado de programa vía import directo de `messages/{locale}.json`). `worksFor`: `{ '@type': 'Organization', name: 'AIMS Mortgage' }` con comentario `// PENDIENTE: confirmar razón social exacta con el cliente`. Run: `npm test` — PASS.
+- [x] **Step 2: Implementar `lib/jsonld.ts`** — con `SITE_URL`, `hreflangAlternates` (para URLs), constantes de `lib/site.ts` y nombres desde `messages` cargados con `createTranslator` o valores estáticos EN (los JSON-LD usan el nombre localizado de programa vía import directo de `messages/{locale}.json`). `worksFor`: `{ '@type': 'Organization', name: 'AIMS Mortgage' }` con comentario `// PENDIENTE: confirmar razón social exacta con el cliente`. Run: `npm test` — PASS.
 
-- [ ] **Step 3: `components/seo/json-ld.tsx`**
+- [x] **Step 3: `components/seo/json-ld.tsx`**
 
 ```tsx
 export function JsonLd({ data }: { data: object }) {
@@ -985,9 +985,9 @@ export function JsonLd({ data }: { data: object }) {
 - Modify: `app/[locale]/loan-options/[program]/page.tsx`, `app/[locale]/loan-options/page.tsx`
 - Test: ampliar `tests/e2e/home.spec.ts` con un spec de programa
 
-- [ ] **Step 1: Página de programa (template aimsmtg — docs/referencia-contenido-aimsmtg.md)** — `PageHero` interior (`heroPrograms`, eyebrow = `t('indexName')` + stat, title = `heroTitle` (beneficio), body = `heroSub`, `params={{program:key}}`) → breadcrumb visible (`nav aria-label` con Links Home → Loan Options → programa, text-micro tracking-label) → `intro` (párrafo lede, medida 65ch) → sección `whatIs` (SectionHeading + body) → `required` (SectionHeading + body) → `how` (título + 4 bullets con hairlines, lista `border-b border-hairline py-4`) → `Band navy` CTA (reutilizar el bloque de la home con `ctaBand.title`) → `<JsonLd data={mortgageLoanJsonLd(locale, key)} />` + `<JsonLd data={breadcrumbJsonLd(locale, key)} />`.
-- [ ] **Step 2: Loan Options** — PageHero interior + lista `IndexRow` con `children={tp(`${key}.blurb`)}` + numeración.
-- [ ] **Step 3: E2E**
+- [x] **Step 1: Página de programa (template aimsmtg — docs/referencia-contenido-aimsmtg.md)** — `PageHero` interior (`heroPrograms`, eyebrow = `t('indexName')` + stat, title = `heroTitle` (beneficio), body = `heroSub`, `params={{program:key}}`) → breadcrumb visible (`nav aria-label` con Links Home → Loan Options → programa, text-micro tracking-label) → `intro` (párrafo lede, medida 65ch) → sección `whatIs` (SectionHeading + body) → `required` (SectionHeading + body) → `how` (título + 4 bullets con hairlines, lista `border-b border-hairline py-4`) → `Band navy` CTA (reutilizar el bloque de la home con `ctaBand.title`) → `<JsonLd data={mortgageLoanJsonLd(locale, key)} />` + `<JsonLd data={breadcrumbJsonLd(locale, key)} />`.
+- [x] **Step 2: Loan Options** — PageHero interior + lista `IndexRow` con `children={tp(`${key}.blurb`)}` + numeración.
+- [x] **Step 3: E2E**
 
 ```ts
 test('página de programa: contenido y JSON-LD', async ({ page }) => {
@@ -1000,7 +1000,7 @@ test('página de programa: contenido y JSON-LD', async ({ page }) => {
 });
 ```
 
-- [ ] **Step 4: Gate local completo (los 6 comandos) → Commit → push → PR `Fase 1: programas + loan options + JSON-LD` → checks verdes → squash merge.**
+- [x] **Step 4: Gate local completo (los 6 comandos) → Commit → push → PR `Fase 1: programas + loan options + JSON-LD` → checks verdes → squash merge.**
 
 ---
 
@@ -1011,9 +1011,9 @@ test('página de programa: contenido y JSON-LD', async ({ page }) => {
 **Files:**
 - Modify: `messages/{en,es}.json` (`about.*`, `contact.*` completos), `app/[locale]/about/page.tsx`, `app/[locale]/contact/page.tsx`, `app/[locale]/page.tsx` (añadir `<JsonLd data={financialServiceJsonLd(locale)} />`)
 
-- [ ] **Step 1: Copy About EN** (ES espejo): `heroSub` "Mortgage loan originator in Miami. One person, start to closing."; secciones: `story` (title "How I work" / body 2 frases sobre acompañamiento bilingüe primera llamada→cierre, sin métricas inventadas), `license` (title "Licensed, personally" / body con NMLS #{nmls} interpolado + enlace Consumer Access), `reach` (title "Where to find me" / body Instagram @dherrera_loans + WhatsApp). Contact EN/ES: `phone.label/value(PHONE_DISPLAY)`, `email.label/value("hola@dherreraloans.com — placeholder")`, `whatsapp.label`, `note` "Prefer a form? The full questionnaire is the fastest way to get real numbers." + nota placeholder pendiente datos reales.
-- [ ] **Step 2: About page** — PageHero personal + PhotoPlate David + secciones story/license/reach + `<JsonLd data={financialServiceJsonLd(locale)} />` + Band navy CTA. Contact page — PageHero + tarjetas de contacto (grid con `border border-ink` estilo placa, tel:/mailto:/wa.me) + Band navy CTA. **Sin formulario** (spec §4.7).
-- [ ] **Step 3: Gate local → commit → PR `Fase 1: about + contact` → merge.** (E2E: contact muestra tel placeholder y wa.me; about contiene NMLS.)
+- [x] **Step 1: Copy About EN** (ES espejo): `heroSub` "Mortgage loan originator in Miami. One person, start to closing."; secciones: `story` (title "How I work" / body 2 frases sobre acompañamiento bilingüe primera llamada→cierre, sin métricas inventadas), `license` (title "Licensed, personally" / body con NMLS #{nmls} interpolado + enlace Consumer Access), `reach` (title "Where to find me" / body Instagram @dherrera_loans + WhatsApp). Contact EN/ES: `phone.label/value(PHONE_DISPLAY)`, `email.label/value("hola@dherreraloans.com — placeholder")`, `whatsapp.label`, `note` "Prefer a form? The full questionnaire is the fastest way to get real numbers." + nota placeholder pendiente datos reales.
+- [x] **Step 2: About page** — PageHero personal + PhotoPlate David + secciones story/license/reach + `<JsonLd data={financialServiceJsonLd(locale)} />` + Band navy CTA. Contact page — PageHero + tarjetas de contacto (grid con `border border-ink` estilo placa, tel:/mailto:/wa.me) + Band navy CTA. **Sin formulario** (spec §4.7).
+- [x] **Step 3: Gate local → commit → PR `Fase 1: about + contact` → merge.** (E2E: contact muestra tel placeholder y wa.me; about contiene NMLS.)
 
 ---
 
@@ -1025,9 +1025,9 @@ test('página de programa: contenido y JSON-LD', async ({ page }) => {
 - Modify: `messages/{en,es}.json` (`quote.*`, `calculator.*`, `legal.privacy.*`, `legal.accessibility.*`, `notFound.*`), páginas correspondientes
 - Create: `app/[locale]/not-found.tsx`
 
-- [ ] **Step 1: Copy**: quote shell — `heroSub` "Five minutes of questions, real numbers back. The questionnaire is coming online shortly." + `steps` (3 ítems: tu meta → tus números → hablamos) + `meanwhile` "Until then, WhatsApp me or call — same answers, same person." Calculator shell — `heroSub` + `example` con `{ price: "$300,000", term: "30 years/años", rate: "6.5%", payment: "$1,896/mo·mes", note: "Illustrative example, not an offer. / Ejemplo ilustrativo, no es una oferta." }` (cuota verificada: 300000·r(1+r)^360/((1+r)^360−1), r=0.065/12 → $1,896). Privacy y Accessibility — borrador estándar ~200 palabras cada uno marcado `pendingValidation`; accessibility declara objetivo WCAG 2.1 AA + contacto. `notFound` — title/heading "Page not found / Página no encontrada", body corto, cta a home.
-- [ ] **Step 2: Páginas** — shells con PageHero programs + secciones; legales con PageHero personal + documento `max-w-[65ch]` tipografía editorial; `not-found.tsx` con PageHero personal + Button navy a `/`. Verificar que el 404 sigue prerenderizado (`npm run check:static` intacto + `curl` local de ruta inexistente → 404 con layout).
-- [ ] **Step 3: Gate local → commit → PR `Fase 1: shells de quote/calculadora + legales + 404` → merge.**
+- [x] **Step 1: Copy**: quote shell — `heroSub` "Five minutes of questions, real numbers back. The questionnaire is coming online shortly." + `steps` (3 ítems: tu meta → tus números → hablamos) + `meanwhile` "Until then, WhatsApp me or call — same answers, same person." Calculator shell — `heroSub` + `example` con `{ price: "$300,000", term: "30 years/años", rate: "6.5%", payment: "$1,896/mo·mes", note: "Illustrative example, not an offer. / Ejemplo ilustrativo, no es una oferta." }` (cuota verificada: 300000·r(1+r)^360/((1+r)^360−1), r=0.065/12 → $1,896). Privacy y Accessibility — borrador estándar ~200 palabras cada uno marcado `pendingValidation`; accessibility declara objetivo WCAG 2.1 AA + contacto. `notFound` — title/heading "Page not found / Página no encontrada", body corto, cta a home.
+- [x] **Step 2: Páginas** — shells con PageHero programs + secciones; legales con PageHero personal + documento `max-w-[65ch]` tipografía editorial; `not-found.tsx` con PageHero personal + Button navy a `/`. Verificar que el 404 sigue prerenderizado (`npm run check:static` intacto + `curl` local de ruta inexistente → 404 con layout).
+- [x] **Step 3: Gate local → commit → PR `Fase 1: shells de quote/calculadora + legales + 404` → merge.**
 
 ---
 
@@ -1039,7 +1039,7 @@ test('página de programa: contenido y JSON-LD', async ({ page }) => {
 - Modify: `lib/metadata.ts`, todas las páginas (pasar `ogSlug` si difiere del namespace)
 - Test: `tests/unit/metadata-og.test.ts`
 
-- [ ] **Step 1: Test que falla**
+- [x] **Step 1: Test que falla**
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -1056,7 +1056,7 @@ describe('metadata OG (ADR-0003 §2)', () => {
 });
 ```
 
-- [ ] **Step 2: Implementar**: `buildPageMetadata` añade `ogSlug?: string` (default: último segmento del namespace, `home` para `/`); `title` = `` `${t('title')} | DherreraLoans` `` salvo home = `` `DherreraLoans — ${t('title')}` ``; `openGraph: { type: 'website', siteName: 'DherreraLoans', locale: locale === 'en' ? 'en_US' : 'es_US', alternateLocale: [otro], url: canonical, images: [{ url: `/og/${locale}/${ogSlug}.png`, width: 1200, height: 630 }] }`; `twitter: { card: 'summary_large_image' }`. PASS + commit.
+- [x] **Step 2: Implementar**: `buildPageMetadata` añade `ogSlug?: string` (default: último segmento del namespace, `home` para `/`); `title` = `` `${t('title')} | DherreraLoans` `` salvo home = `` `DherreraLoans — ${t('title')}` ``; `openGraph: { type: 'website', siteName: 'DherreraLoans', locale: locale === 'en' ? 'en_US' : 'es_US', alternateLocale: [otro], url: canonical, images: [{ url: `/og/${locale}/${ogSlug}.png`, width: 1200, height: 630 }] }`; `twitter: { card: 'summary_large_image' }`. PASS + commit.
 
 ### Task 14: Script de OG images
 
@@ -1064,10 +1064,10 @@ describe('metadata OG (ADR-0003 §2)', () => {
 - Create: `scripts/generate-og.mjs`, `public/og/{en,es}/*.png` (13 páginas × 2)
 - Modify: `package.json` (devDeps `satori`, `@resvg/resvg-js`; script `"og": "node scripts/generate-og.mjs"`)
 
-- [ ] **Step 1:** `npm i -D satori @resvg/resvg-js`
-- [ ] **Step 2:** Script: lee `messages/{en,es}.json` y `config/routes.mjs`, baja los TTF de Spectral 300 e Instrument Sans 500 (css2 con UA curl → URLs truetype, cachear en `scripts/.fonts/`, gitignored), y por página renderiza con satori un lienzo 1200×630: fondo `#10314A`, borde interior 1px `rgba(247,245,240,.25)` a 24px, eyebrow Instrument 500 22px `#9BC4DF` tracking amplio ("DHERRERALOANS — {locale label}"), título de página Spectral 300 64px `#F7F5F0` (máx 2 líneas), pie Instrument 22px `rgba(247,245,240,.75)` "NMLS #1459301 · MIAMI, FL" + logo-light (leído de `assets/img/logo-light.png` como data URI, h 80 esquina). Resvg → PNG < 150 KB.
-- [ ] **Step 3:** `npm run og` → verificar 26 PNGs con Read (muestreo 2-3), commit PNGs + script: `feat: OG images 1200×630 por página e idioma pre-generadas`.
-- [ ] **Step 4: Gate local → PR `Fase 1: metadata OG completa + imágenes` → merge.**
+- [x] **Step 1:** `npm i -D satori @resvg/resvg-js`
+- [x] **Step 2:** Script: lee `messages/{en,es}.json` y `config/routes.mjs`, baja los TTF de Spectral 300 e Instrument Sans 500 (css2 con UA curl → URLs truetype, cachear en `scripts/.fonts/`, gitignored), y por página renderiza con satori un lienzo 1200×630: fondo `#10314A`, borde interior 1px `rgba(247,245,240,.25)` a 24px, eyebrow Instrument 500 22px `#9BC4DF` tracking amplio ("DHERRERALOANS — {locale label}"), título de página Spectral 300 64px `#F7F5F0` (máx 2 líneas), pie Instrument 22px `rgba(247,245,240,.75)` "NMLS #1459301 · MIAMI, FL" + logo-light (leído de `assets/img/logo-light.png` como data URI, h 80 esquina). Resvg → PNG < 150 KB.
+- [x] **Step 3:** `npm run og` → verificar 26 PNGs con Read (muestreo 2-3), commit PNGs + script: `feat: OG images 1200×630 por página e idioma pre-generadas`.
+- [x] **Step 4: Gate local → PR `Fase 1: metadata OG completa + imágenes` → merge.**
 
 ---
 
@@ -1079,11 +1079,11 @@ describe('metadata OG (ADR-0003 §2)', () => {
 - Rename: `middleware.ts` → `proxy.ts` (verificar convención en `node_modules/next/dist/docs/` ANTES: nombre de archivo, export y `config.matcher` en Next 16.3)
 - Modify: `docs/adr/0003-arquitectura-seo-y-rendimiento.md` (nota post-aprobación baseline), plan (checkboxes), memoria
 
-- [ ] **Step 1:** Leer la doc de Next 16 sobre proxy/middleware; renombrar según diga (mismo contenido); `npm run build && npm run test:e2e` — el enrutado localizado sigue funcionando (los E2E de pathnames son el gate real).
-- [ ] **Step 2:** Medir First Load JS del build (`npm run build` output, páginas de contenido) — con cero client components debe rondar el baseline de Next puro. Añadir nota post-aprobación al ADR-0003 §7: "Baseline real Fase 1: X KB gz (medido 2026-MM-DD); presupuesto operativo ≤ X+15 KB".
-- [ ] **Step 3:** `curl` de verificación de producción (en, es/cotizacion, robots noindex) + Lighthouse verde en el PR.
-- [ ] **Step 4:** Cerrar checkboxes de este plan, commit `docs: Fase 1 completada`, actualizar memoria (`dherreraloans-estado-fase-0` → nota de Fase 1 completada o memoria nueva de estado).
-- [ ] **Step 5: PR `Fase 1: proxy + baseline JS + cierre` → merge.**
+- [x] **Step 1:** Leer la doc de Next 16 sobre proxy/middleware; renombrar según diga (mismo contenido); `npm run build && npm run test:e2e` — el enrutado localizado sigue funcionando (los E2E de pathnames son el gate real).
+- [x] **Step 2:** Medir First Load JS del build (`npm run build` output, páginas de contenido) — con cero client components debe rondar el baseline de Next puro. Añadir nota post-aprobación al ADR-0003 §7: "Baseline real Fase 1: X KB gz (medido 2026-MM-DD); presupuesto operativo ≤ X+15 KB".
+- [x] **Step 3:** `curl` de verificación de producción (en, es/cotizacion, robots noindex) + Lighthouse verde en el PR.
+- [x] **Step 4:** Cerrar checkboxes de este plan, commit `docs: Fase 1 completada`, actualizar memoria (`dherreraloans-estado-fase-0` → nota de Fase 1 completada o memoria nueva de estado).
+- [x] **Step 5: PR `Fase 1: proxy + baseline JS + cierre` → merge.**
 
 ---
 
