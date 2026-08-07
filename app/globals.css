@@ -17,6 +17,7 @@
   --color-azure-soft: #7faecd;
   --color-azure-logo: #2287c6; /* SOLO decorativo/focus: falla AA en texto pequeño sobre claro */
   --color-focus: #2287c6;
+  --color-error: #a03d2e; /* rojo ladrillo Fachada — AA sobre paper (ver verificación) */
   --color-paper-a75: rgb(247 245 240 / 0.75);
   --color-paper-a55: rgb(247 245 240 / 0.55);
   --color-paper-a25: rgb(247 245 240 / 0.25);
@@ -70,4 +71,9 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
+}
+
+@keyframes quiz-step-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
 }
