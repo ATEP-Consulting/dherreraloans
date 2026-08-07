@@ -572,7 +572,7 @@
     "email": { "label": "Email" },
     "whatsapp": { "label": "WhatsApp", "note": "La forma más rápida de encontrarme — la mayoría de los mensajes reciben respuesta el mismo día." },
     "pendingNote": "El teléfono y el email de arriba son provisionales mientras confirmamos los datos de contacto de David con la empresa.",
-    "quoteNudge": "¿Prefieres un formulario? El cuestionario completo es la forma más rápida de obtener números reales para tu préstamo."
+    "quizLead": { "eyebrow": "O empieza aquí", "title": "¿Prefieres saltarte el teléfono? Cuéntame tu situación." }
   },
   "legal": {
     "privacy": {

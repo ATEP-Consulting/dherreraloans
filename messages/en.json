@@ -572,7 +572,7 @@
     "email": { "label": "Email" },
     "whatsapp": { "label": "WhatsApp", "note": "Fastest way to reach me — most messages get a same-day reply." },
     "pendingNote": "The phone number and email above are placeholders while we confirm David's business contact details.",
-    "quoteNudge": "Prefer a form? The full questionnaire is the fastest way to get real numbers on your loan."
+    "quizLead": { "eyebrow": "Or start here", "title": "Prefer to skip the phone tag? Tell me your situation." }
   },
   "legal": {
     "privacy": {

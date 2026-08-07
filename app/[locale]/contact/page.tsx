@@ -5,9 +5,14 @@ import { PHONE_DISPLAY, PHONE_TEL, EMAIL, whatsAppHref } from '@/lib/site';
 import heroPersonal from '@/assets/img/hero-personal.jpg';
 import { PageHero } from '@/components/layout/page-hero';
 import { Eyebrow } from '@/components/ui/eyebrow';
+import { SectionHeading } from '@/components/ui/section-heading';
 import { CtaBand } from '@/components/ui/cta-band';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
+import { WhatsAppButton } from '@/components/ui/whatsapp-button';
+import { TextLink } from '@/components/ui/text-link';
+import { Quiz } from '@/components/quiz/quiz';
+import type { QuizTexts } from '@/lib/quiz/texts';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -26,6 +31,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   setRequestLocale(locale);
   const t = await getTranslations('contact');
   const tc = await getTranslations('common');
+  const tq = await getTranslations('quote');
+  const quizTexts = tq.raw('quiz') as QuizTexts;
 
   return (
     <>
@@ -59,8 +66,27 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             <Button href="/quote" variant="navy">
               {tc('cta.quote')}
             </Button>
-            <p className="max-w-[46ch] font-sans text-sm text-muted">{t('quoteNudge')}</p>
           </div>
+        </Container>
+      </section>
+      <section className="border-t border-hairline">
+        <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
+          <SectionHeading eyebrow={t('quizLead.eyebrow')} title={t('quizLead.title')} />
+          <Quiz
+            locale={locale}
+            texts={quizTexts}
+            thanksCtas={
+              <>
+                <WhatsAppButton label={tc('cta.whatsApp')} message={tc('cta.whatsAppMessage')} />
+                <TextLink href={`tel:${PHONE_TEL}`} external tone="paper">
+                  {PHONE_DISPLAY}
+                </TextLink>
+                <TextLink href="/loan-options" tone="paper">
+                  {tq('quiz.thanks.explore')}
+                </TextLink>
+              </>
+            }
+          />
         </Container>
       </section>
       <CtaBand />
