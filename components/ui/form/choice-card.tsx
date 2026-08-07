@@ -12,15 +12,11 @@ type Props = {
 
 export function ChoiceCard({ name, value, label, checked, onSelect, onPointerSelect }: Props) {
   const viaPointer = useRef(false);
+  // Guard ensures onPointerSelect fires only on pointer, never keyboard. Pointer: pointerdown (true) → change (reads true).
+  // Keyboard: keydown (false) → change (reads false). Stuck flag from re-click cleaned by keydown before keyboard change.
   return (
     <label
-      onPointerDown={() => {
-        viaPointer.current = true;
-        // Reset after event cycle to prevent keyboard from triggering onPointerSelect if click doesn't fire onChange
-        setTimeout(() => {
-          viaPointer.current = false;
-        }, 0);
-      }}
+      onPointerDown={() => (viaPointer.current = true)}
       className={`flex cursor-pointer items-center justify-between border px-5 py-4 font-sans text-base transition has-focus-visible:outline-2 has-focus-visible:outline-focus ${
         checked ? 'border-navy bg-sand text-ink' : 'border-leader bg-plate text-body hover:border-navy'
       }`}
@@ -30,6 +26,7 @@ export function ChoiceCard({ name, value, label, checked, onSelect, onPointerSel
         name={name}
         value={value}
         checked={checked}
+        onKeyDown={() => (viaPointer.current = false)}
         onChange={() => {
           onSelect(value);
           if (viaPointer.current) onPointerSelect?.(value);
