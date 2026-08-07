@@ -6,6 +6,7 @@
       "loanOptions": "Loan Options",
       "learn": "Learn",
       "quote": "Get a Quote",
+      "prequalify": "Pre-Qualify",
       "calculator": "Calculator",
       "about": "About",
       "contact": "Contact",
@@ -446,6 +447,24 @@
       },
       "thanks": { "title": "Got it, {name}.", "body": "Your request is in — I'll review your numbers and reach out shortly, usually the same day.", "noWait": "If you'd rather not wait:", "explore": "Explore loan options" }
     }
+  },
+  "prequalify": {
+    "title": "Pre-Qualify",
+    "description": "Find out what you may qualify for before you start house hunting. A pre-qualification makes you a stronger buyer.",
+    "heading": "Pre-Qualify",
+    "heroTitle": "Walk into every showing as a serious buyer.",
+    "heroSub": "Many agents ask for a pre-qualification before the first visit. Get yours sorted in minutes.",
+    "why": {
+      "eyebrow": "Why it matters",
+      "title": "A pre-qualification tells sellers you're for real.",
+      "body": "Before you fall in love with a home, let's estimate what you may be approved for. With that letter in hand, agents and sellers take your offer seriously — and you shop with a clear budget instead of a guess."
+    },
+    "credit": {
+      "eyebrow": "Your credit",
+      "title": "Know how your credit looks first.",
+      "body": "Lenders weigh your payment history, income and current debts. Reviewing your credit report before applying lets you fix surprises early — and if your score is lower than you'd like, we can talk about a plan to get it ready."
+    },
+    "start": { "eyebrow": "Get started", "title": "Answer a few questions to begin.", "helper": "It takes a few minutes and nothing is shared until you hit send." }
   },
   "calculator": {
     "title": "Mortgage Calculator",

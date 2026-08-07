@@ -6,6 +6,7 @@
       "loanOptions": "Opciones de préstamo",
       "learn": "Aprende",
       "quote": "Cotización",
+      "prequalify": "Precalificación",
       "calculator": "Calculadora",
       "about": "Sobre mí",
       "contact": "Contacto",
@@ -446,6 +447,24 @@
       },
       "thanks": { "title": "Recibido, {name}.", "body": "Tu solicitud está dentro — reviso tus números y te contacto en breve, normalmente el mismo día.", "noWait": "Si prefieres no esperar:", "explore": "Explora los programas" }
     }
+  },
+  "prequalify": {
+    "title": "Precalificación",
+    "description": "Descubre a cuánto podrías optar antes de empezar a buscar casa. Una precalificación te hace un comprador más fuerte.",
+    "heading": "Precalificación",
+    "heroTitle": "Llega a cada visita como un comprador serio.",
+    "heroSub": "Muchos agentes piden una precalificación antes de la primera visita. Resuelve la tuya en minutos.",
+    "why": {
+      "eyebrow": "Por qué importa",
+      "title": "Una precalificación le dice al vendedor que vas en serio.",
+      "body": "Antes de enamorarte de una casa, estimemos cuánto podrían aprobarte. Con esa carta en la mano, agentes y vendedores toman tu oferta en serio — y buscas con un presupuesto claro en vez de una suposición."
+    },
+    "credit": {
+      "eyebrow": "Tu crédito",
+      "title": "Conoce primero cómo está tu crédito.",
+      "body": "Los prestamistas miran tu historial de pagos, tus ingresos y tus deudas actuales. Revisar tu reporte de crédito antes de aplicar te permite corregir sorpresas a tiempo — y si tu puntaje está más bajo de lo que quisieras, armamos un plan para prepararlo."
+    },
+    "start": { "eyebrow": "Empieza", "title": "Responde unas preguntas para comenzar.", "helper": "Toma unos minutos y no se comparte nada hasta que pulses enviar." }
   },
   "calculator": {
     "title": "Calculadora de hipoteca",

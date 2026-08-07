@@ -14,6 +14,7 @@ export const pathnames = {
     es: '/opciones-de-prestamo/[program]',
   },
   '/quote': { en: '/quote', es: '/cotizacion' },
+  '/pre-qualify': { en: '/pre-qualify', es: '/precalificacion' },
   '/calculator': { en: '/calculator', es: '/calculadora' },
   '/learn': { en: '/learn', es: '/aprende' },
   '/about': { en: '/about', es: '/sobre-mi' },

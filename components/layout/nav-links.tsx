@@ -10,6 +10,7 @@ export async function NavLinks({ className }: Props) {
   const links = [
     { href: '/loan-options', label: t('loanOptions') },
     { href: '/learn', label: t('learn') },
+    { href: '/pre-qualify', label: t('prequalify') },
     { href: '/calculator', label: t('calculator') },
     { href: '/about', label: t('about') },
     { href: '/contact', label: t('contact') },
