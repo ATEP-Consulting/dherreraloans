@@ -6,6 +6,7 @@ import { PageHero } from '@/components/layout/page-hero';
 import { Container } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { CtaBand } from '@/components/ui/cta-band';
+import { MortgageCalculator, type CalculatorTexts } from '@/components/calculator/mortgage-calculator';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -40,31 +41,10 @@ export default async function CalculatorPage({ params }: { params: Promise<{ loc
       </section>
       <section className="border-t border-hairline">
         <Container className="px-5 py-10 lg:px-[72px] lg:py-14">
-          <SectionHeading eyebrow={t('title')} title={t('example.title')} />
-          <dl className="mt-6 grid max-w-[560px] grid-cols-2 gap-x-8 gap-y-6 border border-ink p-6 font-sans tabular-nums lg:p-8">
-            <div>
-              <dt className="text-micro font-medium uppercase tracking-label text-muted">{t('example.priceLabel')}</dt>
-              <dd className="mt-1.5 font-display text-h3 font-light text-ink">{t('example.price')}</dd>
-            </div>
-            <div>
-              <dt className="text-micro font-medium uppercase tracking-label text-muted">{t('example.termLabel')}</dt>
-              <dd className="mt-1.5 font-display text-h3 font-light text-ink">{t('example.term')}</dd>
-            </div>
-            <div>
-              <dt className="text-micro font-medium uppercase tracking-label text-muted">{t('example.rateLabel')}</dt>
-              <dd className="mt-1.5 font-display text-h3 font-light text-ink">{t('example.rate')}</dd>
-            </div>
-            <div>
-              <dt className="text-micro font-medium uppercase tracking-label text-muted">{t('example.paymentLabel')}</dt>
-              <dd className="mt-1.5 font-display text-h3 font-light text-ink">{t('example.payment')}</dd>
-            </div>
-          </dl>
-          <p className="mt-4 max-w-[65ch] font-sans text-fine italic text-muted">{t('example.note')}</p>
-        </Container>
-      </section>
-      <section className="border-t border-hairline">
-        <Container className="px-5 py-10 lg:px-[72px] lg:py-14">
-          <p className="max-w-[65ch] font-sans text-base leading-[1.7] text-body">{t('comingSoon.body')}</p>
+          <SectionHeading eyebrow={t('title')} title={t('calc.sectionTitle')} />
+          <div className="mt-8">
+            <MortgageCalculator texts={t.raw('calc') as CalculatorTexts} locale={locale} />
+          </div>
         </Container>
       </section>
       <CtaBand />
