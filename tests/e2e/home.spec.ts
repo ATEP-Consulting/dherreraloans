@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import en from '../../messages/en.json';
+import es from '../../messages/es.json';
 
 test('la home monta las 5 filas del índice con enlaces a programas', async ({ page }) => {
   await page.goto('/en');
@@ -27,4 +28,36 @@ test('footer compliance: NMLS, EHO y Consumer Access', async ({ page }) => {
   await expect(page.locator('footer')).toContainText('NMLS #1459301');
   await expect(page.locator('footer')).toContainText(en.common.footer.eho);
   await expect(page.locator('footer').getByRole('link', { name: en.common.footer.links.consumerAccess })).toHaveAttribute('href', /nmlsconsumeraccess\.org/);
+});
+
+test('página de programa: contenido y JSON-LD', async ({ page }) => {
+  await page.goto('/es/opciones-de-prestamo/prestamos-fha');
+  await expect(page.locator('h1')).toContainText(es.programs.fha.heroTitle);
+  await expect(page.locator('main')).toContainText(es.programs.fha.whatIs.title);
+  const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
+  expect(ld.join('')).toContain('"MortgageLoan"');
+  expect(ld.join('')).toContain('"BreadcrumbList"');
+});
+
+test('about: NMLS del originador y enlace a Consumer Access, con FinancialService JSON-LD', async ({ page }) => {
+  await page.goto('/en/about');
+  await expect(page.locator('body')).toContainText('NMLS #1459301');
+  await expect(page.getByRole('link', { name: en.about.license.linkLabel })).toHaveAttribute(
+    'href',
+    'https://www.nmlsconsumeraccess.org/',
+  );
+  const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
+  expect(ld.join('')).toContain('"FinancialService"');
+});
+
+test('contact: teléfono placeholder y enlace de WhatsApp con deep link', async ({ page }) => {
+  await page.goto('/en/contact');
+  await expect(page.getByRole('link', { name: '+1 (305) 000-0000' })).toHaveAttribute(
+    'href',
+    'tel:+13050000000',
+  );
+  await expect(page.getByRole('link', { name: en.contact.whatsapp.note })).toHaveAttribute(
+    'href',
+    /wa\.me\/13050000000/,
+  );
 });

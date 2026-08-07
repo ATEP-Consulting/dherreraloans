@@ -83,3 +83,9 @@ La arquitectura reserva y hace visibles: NMLS individual en header o footer de *
 - Lighthouse en preview tiene varianza (red, cold start de funciones); mitigación: 3 runs con mediana y umbral interno de aviso en 97 para detectar erosión antes de rozar el 95.
 - Los presupuestos (JS, imágenes) añaden fricción al añadir dependencias o assets — fricción deliberada.
 - El x-default a EN prioriza el mercado general de EE. UU.; si el negocio del cliente resultase casi 100% hispano, se revisaría (decisión reversible: un cambio de configuración).
+
+## Nota post-aprobación (2026-08-07): re-baseline del presupuesto JS
+
+Baseline real medido al cierre de Fase 1 (cero client components propios): First Load JS ≈ 149 KB gz en páginas de contenido (build local, Next 16.3.0). Presupuesto operativo: ≤ 164 KB; el gate de Lighthouse sigue siendo la vigilancia automática (ADR-0008). Sustituye al presupuesto nominal de 130 KB del §7, que la realidad de Next 16 + next-intl hizo obsoleto.
+
+*Metodología de medición*: Next.js 16 eliminó las métricas `size`/`First Load JS` de la salida de `next build` (ver `node_modules/next/dist/docs/01-app/02-guides/upgrading/version-16.md`, sección "Improved terminal output"). El número se calculó a partir de los artefactos reales del build: se leyeron las etiquetas `<script src>` del HTML pre-renderizado de una página de contenido (`.next/server/app/en.html`, home) y de una página de programa (`.next/server/app/en/loan-options/fha-loans.html`) — ambas cargan exactamente los mismos 7 chunks compartidos (confirma "cero client components propios": ninguna página añade JS propio) — y se sumó el tamaño gzip (`gzip -c | wc -c`) de esos 7 archivos en `.next/static/chunks/`. Se excluyó el chunk de polyfills (`noModule=""` en el HTML, 39 KB gz): solo lo descargan navegadores sin soporte de módulos ES, no representa la carga real de un usuario moderno.

@@ -3,9 +3,12 @@ export const NMLS_ID = '1459301';
 export const APPLY_URL = 'https://aimsmtg.my1003app.com/1459301/register';
 export const INSTAGRAM_URL = 'https://www.instagram.com/dherrera_loans/';
 export const NMLS_CONSUMER_ACCESS_URL = 'https://www.nmlsconsumeraccess.org/';
+export const EMAIL = 'hola@dherreraloans.com'; // PLACEHOLDER hasta email real del cliente
 /** PLACEHOLDER obvio hasta recibir el número real del cliente (Fase 4 lo bloquea). */
 export const WHATSAPP_NUMBER = '13050000000';
 export const PHONE_DISPLAY = '+1 (305) 000-0000';
+/** Formato E.164 para enlaces `tel:` — derivado del mismo placeholder. */
+export const PHONE_TEL = PHONE_DISPLAY.replace(/[^\d+]/g, '');
 
 export function whatsAppHref(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

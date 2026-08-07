@@ -21,3 +21,6 @@ next-env.d.ts
 # Testing
 test-results/
 playwright-report/
+
+# Fuentes descargadas en runtime por scripts/generate-og.mjs
+scripts/.fonts/

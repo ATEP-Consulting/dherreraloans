@@ -3,6 +3,7 @@
 @theme {
   /* Paleta handoff «Fachada 4a» — ÚNICA definición de color del proyecto */
   --color-paper: #f7f5f0;
+  --color-plate: #ffffff; /* placa blanca del handoff (PhotoPlate, tarjetas de contacto) */
   --color-sand: #efebe2;
   --color-ink: #1e2124;
   --color-body: #4a5158;

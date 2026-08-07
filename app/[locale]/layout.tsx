@@ -5,7 +5,9 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { SiteFooter } from '@/components/layout/site-footer';
+import { JsonLd } from '@/components/seo/json-ld';
 import { SITE_URL } from '@/lib/metadata';
+import { personJsonLd } from '@/lib/jsonld';
 import './../globals.css';
 
 const spectral = Spectral({
@@ -51,6 +53,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${spectral.variable} ${instrument.variable}`}>
       <body className="min-h-svh bg-paper text-ink antialiased">
+        <JsonLd data={personJsonLd()} />
         <NextIntlClientProvider messages={{ common: messages.common }}>
           <main>{children}</main>
           <SiteFooter locale={locale} />

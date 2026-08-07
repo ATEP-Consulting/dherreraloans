@@ -10,7 +10,7 @@ type Props = {
 
 export function PhotoPlate({ image, alt, caption }: Props) {
   return (
-    <figure className="border border-ink bg-white">
+    <figure className="border border-ink bg-plate">
       <div className="relative h-[280px] lg:h-[400px]">
         <Image src={image} alt={alt} fill className="object-contain" />
       </div>

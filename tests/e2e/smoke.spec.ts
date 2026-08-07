@@ -20,7 +20,7 @@ test('navegador en español → /es', async ({ browser }) => {
 
 test('pathnames localizados: /es/opciones-de-prestamo/prestamos-fha', async ({ page }) => {
   await page.goto('/es/opciones-de-prestamo/prestamos-fha');
-  await expect(page.locator('h1')).toHaveText(es.programs.fha.heading);
+  await expect(page.locator('h1')).toHaveText(es.programs.fha.heroTitle);
   expect(page.url()).toContain('/es/opciones-de-prestamo/prestamos-fha');
 });
 
@@ -39,4 +39,18 @@ test('el selector traduce el slug del programa', async ({ page }) => {
 test('slug de programa desconocido → 404', async ({ page }) => {
   const response = await page.goto('/en/loan-options/prestamos-fha'); // slug ES en ruta EN
   expect(response?.status()).toBe(404);
+});
+
+test('el menú móvil abre y cierra', async ({ page }) => {
+  await page.goto('/en');
+  const mobileNav = page.locator('details'); // único <details> de la página (MobileNav)
+  const summary = mobileNav.locator('summary');
+  const link = mobileNav.getByRole('link', { name: en.common.nav.loanOptions });
+
+  await expect(summary).toHaveAttribute('aria-label', en.common.menu.open);
+  await expect(link).toBeHidden();
+  await summary.click();
+  await expect(link).toBeVisible();
+  await summary.click();
+  await expect(link).toBeHidden();
 });

@@ -40,7 +40,7 @@ export async function PageHero({ locale, pathname, params, image, imageAlt, eyeb
             <Link href="/" aria-label="DherreraLoans">
               <Image src={logoLight} alt="DherreraLoans" className="h-11 w-auto lg:h-14" />
             </Link>
-            <nav aria-label={t('menu.open')} className="hidden gap-[34px] lg:flex">
+            <nav aria-label={t('nav.primary')} className="hidden gap-[34px] lg:flex">
               <NavLinks />
             </nav>
             <div className="flex items-center gap-4 lg:gap-[26px]">
