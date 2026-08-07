@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { stepSchemas, payloadSchema } from '@/lib/quiz/schema';
+import { describe, it, expect, expectTypeOf } from 'vitest';
+import { stepSchemas, payloadSchema, type QuizPayload } from '@/lib/quiz/schema';
 
 const buyPayload = {
   goal: 'buy', location: 'Miami 33130', propertyType: 'singleFamily', stage: 'looking',
@@ -45,5 +45,11 @@ describe('payloadSchema', () => {
   it('malicioso: tipos cambiados y strings gigantes → rechazo', () => {
     expect(payloadSchema.safeParse({ ...buyPayload, purchasePrice: 'DROP TABLE' }).success).toBe(false);
     expect(payloadSchema.safeParse({ ...buyPayload, location: 'x'.repeat(5000) }).success).toBe(false);
+  });
+  it('QuizPayload conserva los campos condicionales en el tipo', () => {
+    expectTypeOf<QuizPayload['purchasePrice']>().toEqualTypeOf<number | undefined>();
+    expectTypeOf<QuizPayload['downPayment']>().toEqualTypeOf<number | 'unsure' | undefined>();
+    expectTypeOf<QuizPayload['stage']>().toEqualTypeOf<'research' | 'looking' | 'offerAccepted' | 'underContract' | undefined>();
+    expectTypeOf<QuizPayload['militaryBranch']>().toEqualTypeOf<'army' | 'navy' | 'airForce' | 'marines' | 'coastGuard' | 'guardReserves' | undefined>();
   });
 });

@@ -68,32 +68,27 @@ const CONDITIONAL: Record<'buy' | 'refinance', (keyof typeof fieldSchemas)[]> = 
 };
 
 export const payloadSchema = z
-  .object({
-    ...Object.fromEntries(Object.entries(fieldSchemas).map(([k, s]) => [k, s.optional()])),
-    // los siempre-requeridos, sin optional:
-    goal: fieldSchemas.goal,
-    location: fieldSchemas.location,
-    propertyType: fieldSchemas.propertyType,
-    use: fieldSchemas.use,
-    military: fieldSchemas.military,
-    employment: fieldSchemas.employment,
-    income: fieldSchemas.income,
-    credit: fieldSchemas.credit,
-    history: fieldSchemas.history,
-    status: fieldSchemas.status,
-    firstName: fieldSchemas.firstName,
-    lastName: fieldSchemas.lastName,
-    email: fieldSchemas.email,
-    phone: fieldSchemas.phone,
+  .object(fieldSchemas)
+  .partial({
+    stage: true,
+    hasAgent: true,
+    firstTime: true,
+    purchasePrice: true,
+    downPayment: true,
+    propertyValue: true,
+    currentBalance: true,
+    currentRate: true,
+    secondMortgage: true,
+    cashOut: true,
+    militaryBranch: true,
   })
   .superRefine((data, ctx) => {
-    const d = data as Record<string, unknown>;
-    for (const key of CONDITIONAL[d.goal as 'buy' | 'refinance']) {
-      if (d[key] === undefined) {
+    for (const key of CONDITIONAL[data.goal]) {
+      if (data[key] === undefined) {
         ctx.addIssue({ code: 'custom', path: [key], message: 'required' });
       }
     }
-    if (d.military === 'yes' && d.militaryBranch === undefined) {
+    if (data.military === 'yes' && data.militaryBranch === undefined) {
       ctx.addIssue({ code: 'custom', path: ['militaryBranch'], message: 'required' });
     }
   });
