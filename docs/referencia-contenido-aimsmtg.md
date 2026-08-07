@@ -1,5 +1,7 @@
 # Referencia de contenido: aimsmtg.com (compañía licenciante)
 
+> **Inventario exhaustivo** (2026-08-07): [referencia-aimsmtg-desglose-completo.md](referencia-aimsmtg-desglose-completo.md) desengrana TODA la web — las 8 calculadoras con sus campos, el cuestionario paso a paso con su lógica condicional, las 25 páginas, plantillas, footer, tecnología y el análisis de huecos vs nuestra web. Este documento se queda como directriz de adaptación; aquél es el detalle.
+
 Directriz del usuario (2026-08-06): el contenido y los flujos de DherreraLoans se BASAN en aimsmtg.com — misma base de secciones/temas/flujos, quizá cambiando preguntas o matices. Redacción SIEMPRE propia (nunca copia literal: copyright + es la web de otra empresa), en la voz personal de David («una persona, no un portal»). Todo es borrador para enseñar a David; él dirá qué quiere exactamente (validación YMYL).
 
 ## Home de aimsmtg (estructura observada)
