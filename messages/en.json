@@ -271,7 +271,7 @@
       },
       "required": {
         "title": "What do you need for a jumbo loan?",
-        "body": "Expect a higher bar across the board: a stronger credit score, a lower debt-to-income ratio, and documented reserves — savings left over after closing — that a conforming loan wouldn't ask for. The down payment typically runs higher than 3% or 3.5%, though the exact number depends on the loan amount and your profile. I'll pull the current conforming limit for your county before we start, since it changes and determines whether your loan is even considered jumbo. Income and asset documentation tend to be more thorough, and I walk you through exactly what to gather."
+        "body": "Expect a higher bar across the board: a stronger credit score, a lower debt-to-income ratio, and documented reserves — savings left over after closing — that a conforming loan wouldn't ask for. The down payment typically runs higher than the low-down-payment programs allow, though the exact number depends on the loan amount and your profile. I'll pull the current conforming limit for your county before we start, since it changes and determines whether your loan is even considered jumbo. Income and asset documentation tend to be more thorough, and I walk you through exactly what to gather."
       },
       "how": {
         "title": "How a jumbo loan works",
@@ -355,7 +355,7 @@
       },
       "required": {
         "title": "What do you need for a cash-out refinance?",
-        "body": "You need enough equity to both cash out and still leave the required amount behind — I'll calculate that with you using your current balance and an updated home value. Income and credit have to support the new, larger loan amount, same as any refinance. Be honest about the trade-offs going in: your balance goes up, your monthly payment can go up, closing costs apply, and the loan term resets from day one. If the numbers don't clearly work in your favor for what you're trying to do, I'll tell you before we start the paperwork."
+        "body": "You need enough equity to both cash out and still leave the required amount behind — I'll calculate that with you using your current balance and an updated home value. Income and credit have to support the new, larger loan amount, same as any refinance. Be honest about the trade-offs going in: your balance goes up, your monthly payment can go up, closing costs apply, and the loan term resets from day one. If the numbers don't clearly work in your favor for what you're trying to do, I'll tell you before we start the paperwork. If you marked cash-out as what you're after in my questionnaire, this is exactly where we pick that up."
       },
       "how": {
         "title": "How a cash-out refinance works",
