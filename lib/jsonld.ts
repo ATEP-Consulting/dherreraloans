@@ -69,6 +69,20 @@ export function mortgageLoanJsonLd(locale: string, programKey: string) {
   };
 }
 
+export function faqPageJsonLd(locale: string) {
+  const t = messagesFor(locale);
+  const items = (t as { learn: { items: { q: string; a: string }[] } }).learn.items;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
+}
+
 export function breadcrumbJsonLd(locale: string, programKey: string) {
   const t = messagesFor(locale);
   const home = hreflangAlternates('/').languages[locale] ?? SITE_URL;

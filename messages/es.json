@@ -4,6 +4,7 @@
     "nav": {
       "home": "Inicio",
       "loanOptions": "Opciones de préstamo",
+      "learn": "Aprende",
       "quote": "Cotización",
       "calculator": "Calculadora",
       "about": "Sobre mí",
@@ -18,7 +19,7 @@
     "footer": {
       "explore": "Explora",
       "legal": "Legal",
-      "links": { "loanOptions": "Opciones de préstamo", "calculator": "Calculadora de hipoteca", "quote": "Obtén tu cotización", "about": "Sobre David", "contact": "Contacto", "privacy": "Política de privacidad", "accessibility": "Declaración de accesibilidad", "consumerAccess": "NMLS Consumer Access" },
+      "links": { "loanOptions": "Opciones de préstamo", "calculator": "Calculadora de hipoteca", "learn": "Aprende", "quote": "Obtén tu cotización", "about": "Sobre David", "contact": "Contacto", "privacy": "Política de privacidad", "accessibility": "Declaración de accesibilidad", "consumerAccess": "NMLS Consumer Access" },
       "licenseLine1": "David Herrera · Originador de Préstamos Hipotecarios",
       "licenseLine2": "NMLS #{nmls} · Licenciado en Florida · Miami, FL",
       "instagram": "@dherrera_loans",
@@ -198,6 +199,202 @@
           "Un punto de equilibrio te dice cuánto tiempo toma salir ganando."
         ]
       }
+    },
+    "fixedRate": {
+      "title": "Hipoteca de Tasa Fija",
+      "description": "Una sola tasa y una sola cuota durante toda la vida del préstamo.",
+      "heading": "Hipoteca de Tasa Fija",
+      "indexName": "Hipoteca de Tasa Fija",
+      "stat": "30 · 20 · 15 años",
+      "heroTitle": "Una cuota que nunca te sorprende",
+      "heroSub": "Fijas tu tasa una vez y tu pago de capital e intereses no cambia hasta terminar de pagar la casa.",
+      "blurb": "La forma más predecible de financiar: tasa y cuota fijadas desde el primer día, elijas 15, 20 o 30 años.",
+      "intro": "Una hipoteca de tasa fija es menos un programa que una promesa: la tasa con la que cierras es la tasa que conservas. La mayoría de los préstamos que trabajo — FHA, convencional, VA — pueden estructurarse así. Si piensas quedarte en tu casa y quieres un costo de vivienda con el que puedas armar un presupuesto, este es el punto de partida que uso por defecto.",
+      "whatIs": {
+        "title": "¿Qué es una hipoteca de tasa fija?",
+        "body": "Es un préstamo donde la tasa de interés se fija al cierre y no cambia jamás, así que la parte de capital e intereses de tu cuota es idéntica el primer mes y el último. La alternativa — una tasa ajustable — arranca más baja pero puede moverse con el mercado después del periodo inicial. Fija significa aceptar una tasa de salida algo mayor a cambio de la certeza de que ninguna subida de tasas tocará tu pago."
+      },
+      "required": {
+        "title": "¿Qué necesitas para una hipoteca de tasa fija?",
+        "body": "Lo mismo que pide el programa base con el que califiques: ingresos verificables, deudas manejables y un perfil de crédito acorde al tipo de préstamo — flexible con FHA, más exigente con convencional. Elegir tasa fija no añade requisitos extra. Lo importante es escoger el plazo: uno más corto cuesta más al mes y mucho menos en intereses totales, y te enseño ambos números antes de decidir."
+      },
+      "how": {
+        "title": "Cómo funciona una hipoteca de tasa fija",
+        "items": [
+          "Tu tasa queda fijada al cierre y no cambia con el mercado.",
+          "Plazos habituales de 30, 20 o 15 años — a plazo más corto, menos intereses totales.",
+          "Las primeras cuotas son sobre todo intereses; con el tiempo cada pago construye más plusvalía.",
+          "Sin penalización por pagar antes de tiempo en los programas con los que trabajo."
+        ]
+      }
+    },
+    "usda": {
+      "title": "Préstamos USDA",
+      "description": "Opciones de préstamo USDA para zonas rurales y suburbanas elegibles en Florida.",
+      "heading": "Préstamos USDA",
+      "indexName": "Préstamos USDA",
+      "stat": "0% entrada",
+      "heroTitle": "Ten casa propia sin entrada",
+      "heroSub": "En zonas elegibles USDA fuera del núcleo urbano puedes financiar el 100% de la compra.",
+      "blurb": "Respaldado por el Departamento de Agricultura: 0% de entrada en zonas rurales y suburbanas elegibles.",
+      "intro": "Un préstamo USDA está respaldado por el Departamento de Agricultura de Estados Unidos, por eso puede financiar una casa sin entrada. Está pensado para compras en zonas rurales y suburbanas elegibles — no aplica en cualquier ubicación. Mucha gente asume que no le toca; en Florida, el mapa de zonas elegibles es más amplio de lo que imaginas. Primero verifico la dirección, antes de hablar de cualquier otra cosa.",
+      "whatIs": {
+        "title": "¿Qué es un préstamo USDA?",
+        "body": "Un préstamo USDA es una hipoteca garantizada por el Departamento de Agricultura de Estados Unidos, pensada para ampliar el acceso a vivienda propia fuera de los grandes centros urbanos. Esa garantía te permite financiar hasta el 100% del precio de compra, sin entrada. La elegibilidad funciona en dos vías a la vez: la propiedad tiene que estar dentro de una zona designada por USDA, y el ingreso de tu hogar tiene que estar por debajo del límite del programa para esa zona. En lugar del seguro hipotecario tradicional, pagas una guarantee fee, generalmente más económica a largo plazo. Es un programa solo para residencia principal — no aplica a propiedades de inversión ni de vacaciones."
+      },
+      "required": {
+        "title": "¿Qué necesitas para un préstamo USDA?",
+        "body": "Lo primero que reviso es la propiedad — tiene que estar dentro de una zona elegible USDA, que en Florida cubre más pueblos y periferias de las que la mayoría de los compradores imagina. A partir de ahí, el ingreso de tu hogar tiene que quedar por debajo del límite del programa, que varía según la zona y el tamaño de la familia. Todavía necesitas ingresos estables, un perfil de crédito aceptable, y la casa tiene que ser tu residencia principal. Reviso la dirección y tus números juntos antes de avanzar, para no perder tiempo persiguiendo una casa que no calificaría."
+      },
+      "how": {
+        "title": "Cómo funciona un préstamo USDA",
+        "items": [
+          "Sin entrada requerida para una propiedad elegible en una zona elegible.",
+          "La elegibilidad depende de la ubicación de la propiedad y del ingreso de tu hogar.",
+          "Una guarantee fee sustituye al seguro hipotecario tradicional, muchas veces con un costo continuo menor.",
+          "Limitado a residencia principal — no disponible para propiedades de inversión ni de vacaciones."
+        ]
+      }
+    },
+    "jumbo": {
+      "title": "Préstamos Jumbo",
+      "description": "Financiamiento jumbo por encima del límite conforme en Florida.",
+      "heading": "Préstamos Jumbo",
+      "indexName": "Préstamos Jumbo",
+      "stat": "Montos altos",
+      "heroTitle": "Financiamiento más allá del límite estándar",
+      "heroSub": "Para casas por encima del límite conforme, el préstamo jumbo continúa donde los programas estándar se detienen.",
+      "blurb": "Para montos sobre el límite conforme — habitual en el mercado de Miami — con tasas competitivas para perfiles sólidos.",
+      "intro": "Un préstamo jumbo es para casas con un precio por encima del límite conforme — el tope que Fannie Mae y Freddie Mac fijan para las hipotecas estándar. Ese límite cambia cada año y por condado, y confirmo la cifra vigente antes de hablar de tu casa específica. En Miami no es un producto raro: con los precios de hoy, muchos compradores lo necesitan sin darse cuenta.",
+      "whatIs": {
+        "title": "¿Qué es un préstamo jumbo?",
+        "body": "Un préstamo jumbo financia un monto por encima del límite conforme, lo que significa que queda fuera de las guías que Fannie Mae y Freddie Mac usan para respaldar las hipotecas estándar. Como el prestamista no puede vender el préstamo a esas agencias, asume directamente más riesgo, y el proceso de aprobación lo refleja. Generalmente vas a ver un puntaje de crédito más exigente, comprobante de reservas de efectivo después del cierre, y una entrada mayor que la que pide un préstamo conforme. En un mercado como Miami, donde los precios suelen superar el tope conforme, un préstamo jumbo muchas veces es el único camino hacia la propiedad que quieres."
+      },
+      "required": {
+        "title": "¿Qué necesitas para un préstamo jumbo?",
+        "body": "Espera un estándar más alto en todo: un puntaje de crédito más fuerte, una relación deuda-ingreso más baja, y reservas documentadas — ahorros que te quedan después del cierre — que un préstamo conforme no exigiría. La entrada normalmente es mayor que la de los programas de entrada baja, aunque la cifra exacta depende del monto del préstamo y tu perfil. Reviso el límite conforme vigente para tu condado antes de empezar, porque cambia y determina si tu préstamo se considera jumbo. La documentación de ingresos y activos suele ser más detallada, y te explico exactamente qué reunir."
+      },
+      "how": {
+        "title": "Cómo funciona un préstamo jumbo",
+        "items": [
+          "Financia montos por encima del límite conforme, que se fija cada año por condado.",
+          "Exige un puntaje de crédito más fuerte y reservas de efectivo documentadas después del cierre.",
+          "Entradas típicamente más altas que en los programas conformes estándar.",
+          "Habitual en Miami, donde los precios de las casas suelen superar el tope conforme."
+        ]
+      }
+    },
+    "lowDownPayment": {
+      "title": "Opciones de Entrada Baja",
+      "description": "Compara todos los caminos de entrada baja: FHA, convencional, VA y USDA.",
+      "heading": "Opciones de Entrada Baja",
+      "indexName": "Opciones de Entrada Baja",
+      "stat": "Desde 3% de entrada",
+      "heroTitle": "La entrada es más pequeña de lo que crees",
+      "heroSub": "Entre FHA, programas convencionales al 3%, VA y USDA, ahorrar el 20% es opcional — no un requisito.",
+      "blurb": "Un mapa de todos los caminos para comprar con poco dinero inicial: cuál encaja depende de tu perfil, y compararlos es mi trabajo.",
+      "intro": "El 20% de entrada es un mito que mantiene a buenos compradores alquilando más tiempo del necesario. Entre FHA al 3.5%, programas convencionales desde alrededor de 3%, y VA o USDA en cero, la mayoría de los compradores califica para algo muy por debajo de esa cifra. Cuál te conviene depende de tu crédito, tus ingresos y el tipo de propiedad que buscas — compararlos con honestidad es donde empiezo cada conversación.",
+      "whatIs": {
+        "title": "¿Qué cuenta como entrada baja?",
+        "body": "Entrada baja incluye todos los caminos que te meten en una casa sin el 20% tradicional: FHA al 3.5%, préstamos convencionales desde alrededor de 3%, y préstamos VA o USDA que pueden financiar el 100% para compradores que califican. Cada uno tiene sus contrapartidas — una entrada más pequeña normalmente significa seguro hipotecario hasta que construyas valor en la propiedad, y en un mercado competitivo una oferta con poca entrada puede ser más difícil de elegir para un vendedor frente a una con más efectivo. También existen programas de asistencia para la entrada, subvenciones y segundos préstamos a bajo interés, que pueden cubrir parte de lo que falta. Nada de esto es igual para todos, por eso comparo tus opciones lado a lado en vez de asumir una por defecto."
+      },
+      "required": {
+        "title": "¿Qué necesitas para comprar con entrada baja?",
+        "body": "Lo que necesitas depende por completo de cuál camino te conviene: FHA pide un crédito más flexible, convencional premia un puntaje más fuerte con una tasa menor, y VA o USDA pueden eliminar la entrada por completo si calificas. En todos los casos, los prestamistas todavía quieren ingresos estables y deudas manejables — una entrada baja no significa menos revisión en lo demás. Si un 20% de entrada no es realista para ti ahora mismo, dímelo desde el principio; eso cambia con qué programas empiezo a calcular primero, y si un programa de asistencia tiene sentido para tu situación. El cuestionario de cotización suele ser la forma más rápida de ver dónde estás parado."
+      },
+      "how": {
+        "title": "Cómo se comparan las opciones de entrada baja",
+        "items": [
+          "FHA empieza en 3.5% de entrada; los programas convencionales pueden empezar alrededor de 3%.",
+          "VA y USDA pueden financiar hasta el 100%, para quienes califican.",
+          "Una entrada más pequeña normalmente significa pagar seguro hipotecario hasta construir valor en la propiedad.",
+          "Los programas de asistencia para la entrada pueden cubrir parte de lo que falta, evaluados caso por caso."
+        ]
+      }
+    },
+    "investment": {
+      "title": "Préstamos para Inversión",
+      "description": "Opciones de financiamiento para propiedades de inversión y renta en Florida.",
+      "heading": "Préstamos para Inversión",
+      "indexName": "Préstamos para Inversión",
+      "stat": "Para inversores",
+      "heroTitle": "Haz que la propiedad se pague sola",
+      "heroSub": "Financiamiento pensado para rentas: programas donde el ingreso de la propiedad pesa tanto como el tuyo.",
+      "blurb": "Para comprar propiedad de renta: préstamos convencionales de inversor y programas que califican por el ingreso de renta de la propiedad.",
+      "intro": "Financiar una propiedad de renta funciona distinto a financiar la casa donde vives. Los prestamistas normalmente piden una entrada mayor y cobran una tasa algo más alta, porque una propiedad de inversión carga más riesgo que una residencia principal. Algunos programas van un paso más allá y te califican usando el ingreso de renta de la propiedad en vez del tuyo. Sea tu primera renta o la siguiente pieza de una cartera que ya estás construyendo, calculo ambos caminos antes de elegir uno.",
+      "whatIs": {
+        "title": "¿Qué es un préstamo para propiedad de inversión?",
+        "body": "Un préstamo para propiedad de inversión financia una casa en la que no vas a vivir — una renta individual, un multifamiliar pequeño, o una pieza más de una cartera que ya estás construyendo. Aplican las guías convencionales, pero con una entrada mayor y una tasa algo más alta que en una residencia principal, reflejando el riesgo adicional. Algunos programas te califican principalmente por el ingreso de renta proyectado de la propiedad en vez de tu ingreso y deudas personales, lo que puede abrirle la puerta a inversores cuya declaración de impuestos no cuenta toda la historia. El mercado de renta de Miami hace que esta sea una conversación frecuente, pero no prometo un retorno — eso depende de la propiedad, no del préstamo."
+      },
+      "required": {
+        "title": "¿Qué necesitas para un préstamo de propiedad de inversión?",
+        "body": "Espera una entrada mayor de la que pondrías en una residencia principal, junto con un perfil de crédito que respalde el riesgo adicional que asume el prestamista. Normalmente se piden reservas de efectivo después del cierre — suficientes para cubrir varios meses de pago. Si vamos por el camino de un programa que te califica por el ingreso de renta, voy a necesitar un estimado de renta de mercado para la propiedad, que normalmente da un tasador. Te explico los dos enfoques — por ingreso personal y por la propiedad — y te muestro cuál te da mejor resultado antes de comprometernos con uno."
+      },
+      "how": {
+        "title": "Cómo funciona un préstamo de propiedad de inversión",
+        "items": [
+          "Entradas normalmente más altas que para una residencia principal.",
+          "Tasas generalmente algo más altas que las que calificaría una residencia principal.",
+          "Algunos programas te califican usando el ingreso de renta de la propiedad en vez del tuyo.",
+          "Normalmente se piden reservas de efectivo después del cierre, para cubrir varios meses de pago."
+        ]
+      }
+    },
+    "cashOutRefinance": {
+      "title": "Refinanciamiento Cash-Out",
+      "description": "Convierte la plusvalía de tu casa en efectivo con un refinanciamiento cash-out.",
+      "heading": "Refinanciamiento Cash-Out",
+      "indexName": "Refinanciamiento Cash-Out",
+      "stat": "Usa tu plusvalía",
+      "heroTitle": "Convierte la plusvalía de tu casa en efectivo que puedes usar",
+      "heroSub": "Sustituye tu hipoteca actual por una mayor y recibe la diferencia en efectivo — para renovar, consolidar deudas o tu siguiente paso.",
+      "blurb": "Refinancia por más de lo que debes y llévate la diferencia — tu plusvalía trabajando para ti.",
+      "intro": "Un refinanciamiento cash-out sustituye tu hipoteca actual por una nueva y mayor, y te quedas con la diferencia en efectivo al cierre. La gente lo usa para renovar, pagar deudas de interés alto, invertir, o simplemente crear un colchón. Solo funciona si ya acumulaste suficiente plusvalía, y trae contrapartidas reales que no voy a minimizar — te muestro los números con honestidad antes de que decidas.",
+      "whatIs": {
+        "title": "¿Qué es un refinanciamiento cash-out?",
+        "body": "Un refinanciamiento cash-out paga tu hipoteca actual con un préstamo nuevo por un monto mayor, y la diferencia te la entregan en efectivo al cierre. Es una forma de convertir plusvalía — el valor que acumulaste en tu casa — en dinero que puedes usar de verdad, sin vender la propiedad. Todos los programas exigen que conserves una parte del valor de tu casa como plusvalía después del cash-out, así que cuánto puedes sacar depende de tu balance actual y del valor de la casa, no solo de lo que te gustaría llevarte. Es un solo préstamo, una sola cuota, no un segundo gravamen encima del primero."
+      },
+      "required": {
+        "title": "¿Qué necesitas para un refinanciamiento cash-out?",
+        "body": "Necesitas suficiente plusvalía para sacar efectivo y todavía dejar el porcentaje requerido — lo calculo contigo usando tu balance actual y un valor actualizado de la casa. Tus ingresos y tu crédito tienen que sostener el monto nuevo y mayor del préstamo, igual que en cualquier refinanciamiento. Sé honesto contigo mismo sobre las contrapartidas desde el inicio: tu balance sube, tu cuota mensual puede subir, se aplican costos de cierre, y el plazo del préstamo se reinicia desde cero. Si los números no te favorecen claramente para lo que quieres lograr, te lo digo antes de empezar el papeleo. Si marcaste cash-out como lo que buscas en mi cuestionario, aquí es exactamente donde retomamos eso."
+      },
+      "how": {
+        "title": "Cómo funciona un refinanciamiento cash-out",
+        "items": [
+          "Sustituye tu hipoteca actual con un préstamo nuevo y mayor.",
+          "Recibes la diferencia entre los dos montos como efectivo al cierre.",
+          "Requiere suficiente plusvalía para dejar intacta una parte requerida del valor de tu casa.",
+          "Tu balance, tu cuota y el plazo del préstamo se reinician — te muestro los números reales primero."
+        ]
+      }
+    },
+    "vaRefinance": {
+      "title": "Refinanciamiento VA",
+      "description": "Opciones de refinanciamiento IRRRL y cash-out VA para veteranos y militares.",
+      "heading": "Refinanciamiento VA",
+      "indexName": "Refinanciamiento VA",
+      "stat": "Para veteranos",
+      "heroTitle": "Tu servicio sigue abriendo puertas — también al refinanciar",
+      "heroSub": "Dos caminos VA: el IRRRL simplificado para bajar tu tasa con mínimo papeleo, o un cash-out VA para usar tu plusvalía.",
+      "blurb": "Streamline para bajar tasa (IRRRL) o cash-out VA — refinanciamiento construido sobre tu beneficio VA.",
+      "intro": "El refinanciamiento VA viene en dos formas, y cada una resuelve un problema distinto. El IRRRL es un refinanciamiento simplificado de VA a VA, pensado para bajar tu tasa o tu cuota, o sacarte de una tasa ajustable, con menos papeleo que un refinanciamiento típico. Un refinanciamiento cash-out VA va más allá — puede usar la plusvalía de tu casa, y también es la forma de pasar un préstamo que no es VA hacia el programa VA. Confirmo cuál, si alguno, realmente te conviene antes de seguir.",
+      "whatIs": {
+        "title": "¿Qué es un refinanciamiento VA?",
+        "body": "Un refinanciamiento VA usa tu beneficio de préstamo VA para sustituir una hipoteca existente. El IRRRL — Interest Rate Reduction Refinance Loan — solo funciona si ya tienes un préstamo VA, y está diseñado para ser sencillo: documentación reducida, sin tasación en la mayoría de los casos, y un objetivo directo de bajar la tasa, bajar la cuota, o pasar de una tasa ajustable a una fija. Un refinanciamiento cash-out VA es distinto: te permite pedir prestado contra la plusvalía de tu casa, y a diferencia del IRRRL, también puede convertir un préstamo convencional o FHA en un préstamo VA para veteranos que califican. La elegibilidad para cualquiera de los dos sigue tu beneficio VA."
+      },
+      "required": {
+        "title": "¿Qué necesitas para un refinanciamiento VA?",
+        "body": "Para un IRRRL necesitas un préstamo VA existente al día y un beneficio neto claro — una tasa menor, una cuota menor, o pasar a tasa fija — porque las reglas de VA exigen que el refinanciamiento realmente te ayude. Un refinanciamiento cash-out VA se parece más a un refinanciamiento estándar: suficiente plusvalía, ingresos y crédito que sostengan el préstamo nuevo, y un Certificado de Elegibilidad ligado a tu servicio, tu servicio activo, o, para algunos, el de tu cónyuge. En la mayoría de los casos se aplica una cuota de financiamiento, con exenciones para algunos prestatarios con discapacidad relacionada con el servicio, que reviso contigo desde el inicio."
+      },
+      "how": {
+        "title": "Cómo funciona un refinanciamiento VA",
+        "items": [
+          "IRRRL: un refinanciamiento simplificado de VA a VA para bajar tu tasa o cuota, con menos papeleo.",
+          "Cash-out VA: pide prestado contra tu plusvalía, o convierte un préstamo que no es VA al programa VA.",
+          "La elegibilidad sigue tu beneficio VA — veteranos, servicio activo y algunos cónyuges sobrevivientes.",
+          "Se aplica una cuota de financiamiento en la mayoría de los casos, exenta para algunos prestatarios con discapacidad relacionada con el servicio."
+        ]
+      }
     }
   },
   "quote": {
@@ -272,6 +469,43 @@
       "errorDown": "La entrada debe ser menor que el precio de la casa.",
       "disclaimer": "Estimación educativa. Solo capital e intereses — no incluye taxes, seguro ni HOA. No es una oferta de préstamo ni una precalificación."
     }
+  },
+  "learn": {
+    "title": "Aprende",
+    "description": "Respuestas claras a las preguntas que más escucho, antes de que te comprometas a nada.",
+    "heading": "Aprende",
+    "heroTitle": "Las preguntas que respondo cada semana",
+    "heroSub": "Sin discurso de venta ni letra pequeña que necesite abogado — las preguntas que de verdad me hacen los compradores, respondidas como te las respondería por teléfono.",
+    "items": [
+      {
+        "q": "¿Cómo funciona comprar casa, de principio a fin?",
+        "a": "Comprar una casa sigue un orden predecible, aunque no siempre lo parezca. Empieza por tus números — cuánto puedes gastar con tranquilidad — luego la precalificación, para que sepas qué puedes ofrecer antes de enamorarte de una propiedad. De ahí sigue la búsqueda, la oferta, el underwriting, donde se verifica tu expediente, y el cierre, cuando por fin recibes las llaves. Me gusta entrar desde el primer paso, no en el último — conocer tu presupuesto antes de empezar a ver casas te evita perseguir propiedades que nunca ibas a conseguir."
+      },
+      {
+        "q": "¿Qué diferencia hay entre precalificado y preaprobado?",
+        "a": "La precalificación es un cálculo rápido y honesto: me cuentas tus ingresos, tus ahorros y tu meta, normalmente con mi cuestionario, y te doy un rango realista sin pedirte documentos. La preaprobación va más allá: verifico tus ingresos, tus activos y tu crédito con papeles reales, y el resultado pesa de verdad cuando haces una oferta, porque el vendedor sabe que está respaldada por documentación, no solo por tu palabra. Empieza con la precalificación para orientarte, y pasa a la preaprobación cuando ya estés viendo casas en serio y lista para competir por una."
+      },
+      {
+        "q": "¿Qué mira un lender en mi crédito?",
+        "a": "Miro tu crédito como un rango, no como una pared — me dice qué programas te quedan mejor, no si puedes comprar casa o no. Lo que más importa es tu historial de pagos y cuánta deuda activa llevas frente a tus ingresos. Cada programa tiene mínimos distintos, así que un puntaje que descarta una opción muchas veces sigue sirviendo para otra. Y aquí no se consulta tu crédito para nada: cuando hablamos, es tu propia estimación honesta, así podemos conversar con libertad antes de que nada toque tu reporte."
+      },
+      {
+        "q": "¿Cuánta entrada necesito de verdad?",
+        "a": "La idea de que necesitas una entrada enorme para comprar es una de las cosas que más mantiene a buenos compradores pagando renta más tiempo del necesario. Los préstamos convencionales arrancan desde el 3% de entrada, FHA desde el 3.5%, y VA o USDA pueden llegar hasta el 0% para quien califica — cuál te conviene depende de tu crédito, tus ingresos y la propiedad misma, así que eso es una conversación, no una adivinanza. Y la entrada no es el único dinero que necesitas al cierre; también están los costos de cierre, así que siempre te muestro el panorama completo antes de que te comprometas con un número."
+      },
+      {
+        "q": "¿Puedo comprar con ITIN o siendo extranjero?",
+        "a": "Sí — esto surge todo el tiempo, y es una de mis especialidades. Comprar con ITIN en vez de número de seguro social, o como extranjero sin residencia, no es un callejón sin salida; existen programas pensados justo para estas situaciones. Las condiciones son distintas — normalmente más documentación y una estructura de entrada diferente a la de un préstamo estándar — pero el camino es real. Mi cuestionario pregunta por tu estatus desde el principio justo por eso: me permite conectarte con el programa correcto desde la primera conversación, no después de que ya te enamoraste de una casa."
+      },
+      {
+        "q": "¿Cuándo tiene sentido refinanciar?",
+        "a": "Refinanciar tiene sentido cuando de verdad te hace avanzar — una tasa más baja, una cuota más baja, quitarte un seguro hipotecario que ya no necesitas, o sacar efectivo para una meta real. No tiene sentido solo porque la tasa bajó un poco o porque te llamó un lender de la nada. El número que me importa es tu punto de equilibrio: cuánto tarda el ahorro mensual en cubrir los costos de cierre del préstamo nuevo. Si piensas quedarte en la casa después de ese punto, casi siempre vale la pena. Si no, te lo digo con honestidad: mejor espera."
+      },
+      {
+        "q": "¿Qué son los costos de cierre?",
+        "a": "Los costos de cierre son los cargos, además de tu entrada, que hacen oficial el préstamo y la venta — cosas como la tasación, el trabajo de título, la originación del préstamo y los prepagados como taxes y seguro que se guardan en escrow. Como orden de magnitud general, calcula un porcentaje moderado del precio de compra, aunque el número exacto depende de tu préstamo, tu propiedad y tu condado. No tienes que adivinar: una vez que estás bajo contrato, recibes un Loan Estimate que detalla cada costo por escrito, para que nada te tome por sorpresa en la mesa de cierre."
+      }
+    ]
   },
   "about": {
     "title": "Sobre David Herrera",
