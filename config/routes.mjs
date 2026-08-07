@@ -28,4 +28,5 @@ export const programSlugs = {
   va: { en: 'va-loans', es: 'prestamos-va' },
   firstTimeHomebuyer: { en: 'first-time-homebuyer', es: 'primer-comprador' },
   refinance: { en: 'refinance', es: 'refinanciamiento' },
+  fixedRate: { en: 'fixed-rate-mortgage', es: 'hipoteca-tasa-fija' },
 };

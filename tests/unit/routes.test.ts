@@ -22,9 +22,9 @@ describe('config/routes', () => {
     }
   });
 
-  it('los 5 programas tienen slug en ambos idiomas y sin duplicados', () => {
+  it('los programas tienen slug en ambos idiomas y sin duplicados', () => {
     expect(Object.keys(programSlugs).sort()).toEqual(
-      ['conventional', 'fha', 'firstTimeHomebuyer', 'refinance', 'va'],
+      ['conventional', 'fha', 'firstTimeHomebuyer', 'fixedRate', 'refinance', 'va'],
     );
     for (const locale of locales) {
       const slugs = Object.values(programSlugs).map((s) => s[locale as 'en' | 'es']);

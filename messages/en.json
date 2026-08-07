@@ -198,6 +198,34 @@
           "A break-even point tells you how long it takes to come out ahead."
         ]
       }
+    },
+    "fixedRate": {
+      "title": "Fixed Rate Mortgage",
+      "description": "One rate and one payment for the life of your loan.",
+      "heading": "Fixed Rate Mortgage",
+      "indexName": "Fixed Rate Mortgage",
+      "stat": "30 · 20 · 15 yrs",
+      "heroTitle": "One payment that never surprises you",
+      "heroSub": "Lock your rate once and your principal-and-interest payment stays the same until the loan is paid off.",
+      "blurb": "The most predictable way to borrow: rate and payment locked from day one, whether you choose 15, 20, or 30 years.",
+      "intro": "A fixed rate mortgage is less a program than a promise: the rate you close with is the rate you keep. Most of the loans I write — FHA, conventional, VA — can be structured this way. If you plan to stay in your home and want a housing cost you can build a budget around, this is the default I start from.",
+      "whatIs": {
+        "title": "What is a fixed rate mortgage?",
+        "body": "It's a loan where the interest rate is set at closing and never changes, so the principal-and-interest portion of your payment is identical in month one and in the final month. The alternative — an adjustable rate — starts lower but can move with the market after the initial period. Fixed means you trade a slightly higher starting rate for certainty that no rate hike can touch your payment."
+      },
+      "required": {
+        "title": "What do you need for a fixed rate mortgage?",
+        "body": "The same fundamentals as the underlying program you qualify for: verifiable income, a manageable debt load, and a credit profile that fits the loan type — flexible with FHA, stricter with conventional. There's no extra requirement for choosing fixed over adjustable. What matters is picking the term: a shorter term costs more per month and far less in total interest, and I'll show you both numbers before you decide."
+      },
+      "how": {
+        "title": "How a fixed rate mortgage works",
+        "items": [
+          "Your rate is locked at closing and never changes with the market.",
+          "Terms commonly available in 30, 20, or 15 years — shorter term, less total interest.",
+          "Early payments are mostly interest; over time more of each payment builds equity.",
+          "No penalty for paying it off early with the programs I work with."
+        ]
+      }
     }
   },
   "quote": {

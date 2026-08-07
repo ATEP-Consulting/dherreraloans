@@ -198,6 +198,34 @@
           "Un punto de equilibrio te dice cuánto tiempo toma salir ganando."
         ]
       }
+    },
+    "fixedRate": {
+      "title": "Hipoteca de Tasa Fija",
+      "description": "Una sola tasa y una sola cuota durante toda la vida del préstamo.",
+      "heading": "Hipoteca de Tasa Fija",
+      "indexName": "Hipoteca de Tasa Fija",
+      "stat": "30 · 20 · 15 años",
+      "heroTitle": "Una cuota que nunca te sorprende",
+      "heroSub": "Fijas tu tasa una vez y tu pago de capital e intereses no cambia hasta terminar de pagar la casa.",
+      "blurb": "La forma más predecible de financiar: tasa y cuota fijadas desde el primer día, elijas 15, 20 o 30 años.",
+      "intro": "Una hipoteca de tasa fija es menos un programa que una promesa: la tasa con la que cierras es la tasa que conservas. La mayoría de los préstamos que trabajo — FHA, convencional, VA — pueden estructurarse así. Si piensas quedarte en tu casa y quieres un costo de vivienda con el que puedas armar un presupuesto, este es el punto de partida que uso por defecto.",
+      "whatIs": {
+        "title": "¿Qué es una hipoteca de tasa fija?",
+        "body": "Es un préstamo donde la tasa de interés se fija al cierre y no cambia jamás, así que la parte de capital e intereses de tu cuota es idéntica el primer mes y el último. La alternativa — una tasa ajustable — arranca más baja pero puede moverse con el mercado después del periodo inicial. Fija significa aceptar una tasa de salida algo mayor a cambio de la certeza de que ninguna subida de tasas tocará tu pago."
+      },
+      "required": {
+        "title": "¿Qué necesitas para una hipoteca de tasa fija?",
+        "body": "Lo mismo que pide el programa base con el que califiques: ingresos verificables, deudas manejables y un perfil de crédito acorde al tipo de préstamo — flexible con FHA, más exigente con convencional. Elegir tasa fija no añade requisitos extra. Lo importante es escoger el plazo: uno más corto cuesta más al mes y mucho menos en intereses totales, y te enseño ambos números antes de decidir."
+      },
+      "how": {
+        "title": "Cómo funciona una hipoteca de tasa fija",
+        "items": [
+          "Tu tasa queda fijada al cierre y no cambia con el mercado.",
+          "Plazos habituales de 30, 20 o 15 años — a plazo más corto, menos intereses totales.",
+          "Las primeras cuotas son sobre todo intereses; con el tiempo cada pago construye más plusvalía.",
+          "Sin penalización por pagar antes de tiempo en los programas con los que trabajo."
+        ]
+      }
     }
   },
   "quote": {

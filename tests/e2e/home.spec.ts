@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test';
 import en from '../../messages/en.json';
 import es from '../../messages/es.json';
 
-test('la home monta las 5 filas del índice con enlaces a programas', async ({ page }) => {
+test('la home monta las filas del índice con enlaces a programas', async ({ page }) => {
   await page.goto('/en');
   const rows = page.locator('a[href^="/en/loan-options/"]');
-  await expect(rows).toHaveCount(5);
+  await expect(rows).toHaveCount(Object.keys(en.programs).length);
   await expect(rows.first()).toContainText(en.programs.fha.indexName);
 });
 

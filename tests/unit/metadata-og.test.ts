@@ -23,6 +23,7 @@ describe('defaultOgSlug — guardia de sincronía lib/metadata.ts ↔ scripts/ge
     'programs.va',
     'programs.firstTimeHomebuyer',
     'programs.refinance',
+    'programs.fixedRate',
     'quote',
     'calculator',
     'about',
