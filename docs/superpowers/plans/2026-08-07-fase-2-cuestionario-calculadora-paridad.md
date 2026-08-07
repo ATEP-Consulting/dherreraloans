@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Cuestionario Get a Quote real (18 pasos declarativos, submit simulado del estado final), calculadora de hipoteca funcional, y paridad de contenido con aimsmtg (5 programas nuevos + página Learn/FAQ).
+**Goal:** Cuestionario Get a Quote real (18 pasos declarativos, submit simulado del estado final), calculadora de hipoteca funcional, y paridad de contenido con aimsmtg (7 programas nuevos — enmienda 2026-08-07: paridad total del catálogo, 12 en total — + página Learn/FAQ).
 
 **Architecture:** Motor declarativo + `useReducer` con Zod compartido y `sessionStorage` (ADR-0007); un client component por herramienta con textos inyectados como props desde Server Components (los messages NO entran al bundle JS); contenido nuevo derivado de la fuente única `config/routes.mjs`.
 
@@ -2403,11 +2403,13 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 
 ---
 
-### Task 15: Programas `usda`, `jumbo`, `lowDownPayment`, `investment`
+### Task 15: Programas `usda`, `jumbo`, `lowDownPayment`, `investment`, `cashOutRefinance`, `vaRefinance`
+
+> Enmienda 2026-08-07 (decisión del responsable en el gate del PR B, tras el inventario `docs/referencia-aimsmtg-desglose-completo.md`): se añaden `cashOutRefinance` y `vaRefinance` para paridad total del catálogo (12 programas).
 
 **Files:**
-- Modify: `config/routes.mjs`, `messages/en.json`, `messages/es.json`, `tests/unit/routes.test.ts` (lista exacta → 10), `tests/unit/metadata-og.test.ts` (+4 namespaces)
-- Regenera: `public/og/{en,es}/{usda,jumbo,lowDownPayment,investment}.png`
+- Modify: `config/routes.mjs`, `messages/en.json`, `messages/es.json`, `tests/unit/routes.test.ts` (lista exacta → 12), `tests/unit/metadata-og.test.ts` (+6 namespaces)
+- Regenera: `public/og/{en,es}/{usda,jumbo,lowDownPayment,investment,cashOutRefinance,vaRefinance}.png`
 
 **Interfaces:**
 - Consumes: patrón de la Task 14 (mismo esquema de claves EXACTO que `programs.fixedRate`/`programs.fha`).
@@ -2419,6 +2421,8 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
   jumbo: { en: 'jumbo-loans', es: 'prestamos-jumbo' },
   lowDownPayment: { en: 'low-down-payment', es: 'entrada-baja' },
   investment: { en: 'investment-property-loans', es: 'prestamos-de-inversion' },
+  cashOutRefinance: { en: 'cash-out-refinance', es: 'refinanciamiento-cash-out' },
+  vaRefinance: { en: 'va-refinance', es: 'refinanciamiento-va' },
 ```
 
 - [ ] **Step 2: Redactar los 4 namespaces en `messages/en.json` y `messages/es.json`**
@@ -2437,17 +2441,23 @@ Hechos: página-paraguas que compara caminos (FHA 3.5%, convencional desde 3%, V
 **`investment`** — stat: `For investors` / `Para inversores` · indexName: `Investment Property Loans` / `Préstamos para Inversión` · heroTitle: `Make the property pay for itself` / `Haz que la propiedad se pague sola` · heroSub: `Financing built for rentals: programs where the property's income matters as much as yours.` / `Financiamiento pensado para rentas: programas donde el ingreso de la propiedad pesa tanto como el tuyo.` · blurb: `For buying rental property: conventional investor loans and programs that qualify by the property's rental income.` / `Para comprar propiedad de renta: préstamos convencionales de inversor y programas que califican por el ingreso de renta de la propiedad.`
 Hechos: entrada típica mayor y tasa algo más alta que residencia principal (genérico); existen programas que califican por el flujo de renta de la propiedad (tipo DSCR) además del ingreso personal; sirve para primera inversión o para crecer cartera; Miami como mercado de renta; sin promesas de retorno (YMYL).
 
+**`cashOutRefinance`** — stat: `Use your equity` / `Usa tu plusvalía` · indexName: `Cash-Out Refinance` / `Refinanciamiento Cash-Out` · heroTitle: `Turn your home's equity into cash you can use` / `Convierte la plusvalía de tu casa en efectivo que puedes usar` · heroSub: `Replace your current mortgage with a larger one and take the difference in cash — for renovations, debt, or your next move.` / `Sustituye tu hipoteca actual por una mayor y recibe la diferencia en efectivo — para renovar, consolidar deudas o tu siguiente paso.` · blurb: `Refinance for more than you owe and walk away with the difference — your equity working for you.` / `Refinancia por más de lo que debes y llévate la diferencia — tu plusvalía trabajando para ti.`
+Hechos: sustituye la hipoteca existente por una nueva de mayor monto y la diferencia se entrega en efectivo al cierre; usos típicos (renovaciones, consolidar deuda cara, invertir, colchón); requiere plusvalía suficiente — los programas exigen conservar un porcentaje del valor (genérico prudente, sin LTVs concretos); trade-offs honestos (el balance y la cuota pueden subir, hay costos de cierre, el plazo se reinicia); conexión natural con la pregunta cash-out del cuestionario.
+
+**`vaRefinance`** — stat: `For veterans` / `Para veteranos` · indexName: `VA Refinance` / `Refinanciamiento VA` · heroTitle: `Your service keeps opening doors — also when you refinance` / `Tu servicio sigue abriendo puertas — también al refinanciar` · heroSub: `Two VA paths: the streamlined IRRRL to lower your rate with minimal paperwork, or a VA cash-out to tap your equity.` / `Dos caminos VA: el IRRRL simplificado para bajar tu tasa con mínimo papeleo, o un cash-out VA para usar tu plusvalía.` · blurb: `Rate-lowering streamline (IRRRL) or VA cash-out — refinancing built on your VA benefit.` / `Streamline para bajar tasa (IRRRL) o cash-out VA — refinanciamiento construido sobre tu beneficio VA.`
+Hechos: dos variantes — IRRRL (Interest Rate Reduction Refinance Loan: de VA a VA, documentación reducida, objetivo bajar tasa/cuota o pasar de ajustable a fija) y VA cash-out (acceso a plusvalía; también permite refinanciar un préstamo no-VA hacia VA); elegibilidad ligada al beneficio VA (veteranos, servicio activo, algunos cónyuges sobrevivientes); funding fee en genérico con mención de exenciones (sin cifras); sin promesas de ahorro concreto (YMYL).
+
 - [ ] **Step 3: Actualizar tests**
 
 `tests/unit/routes.test.ts`:
 
 ```ts
 expect(Object.keys(programSlugs).sort()).toEqual(
-  ['conventional', 'fha', 'firstTimeHomebuyer', 'fixedRate', 'investment', 'jumbo', 'lowDownPayment', 'refinance', 'usda', 'va'],
+  ['cashOutRefinance', 'conventional', 'fha', 'firstTimeHomebuyer', 'fixedRate', 'investment', 'jumbo', 'lowDownPayment', 'refinance', 'usda', 'va', 'vaRefinance'],
 );
 ```
 
-`tests/unit/metadata-og.test.ts`: añadir `'programs.usda'`, `'programs.jumbo'`, `'programs.lowDownPayment'`, `'programs.investment'`.
+`tests/unit/metadata-og.test.ts`: añadir `'programs.usda'`, `'programs.jumbo'`, `'programs.lowDownPayment'`, `'programs.investment'`, `'programs.cashOutRefinance'`, `'programs.vaRefinance'`.
 
 - [ ] **Step 4: Regenerar OG y verificar todo**
 
@@ -2456,13 +2466,13 @@ npm run og
 npx vitest run && npm run build && npm run check:static
 ```
 
-Expected: 36 PNGs; 36 rutas prerenderizadas; parity EN/ES verde (misma estructura de claves y mismo número de items en arrays).
+Expected: 40 PNGs; 40 rutas prerenderizadas; parity EN/ES verde (misma estructura de claves y mismo número de items en arrays).
 
 - [ ] **Step 5: Commit**
 
 ```bash
 git add config/routes.mjs messages/ public/og/ tests/
-git commit -m "feat: programas USDA, Jumbo, Entrada Baja e Inversión (EN/ES) — paridad de loan options con aimsmtg
+git commit -m "feat: programas USDA, Jumbo, Entrada Baja, Inversión, Cash-Out y VA Refi (EN/ES) — paridad total del catálogo aimsmtg
 
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ```
@@ -2607,7 +2617,7 @@ En `scripts/generate-og.mjs`, añadir `'learn'` al array `namespaces` (tras `'lo
 npm run og
 ```
 
-Expected: 38 PNGs, incluidos `public/og/{en,es}/learn.png`.
+Expected: 42 PNGs, incluidos `public/og/{en,es}/learn.png`.
 
 - [ ] **Step 7: Verificación completa y commit**
 
@@ -2615,7 +2625,7 @@ Expected: 38 PNGs, incluidos `public/og/{en,es}/learn.png`.
 npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run build && npm run check:static && npm run test:e2e
 ```
 
-Expected: 38 rutas prerenderizadas; e2e verdes (el conteo de filas de home ya es derivado).
+Expected: 42 rutas prerenderizadas; e2e verdes (el conteo de filas de home ya es derivado).
 
 ```bash
 git add config/routes.mjs messages/ app/\[locale\]/learn/ lib/jsonld.ts components/layout/ scripts/generate-og.mjs public/og/ tests/
@@ -2647,12 +2657,12 @@ Expected: ambas ≈ baseline (~149 KB, cero client components nuevos).
 
 ```bash
 git push -u origin feat/fase-2-paridad-contenido
-gh pr create --title "Fase 2 · PR C: paridad de contenido — 10 loan options + Learn/FAQ" --body "$(cat <<'EOF'
+gh pr create --title "Fase 2 · PR C: paridad total de catálogo — 12 loan options + Learn/FAQ" --body "$(cat <<'EOF'
 ## Qué incluye
-- 5 programas nuevos (Fixed Rate, USDA, Jumbo, Low Down Payment, Investment) con el template existente — redacción propia EN/ES, cifras en genérico prudente. Home/índice/sitemap/JSON-LD/OG derivan de la fuente única.
+- 7 programas nuevos (Fixed Rate, USDA, Jumbo, Low Down Payment, Investment, Cash-Out Refinance, VA Refinance) con el template existente — redacción propia EN/ES, cifras en genérico prudente. Paridad TOTAL con el catálogo de aimsmtg (12 programas). Home/índice/sitemap/JSON-LD/OG derivan de la fuente única.
 - Página Learn (`/learn` · `/aprende`): 7 guías FAQ propias + FAQPage JSON-LD + enlace en nav y footer.
 - Tests de sitemap y home derivan ahora sus conteos de config/messages (adiós números mágicos).
-- 38 rutas prerenderizadas · 38 OG PNGs · paridad EN/ES verde.
+- 42 rutas prerenderizadas · 42 OG PNGs · paridad EN/ES verde.
 
 ## Nota YMYL
 Todo el copy nuevo es borrador para validación de David (igual que Fase 1).

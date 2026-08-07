@@ -6,7 +6,7 @@
 
 ## 1. Objetivo
 
-Tres entregables: (a) el cuestionario Get a Quote real — el core del proyecto —, (b) la calculadora de hipoteca funcional, y (c) paridad de contenido con aimsmtg.com: 5 páginas de programa nuevas + página Learn/FAQ. Fuera de alcance: pipeline de leads/emails/CRM (Fase 3), GA4/dominio/indexación/perfiles (Fase 4), blog y reviews (propuesta post-lanzamiento; reviews exige el perfil de Google de Fase 4).
+Tres entregables: (a) el cuestionario Get a Quote real — el core del proyecto —, (b) la calculadora de hipoteca funcional, y (c) paridad de contenido con aimsmtg.com: 7 páginas de programa nuevas (enmienda §6.1: paridad total del catálogo) + página Learn/FAQ. Fuera de alcance: pipeline de leads/emails/CRM (Fase 3), GA4/dominio/indexación/perfiles (Fase 4), blog y reviews (propuesta post-lanzamiento; reviews exige el perfil de Google de Fase 4).
 
 ## 2. Decisiones de UX (cerradas en brainstorm)
 
@@ -79,7 +79,9 @@ Bajo el submit, micro-línea de consentimiento (borrador legal, David valida): �
 
 ## 6. Paridad de contenido con aimsmtg
 
-### 6.1 Cinco programas nuevos (template existente, redacción propia)
+### 6.1 Siete programas nuevos (template existente, redacción propia)
+
+> Enmienda 2026-08-07 (decisión del responsable tras el inventario exhaustivo `docs/referencia-aimsmtg-desglose-completo.md`): el catálogo real de aimsmtg tiene 11 productos — se añaden `cashOutRefinance` y `vaRefinance` para paridad TOTAL del catálogo (12 programas nuestros en total). Los conteos de esta sección y §7 quedan actualizados (42 rutas, 42 OG).
 
 Claves y slugs en `config/routes.mjs` (`programSlugs`), namespaces `programs.{key}` completos ×2 idiomas con el esquema de Fase 1 (hero beneficio-primero, intro, «¿Qué es?», «¿Qué se requiere?», «Cómo funciona» en bullets, `indexName`, `stat`):
 
@@ -90,8 +92,10 @@ Claves y slugs en `config/routes.mjs` (`programSlugs`), namespaces `programs.{ke
 | `jumbo` | `jumbo-loans` / `prestamos-jumbo` | Montos por encima del límite conforming | Montos altos |
 | `lowDownPayment` | `low-down-payment` / `entrada-baja` | Paraguas de opciones desde ~3% de entrada | Desde 3% |
 | `investment` | `investment-property-loans` / `prestamos-de-inversion` | Financiar propiedades de renta; califica la propiedad, no solo el ingreso | Para inversores |
+| `cashOutRefinance` | `cash-out-refinance` / `refinanciamiento-cash-out` | Convertir plusvalía en efectivo (renovar, consolidar, invertir) con trade-offs honestos | Usa tu plusvalía |
+| `vaRefinance` | `va-refinance` / `refinanciamiento-va` | Dos caminos VA: IRRRL streamline (bajar tasa, mínimo papeleo) y cash-out VA | Para veteranos |
 
-Cifras en genérico prudente (David valida). Home (itera `programSlugs` → 10 filas automáticas), índice loan-options, sitemap, `MortgageLoan` + `BreadcrumbList` JSON-LD y metadata OG derivan todo de la fuente única. OG PNGs: 26 → 38 (`npm run og`; la guardia de sincronía testeada de Fase 1 obliga).
+Cifras en genérico prudente (David valida). Home (itera `programSlugs` → 12 filas automáticas), índice loan-options, sitemap, `MortgageLoan` + `BreadcrumbList` JSON-LD y metadata OG derivan todo de la fuente única. OG PNGs: 26 → 42 (`npm run og`; la guardia de sincronía testeada de Fase 1 obliga).
 
 ### 6.2 Página Learn/FAQ
 
@@ -104,7 +108,7 @@ Cifras en genérico prudente (David valida). Home (itera `programSlugs` → 10 f
 
 - **Unit (Vitest)**: fórmula de hipoteca (valores conocidos, tasa 0, entrada ≥ precio) · engine (reducer, `visible()` ambos flujos, recálculo de progreso, rehidratación, storage corrupto, versión distinta) · schemas Zod por paso y payload (válidos/inválidos/maliciosos) · invariantes de `steps.ts` (ids únicos, contacto último en ambos flujos, todo paso alcanzable). Los tests existentes de paridad i18n, rutas, sitemap, metadata y OG se extienden solos con las claves/rutas nuevas.
 - **E2E (Playwright)**: cuestionario completo ×4 (compra/refi × EN/ES) hasta la pantalla de gracias con submit simulado · recarga a mitad → retoma en el mismo paso con respuestas intactas · transporte que falla inyectado → mensaje de error + reintento sin perder respuestas · calculadora: teclear valores conocidos → cuota esperada · Learn y programas nuevos cubiertos por `check:static` + smoke existente.
-- **Gates por PR** (sin cambios): lint · `next typegen` + `tsc` · unit · build · `check:static` (26 → 38 rutas) · e2e · Lighthouse ≥ 95 ×4 en preview. `skipAudits` no se tocan.
+- **Gates por PR** (sin cambios): lint · `next typegen` + `tsc` · unit · build · `check:static` (26 → 42 rutas) · e2e · Lighthouse ≥ 95 ×4 en preview. `skipAudits` no se tocan.
 
 ## 8. Presupuesto JS (ADR-0003 §7 + nota re-baseline)
 
