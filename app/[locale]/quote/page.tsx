@@ -1,13 +1,11 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
-import { PHONE_DISPLAY, PHONE_TEL } from '@/lib/site';
 import heroPrograms from '@/assets/img/hero-programs.jpg';
 import { PageHero } from '@/components/layout/page-hero';
 import { Container } from '@/components/ui/container';
-import { WhatsAppButton } from '@/components/ui/whatsapp-button';
-import { TextLink } from '@/components/ui/text-link';
 import { Quiz } from '@/components/quiz/quiz';
+import { QuizThanksCtas } from '@/components/quiz/quiz-thanks-ctas';
 import type { QuizTexts } from '@/lib/quiz/texts';
 
 export function generateStaticParams() {
@@ -23,7 +21,6 @@ export default async function QuotePage({ params }: { params: Promise<{ locale: 
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('quote');
-  const tc = await getTranslations('common');
   const texts = t.raw('quiz') as QuizTexts;
 
   return (
@@ -39,21 +36,7 @@ export default async function QuotePage({ params }: { params: Promise<{ locale: 
       />
       <section>
         <Container className="px-5 py-10 lg:px-[72px] lg:py-16">
-          <Quiz
-            locale={locale}
-            texts={texts}
-            thanksCtas={
-              <>
-                <WhatsAppButton label={tc('cta.whatsApp')} message={tc('cta.whatsAppMessage')} />
-                <TextLink href={`tel:${PHONE_TEL}`} external tone="paper">
-                  {PHONE_DISPLAY}
-                </TextLink>
-                <TextLink href="/loan-options" tone="paper">
-                  {t('quiz.thanks.explore')}
-                </TextLink>
-              </>
-            }
-          />
+          <Quiz locale={locale} texts={texts} thanksCtas={<QuizThanksCtas />} />
         </Container>
       </section>
     </>

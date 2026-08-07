@@ -6,6 +6,7 @@
       "loanOptions": "Opciones de préstamo",
       "learn": "Aprende",
       "quote": "Cotización",
+      "prequalify": "Precalificación",
       "calculator": "Calculadora",
       "about": "Sobre mí",
       "contact": "Contacto",
@@ -43,6 +44,7 @@
       "imageAlt": "Casa de Florida con exterior luminoso"
     },
     "cities": { "lead": "Trabajo con compradores en toda Florida", "list": "— Miami · Fort Lauderdale · Orlando · Tampa · Naples" },
+    "tellUs": { "eyebrow": "Tu historia", "title": "Cuéntame en qué punto estás — yo trazo el camino.", "helper": "Unas pocas preguntas, cero compromiso. Tus respuestas se quedan en este dispositivo hasta que pulses enviar." },
     "programsIndex": { "eyebrow": "Índice — Sección I", "title": "Programas de préstamo", "helper": "Cinco maneras de financiar una casa en Florida. Si ninguna encaja, hablamos igual.", "rowLabel": "No. {number}" },
     "about": {
       "eyebrow": "Sección II — Una persona, no un portal",
@@ -51,7 +53,12 @@
       "caption": "David Herrera — tu originador de préstamos, del inicio al cierre.",
       "photoAlt": "David Herrera, originador de préstamos hipotecarios en Miami"
     },
-    "ctaBand": { "title": "Conoce tu número <em>antes</em> de enamorarte de la casa." }
+    "ctaBand": { "title": "Conoce tu número <em>antes</em> de enamorarte de la casa." },
+    "actionCards": {
+      "quote": { "eyebrow": "Cotización", "title": "Mira tus escenarios de préstamo", "body": "Responde unas preguntas y hablamos de números — sin compromiso." },
+      "apply": { "eyebrow": "Solicitud", "title": "Comienza tu solicitud", "body": "¿Todo listo? Empieza la solicitud online segura." },
+      "calculator": { "eyebrow": "Calculadora", "title": "Haz tus propios números", "body": "Compara pagos, programas y escenarios a tu ritmo." }
+    }
   },
   "loanOptions": {
     "title": "Opciones de préstamo",
@@ -441,6 +448,24 @@
       "thanks": { "title": "Recibido, {name}.", "body": "Tu solicitud está dentro — reviso tus números y te contacto en breve, normalmente el mismo día.", "noWait": "Si prefieres no esperar:", "explore": "Explora los programas" }
     }
   },
+  "prequalify": {
+    "title": "Precalificación",
+    "description": "Descubre a cuánto podrías optar antes de empezar a buscar casa. Una precalificación te hace un comprador más fuerte.",
+    "heading": "Precalificación",
+    "heroTitle": "Llega a cada visita como un comprador serio.",
+    "heroSub": "Muchos agentes piden una precalificación antes de la primera visita. Resuelve la tuya en minutos.",
+    "why": {
+      "eyebrow": "Por qué importa",
+      "title": "Una precalificación le dice al vendedor que vas en serio.",
+      "body": "Antes de enamorarte de una casa, estimemos cuánto podrían aprobarte. Con esa carta en la mano, agentes y vendedores toman tu oferta en serio — y buscas con un presupuesto claro en vez de una suposición."
+    },
+    "credit": {
+      "eyebrow": "Tu crédito",
+      "title": "Conoce primero cómo está tu crédito.",
+      "body": "Los prestamistas miran tu historial de pagos, tus ingresos y tus deudas actuales. Revisar tu reporte de crédito antes de aplicar te permite corregir sorpresas a tiempo — y si tu puntaje está más bajo de lo que quisieras, armamos un plan para prepararlo."
+    },
+    "start": { "eyebrow": "Empieza", "title": "Responde unas preguntas para comenzar.", "helper": "Toma unos minutos y no se comparte nada hasta que pulses enviar." }
+  },
   "calculator": {
     "title": "Calculadora de hipoteca",
     "description": "Estima tu pago mensual de hipoteca.",
@@ -547,7 +572,7 @@
     "email": { "label": "Email" },
     "whatsapp": { "label": "WhatsApp", "note": "La forma más rápida de encontrarme — la mayoría de los mensajes reciben respuesta el mismo día." },
     "pendingNote": "El teléfono y el email de arriba son provisionales mientras confirmamos los datos de contacto de David con la empresa.",
-    "quoteNudge": "¿Prefieres un formulario? El cuestionario completo es la forma más rápida de obtener números reales para tu préstamo."
+    "quizLead": { "eyebrow": "O empieza aquí", "title": "¿Prefieres saltarte el teléfono? Cuéntame tu situación." }
   },
   "legal": {
     "privacy": {

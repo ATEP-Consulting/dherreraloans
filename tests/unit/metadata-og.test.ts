@@ -32,6 +32,7 @@ describe('defaultOgSlug — guardia de sincronía lib/metadata.ts ↔ scripts/ge
     'programs.cashOutRefinance',
     'programs.vaRefinance',
     'quote',
+    'prequalify',
     'calculator',
     'about',
     'contact',

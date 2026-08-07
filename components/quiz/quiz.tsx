@@ -42,6 +42,14 @@ export function Quiz({ texts, locale, thanksCtas }: { texts: QuizTexts; locale: 
   const [mounted, setMounted] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const autoTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  // Suprime el PRIMER foco tras el montaje (true por defecto): la rehidratación de abajo
+  // puede cambiar `state.stepId` en el MISMO commit en que `mounted` pasa a true, y ese
+  // cambio de paso es progreso restaurado de una sesión anterior — no una navegación real
+  // del usuario — así que robar foco/scroll ahí sería un bug (visitante a mitad de flujo
+  // que reabre la página y se encuentra el scroll saltando solo). `mounted` está en el
+  // array de deps del efecto de foco de abajo precisamente para garantizar que ese efecto
+  // se ejecute (y consuma este flag) en esa transición, cambie o no `state.stepId` a la vez.
+  const skipFocusRef = useRef(true);
 
   // Rehidratación post-montaje (evita hydration mismatch) y persistencia por cambio.
   useEffect(() => {
@@ -57,11 +65,17 @@ export function Quiz({ texts, locale, thanksCtas }: { texts: QuizTexts; locale: 
   useEffect(() => {
     if (mounted && state.status !== 'done') saveState(state);
   }, [state, mounted]);
-  // Foco al heading en cada cambio de paso (ADR-0007 §7); no en el montaje inicial.
+  // Foco al heading en cada cambio de paso (ADR-0007 §7); no en el montaje inicial ni en la
+  // restauración de progreso guardado (ver `skipFocusRef` arriba).
   useEffect(() => {
-    if (mounted) headingRef.current?.focus();
+    if (!mounted) return;
+    if (skipFocusRef.current) {
+      skipFocusRef.current = false;
+      return;
+    }
+    headingRef.current?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.stepId, state.status === 'done']);
+  }, [state.stepId, state.status === 'done', mounted]);
   useEffect(() => () => clearTimeout(autoTimer.current), []);
 
   const step = visibleSteps(state.answers).find((s) => s.id === state.stepId) ?? visibleSteps(state.answers)[0];

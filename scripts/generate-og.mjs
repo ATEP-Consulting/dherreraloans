@@ -38,6 +38,7 @@ const namespaces = [
   'learn',
   ...Object.keys(programSlugs).map((key) => `programs.${key}`),
   'quote',
+  'prequalify',
   'calculator',
   'about',
   'contact',

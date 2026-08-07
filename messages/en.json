@@ -6,6 +6,7 @@
       "loanOptions": "Loan Options",
       "learn": "Learn",
       "quote": "Get a Quote",
+      "prequalify": "Pre-Qualify",
       "calculator": "Calculator",
       "about": "About",
       "contact": "Contact",
@@ -43,6 +44,7 @@
       "imageAlt": "Florida home with a bright exterior"
     },
     "cities": { "lead": "Working with buyers across Florida", "list": "— Miami · Fort Lauderdale · Orlando · Tampa · Naples" },
+    "tellUs": { "eyebrow": "Your story", "title": "Tell me where you are — I'll map the way.", "helper": "A few questions, zero commitment. Your answers stay on this device until you hit send." },
     "programsIndex": { "eyebrow": "Index — Section I", "title": "Loan programs", "helper": "Five ways to finance a home in Florida. If none of them fits, we'll talk anyway.", "rowLabel": "No. {number}" },
     "about": {
       "eyebrow": "Section II — A person, not a portal",
@@ -51,7 +53,12 @@
       "caption": "David Herrera — your loan originator, start to closing.",
       "photoAlt": "David Herrera, mortgage loan originator in Miami"
     },
-    "ctaBand": { "title": "Know your number <em>before</em> you fall in love with the house." }
+    "ctaBand": { "title": "Know your number <em>before</em> you fall in love with the house." },
+    "actionCards": {
+      "quote": { "eyebrow": "Quote", "title": "See your loan scenarios", "body": "Answer a few questions and let's talk numbers — no commitment." },
+      "apply": { "eyebrow": "Apply", "title": "Start your application", "body": "Ready to move? Begin the secure online application." },
+      "calculator": { "eyebrow": "Calculator", "title": "Run your own numbers", "body": "Compare payments, programs and scenarios on your terms." }
+    }
   },
   "loanOptions": {
     "title": "Loan Options",
@@ -441,6 +448,24 @@
       "thanks": { "title": "Got it, {name}.", "body": "Your request is in — I'll review your numbers and reach out shortly, usually the same day.", "noWait": "If you'd rather not wait:", "explore": "Explore loan options" }
     }
   },
+  "prequalify": {
+    "title": "Pre-Qualify",
+    "description": "Find out what you may qualify for before you start house hunting. A pre-qualification makes you a stronger buyer.",
+    "heading": "Pre-Qualify",
+    "heroTitle": "Walk into every showing as a serious buyer.",
+    "heroSub": "Many agents ask for a pre-qualification before the first visit. Get yours sorted in minutes.",
+    "why": {
+      "eyebrow": "Why it matters",
+      "title": "A pre-qualification tells sellers you're for real.",
+      "body": "Before you fall in love with a home, let's estimate what you may be approved for. With that letter in hand, agents and sellers take your offer seriously — and you shop with a clear budget instead of a guess."
+    },
+    "credit": {
+      "eyebrow": "Your credit",
+      "title": "Know how your credit looks first.",
+      "body": "Lenders weigh your payment history, income and current debts. Reviewing your credit report before applying lets you fix surprises early — and if your score is lower than you'd like, we can talk about a plan to get it ready."
+    },
+    "start": { "eyebrow": "Get started", "title": "Answer a few questions to begin.", "helper": "It takes a few minutes and nothing is shared until you hit send." }
+  },
   "calculator": {
     "title": "Mortgage Calculator",
     "description": "Estimate your monthly mortgage payment.",
@@ -547,7 +572,7 @@
     "email": { "label": "Email" },
     "whatsapp": { "label": "WhatsApp", "note": "Fastest way to reach me — most messages get a same-day reply." },
     "pendingNote": "The phone number and email above are placeholders while we confirm David's business contact details.",
-    "quoteNudge": "Prefer a form? The full questionnaire is the fastest way to get real numbers on your loan."
+    "quizLead": { "eyebrow": "Or start here", "title": "Prefer to skip the phone tag? Tell me your situation." }
   },
   "legal": {
     "privacy": {

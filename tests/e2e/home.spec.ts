@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import en from '../../messages/en.json';
 import es from '../../messages/es.json';
+import { APPLY_URL } from '../../lib/site';
 
 test('la home monta las filas del índice con enlaces a programas', async ({ page }) => {
   await page.goto('/en');
@@ -16,11 +17,23 @@ test('CTAs del hero: quote interno y WhatsApp con deep link', async ({ page }) =
   await expect(wa).toHaveAttribute('href', /wa\.me\/13050000000/);
 });
 
-test('Apply Online apunta a my1003app con noopener', async ({ page }) => {
+test('Apply Online apunta a APPLY_URL con noopener', async ({ page }) => {
   await page.goto('/en');
   const apply = page.getByRole('link', { name: en.common.cta.apply }).first();
-  await expect(apply).toHaveAttribute('href', /aimsmtg\.my1003app\.com/);
+  await expect(apply).toHaveAttribute('href', APPLY_URL);
   await expect(apply).toHaveAttribute('rel', /noopener/);
+});
+
+test('ActionCards: quote, apply y calculadora enlazan a los destinos correctos', async ({ page }) => {
+  await page.goto('/en');
+  const cards = en.home.actionCards;
+  const quote = page.getByRole('link', { name: cards.quote.title });
+  await expect(quote).toHaveAttribute('href', '/en/quote');
+  const apply = page.getByRole('link', { name: cards.apply.title });
+  await expect(apply).toHaveAttribute('href', APPLY_URL);
+  await expect(apply).toHaveAttribute('target', '_blank');
+  const calculator = page.getByRole('link', { name: cards.calculator.title });
+  await expect(calculator).toHaveAttribute('href', '/en/calculator');
 });
 
 test('footer compliance: NMLS, EHO y Consumer Access', async ({ page }) => {
@@ -60,4 +73,44 @@ test('contact: teléfono placeholder y enlace de WhatsApp con deep link', async 
     'href',
     /wa\.me\/13050000000/,
   );
+});
+
+test('el quiz embebido en home avanza y comparte progreso con /quote', async ({ page }) => {
+  const q = en.quote.quiz;
+  // Paso 1 (goal): clic sobre el TEXTO visible de la opción, no el <input> sr-only — mismo
+  // mecanismo de forwarding label→control que usa tests/e2e/quiz.spec.ts. `goal: buy` dispara
+  // auto-avance (onPointerSelect) a `location`, paso 2 de 15 en el flujo de compra.
+  await page.goto('/en');
+  const quiz = page.locator('#quiz');
+  await quiz.locator('fieldset').getByText(q.steps.goal.options.buy, { exact: true }).click();
+  const stepTwo = q.progress.label.replace('{current}', '2').replace('{total}', '15');
+  // El auto-retry de `expect` absorbe el setTimeout del auto-avance (ver AUTO_ADVANCE_MS).
+  await expect(quiz.getByText(stepTwo)).toBeVisible();
+  // sessionStorage (dhl-quiz-v1) es compartido entre home y /quote en el mismo origen:
+  // /quote debe retomar en el mismo paso 2 de 15 sin repetir el paso 1.
+  await page.goto('/en/quote');
+  await expect(page.getByText(stepTwo)).toBeVisible();
+});
+
+test('un visitante a mitad de flujo que reabre la home no sufre robo de foco ni salto de scroll', async ({ page }) => {
+  // Progreso guardado de una sesión anterior, sembrado ANTES de que cargue cualquier script
+  // de la página (mismo `dhl-quiz-v1` que usa lib/quiz/engine.ts). El quiz vive a mitad de la
+  // home (sección #quiz, muy por debajo del hero): si la rehidratación post-montaje del quiz
+  // (components/quiz/quiz.tsx) llamase a `headingRef.current?.focus()` en este paso, el
+  // navegador robaría el foco Y haría scroll automático hasta el heading — justo el bug que
+  // este test cubre (la rehidratación no es una navegación real del usuario).
+  await page.addInitScript(
+    ({ key, value }) => window.sessionStorage.setItem(key, value),
+    {
+      key: 'dhl-quiz-v1',
+      value: JSON.stringify({ answers: { goal: 'buy', location: 'Miami' }, stepId: 'propertyType', status: 'idle' }),
+    },
+  );
+  await page.goto('/en');
+  // Confirma que la rehidratación sí ocurrió (retoma en 'propertyType', no en 'goal').
+  await expect(page.getByRole('heading', { name: en.quote.quiz.steps.propertyType.title })).toBeVisible();
+  const activeTag = await page.evaluate(() => document.activeElement?.tagName);
+  expect(activeTag).toBe('BODY');
+  const scrollY = await page.evaluate(() => window.scrollY);
+  expect(scrollY).toBe(0);
 });
