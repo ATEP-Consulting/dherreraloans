@@ -1,14 +1,12 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
-import { PHONE_DISPLAY, PHONE_TEL } from '@/lib/site';
 import heroPrograms from '@/assets/img/hero-programs.jpg';
 import { PageHero } from '@/components/layout/page-hero';
 import { Container } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { WhatsAppButton } from '@/components/ui/whatsapp-button';
-import { TextLink } from '@/components/ui/text-link';
 import { Quiz } from '@/components/quiz/quiz';
+import { QuizThanksCtas } from '@/components/quiz/quiz-thanks-ctas';
 import type { QuizTexts } from '@/lib/quiz/texts';
 
 export function generateStaticParams() {
@@ -24,7 +22,6 @@ export default async function PreQualifyPage({ params }: { params: Promise<{ loc
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('prequalify');
-  const tc = await getTranslations('common');
   const tq = await getTranslations('quote');
   const texts = tq.raw('quiz') as QuizTexts;
 
@@ -51,24 +48,10 @@ export default async function PreQualifyPage({ params }: { params: Promise<{ loc
           <p className="max-w-[65ch] font-sans text-base leading-[1.7] text-body">{t('credit.body')}</p>
         </Container>
       </section>
-      <section className="border-t border-hairline">
+      <section id="quiz" className="border-t border-hairline">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
           <SectionHeading eyebrow={t('start.eyebrow')} title={t('start.title')} helper={t('start.helper')} />
-          <Quiz
-            locale={locale}
-            texts={texts}
-            thanksCtas={
-              <>
-                <WhatsAppButton label={tc('cta.whatsApp')} message={tc('cta.whatsAppMessage')} />
-                <TextLink href={`tel:${PHONE_TEL}`} external tone="paper">
-                  {PHONE_DISPLAY}
-                </TextLink>
-                <TextLink href="/loan-options" tone="paper">
-                  {tq('quiz.thanks.explore')}
-                </TextLink>
-              </>
-            }
-          />
+          <Quiz locale={locale} texts={texts} thanksCtas={<QuizThanksCtas />} />
         </Container>
       </section>
     </>
