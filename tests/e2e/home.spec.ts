@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import en from '../../messages/en.json';
 import es from '../../messages/es.json';
+import { APPLY_URL } from '../../lib/site';
 
 test('la home monta las filas del índice con enlaces a programas', async ({ page }) => {
   await page.goto('/en');
@@ -16,10 +17,10 @@ test('CTAs del hero: quote interno y WhatsApp con deep link', async ({ page }) =
   await expect(wa).toHaveAttribute('href', /wa\.me\/13050000000/);
 });
 
-test('Apply Online apunta a my1003app con noopener', async ({ page }) => {
+test('Apply Online apunta a APPLY_URL con noopener', async ({ page }) => {
   await page.goto('/en');
   const apply = page.getByRole('link', { name: en.common.cta.apply }).first();
-  await expect(apply).toHaveAttribute('href', /aimsmtg\.my1003app\.com/);
+  await expect(apply).toHaveAttribute('href', APPLY_URL);
   await expect(apply).toHaveAttribute('rel', /noopener/);
 });
 
