@@ -19,7 +19,7 @@ jobs:
       - run: npx vercel@58.7.1 pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - run: npx vercel@58.7.1 build --token=${{ secrets.VERCEL_TOKEN }}
       - id: deploy
-        run: echo "url=$(npx vercel@58.7.1 deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> "$GITHUB_OUTPUT"
+        run: echo "url=$(npx vercel@58.7.1 deploy --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }})" >> "$GITHUB_OUTPUT"
       - uses: actions/github-script@v7
         with:
           script: |
