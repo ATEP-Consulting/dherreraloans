@@ -10,16 +10,53 @@
       "contact": "Contacto"
     },
     "localeSwitcher": { "en": "English", "es": "Español", "label": "Idioma" },
-    "footer": { "tagline": "Soluciones hipotecarias en Miami, FL.", "nmls": "NMLS # pendiente" }
+    "topStrip": { "left": "David Herrera — Originador de Préstamos Hipotecarios", "right": "NMLS #{nmls} · Miami, Florida" },
+    "cta": { "quote": "Obtén tu cotización", "apply": "Aplica online", "whatsApp": "WhatsApp — respondo en el día", "whatsAppMessage": "Hola David, encontré tu página web y me gustaría hablar sobre una hipoteca." },
+    "menu": { "open": "Abrir menú", "close": "Cerrar menú" },
+    "footer": {
+      "explore": "Explora",
+      "legal": "Legal",
+      "links": { "loanOptions": "Opciones de préstamo", "calculator": "Calculadora de hipoteca", "quote": "Obtén tu cotización", "about": "Sobre David", "contact": "Contacto", "privacy": "Política de privacidad", "accessibility": "Declaración de accesibilidad", "consumerAccess": "NMLS Consumer Access" },
+      "licenseLine1": "David Herrera · Originador de Préstamos Hipotecarios",
+      "licenseLine2": "NMLS #{nmls} · Licenciado en Florida · Miami, FL",
+      "instagram": "@dherrera_loans",
+      "eho": "Equal Housing Opportunity",
+      "disclaimer": "Esto no es una oferta para celebrar un contrato. No todos los clientes calificarán. La información, las tasas y los programas están sujetos a cambio sin previo aviso. Todos los productos están sujetos a aprobación de crédito y de la propiedad. No todos los productos están disponibles en todos los estados ni para todos los montos. Pueden aplicar otras restricciones y limitaciones. David Herrera es un Originador de Préstamos Hipotecarios licenciado, NMLS #{nmls}.",
+      "pendingValidation": "Contenido borrador — pendiente de revisión por la compañía licenciante.",
+      "copyright": "© 2026 DherreraLoans. Todos los derechos reservados.",
+      "languages": "English — Español"
+    }
   },
-  "home": { "title": "Soluciones hipotecarias en Miami", "description": "Compra o refinancia con un originador de préstamos licenciado en Florida.", "heading": "Tu camino a la casa propia empieza aquí" },
+  "home": {
+    "title": "Soluciones hipotecarias en Miami",
+    "description": "Compra o refinancia con un originador de préstamos licenciado en Florida.",
+    "heading": "Tu camino a la casa propia empieza aquí",
+    "hero": {
+      "eyebrow": "David Herrera · Originador de Préstamos Hipotecarios",
+      "eyebrowMobile": "David Herrera · NMLS #{nmls}",
+      "title": "Comprar casa en Florida, <em>sin adivinanzas.</em>",
+      "body": "Respuestas claras sobre tu hipoteca — primera casa, recién llegado al país o refinanciando. En español o en inglés, antes de comprometerte a nada.",
+      "bodyMobile": "Respuestas claras, en español o en inglés, antes de comprometerte a nada.",
+      "imageAlt": "Casa de Florida con exterior luminoso"
+    },
+    "cities": { "lead": "Trabajo con compradores en toda Florida", "list": "— Miami · Fort Lauderdale · Orlando · Tampa · Naples" },
+    "programsIndex": { "eyebrow": "Índice — Sección I", "title": "Programas de préstamo", "helper": "Cinco maneras de financiar una casa en Florida. Si ninguna encaja, hablamos igual.", "rowLabel": "No. {number}" },
+    "about": {
+      "eyebrow": "Sección II — Una persona, no un portal",
+      "title": "Una sola persona responde tus preguntas. La misma, siempre.",
+      "body": "La mayoría de mis clientes compran su primera casa, o su primera casa en Estados Unidos. Te digo para qué calificas y cuánto cuesta de verdad — y te acompaño desde la primera llamada hasta las llaves.",
+      "caption": "David Herrera — tu originador de préstamos, del inicio al cierre.",
+      "photoAlt": "David Herrera, originador de préstamos hipotecarios en Miami"
+    },
+    "ctaBand": { "title": "Conoce tu número <em>antes</em> de enamorarte de la casa." }
+  },
   "loanOptions": { "title": "Opciones de préstamo", "description": "Explora los programas hipotecarios disponibles en Florida.", "heading": "Opciones de préstamo" },
   "programs": {
-    "fha": { "title": "Préstamos FHA", "description": "Requisitos flexibles para préstamos FHA en Florida.", "heading": "Préstamos FHA" },
-    "conventional": { "title": "Préstamos convencionales", "description": "Opciones de hipoteca convencional en Florida.", "heading": "Préstamos convencionales" },
-    "va": { "title": "Préstamos VA", "description": "Beneficios de préstamos VA para veteranos y militares.", "heading": "Préstamos VA" },
-    "firstTimeHomebuyer": { "title": "Primer comprador", "description": "Programas para compradores de primera vivienda en Florida.", "heading": "Primer comprador" },
-    "refinance": { "title": "Refinanciamiento", "description": "Refinancia tu hipoteca y ahorra.", "heading": "Refinanciamiento" }
+    "fha": { "title": "Préstamos FHA", "description": "Requisitos flexibles para préstamos FHA en Florida.", "heading": "Préstamos FHA", "indexName": "Préstamos FHA", "stat": "3.5% de entrada" },
+    "conventional": { "title": "Préstamos convencionales", "description": "Opciones de hipoteca convencional en Florida.", "heading": "Préstamos convencionales", "indexName": "Convencional", "stat": "3% de entrada" },
+    "va": { "title": "Préstamos VA", "description": "Beneficios de préstamos VA para veteranos y militares.", "heading": "Préstamos VA", "indexName": "Préstamos VA", "stat": "$0 de entrada" },
+    "firstTimeHomebuyer": { "title": "Primer comprador", "description": "Programas para compradores de primera vivienda en Florida.", "heading": "Primer comprador", "indexName": "Primer comprador", "stat": "Asistencia FL" },
+    "refinance": { "title": "Refinanciamiento", "description": "Refinancia tu hipoteca y ahorra.", "heading": "Refinanciamiento", "indexName": "Refinanciamiento", "stat": "Tasa · cash-out" }
   },
   "quote": { "title": "Cotización", "description": "Responde unas preguntas y recibe tu cotización personalizada.", "heading": "Obtén tu cotización" },
   "calculator": { "title": "Calculadora de hipoteca", "description": "Estima tu pago mensual de hipoteca.", "heading": "Calculadora de hipoteca" },
