@@ -226,6 +226,174 @@
           "No penalty for paying it off early with the programs I work with."
         ]
       }
+    },
+    "usda": {
+      "title": "USDA Loans",
+      "description": "USDA loan options for eligible rural and suburban areas in Florida.",
+      "heading": "USDA Loans",
+      "indexName": "USDA Loans",
+      "stat": "0% down",
+      "heroTitle": "Own a home with no down payment at all",
+      "heroSub": "In USDA-eligible areas outside the urban core, you can finance 100% of the purchase.",
+      "blurb": "Backed by the U.S. Department of Agriculture: 0% down in eligible rural and suburban areas.",
+      "intro": "A USDA loan is backed by the U.S. Department of Agriculture, which is why it can finance a home with zero down payment. It's built for buyers purchasing in eligible rural and suburban areas — not a program for every location. Most people assume it doesn't apply to them; in Florida, the eligible map is wider than you'd guess. I check the address first, before anything else.",
+      "whatIs": {
+        "title": "What is a USDA loan?",
+        "body": "A USDA loan is a mortgage guaranteed by the U.S. Department of Agriculture, designed to expand homeownership outside major urban centers. That guarantee lets you finance up to 100% of the purchase price, with no down payment required. Eligibility works on two tracks at once: the property has to sit inside a USDA-designated area, and your household income has to fall under the program's limit for that area. In place of traditional mortgage insurance, you'll pay a guarantee fee, which is generally lower over time. It's a primary-residence program only — no investment properties or vacation homes."
+      },
+      "required": {
+        "title": "What do you need for a USDA loan?",
+        "body": "The property is the first thing I check — it has to fall inside a USDA-eligible area, which in Florida covers more towns and outskirts than most buyers expect. From there, your household income needs to stay under the program's limit, which varies by area and family size. You'll still need steady income, an acceptable credit profile, and the home has to be your primary residence. I run the address and your numbers together before we go any further, so we don't waste time chasing a home that won't qualify."
+      },
+      "how": {
+        "title": "How a USDA loan works",
+        "items": [
+          "No down payment required for an eligible property in an eligible area.",
+          "Eligibility depends on both the property's location and your household income.",
+          "A guarantee fee replaces traditional mortgage insurance, often at a lower ongoing cost.",
+          "Limited to primary residences — not available for investment or vacation properties."
+        ]
+      }
+    },
+    "jumbo": {
+      "title": "Jumbo Loans",
+      "description": "Jumbo loan financing above the conforming limit in Florida.",
+      "heading": "Jumbo Loans",
+      "indexName": "Jumbo Loans",
+      "stat": "High amounts",
+      "heroTitle": "Financing beyond the standard limit",
+      "heroSub": "For homes priced above the conforming loan limit, a jumbo loan takes over where standard programs stop.",
+      "blurb": "For amounts above the conforming limit — common in Miami's market — with competitive rates for strong profiles.",
+      "intro": "A jumbo loan is for homes priced above the conforming loan limit — the ceiling that Fannie Mae and Freddie Mac set for standard mortgages. That limit changes every year and by county, and I confirm the current number before we talk about your specific home. It's not a niche product in Miami: at today's prices, plenty of buyers need one without realizing it.",
+      "whatIs": {
+        "title": "What is a jumbo loan?",
+        "body": "A jumbo loan finances an amount above the conforming loan limit, which means it falls outside the guidelines Fannie Mae and Freddie Mac use to back standard mortgages. Because the lender can't sell the loan to those agencies, it holds more of the risk directly, and underwriting reflects that. You'll generally see a stronger credit score requirement, proof of cash reserves after closing, and a larger down payment than a conforming loan asks for. In a market like Miami, where home prices routinely land above the conforming ceiling, a jumbo loan is often the only path to the property you want."
+      },
+      "required": {
+        "title": "What do you need for a jumbo loan?",
+        "body": "Expect a higher bar across the board: a stronger credit score, a lower debt-to-income ratio, and documented reserves — savings left over after closing — that a conforming loan wouldn't ask for. The down payment typically runs higher than 3% or 3.5%, though the exact number depends on the loan amount and your profile. I'll pull the current conforming limit for your county before we start, since it changes and determines whether your loan is even considered jumbo. Income and asset documentation tend to be more thorough, and I walk you through exactly what to gather."
+      },
+      "how": {
+        "title": "How a jumbo loan works",
+        "items": [
+          "Finances amounts above the conforming loan limit, which is set annually by county.",
+          "Requires a stronger credit score and documented cash reserves after closing.",
+          "Down payments typically higher than standard conforming programs.",
+          "Common in Miami, where home prices often exceed the conforming ceiling."
+        ]
+      }
+    },
+    "lowDownPayment": {
+      "title": "Low Down Payment Options",
+      "description": "Compare every low down payment path: FHA, conventional, VA, and USDA.",
+      "heading": "Low Down Payment Options",
+      "indexName": "Low Down Payment Options",
+      "stat": "From 3% down",
+      "heroTitle": "The down payment is smaller than you think",
+      "heroSub": "Between FHA, conventional 3% programs, VA and USDA, saving 20% is optional — not a requirement.",
+      "blurb": "A map of every path to buying with little money upfront: which program fits depends on your profile, and comparing them is my job.",
+      "intro": "Twenty percent down is a myth that keeps good buyers renting longer than they need to. Between FHA at 3.5%, conventional programs starting around 3%, and VA or USDA at zero, most buyers qualify for something well below that number. Which one fits you depends on your credit, your income, and the kind of property you're after — comparing them honestly is where I start every conversation.",
+      "whatIs": {
+        "title": "What counts as a low down payment?",
+        "body": "Low down payment covers every path that gets you into a home without the traditional 20%: FHA at 3.5%, conventional loans starting around 3%, and VA or USDA loans that can finance 100% for qualified buyers. Each comes with trade-offs — a smaller down payment usually means mortgage insurance until you build equity, and in a competitive market a low-down offer can be harder for a seller to choose over one with more cash. Down payment assistance programs, grants and low-interest second loans, can also cover part of what's left. None of this is one-size-fits-all, which is why I compare your options side by side instead of defaulting to one."
+      },
+      "required": {
+        "title": "What do you need for a low down payment purchase?",
+        "body": "What you need depends entirely on which path fits: FHA asks for more flexible credit, conventional rewards a stronger score with a lower rate, and VA or USDA can eliminate the down payment altogether if you qualify. In every case, lenders still want steady income and manageable debt — a low down payment doesn't mean low scrutiny elsewhere. If a 20% down payment isn't realistic right now, tell me that upfront; it changes which programs I run the numbers on first, and whether assistance programs make sense for your situation. The quote questionnaire is usually the fastest way to see where you land."
+      },
+      "how": {
+        "title": "How low down payment options compare",
+        "items": [
+          "FHA starts at 3.5% down; conventional programs can start around 3%.",
+          "VA and USDA can finance up to 100%, for buyers who qualify.",
+          "A smaller down payment usually means paying mortgage insurance until you build equity.",
+          "Down payment assistance programs can cover part of what's left, evaluated case by case."
+        ]
+      }
+    },
+    "investment": {
+      "title": "Investment Property Loans",
+      "description": "Financing options for investment and rental properties in Florida.",
+      "heading": "Investment Property Loans",
+      "indexName": "Investment Property Loans",
+      "stat": "For investors",
+      "heroTitle": "Make the property pay for itself",
+      "heroSub": "Financing built for rentals: programs where the property's income matters as much as yours.",
+      "blurb": "For buying rental property: conventional investor loans and programs that qualify by the property's rental income.",
+      "intro": "Financing a rental property works differently than financing the home you live in. Lenders typically ask for a larger down payment and charge a somewhat higher rate, because an investment property carries more risk than a primary residence. Some programs go a step further and qualify you using the property's own rental income rather than your personal one. Whether this is your first rental or the next addition to a growing portfolio, I run both paths before we pick one.",
+      "whatIs": {
+        "title": "What is an investment property loan?",
+        "body": "An investment property loan finances a home you don't plan to live in — a single rental, a small multi-unit, or an addition to a portfolio you're already building. Conventional guidelines apply, but with a larger down payment and a somewhat higher rate than a primary residence, reflecting the added risk. Some programs qualify you primarily on the property's projected rental income rather than your personal income and debt, which can open the door for investors whose tax returns don't tell the full story. Miami's rental market makes this a common conversation, but I won't promise a return — that depends on the property, not the loan."
+      },
+      "required": {
+        "title": "What do you need for an investment property loan?",
+        "body": "Expect a larger down payment than you'd put on a primary residence, along with a credit profile that supports the higher risk lenders take on. Cash reserves after closing are usually required — enough to cover several months of payments. If we go the route of a program that qualifies you on rental income, I'll need a market rent estimate for the property, which an appraiser typically provides. I'll walk through both approaches — income-based and property-based — and show you which one gets you a better result before we commit to either."
+      },
+      "how": {
+        "title": "How an investment property loan works",
+        "items": [
+          "Down payments typically higher than for a primary residence.",
+          "Rates generally run somewhat above what a primary residence would qualify for.",
+          "Some programs qualify you using the property's rental income instead of your own.",
+          "Cash reserves after closing are usually required, covering several months of payments."
+        ]
+      }
+    },
+    "cashOutRefinance": {
+      "title": "Cash-Out Refinance",
+      "description": "Turn your home's equity into cash with a cash-out refinance.",
+      "heading": "Cash-Out Refinance",
+      "indexName": "Cash-Out Refinance",
+      "stat": "Use your equity",
+      "heroTitle": "Turn your home's equity into cash you can use",
+      "heroSub": "Replace your current mortgage with a larger one and take the difference in cash — for renovations, debt, or your next move.",
+      "blurb": "Refinance for more than you owe and walk away with the difference — your equity working for you.",
+      "intro": "A cash-out refinance replaces your current mortgage with a new, larger one, and you keep the difference in cash at closing. People use it to renovate, pay off higher-interest debt, invest, or just build a cushion. It only works if you have enough equity built up, and it comes with real trade-offs I won't gloss over — I'll show you the honest numbers before you decide.",
+      "whatIs": {
+        "title": "What is a cash-out refinance?",
+        "body": "A cash-out refinance pays off your existing mortgage with a new loan for a larger amount, and the difference is delivered to you as cash at closing. It's a way to convert equity — the value you've built up in your home — into money you can actually use, without selling the property. Every program requires you to keep a portion of your home's value as equity after the cash-out, so how much you can access depends on your current balance and the home's value, not just what you'd like to take. It's one loan, one payment, not a second lien on top of your first."
+      },
+      "required": {
+        "title": "What do you need for a cash-out refinance?",
+        "body": "You need enough equity to both cash out and still leave the required amount behind — I'll calculate that with you using your current balance and an updated home value. Income and credit have to support the new, larger loan amount, same as any refinance. Be honest about the trade-offs going in: your balance goes up, your monthly payment can go up, closing costs apply, and the loan term resets from day one. If the numbers don't clearly work in your favor for what you're trying to do, I'll tell you before we start the paperwork."
+      },
+      "how": {
+        "title": "How a cash-out refinance works",
+        "items": [
+          "Replaces your current mortgage with a new, larger loan.",
+          "You receive the difference between the two loan amounts as cash at closing.",
+          "Requires enough equity to leave a required portion of your home's value untouched.",
+          "Your balance, payment, and loan term all reset — I'll show you the real numbers first."
+        ]
+      }
+    },
+    "vaRefinance": {
+      "title": "VA Refinance",
+      "description": "IRRRL and VA cash-out refinance options for veterans and service members.",
+      "heading": "VA Refinance",
+      "indexName": "VA Refinance",
+      "stat": "For veterans",
+      "heroTitle": "Your service keeps opening doors — also when you refinance",
+      "heroSub": "Two VA paths: the streamlined IRRRL to lower your rate with minimal paperwork, or a VA cash-out to tap your equity.",
+      "blurb": "Rate-lowering streamline (IRRRL) or VA cash-out — refinancing built on your VA benefit.",
+      "intro": "VA refinancing comes in two forms, and they solve different problems. The IRRRL is a streamlined VA-to-VA refinance built to lower your rate or payment, or move you off an adjustable rate, with less paperwork than a typical refinance. A VA cash-out refinance goes further — it can tap your home's equity, and it's also how you move a non-VA loan into the VA program. I'll confirm which one, if either, actually helps you before we go further.",
+      "whatIs": {
+        "title": "What is a VA refinance?",
+        "body": "A VA refinance uses your VA loan benefit to replace an existing mortgage. The IRRRL — Interest Rate Reduction Refinance Loan — only works if you already have a VA loan, and it's designed to be simple: reduced documentation, no appraisal in most cases, and a straightforward goal of a lower rate, a lower payment, or a switch from an adjustable rate to a fixed one. A VA cash-out refinance is different: it lets you borrow against your home's equity, and unlike the IRRRL, it can also convert a conventional or FHA loan into a VA loan for veterans who qualify. Eligibility for either follows your VA benefit."
+      },
+      "required": {
+        "title": "What do you need for a VA refinance?",
+        "body": "For an IRRRL, you need an existing VA loan in good standing and a clear net benefit — a lower rate, payment, or a move to fixed — since VA rules require the refinance to actually help you. A VA cash-out refinance has more in common with a standard refinance: enough equity, income and credit that support the new loan, and a Certificate of Eligibility tied to your service, active duty, or, for some, your spouse's. A funding fee applies in most cases, with exemptions for some borrowers with a service-connected disability, which I'll check for you upfront."
+      },
+      "how": {
+        "title": "How a VA refinance works",
+        "items": [
+          "IRRRL: a streamlined VA-to-VA refinance to lower your rate or payment, with reduced paperwork.",
+          "VA cash-out: borrow against your equity, or convert a non-VA loan into the VA program.",
+          "Eligibility follows your VA benefit — veterans, active duty, and some surviving spouses.",
+          "A funding fee applies in most cases, waived for some borrowers with a service-connected disability."
+        ]
+      }
     }
   },
   "quote": {

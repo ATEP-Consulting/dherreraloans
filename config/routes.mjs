@@ -29,4 +29,10 @@ export const programSlugs = {
   firstTimeHomebuyer: { en: 'first-time-homebuyer', es: 'primer-comprador' },
   refinance: { en: 'refinance', es: 'refinanciamiento' },
   fixedRate: { en: 'fixed-rate-mortgage', es: 'hipoteca-tasa-fija' },
+  usda: { en: 'usda-loans', es: 'prestamos-usda' },
+  jumbo: { en: 'jumbo-loans', es: 'prestamos-jumbo' },
+  lowDownPayment: { en: 'low-down-payment', es: 'entrada-baja' },
+  investment: { en: 'investment-property-loans', es: 'prestamos-de-inversion' },
+  cashOutRefinance: { en: 'cash-out-refinance', es: 'refinanciamiento-cash-out' },
+  vaRefinance: { en: 'va-refinance', es: 'refinanciamiento-va' },
 };
