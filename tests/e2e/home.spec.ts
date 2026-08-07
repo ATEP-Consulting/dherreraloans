@@ -62,3 +62,20 @@ test('contact: teléfono placeholder y enlace de WhatsApp con deep link', async 
     /wa\.me\/13050000000/,
   );
 });
+
+test('el quiz embebido en home avanza y comparte progreso con /quote', async ({ page }) => {
+  const q = en.quote.quiz;
+  // Paso 1 (goal): clic sobre el TEXTO visible de la opción, no el <input> sr-only — mismo
+  // mecanismo de forwarding label→control que usa tests/e2e/quiz.spec.ts. `goal: buy` dispara
+  // auto-avance (onPointerSelect) a `location`, paso 2 de 15 en el flujo de compra.
+  await page.goto('/en');
+  const quiz = page.locator('#quiz');
+  await quiz.locator('fieldset').getByText(q.steps.goal.options.buy, { exact: true }).click();
+  const stepTwo = q.progress.label.replace('{current}', '2').replace('{total}', '15');
+  // El auto-retry de `expect` absorbe el setTimeout del auto-avance (ver AUTO_ADVANCE_MS).
+  await expect(quiz.getByText(stepTwo)).toBeVisible();
+  // sessionStorage (dhl-quiz-v1) es compartido entre home y /quote en el mismo origen:
+  // /quote debe retomar en el mismo paso 2 de 15 sin repetir el paso 1.
+  await page.goto('/en/quote');
+  await expect(page.getByText(stepTwo)).toBeVisible();
+});

@@ -2,7 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
 import { programSlugs } from '@/config/routes.mjs';
-import { NMLS_ID } from '@/lib/site';
+import { NMLS_ID, PHONE_DISPLAY, PHONE_TEL } from '@/lib/site';
 import { financialServiceJsonLd } from '@/lib/jsonld';
 import heroHome from '@/assets/img/hero-home.jpg';
 import davidImg from '@/assets/img/david.png';
@@ -19,6 +19,8 @@ import { PhotoPlate } from '@/components/ui/photo-plate';
 import { TextLink } from '@/components/ui/text-link';
 import { Container } from '@/components/ui/container';
 import { ActionCards } from '@/components/ui/action-cards';
+import { Quiz } from '@/components/quiz/quiz';
+import type { QuizTexts } from '@/lib/quiz/texts';
 import { slugFor } from '@/lib/programs';
 import { INSTAGRAM_URL } from '@/lib/site';
 
@@ -37,6 +39,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const t = await getTranslations('home');
   const tc = await getTranslations('common');
   const tp = await getTranslations('programs');
+  const tq = await getTranslations('quote');
+  const quizTexts = tq.raw('quiz') as QuizTexts;
   const programKeys = Object.keys(programSlugs);
   const em = { em: (c: React.ReactNode) => <em>{c}</em> };
 
@@ -61,6 +65,26 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         }
       />
       <CitiesStrip lead={t('cities.lead')} list={t('cities.list')} />
+      <section id="quiz">
+        <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
+          <SectionHeading eyebrow={t('tellUs.eyebrow')} title={t('tellUs.title')} helper={t('tellUs.helper')} />
+          <Quiz
+            locale={locale}
+            texts={quizTexts}
+            thanksCtas={
+              <>
+                <WhatsAppButton label={tc('cta.whatsApp')} message={tc('cta.whatsAppMessage')} />
+                <TextLink href={`tel:${PHONE_TEL}`} external tone="paper">
+                  {PHONE_DISPLAY}
+                </TextLink>
+                <TextLink href="/loan-options" tone="paper">
+                  {tq('quiz.thanks.explore')}
+                </TextLink>
+              </>
+            }
+          />
+        </Container>
+      </section>
       <section>
         <Container className="grid gap-6 px-5 py-8 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-[72px]">
           <SectionHeading eyebrow={t('programsIndex.eyebrow')} title={t('programsIndex.title')} helper={t('programsIndex.helper')} />

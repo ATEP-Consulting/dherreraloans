@@ -43,6 +43,7 @@
       "imageAlt": "Florida home with a bright exterior"
     },
     "cities": { "lead": "Working with buyers across Florida", "list": "— Miami · Fort Lauderdale · Orlando · Tampa · Naples" },
+    "tellUs": { "eyebrow": "Your story", "title": "Tell me where you are — I'll map the way.", "helper": "A few questions, zero commitment. Your answers stay on this device until you hit send." },
     "programsIndex": { "eyebrow": "Index — Section I", "title": "Loan programs", "helper": "Five ways to finance a home in Florida. If none of them fits, we'll talk anyway.", "rowLabel": "No. {number}" },
     "about": {
       "eyebrow": "Section II — A person, not a portal",
