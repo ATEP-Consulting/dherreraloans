@@ -149,7 +149,10 @@ export function Quiz({ texts, locale, thanksCtas }: { texts: QuizTexts; locale: 
         {interpolate(texts.progress.label, { current, total })}
       </p>
       <div aria-hidden className="mt-3 h-0.5 w-full bg-hairline">
-        <div className="h-full bg-navy transition-[width] duration-300" style={{ width: `${(current / total) * 100}%` }} />
+        <div
+          className="h-full bg-navy motion-safe:transition-[width] motion-safe:duration-300"
+          style={{ width: `${(current / total) * 100}%` }}
+        />
       </div>
       <div key={step.id} className="mt-8 flex flex-col gap-6 motion-safe:animate-[quiz-step-in_200ms_ease-out]">
         <h2 ref={headingRef} tabIndex={-1} className="font-display text-h3 font-light text-ink outline-none">

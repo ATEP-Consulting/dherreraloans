@@ -25,4 +25,5 @@ test('funciona en ES con su copy', async ({ page }) => {
   await page.getByLabel(es.calculator.calc.downLabel).fill('25000');
   await page.getByLabel(es.calculator.calc.rateLabel).fill('6');
   await expect(page.locator('div[aria-live="polite"]')).toContainText('599');
+  await expect(page.locator('div[aria-live="polite"]')).toContainText(es.calculator.calc.disclaimer);
 });
