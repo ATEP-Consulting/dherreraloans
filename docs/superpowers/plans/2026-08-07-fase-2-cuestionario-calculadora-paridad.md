@@ -68,13 +68,13 @@
 **Interfaces:**
 - Produces: `Field({ label, htmlFor, hint?, error?, children })`, `TextInput(props de <input> + { invalid?: boolean })`, `SelectField(props de <select> + { options: { value: string; label: string }[] })`. Estilo base de control exportado como constante `controlClass` desde `text-input.tsx` (lo reutilizan money/percent).
 
-- [ ] **Step 1: Crear rama**
+- [x] **Step 1: Crear rama**
 
 ```bash
 git checkout main && git pull && git checkout -b feat/fase-2-controles-calculadora
 ```
 
-- [ ] **Step 2: Añadir tokens al `@theme` de `app/globals.css`**
+- [x] **Step 2: Añadir tokens al `@theme` de `app/globals.css`**
 
 Dentro del bloque `@theme`, tras `--color-focus`:
 
@@ -91,7 +91,7 @@ Al final del archivo (fuera de `@theme`):
 }
 ```
 
-- [ ] **Step 3: Verificar contraste AA del token de error sobre paper**
+- [x] **Step 3: Verificar contraste AA del token de error sobre paper**
 
 ```bash
 node -e "
@@ -101,7 +101,7 @@ const r=(L('#f7f5f0')+0.05)/(L('#a03d2e')+0.05);console.log(r.toFixed(2))"
 
 Expected: ≥ 4.5. Si no llega, oscurecer el rojo hasta cumplir y anotar el valor final.
 
-- [ ] **Step 4: Crear `components/ui/form/text-input.tsx`**
+- [x] **Step 4: Crear `components/ui/form/text-input.tsx`**
 
 ```tsx
 import type { ComponentPropsWithoutRef } from 'react';
@@ -117,7 +117,7 @@ export function TextInput({ invalid, className, ...props }: Props) {
 }
 ```
 
-- [ ] **Step 5: Crear `components/ui/form/field.tsx`**
+- [x] **Step 5: Crear `components/ui/form/field.tsx`**
 
 ```tsx
 import type { ReactNode } from 'react';
@@ -142,7 +142,7 @@ export function Field({ label, htmlFor, hint, error, children }: Props) {
 }
 ```
 
-- [ ] **Step 6: Crear `components/ui/form/select-field.tsx`**
+- [x] **Step 6: Crear `components/ui/form/select-field.tsx`**
 
 ```tsx
 import type { ComponentPropsWithoutRef } from 'react';
@@ -163,7 +163,7 @@ export function SelectField({ options, className, ...props }: Props) {
 }
 ```
 
-- [ ] **Step 7: Verificar lint+tipos y commit**
+- [x] **Step 7: Verificar lint+tipos y commit**
 
 ```bash
 npm run lint && npx tsc --noEmit
@@ -184,7 +184,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Interfaces:**
 - Produces: `formatMoney(value: number, locale: string, decimals?: number): string` (USD, por defecto 0 decimales) · `parseMoney(raw: string): number | null` (ignora todo lo no-dígito; `''`/sin dígitos → null) · `parseRate(raw: string): number | null` (acepta coma o punto decimal; `''` → null; negativo → null).
 
-- [ ] **Step 1: Escribir el test que falla**
+- [x] **Step 1: Escribir el test que falla**
 
 `tests/unit/format.test.ts`:
 
@@ -225,12 +225,12 @@ describe('parseRate', () => {
 });
 ```
 
-- [ ] **Step 2: Ejecutar y ver el fallo**
+- [x] **Step 2: Ejecutar y ver el fallo**
 
 Run: `npx vitest run tests/unit/format.test.ts`
 Expected: FAIL — `Cannot find module '@/lib/format'`.
 
-- [ ] **Step 3: Implementar `lib/format.ts`**
+- [x] **Step 3: Implementar `lib/format.ts`**
 
 ```ts
 // Formateo/parseo de inputs numéricos (calculadora y cuestionario). Locale 'en'|'es' → en-US/es-US.
@@ -258,12 +258,12 @@ export function parseRate(raw: string): number | null {
 }
 ```
 
-- [ ] **Step 4: Ejecutar y ver verde**
+- [x] **Step 4: Ejecutar y ver verde**
 
 Run: `npx vitest run tests/unit/format.test.ts`
 Expected: PASS (6 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add lib/format.ts tests/unit/format.test.ts
@@ -287,7 +287,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
   - `ChoiceCard({ name, value, label, checked, onSelect(value: string): void, onPointerSelect?(value: string): void })` — radio nativo + tarjeta; `onPointerSelect` se dispara SOLO en interacción de puntero (base del auto-avance).
   - `CheckEscape({ id, label, checked, onChange(checked: boolean): void })`.
 
-- [ ] **Step 1: Crear `components/ui/form/money-input.tsx`**
+- [x] **Step 1: Crear `components/ui/form/money-input.tsx`**
 
 ```tsx
 'use client';
@@ -326,7 +326,7 @@ export function MoneyInput({ id, value, onValueChange, locale, invalid, disabled
 }
 ```
 
-- [ ] **Step 2: Crear `components/ui/form/percent-input.tsx`**
+- [x] **Step 2: Crear `components/ui/form/percent-input.tsx`**
 
 Igual patrón, sufijo `%`; mantiene el texto crudo en un estado local para permitir teclear `6,` sin saltos y notifica `parseRate(raw)`:
 
@@ -363,7 +363,7 @@ export function PercentInput({ id, value, onValueChange, invalid, disabled }: Pr
 }
 ```
 
-- [ ] **Step 3: Crear `components/ui/form/choice-card.tsx`**
+- [x] **Step 3: Crear `components/ui/form/choice-card.tsx`**
 
 Radio NATIVO (ADR-0007 §7) oculto visualmente pero enfocable; la tarjeta es el `<label>`. `onPointerSelect` solo desde puntero: se marca con `onPointerDown` en el label y se consume en `onChange`.
 
@@ -410,7 +410,7 @@ export function ChoiceCard({ name, value, label, checked, onSelect, onPointerSel
 
 Nota a11y: `sr-only` mantiene el radio enfocable y operable con flechas; el estado visible lo da la tarjeta. El anillo de foco del sistema (`:focus-visible` global) no aplica a `sr-only` → añadir al label `has-focus-visible:outline-2 has-focus-visible:outline-focus` (variante `has-*` de Tailwind v4 sobre `:has(:focus-visible)`).
 
-- [ ] **Step 4: Crear `components/ui/form/check-escape.tsx`**
+- [x] **Step 4: Crear `components/ui/form/check-escape.tsx`**
 
 ```tsx
 'use client';
@@ -433,7 +433,7 @@ export function CheckEscape({ id, label, checked, onChange }: Props) {
 }
 ```
 
-- [ ] **Step 5: Verificar y commit**
+- [x] **Step 5: Verificar y commit**
 
 ```bash
 npm run lint && npx tsc --noEmit
@@ -465,7 +465,7 @@ export function monthlyPayment(principal: number, annualRatePct: number, years: 
 export function mortgageBreakdown(input: MortgageInput): MortgageBreakdown | null; // null si inválido
 ```
 
-- [ ] **Step 1: Escribir el test que falla**
+- [x] **Step 1: Escribir el test que falla**
 
 `tests/unit/mortgage.test.ts` — valores canónicos de amortización (verificables en cualquier tabla estándar):
 
@@ -505,12 +505,12 @@ describe('mortgageBreakdown', () => {
 });
 ```
 
-- [ ] **Step 2: Ejecutar y ver el fallo**
+- [x] **Step 2: Ejecutar y ver el fallo**
 
 Run: `npx vitest run tests/unit/mortgage.test.ts`
 Expected: FAIL — módulo inexistente.
 
-- [ ] **Step 3: Implementar `lib/mortgage.ts`**
+- [x] **Step 3: Implementar `lib/mortgage.ts`**
 
 ```ts
 // Fórmula P&I estándar: M = P·r / (1 − (1+r)^−n), r mensual, n meses. Pura y sin
@@ -549,12 +549,12 @@ export function mortgageBreakdown(input: MortgageInput): MortgageBreakdown | nul
 }
 ```
 
-- [ ] **Step 4: Ejecutar y ver verde**
+- [x] **Step 4: Ejecutar y ver verde**
 
 Run: `npx vitest run tests/unit/mortgage.test.ts`
 Expected: PASS (5 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add lib/mortgage.ts tests/unit/mortgage.test.ts
@@ -576,7 +576,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 - Consumes: `mortgageBreakdown` (Task 4), `formatMoney` (Task 2), `Field`, `MoneyInput`, `PercentInput`, `SelectField` (Tasks 1/3).
 - Produces: `MortgageCalculator({ texts: CalculatorTexts; locale: string })` donde `CalculatorTexts` es el subtree `calculator.calc` de messages (tipo local del componente, derivado con `typeof`).
 
-- [ ] **Step 1: Reescribir el namespace `calculator` en `messages/en.json`**
+- [x] **Step 1: Reescribir el namespace `calculator` en `messages/en.json`**
 
 Conservar `title`, `description`, `heading`, `heroTitle`, `heroSub`, `explain` tal como están. ELIMINAR `example` y `comingSoon`. Añadir:
 
@@ -601,7 +601,7 @@ Conservar `title`, `description`, `heading`, `heroTitle`, `heroSub`, `explain` t
 }
 ```
 
-- [ ] **Step 2: Reescribir el namespace `calculator` en `messages/es.json`** (mismas claves exactas — la paridad se testea):
+- [x] **Step 2: Reescribir el namespace `calculator` en `messages/es.json`** (mismas claves exactas — la paridad se testea):
 
 ```json
 "calc": {
@@ -624,7 +624,7 @@ Conservar `title`, `description`, `heading`, `heroTitle`, `heroSub`, `explain` t
 }
 ```
 
-- [ ] **Step 3: Crear `components/calculator/mortgage-calculator.tsx`**
+- [x] **Step 3: Crear `components/calculator/mortgage-calculator.tsx`**
 
 Client component. Estado local: `price: number | null` (inicial 400000), `down: number | null` (inicial 40000), `rate: number | null` (inicial 6.5), `years: 30 | 20 | 15` (inicial 30). Derivar `breakdown = price && rate !== null ? mortgageBreakdown({ price, downPayment: down ?? 0, annualRatePct: rate, years }) : null`. Textos por interpolación manual (`texts.downPct.replace('{pct}', …)`) — el componente NO usa next-intl.
 
@@ -719,7 +719,7 @@ export function MortgageCalculator({ texts, locale }: { texts: CalculatorTexts; 
 }
 ```
 
-- [ ] **Step 4: Integrar en `app/[locale]/calculator/page.tsx`**
+- [x] **Step 4: Integrar en `app/[locale]/calculator/page.tsx`**
 
 Sustituir las secciones `example` y `comingSoon` por la calculadora (conservar PageHero, sección `explain` y `CtaBand`):
 
@@ -736,7 +736,7 @@ import { MortgageCalculator, type CalculatorTexts } from '@/components/calculato
 </section>
 ```
 
-- [ ] **Step 5: Verificación completa del task**
+- [x] **Step 5: Verificación completa del task**
 
 ```bash
 npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run build && npm run check:static
@@ -744,7 +744,7 @@ npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run buil
 
 Expected: todo verde; en el build, `/[locale]/calculator` sigue apareciendo prerenderizada (`●`/`○`, nunca `ƒ`).
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add messages/ components/calculator/ app/\[locale\]/calculator/page.tsx
@@ -764,7 +764,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Interfaces:**
 - Produces: `node scripts/measure-first-load.mjs <ruta-html>` — imprime KB gz por chunk y total First Load (excluye polyfills `noModule`), metodología de la nota del ADR-0003. Lo reutiliza la Task 13.
 
-- [ ] **Step 1: Crear `scripts/measure-first-load.mjs`**
+- [x] **Step 1: Crear `scripts/measure-first-load.mjs`**
 
 ```js
 // First Load JS gz de una página prerenderizada (metodología ADR-0003, nota 2026-08-07):
@@ -790,7 +790,7 @@ for (const [tag, src] of tags) {
 console.log(`\nTOTAL First Load: ${(total / 1024).toFixed(1)} KB gz`);
 ```
 
-- [ ] **Step 2: Medir `/calculator` y `/` tras el build de la Task 5**
+- [x] **Step 2: Medir `/calculator` y `/` tras el build de la Task 5**
 
 ```bash
 node scripts/measure-first-load.mjs .next/server/app/en/calculator.html
@@ -799,7 +799,7 @@ node scripts/measure-first-load.mjs .next/server/app/en.html
 
 Expected: calculator ≤ 164 KB (presupuesto operativo); home sin cambios (~149 KB). Anotar ambos números en la descripción del PR. Si calculator > 164: investigar el chunk nuevo antes de continuar (no debería — sin dependencias).
 
-- [ ] **Step 3: Escribir `tests/e2e/calculator.spec.ts`**
+- [x] **Step 3: Escribir `tests/e2e/calculator.spec.ts`**
 
 ```ts
 import { test, expect } from '@playwright/test';
@@ -832,12 +832,12 @@ test('funciona en ES con su copy', async ({ page }) => {
 });
 ```
 
-- [ ] **Step 4: Ejecutar e2e**
+- [x] **Step 4: Ejecutar e2e**
 
 Run: `npm run build && npm run test:e2e`
 Expected: PASS los 3 nuevos + los 14 existentes.
 
-- [ ] **Step 5: Gate local completo**
+- [x] **Step 5: Gate local completo**
 
 ```bash
 npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run build && npm run check:static && npm run test:e2e
@@ -845,7 +845,7 @@ npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run buil
 
 Expected: todo verde. NO afirmar éxito sin ver la salida.
 
-- [ ] **Step 6: Commit, push y PR A**
+- [x] **Step 6: Commit, push y PR A**
 
 ```bash
 git add scripts/measure-first-load.mjs tests/e2e/calculator.spec.ts
@@ -898,14 +898,14 @@ export type QuizPayload = z.infer<typeof payloadSchema>;
 Campos y valores (claves enum EXACTAS — las consumen steps, textos y tests):
 `goal: 'buy'|'refinance'` · `location: string 2..80` · `propertyType: 'singleFamily'|'townhouse'|'condo'|'multiUnit'|'other'` · `stage: 'research'|'looking'|'offerAccepted'|'underContract'` · `use: 'primary'|'second'|'investment'` · `military: 'yes'|'no'` · `militaryBranch: 'army'|'navy'|'airForce'|'marines'|'coastGuard'|'guardReserves'` · `hasAgent: 'yes'|'notYet'` · `firstTime: 'yes'|'no'` · `purchasePrice: number entero 1..50_000_000` · `downPayment: number entero 0..50_000_000 | 'unsure'` · `propertyValue`/`currentBalance`: como purchasePrice · `currentRate: number 0..25 | 'unsure'` · `secondMortgage: 'yes'|'no'` · `cashOut: 'yes'|'no'|'unsure'` · `employment: 'employed'|'selfEmployed'|'retired'|'other'` · `income: 'under50k'|'50to100k'|'100to150k'|'over150k'|'discuss'` · `credit: 'excellent'|'good'|'fair'|'needsWork'|'unknown'` · `history: 'none'|'over4y'|'within4y'` · `status: 'citizen'|'permanentResident'|'workVisa'|'otherStatus'|'discuss'` · `firstName`/`lastName: string 1..60 trim` · `email: z.email() máx 120` · `phone: regex /^[+()\d\s.-]{7,20}$/`.
 
-- [ ] **Step 1: Crear rama e instalar Zod**
+- [x] **Step 1: Crear rama e instalar Zod**
 
 ```bash
 git checkout main && git pull && git checkout -b feat/fase-2-cuestionario
 npm install zod
 ```
 
-- [ ] **Step 2: Escribir el test que falla**
+- [x] **Step 2: Escribir el test que falla**
 
 `tests/unit/quiz-schema.test.ts`:
 
@@ -961,12 +961,12 @@ describe('payloadSchema', () => {
 });
 ```
 
-- [ ] **Step 3: Ejecutar y ver el fallo**
+- [x] **Step 3: Ejecutar y ver el fallo**
 
 Run: `npx vitest run tests/unit/quiz-schema.test.ts`
 Expected: FAIL — módulo inexistente.
 
-- [ ] **Step 4: Implementar `lib/quiz/schema.ts`**
+- [x] **Step 4: Implementar `lib/quiz/schema.ts`**
 
 Estructura (fuente única `fieldSchemas`; payload = todos los campos, condicionales `optional()` + `superRefine` que exige por flujo; los `stepSchemas` usan las versiones requeridas):
 
@@ -1075,12 +1075,12 @@ export type Answers = Partial<QuizPayload>;
 export type StepId = keyof typeof stepSchemas;
 ```
 
-- [ ] **Step 5: Ejecutar y ver verde**
+- [x] **Step 5: Ejecutar y ver verde**
 
 Run: `npx vitest run tests/unit/quiz-schema.test.ts`
 Expected: PASS (7 tests). Ejecutar también `npx tsc --noEmit`.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add package.json package-lock.json lib/quiz/schema.ts tests/unit/quiz-schema.test.ts
@@ -1115,7 +1115,7 @@ export const steps: readonly StepDef[]; // ORDEN = orden de pantalla (spec §3.1
 export function visibleSteps(answers: Answers): StepDef[];
 ```
 
-- [ ] **Step 1: Escribir el test que falla**
+- [x] **Step 1: Escribir el test que falla**
 
 `tests/unit/quiz-steps.test.ts` — invariantes del spec:
 
@@ -1154,12 +1154,12 @@ describe('definición de pasos', () => {
 });
 ```
 
-- [ ] **Step 2: Ejecutar y ver el fallo**
+- [x] **Step 2: Ejecutar y ver el fallo**
 
 Run: `npx vitest run tests/unit/quiz-steps.test.ts`
 Expected: FAIL — módulo inexistente.
 
-- [ ] **Step 3: Implementar `lib/quiz/steps.ts`**
+- [x] **Step 3: Implementar `lib/quiz/steps.ts`**
 
 ```ts
 // Definición DECLARATIVA del flujo (ADR-0007): ajustar preguntas = editar este array.
@@ -1208,12 +1208,12 @@ export function visibleSteps(answers: Answers): StepDef[] {
 
 Nota: sin `goal`, los pasos condicionales de ambos flujos quedan ocultos (`visible` devuelve false) — el primer paso visible es `goal` y el total de progreso crece al elegir flujo (recalculado, ADR-0007 §5).
 
-- [ ] **Step 4: Ejecutar y ver verde**
+- [x] **Step 4: Ejecutar y ver verde**
 
 Run: `npx vitest run tests/unit/quiz-steps.test.ts`
 Expected: PASS (5 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add lib/quiz/steps.ts tests/unit/quiz-steps.test.ts
@@ -1250,7 +1250,7 @@ export function saveState(state: QuizState): void;         // try/catch silencio
 export function loadState(): QuizState | null;             // null si no hay, corrupto o inválido
 ```
 
-- [ ] **Step 1: Escribir el test que falla**
+- [x] **Step 1: Escribir el test que falla**
 
 `tests/unit/quiz-engine.test.ts` (jsdom no es necesario: Vitest en node — stub de sessionStorage con `vi.stubGlobal`):
 
@@ -1335,12 +1335,12 @@ describe('persistencia', () => {
 });
 ```
 
-- [ ] **Step 2: Ejecutar y ver el fallo**
+- [x] **Step 2: Ejecutar y ver el fallo**
 
 Run: `npx vitest run tests/unit/quiz-engine.test.ts`
 Expected: FAIL — módulo inexistente.
 
-- [ ] **Step 3: Implementar `lib/quiz/engine.ts`**
+- [x] **Step 3: Implementar `lib/quiz/engine.ts`**
 
 ```ts
 // Motor puro del cuestionario (ADR-0007): reducer sin efectos + persistencia aparte.
@@ -1435,12 +1435,12 @@ export function loadState(): QuizState | null {
 }
 ```
 
-- [ ] **Step 4: Ejecutar y ver verde**
+- [x] **Step 4: Ejecutar y ver verde**
 
 Run: `npx vitest run tests/unit/quiz-engine.test.ts`
 Expected: PASS (9 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add lib/quiz/engine.ts tests/unit/quiz-engine.test.ts
@@ -1470,7 +1470,7 @@ export async function submitLead(raw: unknown, transport?: Transport): Promise<Q
 // 3) Fase 3: sustituir SOLO simulatedTransport por el POST real. La UI no cambia.
 ```
 
-- [ ] **Step 1: Escribir el test que falla**
+- [x] **Step 1: Escribir el test que falla**
 
 `tests/unit/quiz-submit.test.ts`:
 
@@ -1513,12 +1513,12 @@ describe('submitLead', () => {
 });
 ```
 
-- [ ] **Step 2: Ejecutar y ver el fallo**
+- [x] **Step 2: Ejecutar y ver el fallo**
 
 Run: `npx vitest run tests/unit/quiz-submit.test.ts`
 Expected: FAIL — módulo inexistente.
 
-- [ ] **Step 3: Implementar `lib/quiz/submit.ts`**
+- [x] **Step 3: Implementar `lib/quiz/submit.ts`**
 
 ```ts
 // Envío del lead. FASE 2: transporte SIMULADO — el submit valida y resuelve como lo hará
@@ -1555,12 +1555,12 @@ export async function submitLead(raw: unknown, transport: Transport = simulatedT
 }
 ```
 
-- [ ] **Step 4: Ejecutar y ver verde**
+- [x] **Step 4: Ejecutar y ver verde**
 
 Run: `npx vitest run tests/unit/quiz-submit.test.ts`
 Expected: PASS (4 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add lib/quiz/submit.ts tests/unit/quiz-submit.test.ts
@@ -1581,7 +1581,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 - Consumes: `StepId` (Task 7).
 - Produces: `QuizTexts` — contrato server→client. La página hará `t.raw('quiz') as QuizTexts`.
 
-- [ ] **Step 1: `lib/quiz/texts.ts`**
+- [x] **Step 1: `lib/quiz/texts.ts`**
 
 ```ts
 import type { StepId } from './schema';
@@ -1616,7 +1616,7 @@ export type QuizTexts = {
 };
 ```
 
-- [ ] **Step 2: `messages/en.json` — namespace `quote`**
+- [x] **Step 2: `messages/en.json` — namespace `quote`**
 
 `heroSub` nuevo (cubre Pre-Qualify, spec §6.2): `"This is my pre-qualification questionnaire: a few minutes of questions, real numbers back — no commitment and no credit pull."`
 
@@ -1662,7 +1662,7 @@ Subtree `quiz` (títulos, helpers y opciones EXACTOS del spec §3.1, columna EN)
 }
 ```
 
-- [ ] **Step 3: `messages/es.json` — namespace `quote`**
+- [x] **Step 3: `messages/es.json` — namespace `quote`**
 
 Mismas claves EXACTAS (paridad testeada). Títulos, helpers y opciones de paso: los textos ES del spec §3.1 al pie de la letra. Estructurales:
 
@@ -1687,12 +1687,12 @@ Mismas claves EXACTAS (paridad testeada). Títulos, helpers y opciones de paso: 
 
 `heroSub` ES: `"Este es mi cuestionario de precalificación: unos minutos de preguntas y vuelves con números reales — sin compromiso y sin consultar tu crédito."`
 
-- [ ] **Step 4: Verificar paridad y tipos**
+- [x] **Step 4: Verificar paridad y tipos**
 
 Run: `npx vitest run tests/unit/i18n-parity.test.ts && npx tsc --noEmit`
 Expected: PASS — si falla la paridad, la salida dice exactamente qué clave difiere.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add messages/ lib/quiz/texts.ts
@@ -1713,7 +1713,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 - Consumes: TODO lo de Tasks 7-11 + `Field`, `TextInput`, `MoneyInput`, `PercentInput`, `ChoiceCard`, `CheckEscape` (PR A) + `Button` no (los botones del quiz son `<button>`, no links — se estilizan con las MISMAS clases vía constante local que replica `variants.navy`/`paper` de `components/ui/button.tsx`; si se prefiere, extraer esas clases a una constante exportada `buttonClass(variant,size)` en `button.tsx` — decisión del implementador, sin duplicar valores de tokens).
 - Produces: `Quiz({ texts, locale, thanksCtas }: { texts: QuizTexts; locale: string; thanksCtas: ReactNode })`.
 
-- [ ] **Step 1: Crear `components/quiz/quiz.tsx`**
+- [x] **Step 1: Crear `components/quiz/quiz.tsx`**
 
 Estructura completa (el ÚNICO client component del cuestionario — subcomponentes internos en el mismo archivo):
 
@@ -1975,7 +1975,7 @@ function StepBody({ step, st, texts, locale, answers, errors, onAnswer, onAutoAd
 
 (Ajustar imports/tipos hasta que `tsc` quede limpio; NO cambiar el contrato de props ni los ids `quiz-*`, que usan los e2e.)
 
-- [ ] **Step 2: Reescribir `app/[locale]/quote/page.tsx`**
+- [x] **Step 2: Reescribir `app/[locale]/quote/page.tsx`**
 
 Conservar `generateStaticParams`, `generateMetadata` y `PageHero` (hero copy actualizado vía messages). Sustituir las secciones shell:
 
@@ -2032,7 +2032,7 @@ export default async function QuotePage({ params }: { params: Promise<{ locale: 
 
 Nota: comprobar la firma real de `TextLink`/`WhatsAppButton` antes de usarlas (están en `components/ui/`) y ajustar props sin cambiar su API pública.
 
-- [ ] **Step 3: Verificación completa**
+- [x] **Step 3: Verificación completa**
 
 ```bash
 npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run build && npm run check:static
@@ -2040,7 +2040,7 @@ npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run buil
 
 Expected: verde; `/quote` sigue prerenderizada. Probar a mano en `npm run dev`: flujo compra completo, auto-avance con clic, Atrás, cambio de idioma a mitad conserva respuestas.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add components/quiz/ app/\[locale\]/quote/page.tsx
@@ -2056,7 +2056,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Files:**
 - Test: `tests/e2e/quiz.spec.ts`
 
-- [ ] **Step 1: Escribir `tests/e2e/quiz.spec.ts`**
+- [x] **Step 1: Escribir `tests/e2e/quiz.spec.ts`**
 
 ```ts
 import { test, expect, type Page } from '@playwright/test';
@@ -2203,12 +2203,12 @@ test('fallo de envío: error visible, reintento disponible y respuestas intactas
 });
 ```
 
-- [ ] **Step 2: Ejecutar e2e**
+- [x] **Step 2: Ejecutar e2e**
 
 Run: `npm run build && npm run test:e2e`
 Expected: PASS todos (17 previos + 8 nuevos). Si `choose()` falla por el auto-avance, subir el timeout de expect, no quitar el auto-avance.
 
-- [ ] **Step 3: Medir presupuesto de `/quote`**
+- [x] **Step 3: Medir presupuesto de `/quote`**
 
 ```bash
 node scripts/measure-first-load.mjs .next/server/app/en/quote.html
@@ -2216,13 +2216,13 @@ node scripts/measure-first-load.mjs .next/server/app/en/quote.html
 
 Expected: **≤ 170 KB gz** (estimado 163-169). Si excede: 1º cambiar imports de `zod` a `zod/mini` en `lib/quiz/schema.ts` (ver su doc de migración; el servidor de Fase 3 podrá seguir con zod completo), re-medir; 2º si aún excede, sustituir Zod en cliente por validadores propios con la MISMA interfaz `safeParse` por paso. Anotar el número final en el PR.
 
-- [ ] **Step 4: Gate local completo**
+- [x] **Step 4: Gate local completo**
 
 ```bash
 npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run build && npm run check:static && npm run test:e2e
 ```
 
-- [ ] **Step 5: Commit, push y PR B**
+- [x] **Step 5: Commit, push y PR B**
 
 ```bash
 git add tests/e2e/quiz.spec.ts
@@ -2261,13 +2261,13 @@ Tras checks verdes: **revisión visual del responsable** (es EL componente del p
 **Interfaces:**
 - Produces: patrón EXACTO que la Task 15 repite para los otros 4 programas. El template de página y el JSON-LD NO se tocan (derivan todo de `programSlugs` + messages).
 
-- [ ] **Step 1: Crear rama**
+- [x] **Step 1: Crear rama**
 
 ```bash
 git checkout main && git pull && git checkout -b feat/fase-2-paridad-contenido
 ```
 
-- [ ] **Step 2: Añadir el slug en `config/routes.mjs`**
+- [x] **Step 2: Añadir el slug en `config/routes.mjs`**
 
 ```js
 export const programSlugs = {
@@ -2280,7 +2280,7 @@ export const programSlugs = {
 };
 ```
 
-- [ ] **Step 3: Messages `programs.fixedRate` — EN completo**
+- [x] **Step 3: Messages `programs.fixedRate` — EN completo**
 
 Mismo esquema de claves que `programs.fha` (title, description, heading, indexName, stat, heroTitle, heroSub, blurb, intro, whatIs{title,body}, required{title,body}, how{title,items[4]}):
 
@@ -2315,7 +2315,7 @@ Mismo esquema de claves que `programs.fha` (title, description, heading, indexNa
 }
 ```
 
-- [ ] **Step 4: Messages `programs.fixedRate` — ES completo**
+- [x] **Step 4: Messages `programs.fixedRate` — ES completo**
 
 ```json
 "fixedRate": {
@@ -2348,7 +2348,7 @@ Mismo esquema de claves que `programs.fha` (title, description, heading, indexNa
 }
 ```
 
-- [ ] **Step 5: Actualizar los tests con expectativas hardcodeadas (una sola vez, derivándolas)**
+- [x] **Step 5: Actualizar los tests con expectativas hardcodeadas (una sola vez, derivándolas)**
 
 `tests/unit/sitemap.test.ts` — derivar el conteo de la fuente única (deja de romperse con cada página nueva):
 
@@ -2382,7 +2382,7 @@ expect(Object.keys(programSlugs).sort()).toEqual(
 
 `tests/unit/metadata-og.test.ts` — añadir `'programs.fixedRate'` a la lista `namespaces`.
 
-- [ ] **Step 6: Regenerar OG y verificar**
+- [x] **Step 6: Regenerar OG y verificar**
 
 ```bash
 npm run og
@@ -2392,7 +2392,7 @@ npm run build && npm run check:static
 
 Expected: 28 PNGs generados (los programas se derivan de `programSlugs` en `scripts/generate-og.mjs` — sin tocar el script); unit verde; 28 rutas prerenderizadas.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add config/routes.mjs messages/ public/og/ tests/
@@ -2414,7 +2414,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Interfaces:**
 - Consumes: patrón de la Task 14 (mismo esquema de claves EXACTO que `programs.fixedRate`/`programs.fha`).
 
-- [ ] **Step 1: Slugs en `config/routes.mjs`**
+- [x] **Step 1: Slugs en `config/routes.mjs`**
 
 ```js
   usda: { en: 'usda-loans', es: 'prestamos-usda' },
@@ -2425,7 +2425,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
   vaRefinance: { en: 'va-refinance', es: 'refinanciamiento-va' },
 ```
 
-- [ ] **Step 2: Redactar los 4 namespaces en `messages/en.json` y `messages/es.json`**
+- [x] **Step 2: Redactar los 4 namespaces en `messages/en.json` y `messages/es.json`**
 
 Mismo esquema de claves que `fixedRate` (Task 14). Campos cortos EXACTOS y hechos que las secciones largas (`intro`, `whatIs.body`, `required.body`, `how.items[4]`) deben cubrir — prosa propia en la voz de David, longitud y tono calcados de `fha`/`fixedRate`, cifras en genérico prudente, PROHIBIDO parafrasear aimsmtg:
 
@@ -2447,7 +2447,7 @@ Hechos: sustituye la hipoteca existente por una nueva de mayor monto y la difere
 **`vaRefinance`** — stat: `For veterans` / `Para veteranos` · indexName: `VA Refinance` / `Refinanciamiento VA` · heroTitle: `Your service keeps opening doors — also when you refinance` / `Tu servicio sigue abriendo puertas — también al refinanciar` · heroSub: `Two VA paths: the streamlined IRRRL to lower your rate with minimal paperwork, or a VA cash-out to tap your equity.` / `Dos caminos VA: el IRRRL simplificado para bajar tu tasa con mínimo papeleo, o un cash-out VA para usar tu plusvalía.` · blurb: `Rate-lowering streamline (IRRRL) or VA cash-out — refinancing built on your VA benefit.` / `Streamline para bajar tasa (IRRRL) o cash-out VA — refinanciamiento construido sobre tu beneficio VA.`
 Hechos: dos variantes — IRRRL (Interest Rate Reduction Refinance Loan: de VA a VA, documentación reducida, objetivo bajar tasa/cuota o pasar de ajustable a fija) y VA cash-out (acceso a plusvalía; también permite refinanciar un préstamo no-VA hacia VA); elegibilidad ligada al beneficio VA (veteranos, servicio activo, algunos cónyuges sobrevivientes); funding fee en genérico con mención de exenciones (sin cifras); sin promesas de ahorro concreto (YMYL).
 
-- [ ] **Step 3: Actualizar tests**
+- [x] **Step 3: Actualizar tests**
 
 `tests/unit/routes.test.ts`:
 
@@ -2459,7 +2459,7 @@ expect(Object.keys(programSlugs).sort()).toEqual(
 
 `tests/unit/metadata-og.test.ts`: añadir `'programs.usda'`, `'programs.jumbo'`, `'programs.lowDownPayment'`, `'programs.investment'`, `'programs.cashOutRefinance'`, `'programs.vaRefinance'`.
 
-- [ ] **Step 4: Regenerar OG y verificar todo**
+- [x] **Step 4: Regenerar OG y verificar todo**
 
 ```bash
 npm run og
@@ -2468,7 +2468,7 @@ npx vitest run && npm run build && npm run check:static
 
 Expected: 40 PNGs; 40 rutas prerenderizadas; parity EN/ES verde (misma estructura de claves y mismo número de items en arrays).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add config/routes.mjs messages/ public/og/ tests/
@@ -2489,13 +2489,13 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 **Interfaces:**
 - Produces: `faqPageJsonLd(locale: string)` en `lib/jsonld.ts` (builder puro síncrono como los existentes).
 
-- [ ] **Step 1: Ruta en `config/routes.mjs`**
+- [x] **Step 1: Ruta en `config/routes.mjs`**
 
 ```js
   '/learn': { en: '/learn', es: '/aprende' },
 ```
 
-- [ ] **Step 2: Messages `learn` (EN y ES, mismas claves)**
+- [x] **Step 2: Messages `learn` (EN y ES, mismas claves)**
 
 Estructura: `title` (`Learn` / `Aprende`), `description`, `heading`, `heroTitle` (`Questions I answer every week` / `Las preguntas que respondo cada semana`), `heroSub`, `items` — array de 7 `{ "q": …, "a": … }`. Preguntas EXACTAS (spec §6.2); cada respuesta: 60-110 palabras propias, voz de David, cierre práctico, sin cifras comprometidas:
 
@@ -2511,7 +2511,7 @@ Estructura: `title` (`Learn` / `Aprende`), `description`, `heading`, `heroTitle`
 
 `common.nav.learn`: `Learn` / `Aprende` · `common.footer.links.learn`: `Learn` / `Aprende`.
 
-- [ ] **Step 3: Crear `app/[locale]/learn/page.tsx`**
+- [x] **Step 3: Crear `app/[locale]/learn/page.tsx`**
 
 Patrón de página de contenido de Fase 1 (cero client components):
 
@@ -2564,7 +2564,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
 
 (Comprobar la firma de `SectionHeading` para títulos largos; si el grid 280px queda estrecho para preguntas, usar `h2` directo con `font-display text-h3` como en la sección `how` del template de programa.)
 
-- [ ] **Step 4: `faqPageJsonLd` en `lib/jsonld.ts` + test**
+- [x] **Step 4: `faqPageJsonLd` en `lib/jsonld.ts` + test**
 
 ```ts
 export function faqPageJsonLd(locale: string) {
@@ -2599,7 +2599,7 @@ it('FAQPage: 7 preguntas con respuesta en ambos idiomas', () => {
 });
 ```
 
-- [ ] **Step 5: Navegación**
+- [x] **Step 5: Navegación**
 
 `components/layout/nav-links.tsx` — añadir tras loanOptions:
 
@@ -2609,7 +2609,7 @@ it('FAQPage: 7 preguntas con respuesta en ambos idiomas', () => {
 
 `components/layout/site-footer.tsx` — añadir el enlace `learn` en el bloque de links donde están loanOptions/calculator (usar `common.footer.links.learn`, mismo patrón del resto).
 
-- [ ] **Step 6: OG + tests de sincronía**
+- [x] **Step 6: OG + tests de sincronía**
 
 En `scripts/generate-og.mjs`, añadir `'learn'` al array `namespaces` (tras `'loanOptions'`). En `tests/unit/metadata-og.test.ts`, añadir `'learn'` a su lista. Regenerar:
 
@@ -2619,7 +2619,7 @@ npm run og
 
 Expected: 42 PNGs, incluidos `public/og/{en,es}/learn.png`.
 
-- [ ] **Step 7: Verificación completa y commit**
+- [x] **Step 7: Verificación completa y commit**
 
 ```bash
 npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run build && npm run check:static && npm run test:e2e
@@ -2638,13 +2638,13 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 
 ### Task 17: Gate final y PR C
 
-- [ ] **Step 1: Gate local completo**
+- [x] **Step 1: Gate local completo**
 
 ```bash
 npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run build && npm run check:static && npm run test:e2e
 ```
 
-- [ ] **Step 2: Verificar presupuesto intacto de páginas de contenido**
+- [x] **Step 2: Verificar presupuesto intacto de páginas de contenido**
 
 ```bash
 node scripts/measure-first-load.mjs .next/server/app/en/learn.html
@@ -2653,7 +2653,7 @@ node scripts/measure-first-load.mjs .next/server/app/en/loan-options/fixed-rate-
 
 Expected: ambas ≈ baseline (~149 KB, cero client components nuevos).
 
-- [ ] **Step 3: Push y PR C**
+- [x] **Step 3: Push y PR C**
 
 ```bash
 git push -u origin feat/fase-2-paridad-contenido
