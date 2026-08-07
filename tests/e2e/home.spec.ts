@@ -24,6 +24,18 @@ test('Apply Online apunta a APPLY_URL con noopener', async ({ page }) => {
   await expect(apply).toHaveAttribute('rel', /noopener/);
 });
 
+test('ActionCards: quote, apply y calculadora enlazan a los destinos correctos', async ({ page }) => {
+  await page.goto('/en');
+  const cards = en.home.actionCards;
+  const quote = page.getByRole('link', { name: cards.quote.title });
+  await expect(quote).toHaveAttribute('href', '/en/quote');
+  const apply = page.getByRole('link', { name: cards.apply.title });
+  await expect(apply).toHaveAttribute('href', APPLY_URL);
+  await expect(apply).toHaveAttribute('target', '_blank');
+  const calculator = page.getByRole('link', { name: cards.calculator.title });
+  await expect(calculator).toHaveAttribute('href', '/en/calculator');
+});
+
 test('footer compliance: NMLS, EHO y Consumer Access', async ({ page }) => {
   await page.goto('/en');
   await expect(page.locator('footer')).toContainText('NMLS #1459301');
