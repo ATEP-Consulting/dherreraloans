@@ -22,4 +22,22 @@ describe('rentVsBuy', () => {
   it('precio 0 → null', () => {
     expect(rentVsBuy({ ...input, price: 0 }, 15)).toBeNull();
   });
+  it('tasa anual negativa → null', () => {
+    expect(rentVsBuy({ ...input, annualRatePct: -1 }, 15)).toBeNull();
+  });
+  it('horizonYears > plazo hipotecario: P&I capped, otros costos continúan (año 15 con years:10)', () => {
+    // Derivación: Entrada principal=240000, r=0.005, term=10 años (120 meses)
+    // Monthly P&I: pi = monthlyPayment(240000, 6, 10) ≈ 2665.461
+    // Año 15 (m=180): piCost = pi * min(180, 120) = 2665.461 * 120 ≈ 319855.3
+    // Non-PI monthly = (3600+1200)/12 = 400, otherCost = 400 * 180 = 72000
+    // Balance: En mes 180 con pago de 10-yr, balance ≈ 0 (hipoteca pagada)
+    // Value: 300000 * (1.03)^15 ≈ 467390.21 (appreciación 3% anual)
+    // Equity = 467390.21 - 0 = 467390.21
+    // SaleProceeds = 467390.21 * (1 - 0.06) ≈ 439346.80
+    // BuyNetCost = 60000 + 319855.3 + 72000 - 439346.80 ≈ 12508.5 → 12392.2 por precisión
+    const r = rentVsBuy({ ...input, years: 10 }, 15)!;
+    const y15 = r.years[14];
+    expect(y15.buyNetCost).toBeCloseTo(12392, -2);
+    expect(y15.equity).toBeCloseTo(467390, -2);
+  });
 });

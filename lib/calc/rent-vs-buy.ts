@@ -13,11 +13,11 @@ export type RentVsBuyResult = { years: RentVsBuyYear[]; crossoverYear: number | 
 // alquilar = renta acumulada con apreciación anual + seguro de inquilino.
 export function rentVsBuy(input: RentVsBuyInput, horizonYears: number): RentVsBuyResult | null {
   const { price, downPayment, annualRatePct, years } = input;
-  if (price <= 0 || downPayment < 0 || downPayment >= price || years <= 0 || horizonYears <= 0) return null;
+  if (price <= 0 || downPayment < 0 || downPayment >= price || years <= 0 || horizonYears <= 0 || annualRatePct < 0) return null;
   const principal = price - downPayment;
   const r = annualRatePct / 100 / 12;
   const pi = monthlyPayment(principal, annualRatePct, years);
-  const monthlyOwn = pi + input.taxYearly / 12 + input.insuranceYearly / 12 + input.hoaMonthly + (price * (input.annualCostsPct / 100)) / 12;
+  const monthlyOwnNonPI = input.taxYearly / 12 + input.insuranceYearly / 12 + input.hoaMonthly + (price * (input.annualCostsPct / 100)) / 12;
   const out: RentVsBuyYear[] = [];
   let rentCost = 0, crossoverYear: number | null = null;
   for (let y = 1; y <= horizonYears; y++) {
@@ -27,7 +27,9 @@ export function rentVsBuy(input: RentVsBuyInput, horizonYears: number): RentVsBu
     const value = price * (1 + input.appreciationPct / 100) ** y;
     const equity = value - Math.max(0, balance);
     const saleProceeds = equity - value * (input.sellingCostsPct / 100);
-    const buyNetCost = downPayment + monthlyOwn * m - saleProceeds;
+    const piCost = pi * Math.min(m, years * 12);
+    const otherCost = monthlyOwnNonPI * m;
+    const buyNetCost = downPayment + piCost + otherCost - saleProceeds;
     rentCost += input.monthlyRent * 12 * (1 + input.rentAppreciationPct / 100) ** (y - 1) + input.rentersInsuranceYearly;
     const gain = rentCost - buyNetCost;
     if (gain > 0 && crossoverYear === null) crossoverYear = y;
