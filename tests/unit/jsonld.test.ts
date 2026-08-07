@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { personJsonLd, mortgageLoanJsonLd, breadcrumbJsonLd, financialServiceJsonLd } from '@/lib/jsonld';
+import { personJsonLd, mortgageLoanJsonLd, breadcrumbJsonLd, financialServiceJsonLd, faqPageJsonLd } from '@/lib/jsonld';
 
 describe('JSON-LD (ADR-0003 §4)', () => {
   it('Person: NMLS como identifier, sameAs a Instagram y Consumer Access', () => {
@@ -24,5 +24,15 @@ describe('JSON-LD (ADR-0003 §4)', () => {
     const f = financialServiceJsonLd('en');
     expect(f.provider['@type']).toBe('Person');
     expect(JSON.stringify(f.areaServed)).toContain('Miami');
+  });
+  it('FAQPage: 7 preguntas con respuesta en ambos idiomas', () => {
+    for (const locale of ['en', 'es']) {
+      const ld = faqPageJsonLd(locale) as { mainEntity: { name: string; acceptedAnswer: { text: string } }[] };
+      expect(ld.mainEntity).toHaveLength(7);
+      for (const q of ld.mainEntity) {
+        expect(q.name.length).toBeGreaterThan(0);
+        expect(q.acceptedAnswer.text.length).toBeGreaterThan(0);
+      }
+    }
   });
 });

@@ -15,6 +15,7 @@ export const pathnames = {
   },
   '/quote': { en: '/quote', es: '/cotizacion' },
   '/calculator': { en: '/calculator', es: '/calculadora' },
+  '/learn': { en: '/learn', es: '/aprende' },
   '/about': { en: '/about', es: '/sobre-mi' },
   '/contact': { en: '/contact', es: '/contacto' },
   '/privacy': { en: '/privacy', es: '/privacidad' },

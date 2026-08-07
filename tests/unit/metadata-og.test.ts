@@ -18,6 +18,7 @@ describe('defaultOgSlug — guardia de sincronía lib/metadata.ts ↔ scripts/ge
   const namespaces = [
     'home',
     'loanOptions',
+    'learn',
     'programs.fha',
     'programs.conventional',
     'programs.va',

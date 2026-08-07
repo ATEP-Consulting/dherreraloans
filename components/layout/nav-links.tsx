@@ -9,6 +9,7 @@ export async function NavLinks({ className }: Props) {
   const t = await getTranslations('common.nav');
   const links = [
     { href: '/loan-options', label: t('loanOptions') },
+    { href: '/learn', label: t('learn') },
     { href: '/calculator', label: t('calculator') },
     { href: '/about', label: t('about') },
     { href: '/contact', label: t('contact') },

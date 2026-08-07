@@ -18,6 +18,7 @@ export async function SiteFooter({ locale }: Props) {
   const exploreLinks = [
     { href: '/loan-options', label: t('footer.links.loanOptions') },
     { href: '/calculator', label: t('footer.links.calculator') },
+    { href: '/learn', label: t('footer.links.learn') },
     { href: '/quote', label: t('footer.links.quote') },
     { href: '/about', label: t('footer.links.about') },
     { href: '/contact', label: t('footer.links.contact') },

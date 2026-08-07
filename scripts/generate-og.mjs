@@ -35,6 +35,7 @@ const locales = ['en', 'es'];
 const namespaces = [
   'home',
   'loanOptions',
+  'learn',
   ...Object.keys(programSlugs).map((key) => `programs.${key}`),
   'quote',
   'calculator',

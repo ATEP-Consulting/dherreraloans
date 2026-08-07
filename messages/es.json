@@ -4,6 +4,7 @@
     "nav": {
       "home": "Inicio",
       "loanOptions": "Opciones de préstamo",
+      "learn": "Aprende",
       "quote": "Cotización",
       "calculator": "Calculadora",
       "about": "Sobre mí",
@@ -18,7 +19,7 @@
     "footer": {
       "explore": "Explora",
       "legal": "Legal",
-      "links": { "loanOptions": "Opciones de préstamo", "calculator": "Calculadora de hipoteca", "quote": "Obtén tu cotización", "about": "Sobre David", "contact": "Contacto", "privacy": "Política de privacidad", "accessibility": "Declaración de accesibilidad", "consumerAccess": "NMLS Consumer Access" },
+      "links": { "loanOptions": "Opciones de préstamo", "calculator": "Calculadora de hipoteca", "learn": "Aprende", "quote": "Obtén tu cotización", "about": "Sobre David", "contact": "Contacto", "privacy": "Política de privacidad", "accessibility": "Declaración de accesibilidad", "consumerAccess": "NMLS Consumer Access" },
       "licenseLine1": "David Herrera · Originador de Préstamos Hipotecarios",
       "licenseLine2": "NMLS #{nmls} · Licenciado en Florida · Miami, FL",
       "instagram": "@dherrera_loans",
@@ -468,6 +469,43 @@
       "errorDown": "La entrada debe ser menor que el precio de la casa.",
       "disclaimer": "Estimación educativa. Solo capital e intereses — no incluye taxes, seguro ni HOA. No es una oferta de préstamo ni una precalificación."
     }
+  },
+  "learn": {
+    "title": "Aprende",
+    "description": "Respuestas claras a las preguntas que más escucho, antes de que te comprometas a nada.",
+    "heading": "Aprende",
+    "heroTitle": "Las preguntas que respondo cada semana",
+    "heroSub": "Sin discurso de venta ni letra pequeña que necesite abogado — las preguntas que de verdad me hacen los compradores, respondidas como te las respondería por teléfono.",
+    "items": [
+      {
+        "q": "¿Cómo funciona comprar casa, de principio a fin?",
+        "a": "Comprar una casa sigue un orden predecible, aunque no siempre lo parezca. Empieza por tus números — cuánto puedes gastar con tranquilidad — luego la precalificación, para que sepas qué puedes ofrecer antes de enamorarte de una propiedad. De ahí sigue la búsqueda, la oferta, el underwriting, donde se verifica tu expediente, y el cierre, cuando por fin recibes las llaves. Me gusta entrar desde el primer paso, no en el último — conocer tu presupuesto antes de empezar a ver casas te evita perseguir propiedades que nunca ibas a conseguir."
+      },
+      {
+        "q": "¿Qué diferencia hay entre precalificado y preaprobado?",
+        "a": "La precalificación es un cálculo rápido y honesto: me cuentas tus ingresos, tus ahorros y tu meta, normalmente con mi cuestionario, y te doy un rango realista sin pedirte documentos. La preaprobación va más allá: verifico tus ingresos, tus activos y tu crédito con papeles reales, y el resultado pesa de verdad cuando haces una oferta, porque el vendedor sabe que está respaldada por documentación, no solo por tu palabra. Empieza con la precalificación para orientarte, y pasa a la preaprobación cuando ya estés viendo casas en serio y lista para competir por una."
+      },
+      {
+        "q": "¿Qué mira un lender en mi crédito?",
+        "a": "Miro tu crédito como un rango, no como una pared — me dice qué programas te quedan mejor, no si puedes comprar casa o no. Lo que más importa es tu historial de pagos y cuánta deuda activa llevas frente a tus ingresos. Cada programa tiene mínimos distintos, así que un puntaje que descarta una opción muchas veces sigue sirviendo para otra. Y aquí no se consulta tu crédito para nada: cuando hablamos, es tu propia estimación honesta, así podemos conversar con libertad antes de que nada toque tu reporte."
+      },
+      {
+        "q": "¿Cuánta entrada necesito de verdad?",
+        "a": "La idea de que necesitas una entrada enorme para comprar es una de las cosas que más mantiene a buenos compradores pagando renta más tiempo del necesario. Cada programa pide montos muy distintos, y varios quedan muy por debajo de lo que la gente asume que hace falta. Cuál te conviene depende de tu crédito, tus ingresos y la propiedad misma — eso es una conversación, no una adivinanza. Y la entrada no es el único dinero que necesitas al cierre; también están los costos de cierre, así que siempre te muestro el panorama completo antes de que te comprometas con un número."
+      },
+      {
+        "q": "¿Puedo comprar con ITIN o siendo extranjero?",
+        "a": "Sí — esto surge todo el tiempo, y es una de mis especialidades. Comprar con ITIN en vez de número de seguro social, o como extranjero sin residencia, no es un callejón sin salida; existen programas pensados justo para estas situaciones. Las condiciones son distintas — normalmente más documentación y una estructura de entrada diferente a la de un préstamo estándar — pero el camino es real. Mi cuestionario pregunta por tu estatus desde el principio justo por eso: me permite conectarte con el programa correcto desde la primera conversación, no después de que ya te enamoraste de una casa."
+      },
+      {
+        "q": "¿Cuándo tiene sentido refinanciar?",
+        "a": "Refinanciar tiene sentido cuando de verdad te hace avanzar — una tasa más baja, una cuota más baja, quitarte un seguro hipotecario que ya no necesitas, o sacar efectivo para una meta real. No tiene sentido solo porque la tasa bajó un poco o porque te llamó un lender de la nada. El número que me importa es tu punto de equilibrio: cuánto tarda el ahorro mensual en cubrir los costos de cierre del préstamo nuevo. Si piensas quedarte en la casa después de ese punto, casi siempre vale la pena. Si no, te lo digo con honestidad: mejor espera."
+      },
+      {
+        "q": "¿Qué son los costos de cierre?",
+        "a": "Los costos de cierre son los cargos, además de tu entrada, que hacen oficial el préstamo y la venta — cosas como la tasación, el trabajo de título, la originación del préstamo y los prepagados como taxes y seguro que se guardan en escrow. Como orden de magnitud general, calcula un porcentaje moderado del precio de compra, aunque el número exacto depende de tu préstamo, tu propiedad y tu condado. No tienes que adivinar: una vez que estás bajo contrato, recibes un Loan Estimate que detalla cada costo por escrito, para que nada te tome por sorpresa en la mesa de cierre."
+      }
+    ]
   },
   "about": {
     "title": "Sobre David Herrera",

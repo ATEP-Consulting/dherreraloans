@@ -4,6 +4,7 @@
     "nav": {
       "home": "Home",
       "loanOptions": "Loan Options",
+      "learn": "Learn",
       "quote": "Get a Quote",
       "calculator": "Calculator",
       "about": "About",
@@ -18,7 +19,7 @@
     "footer": {
       "explore": "Explore",
       "legal": "Legal",
-      "links": { "loanOptions": "Loan Options", "calculator": "Mortgage Calculator", "quote": "Get a Quote", "about": "About David", "contact": "Contact", "privacy": "Privacy Policy", "accessibility": "Accessibility Statement", "consumerAccess": "NMLS Consumer Access" },
+      "links": { "loanOptions": "Loan Options", "calculator": "Mortgage Calculator", "learn": "Learn", "quote": "Get a Quote", "about": "About David", "contact": "Contact", "privacy": "Privacy Policy", "accessibility": "Accessibility Statement", "consumerAccess": "NMLS Consumer Access" },
       "licenseLine1": "David Herrera · Mortgage Loan Originator",
       "licenseLine2": "NMLS #{nmls} · Licensed in Florida · Miami, FL",
       "instagram": "@dherrera_loans",
@@ -468,6 +469,43 @@
       "errorDown": "The down payment must be smaller than the home price.",
       "disclaimer": "Estimate for educational purposes only. Principal & interest — excludes taxes, insurance, and HOA. Not a loan offer or a pre-qualification."
     }
+  },
+  "learn": {
+    "title": "Learn",
+    "description": "Straight answers to the questions I hear most, before you commit to anything.",
+    "heading": "Learn",
+    "heroTitle": "Questions I answer every week",
+    "heroSub": "No sales pitch, no fine print you need a lawyer for — just the questions buyers actually ask me, answered the way I'd answer them on the phone.",
+    "items": [
+      {
+        "q": "How does buying a home actually work, start to finish?",
+        "a": "Buying a home follows a predictable order, even when it doesn't feel that way. It starts with your numbers — what you can comfortably spend — then pre-qualification, so you know what you can actually offer before you fall for a listing. From there it's the search, an offer, underwriting, where your file gets verified, and closing, when you get the keys. I like to come in at the very first step, not the last one — knowing your budget before you start touring homes saves you from chasing houses you were never going to get."
+      },
+      {
+        "q": "What's the difference between pre-qualified and pre-approved?",
+        "a": "Pre-qualification is a fast, honest estimate — you tell me your income, savings, and goals, usually through my questionnaire, and I give you a realistic range without pulling documents. Pre-approval goes further: I verify your income, assets, and credit with actual paperwork, and the result carries real weight when you make an offer, because sellers know it's backed by documentation, not just your word. Start with pre-qualification to get oriented, then move to pre-approval once you're seriously touring homes and ready to compete for one."
+      },
+      {
+        "q": "What does a lender look at in my credit?",
+        "a": "I look at your credit as a range, not a wall — it tells me which programs fit you best, not whether you're allowed to buy a home. What matters most is your payment history and how much debt you're actively carrying relative to your income. Different loan programs have different minimums, so a score that rules out one option often still works for another. And nothing here involves a credit pull — when we talk, it's your own honest estimate, so we can talk freely before anything touches your report."
+      },
+      {
+        "q": "How much down payment do I really need?",
+        "a": "The idea that you need a huge down payment to buy is one of the most common things keeping good buyers renting longer than they should. Different programs ask for very different amounts, and several go well below what people assume is required. Which one fits you depends on your credit, your income, and the property itself — that's a conversation, not a guess. And your down payment isn't the only cash you'll need at closing; there are also closing costs to plan for, so I always walk you through the full picture before you commit to a number."
+      },
+      {
+        "q": "Can I buy with an ITIN or as a foreign national?",
+        "a": "Yes — this comes up constantly, and it's one of my specialties. Buying with an ITIN instead of a Social Security number, or as a foreign national without U.S. residency, isn't a dead end; there are programs built specifically for these situations. The conditions are different — usually more documentation and a different down payment structure than a standard loan — but the path is real. My questionnaire asks about your status early for exactly this reason: it lets me match you with the right program from the first conversation instead of after you've already fallen for a house."
+      },
+      {
+        "q": "When does refinancing make sense?",
+        "a": "Refinancing makes sense when it actually moves you forward — a lower rate, a lower monthly payment, dropping mortgage insurance you no longer need, or pulling cash out for a real goal. It doesn't make sense just because rates dropped a little or a lender calls you out of the blue. The number I care about is your break-even point: how long it takes the monthly savings to cover the closing costs of the new loan. If you're planning to stay in the home past that point, it's usually worth it. If not, I'll tell you honestly to wait."
+      },
+      {
+        "q": "What are closing costs?",
+        "a": "Closing costs are the fees beyond your down payment that make the loan and the sale official — things like the appraisal, title work, loan origination, and prepaid items like taxes and insurance set up in escrow. As a rough order of magnitude, plan for a modest percentage of the purchase price, though the exact number depends on your loan, your property, and your county. You won't have to guess: once you're under contract, you get a Loan Estimate that itemizes every cost in writing, so nothing shows up as a surprise at the closing table."
+      }
+    ]
   },
   "about": {
     "title": "About David Herrera",
