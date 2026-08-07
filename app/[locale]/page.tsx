@@ -18,6 +18,7 @@ import { CtaBand } from '@/components/ui/cta-band';
 import { PhotoPlate } from '@/components/ui/photo-plate';
 import { TextLink } from '@/components/ui/text-link';
 import { Container } from '@/components/ui/container';
+import { ActionCards } from '@/components/ui/action-cards';
 import { slugFor } from '@/lib/programs';
 import { INSTAGRAM_URL } from '@/lib/site';
 
@@ -89,6 +90,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </div>
       </Band>
+      <ActionCards />
       <CtaBand />
       <JsonLd data={financialServiceJsonLd(locale)} />
     </>

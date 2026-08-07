@@ -51,7 +51,12 @@
       "caption": "David Herrera — your loan originator, start to closing.",
       "photoAlt": "David Herrera, mortgage loan originator in Miami"
     },
-    "ctaBand": { "title": "Know your number <em>before</em> you fall in love with the house." }
+    "ctaBand": { "title": "Know your number <em>before</em> you fall in love with the house." },
+    "actionCards": {
+      "quote": { "eyebrow": "Quote", "title": "See your loan scenarios", "body": "Answer a few questions and let's talk numbers — no commitment." },
+      "apply": { "eyebrow": "Apply", "title": "Start your application", "body": "Ready to move? Begin the secure online application." },
+      "calculator": { "eyebrow": "Calculator", "title": "Run your own numbers", "body": "Compare payments, programs and scenarios on your terms." }
+    }
   },
   "loanOptions": {
     "title": "Loan Options",
