@@ -71,7 +71,17 @@ export function Quiz({ texts, locale, thanksCtas }: { texts: QuizTexts; locale: 
     setErrors({});
     dispatch({ type: 'answer', patch });
   };
+  const goBack = () => {
+    // Cancela un auto-avance pendiente (tap en una opción) para que no dispare un 'next'
+    // perdido unos ms después de retroceder.
+    clearTimeout(autoTimer.current);
+    dispatch({ type: 'back' });
+  };
   const validateAndNext = () => {
+    // Cancela un auto-avance pendiente: si el usuario ya pulsó "Continuar" (o el submit),
+    // el timer del tap en la ChoiceCard queda obsoleto — dejarlo vivo dispara un 'next' de
+    // más unos ms después y salta el siguiente paso entero (payload incompleto en submit).
+    clearTimeout(autoTimer.current);
     const result = stepSchemas[step.id].safeParse(
       Object.fromEntries(step.fieldKeys.map((k) => [k, state.answers[k]])),
     );
@@ -104,7 +114,10 @@ export function Quiz({ texts, locale, thanksCtas }: { texts: QuizTexts; locale: 
   };
   const autoAdvance = () => {
     clearTimeout(autoTimer.current);
-    autoTimer.current = setTimeout(() => dispatch({ type: 'next' }), AUTO_ADVANCE_MS);
+    autoTimer.current = setTimeout(() => {
+      autoTimer.current = undefined;
+      dispatch({ type: 'next' });
+    }, AUTO_ADVANCE_MS);
   };
 
   if (state.status === 'done') {
@@ -161,7 +174,7 @@ export function Quiz({ texts, locale, thanksCtas }: { texts: QuizTexts; locale: 
           {step.id !== 'goal' ? (
             <button
               type="button"
-              onClick={() => dispatch({ type: 'back' })}
+              onClick={goBack}
               className="font-sans text-btn font-semibold uppercase tracking-button text-body hover:text-ink"
             >
               {texts.nav.back}
@@ -206,8 +219,9 @@ function StepBody({
 }) {
   if (step.kind === 'choice') {
     const key = step.fieldKeys[0];
+    const errorId = errors[key] ? `${step.id}-error` : undefined;
     return (
-      <fieldset className="flex flex-col gap-2.5">
+      <fieldset className="flex flex-col gap-2.5" aria-describedby={errorId}>
         <legend className="sr-only">{st.title}</legend>
         {(step.options ?? []).map((value) => (
           <ChoiceCard
@@ -220,7 +234,11 @@ function StepBody({
             onPointerSelect={() => onAutoAdvance()}
           />
         ))}
-        {errors[key] ? <p aria-live="polite" className="font-sans text-fine font-medium text-error">{errors[key]}</p> : null}
+        {errorId ? (
+          <p id={errorId} aria-live="polite" className="font-sans text-fine font-medium text-error">
+            {errors[key]}
+          </p>
+        ) : null}
       </fieldset>
     );
   }
