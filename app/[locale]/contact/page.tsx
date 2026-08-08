@@ -7,7 +7,6 @@ import { PageHero } from '@/components/layout/page-hero';
 import { Band } from '@/components/ui/band';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { ContactChannels, type ContactChannel } from '@/components/ui/contact-channels';
-import { Container } from '@/components/ui/container';
 import { CtaBand } from '@/components/ui/cta-band';
 
 export function generateStaticParams() {
@@ -48,14 +47,9 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           <div className="reveal-rise">
             <SectionHeading tone="navy" eyebrow={t('channels.eyebrow')} title={t('channels.title')} />
           </div>
-          <ContactChannels channels={channels} />
+          <ContactChannels channels={channels} note={t('pendingNote')} />
         </div>
       </Band>
-      <section className="border-b border-hairline bg-paper">
-        <Container className="px-5 py-5 lg:px-[72px]">
-          <p className="max-w-[75ch] font-sans text-fine italic text-muted">{t('pendingNote')}</p>
-        </Container>
-      </section>
       <CtaBand />
     </>
   );

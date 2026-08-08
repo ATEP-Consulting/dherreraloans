@@ -14,7 +14,7 @@ import { SectionHeading } from '@/components/ui/section-heading';
 import { CtaBand } from '@/components/ui/cta-band';
 import { Band } from '@/components/ui/band';
 import { ProgramStats } from '@/components/ui/program-stats';
-import { IndexRow } from '@/components/ui/index-row';
+import { ProgramGrid, type ProgramGridItem } from '@/components/ui/program-grid';
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -50,6 +50,12 @@ export default async function ProgramPage({
   const programKeys = Object.keys(programSlugs);
   const programIndex = programKeys.indexOf(key);
   const relatedKeys = [1, 2, 3].map((offset) => programKeys[(programIndex + offset) % programKeys.length]);
+  const related: ProgramGridItem[] = relatedKeys.map((k) => ({
+    key: k,
+    name: tp(`${k}.indexName`),
+    stat: tp(`${k}.stat`),
+    href: { pathname: '/loan-options/[program]', params: { program: slugFor(locale, k) } },
+  }));
 
   return (
     <>
@@ -127,20 +133,9 @@ export default async function ProgramPage({
         </Container>
       </section>
       <Band tone="navy">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           <h2 className="reveal-rise font-display text-h3 font-light text-paper">{tc('related.title')}</h2>
-          <div className="reveal-stagger flex flex-col">
-            {relatedKeys.map((k) => (
-              <IndexRow
-                key={k}
-                tone="navy"
-                className="reveal-left"
-                name={tp(`${k}.indexName`)}
-                stat={tp(`${k}.stat`)}
-                href={{ pathname: '/loan-options/[program]', params: { program: slugFor(locale, k) } }}
-              />
-            ))}
-          </div>
+          <ProgramGrid items={related} />
         </div>
       </Band>
       <CtaBand />

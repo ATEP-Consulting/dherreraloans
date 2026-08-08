@@ -77,7 +77,12 @@
     "title": "Opciones de préstamo",
     "description": "Explora los programas hipotecarios disponibles en Florida.",
     "heading": "Opciones de préstamo",
-    "helper": "Todos los programas están disponibles en toda Florida. Compáralos abajo, o cuéntame tu situación y te oriento hacia el correcto."
+    "helper": "Todos los programas están disponibles en toda Florida. Compáralos abajo, o cuéntame tu situación y te oriento hacia el correcto.",
+    "groups": {
+      "buying": "Comprar una casa",
+      "refinancing": "Refinanciar",
+      "investors": "Inversión y montos altos"
+    }
   },
   "programs": {
     "fha": {

@@ -3,7 +3,7 @@ import { Link } from '@/i18n/routing';
 
 export type ContactChannel = {
   key: 'phone' | 'whatsapp' | 'email' | 'form';
-  /** Etiqueta corta del canal: ocupa el lugar del `stat` en las filas del índice. */
+  /** Etiqueta corta del canal, como eyebrow. */
   label: string;
   /** Dato o acción en Spectral: el teléfono, el email, «Escríbeme ahora». */
   value: string;
@@ -21,34 +21,28 @@ const icons: Record<ContactChannel['key'], ReactNode> = {
 };
 
 /**
- * Filas de canal de contacto: misma métrica y comportamiento que `IndexRow` en tono navy
- * (borde `paper-a15`, guía punteada, hover que desplaza la fila y subraya el dato, nota en
- * segunda línea indentada) con el icono del canal donde el índice pone el numeral y la
- * etiqueta donde pone el stat. Sin clases reveal: son controles, siempre visibles.
+ * Canales de contacto en rejilla 2×2 **sin una sola línea**: etiqueta, dato en Spectral y
+ * nota (spec 2026-08-08, enmienda «desrayado» — antes cada canal sumaba un borde inferior y
+ * una guía punteada). Sin clases reveal: son controles, deben estar visibles siempre.
  */
-function ChannelRow({ channel }: { channel: ContactChannel }) {
+function Channel({ channel }: { channel: ContactChannel }) {
   const inner = (
     <>
-      <span
-        aria-hidden
-        className="w-14 shrink-0 self-center text-azure-soft transition-colors duration-300 group-hover:text-azure-light lg:w-20"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          {icons[channel.key]}
-        </svg>
+      <span className="flex items-center gap-2.5">
+        <span aria-hidden className="text-azure-soft transition-colors duration-300 group-hover:text-azure-light">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            {icons[channel.key]}
+          </svg>
+        </span>
+        <span className="font-sans text-micro font-semibold uppercase tracking-label text-azure-soft">{channel.label}</span>
       </span>
-      <span className="font-display text-index font-light text-paper group-hover:underline group-hover:decoration-azure-soft group-hover:decoration-1 group-hover:underline-offset-[5px]">
+      <span className="mt-2 block break-words font-display text-index font-light text-paper transition-colors duration-300 group-hover:text-azure-light">
         {channel.value}
       </span>
-      <span aria-hidden className="mx-3 flex-1 -translate-y-1 border-b border-dotted border-paper-a28 lg:mx-4" />
-      <span className="font-sans text-[12.5px] font-medium uppercase tracking-[.04em] text-azure-light lg:text-sm">
-        {channel.label}
-      </span>
-      <span className="mt-1 w-full pl-14 font-sans text-sm text-paper-a75 lg:pl-20">{channel.note}</span>
+      <span className="mt-1.5 block max-w-[42ch] font-sans text-[13px] leading-relaxed text-paper-a75">{channel.note}</span>
     </>
   );
-  const className =
-    'group flex flex-wrap items-baseline border-b border-paper-a15 py-4 transition-[padding] duration-300 hover:pl-3 lg:py-[21px]';
+  const className = 'group block';
 
   return channel.internal ? (
     <Link href={channel.href as never} className={className}>
@@ -61,12 +55,15 @@ function ChannelRow({ channel }: { channel: ContactChannel }) {
   );
 }
 
-export function ContactChannels({ channels }: { channels: ContactChannel[] }) {
+export function ContactChannels({ channels, note }: { channels: ContactChannel[]; note?: string }) {
   return (
     <div className="flex flex-col">
-      {channels.map((channel) => (
-        <ChannelRow key={channel.key} channel={channel} />
-      ))}
+      <div className="grid gap-8 sm:grid-cols-2 lg:gap-x-16 lg:gap-y-10">
+        {channels.map((channel) => (
+          <Channel key={channel.key} channel={channel} />
+        ))}
+      </div>
+      {note ? <p className="mt-12 font-sans text-fine italic text-paper-a55">{note}</p> : null}
     </div>
   );
 }

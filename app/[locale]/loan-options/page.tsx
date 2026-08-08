@@ -1,14 +1,12 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
-import { programSlugs } from '@/config/routes.mjs';
-import { slugFor } from '@/lib/programs';
-import { PROGRAM_IMAGES, type ProgramKey } from '@/lib/program-images';
+import { PROGRAM_GROUPS, slugFor } from '@/lib/programs';
 import heroPrograms from '@/assets/img/hero-programs.jpg';
 import { PageHero } from '@/components/layout/page-hero';
 import { Container } from '@/components/ui/container';
 import { Band } from '@/components/ui/band';
-import { ProgramsIndex, type ProgramsIndexItem } from '@/components/ui/programs-index';
+import { ProgramGroups, type ProgramGroup } from '@/components/ui/program-groups';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -23,18 +21,17 @@ export default async function LoanOptionsPage({ params }: { params: Promise<{ lo
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('loanOptions');
-  const th = await getTranslations('home');
   const tp = await getTranslations('programs');
-  const programKeys = Object.keys(programSlugs) as ProgramKey[];
 
-  const items: ProgramsIndexItem[] = programKeys.map((key, i) => ({
-    key,
-    number: th('programsIndex.rowLabel', { number: i + 1 }),
-    name: tp(`${key}.indexName`),
-    stat: tp(`${key}.stat`),
-    description: tp(`${key}.blurb`),
-    image: PROGRAM_IMAGES[key],
-    href: { pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } },
+  const groups: ProgramGroup[] = PROGRAM_GROUPS.map((group) => ({
+    key: group.key,
+    title: t(`groups.${group.key}`),
+    programs: group.programs.map((key) => ({
+      key,
+      name: tp(`${key}.indexName`),
+      stat: tp(`${key}.stat`),
+      href: { pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } },
+    })),
   }));
 
   return (
@@ -47,7 +44,7 @@ export default async function LoanOptionsPage({ params }: { params: Promise<{ lo
       </section>
       <Band tone="navy">
         <div className="flex flex-col gap-8">
-          <ProgramsIndex items={items} />
+          <ProgramGroups groups={groups} />
         </div>
       </Band>
     </>
