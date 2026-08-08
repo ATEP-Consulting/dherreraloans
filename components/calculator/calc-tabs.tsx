@@ -6,17 +6,11 @@ import { RefinanceCalc, type RefinanceCalcTexts } from './refinance-calc';
 import { RentVsBuyCalc, type RentVsBuyCalcTexts } from './rent-vs-buy-calc';
 import { VaPurchaseCalc, type VaPurchaseCalcTexts } from './va-purchase-calc';
 import { VaRefinanceCalc, type VaRefinanceCalcTexts } from './va-refinance-calc';
+import { DscrCalc, type DscrCalcTexts } from './dscr-calc';
+import { FlipCalc, type FlipCalcTexts } from './flip-calc';
 
 const TAB_IDS = ['afford', 'purchase', 'refi', 'rentBuy', 'vaPurchase', 'vaRefi', 'dscr', 'flip'] as const;
-
-// DSCR y Fix & Flip (Task 16) aún no tienen componente — se excluyen de las pestañas visibles
-// para que no aparezcan clicables-pero-vacías, aunque su tipo de texts ya exista en
-// CalcSuiteTexts (stub) para que el resto del árbol compile.
-const VISIBLE_TAB_IDS = TAB_IDS.filter((id) => id !== 'dscr' && id !== 'flip');
-
-// Stubs Task 16: sin campos propios todavía, solo lo mínimo para que CalcSuiteTexts compile.
-type DscrCalcTexts = Record<string, never>;
-type FlipCalcTexts = Record<string, never>;
+const VISIBLE_TAB_IDS = TAB_IDS;
 
 export type CalcSuiteTexts = {
   tabs: Record<(typeof TAB_IDS)[number], string>;
@@ -82,6 +76,8 @@ export function CalcTabs({ locale, texts }: { locale: string; texts: CalcSuiteTe
         {active === 'rentBuy' && <RentVsBuyCalc locale={locale} texts={texts.rentBuy} />}
         {active === 'vaPurchase' && <VaPurchaseCalc locale={locale} texts={texts.vaPurchase} />}
         {active === 'vaRefi' && <VaRefinanceCalc locale={locale} texts={texts.vaRefi} />}
+        {active === 'dscr' && <DscrCalc locale={locale} texts={texts.dscr} />}
+        {active === 'flip' && <FlipCalc locale={locale} texts={texts.flip} />}
       </div>
     </div>
   );
