@@ -6,7 +6,8 @@ import { Field } from '@/components/ui/form/field';
 import { MoneyInput } from '@/components/ui/form/money-input';
 import { PercentInput } from '@/components/ui/form/percent-input';
 import { SelectField } from '@/components/ui/form/select-field';
-import { CalcLayout } from './calc-layout';
+import { CalcLayout, CalcGroupTitle, CalcKpi, CalcKpiLabel } from './calc-layout';
+import { LoanBasicsFields, downPaymentError } from './loan-basics-fields';
 
 export type RentVsBuyCalcTexts = {
   mortgageTitle: string; buyTitle: string; rentTitle: string;
@@ -27,10 +28,6 @@ export type RentVsBuyCalcTexts = {
 const TERMS = [30, 20, 15] as const;
 const HORIZONS = Array.from({ length: 15 }, (_, i) => i + 1);
 
-const groupTitle = 'font-sans text-micro font-semibold uppercase tracking-label text-ink border-b border-hairline pb-2';
-const kpiLabel = 'font-sans text-micro font-medium uppercase tracking-label text-muted';
-const kpiValue = 'font-display text-h2 font-light tabular-nums';
-
 export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; locale: string }) {
   const [price, setPrice] = useState<number | null>(300000);
   const [down, setDown] = useState<number | null>(60000);
@@ -47,8 +44,7 @@ export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; lo
   const [rentAppreciationPct, setRentAppreciationPct] = useState<number | null>(2);
   const [horizon, setHorizon] = useState(5);
 
-  const downError = price !== null && down !== null && down >= price;
-  const pct = price && down ? `${((down / price) * 100).toFixed(1)}%` : null;
+  const downError = downPaymentError(price, down);
   const money = (v: number, d = 0) => formatMoney(v, locale, d);
 
   const result =
@@ -80,29 +76,21 @@ export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; lo
 
   const form = (
     <>
-      <h3 className={groupTitle}>{texts.mortgageTitle}</h3>
-      <Field label={texts.priceLabel} htmlFor="rentbuy-price">
-        <MoneyInput id="rentbuy-price" value={price} onValueChange={setPrice} locale={locale} />
-      </Field>
-      <Field
-        label={texts.downLabel}
-        htmlFor="rentbuy-down"
-        hint={pct ? texts.downPct.replace('{pct}', pct) : undefined}
-        error={downError ? texts.errorDown : undefined}
-      >
-        <MoneyInput id="rentbuy-down" value={down} onValueChange={setDown} locale={locale} invalid={downError} />
-      </Field>
-      <Field label={texts.rateLabel} htmlFor="rentbuy-rate">
-        <PercentInput id="rentbuy-rate" value={rate} onValueChange={setRate} />
-      </Field>
-      <Field label={texts.termLabel} htmlFor="rentbuy-term">
-        <SelectField
-          id="rentbuy-term"
-          value={String(years)}
-          onChange={(e) => setYears(Number(e.target.value) as (typeof TERMS)[number])}
-          options={TERMS.map((y) => ({ value: String(y), label: texts.termOption.replace('{years}', String(y)) }))}
-        />
-      </Field>
+      <CalcGroupTitle>{texts.mortgageTitle}</CalcGroupTitle>
+      <LoanBasicsFields
+        idPrefix="rentbuy"
+        locale={locale}
+        texts={texts}
+        price={price}
+        onPriceChange={setPrice}
+        down={down}
+        onDownChange={setDown}
+        rate={rate}
+        onRateChange={setRate}
+        years={years}
+        onYearsChange={setYears}
+        terms={TERMS}
+      />
       <Field label={texts.taxLabel} htmlFor="rentbuy-tax">
         <MoneyInput id="rentbuy-tax" value={taxYearly} onValueChange={setTaxYearly} locale={locale} />
       </Field>
@@ -113,7 +101,7 @@ export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; lo
         <MoneyInput id="rentbuy-hoa" value={hoaMonthly} onValueChange={setHoaMonthly} locale={locale} />
       </Field>
 
-      <h3 className={groupTitle}>{texts.buyTitle}</h3>
+      <CalcGroupTitle>{texts.buyTitle}</CalcGroupTitle>
       <Field label={texts.annualCostsLabel} htmlFor="rentbuy-annual-costs">
         <PercentInput id="rentbuy-annual-costs" value={annualCostsPct} onValueChange={setAnnualCostsPct} />
       </Field>
@@ -124,7 +112,7 @@ export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; lo
         <PercentInput id="rentbuy-appreciation" value={appreciationPct} onValueChange={setAppreciationPct} />
       </Field>
 
-      <h3 className={groupTitle}>{texts.rentTitle}</h3>
+      <CalcGroupTitle>{texts.rentTitle}</CalcGroupTitle>
       <Field label={texts.monthlyRentLabel} htmlFor="rentbuy-rent">
         <MoneyInput id="rentbuy-rent" value={monthlyRent} onValueChange={setMonthlyRent} locale={locale} />
       </Field>
@@ -149,9 +137,7 @@ export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; lo
   const results = result && yearData ? (
     <>
       <div className="flex flex-col gap-2">
-        <p id="rentbuy-table-heading" className={kpiLabel}>
-          {texts.comparisonTitle.replace('{years}', String(horizon))}
-        </p>
+        <CalcKpiLabel id="rentbuy-table-heading">{texts.comparisonTitle.replace('{years}', String(horizon))}</CalcKpiLabel>
         <div className="overflow-x-auto">
           <table aria-labelledby="rentbuy-table-heading" className="w-full min-w-[320px] border-collapse font-sans text-sm text-body">
             <thead>
@@ -177,8 +163,7 @@ export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; lo
         </div>
       </div>
       <div className="flex flex-col gap-1 border-t border-hairline pt-4">
-        <p className={kpiLabel}>{texts.gainLabel.replace('{years}', String(horizon))}</p>
-        <p className={`${kpiValue} text-ink`}>{money(Math.abs(yearData.gain))}</p>
+        <CalcKpi label={texts.gainLabel.replace('{years}', String(horizon))} value={money(Math.abs(yearData.gain))} />
         <p className="font-sans text-sm text-body">{yearData.gain >= 0 ? texts.gainBuyWins : texts.gainRentWins}</p>
       </div>
       <p className="border-t border-hairline pt-4 font-sans text-sm leading-[1.7] text-body">

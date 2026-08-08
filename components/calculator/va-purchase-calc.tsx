@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { purchaseBreakdown } from '@/lib/calc/purchase';
+import { vaPurchaseBreakdown, type VaUse } from '@/lib/calc/va';
 import { DEFAULTS } from '@/lib/calc/constants';
 import { formatMoney } from '@/lib/format';
 import { Field } from '@/components/ui/form/field';
@@ -9,14 +9,16 @@ import { PercentInput } from '@/components/ui/form/percent-input';
 import { CalcLayout, CalcKpi, CalcKpiLabel } from './calc-layout';
 import { CalcDonut } from './calc-donut';
 import { LoanBasicsFields, downPaymentError } from './loan-basics-fields';
+import { VaUseField, type VaUseFieldTexts } from './va-use-field';
 
-export type PurchaseCalcTexts = {
+export type VaPurchaseCalcTexts = VaUseFieldTexts & {
   priceLabel: string; downLabel: string; downPct: string;
   rateLabel: string; termLabel: string; termOption: string;
-  pmiLabel: string; taxLabel: string; insuranceLabel: string; hoaLabel: string; extraLabel: string;
+  taxLabel: string; insuranceLabel: string; hoaLabel: string; extraLabel: string;
   resultLabel: string; resultEmpty: string;
   breakdownPiLabel: string; breakdownTaxLabel: string; breakdownInsuranceLabel: string;
-  breakdownHoaLabel: string; breakdownPmiLabel: string; breakdownExtraLabel: string;
+  breakdownHoaLabel: string; breakdownExtraLabel: string;
+  feeLabel: string; finalLoanLabel: string;
   totalInterestLabel: string; totalCostLabel: string;
   earlyPayoffTitle: string; monthsSavedLabel: string; interestSavedLabel: string;
   errorDown: string; disclaimer: string;
@@ -24,12 +26,12 @@ export type PurchaseCalcTexts = {
 
 const TERMS = [30, 20, 15] as const;
 
-export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; locale: string }) {
-  const [price, setPrice] = useState<number | null>(400000);
-  const [down, setDown] = useState<number | null>(40000);
-  const [rate, setRate] = useState<number | null>(6.5);
-  const [years, setYears] = useState<(typeof TERMS)[number]>(30);
-  const [pmiYearly, setPmiYearly] = useState<number | null>(0);
+export function VaPurchaseCalc({ texts, locale }: { texts: VaPurchaseCalcTexts; locale: string }) {
+  const [price, setPrice] = useState<number | null>(DEFAULTS.price);
+  const [down, setDown] = useState<number | null>(0);
+  const [rate, setRate] = useState<number | null>(DEFAULTS.ratePct);
+  const [years, setYears] = useState<(typeof TERMS)[number]>(DEFAULTS.years);
+  const [vaUse, setVaUse] = useState<VaUse>('first');
   const [propertyTaxPct, setPropertyTaxPct] = useState<number | null>(DEFAULTS.propertyTaxPct);
   const [insuranceYearly, setInsuranceYearly] = useState<number | null>(DEFAULTS.insuranceYearly);
   const [hoaMonthly, setHoaMonthly] = useState<number | null>(0);
@@ -42,29 +44,21 @@ export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; loca
     price !== null &&
     down !== null &&
     rate !== null &&
-    pmiYearly !== null &&
     propertyTaxPct !== null &&
     insuranceYearly !== null &&
     hoaMonthly !== null &&
     extraMonthly !== null &&
     !downError
-      ? purchaseBreakdown({
-          price,
-          downPayment: down,
-          annualRatePct: rate,
-          years,
-          pmiYearly,
-          propertyTaxPct,
-          insuranceYearly,
-          hoaMonthly,
-          extraMonthly,
+      ? vaPurchaseBreakdown({
+          price, downPayment: down, annualRatePct: rate, years, vaUse,
+          propertyTaxPct, insuranceYearly, hoaMonthly, extraMonthly,
         })
       : null;
 
   const form = (
     <>
       <LoanBasicsFields
-        idPrefix="calc"
+        idPrefix="va-purchase"
         locale={locale}
         texts={texts}
         price={price}
@@ -77,20 +71,18 @@ export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; loca
         onYearsChange={setYears}
         terms={TERMS}
       />
-      <Field label={texts.pmiLabel} htmlFor="calc-pmi">
-        <MoneyInput id="calc-pmi" value={pmiYearly} onValueChange={setPmiYearly} locale={locale} />
+      <VaUseField id="va-purchase-use" value={vaUse} onChange={setVaUse} texts={texts} />
+      <Field label={texts.taxLabel} htmlFor="va-purchase-tax">
+        <PercentInput id="va-purchase-tax" value={propertyTaxPct} onValueChange={setPropertyTaxPct} />
       </Field>
-      <Field label={texts.taxLabel} htmlFor="calc-tax">
-        <PercentInput id="calc-tax" value={propertyTaxPct} onValueChange={setPropertyTaxPct} />
+      <Field label={texts.insuranceLabel} htmlFor="va-purchase-insurance">
+        <MoneyInput id="va-purchase-insurance" value={insuranceYearly} onValueChange={setInsuranceYearly} locale={locale} />
       </Field>
-      <Field label={texts.insuranceLabel} htmlFor="calc-insurance">
-        <MoneyInput id="calc-insurance" value={insuranceYearly} onValueChange={setInsuranceYearly} locale={locale} />
+      <Field label={texts.hoaLabel} htmlFor="va-purchase-hoa">
+        <MoneyInput id="va-purchase-hoa" value={hoaMonthly} onValueChange={setHoaMonthly} locale={locale} />
       </Field>
-      <Field label={texts.hoaLabel} htmlFor="calc-hoa">
-        <MoneyInput id="calc-hoa" value={hoaMonthly} onValueChange={setHoaMonthly} locale={locale} />
-      </Field>
-      <Field label={texts.extraLabel} htmlFor="calc-extra">
-        <MoneyInput id="calc-extra" value={extraMonthly} onValueChange={setExtraMonthly} locale={locale} />
+      <Field label={texts.extraLabel} htmlFor="va-purchase-extra">
+        <MoneyInput id="va-purchase-extra" value={extraMonthly} onValueChange={setExtraMonthly} locale={locale} />
       </Field>
     </>
   );
@@ -104,13 +96,14 @@ export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; loca
           { label: `${texts.breakdownTaxLabel} · ${money(result.breakdown.tax, 2)}`, value: result.breakdown.tax, swatchClass: 'text-azure' },
           { label: `${texts.breakdownInsuranceLabel} · ${money(result.breakdown.insurance, 2)}`, value: result.breakdown.insurance, swatchClass: 'text-azure-soft' },
           { label: `${texts.breakdownHoaLabel} · ${money(result.breakdown.hoa, 2)}`, value: result.breakdown.hoa, swatchClass: 'text-ink' },
-          { label: `${texts.breakdownPmiLabel} · ${money(result.breakdown.pmi, 2)}`, value: result.breakdown.pmi, swatchClass: 'text-muted' },
           { label: `${texts.breakdownExtraLabel} · ${money(result.breakdown.extra, 2)}`, value: result.breakdown.extra, swatchClass: 'text-leader' },
         ]}
         centerLabel={texts.resultLabel}
         centerValue={money(result.totalMonthly, 2)}
       />
       <dl className="flex flex-col gap-2 border-t border-hairline pt-4 font-sans text-sm text-body">
+        <div className="flex justify-between gap-4"><dt>{texts.feeLabel.replace('{pct}', result.feePct.toFixed(2))}</dt><dd className="tabular-nums">{money(result.feeAmount)}</dd></div>
+        <div className="flex justify-between gap-4"><dt>{texts.finalLoanLabel}</dt><dd className="tabular-nums">{money(result.finalLoan)}</dd></div>
         <div className="flex justify-between gap-4"><dt>{texts.totalInterestLabel}</dt><dd className="tabular-nums">{money(result.totalInterest)}</dd></div>
         <div className="flex justify-between gap-4"><dt>{texts.totalCostLabel}</dt><dd className="tabular-nums">{money(result.totalCost)}</dd></div>
       </dl>

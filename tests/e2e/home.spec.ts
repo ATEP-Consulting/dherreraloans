@@ -77,17 +77,24 @@ test('contact: teléfono placeholder y enlace de WhatsApp con deep link', async 
 
 test('el quiz embebido en home avanza y comparte progreso con /quote', async ({ page }) => {
   const q = en.quote.quiz;
+  await page.goto('/en');
+  const quiz = page.locator('#quiz');
+  // El quiz está bajo el fold y se hidrata diferido (QuizDeferred, IntersectionObserver):
+  // hay que aproximarlo al viewport para que el import dinámico se dispare y monte el
+  // componente real antes de interactuar con él.
+  await quiz.scrollIntoViewIfNeeded();
+  const fieldset = quiz.locator('fieldset');
+  await expect(fieldset).toBeVisible();
   // Paso 1 (goal): clic sobre el TEXTO visible de la opción, no el <input> sr-only — mismo
   // mecanismo de forwarding label→control que usa tests/e2e/quiz.spec.ts. `goal: buy` dispara
   // auto-avance (onPointerSelect) a `location`, paso 2 de 15 en el flujo de compra.
-  await page.goto('/en');
-  const quiz = page.locator('#quiz');
-  await quiz.locator('fieldset').getByText(q.steps.goal.options.buy, { exact: true }).click();
+  await fieldset.getByText(q.steps.goal.options.buy, { exact: true }).click();
   const stepTwo = q.progress.label.replace('{current}', '2').replace('{total}', '15');
   // El auto-retry de `expect` absorbe el setTimeout del auto-avance (ver AUTO_ADVANCE_MS).
   await expect(quiz.getByText(stepTwo)).toBeVisible();
   // sessionStorage (dhl-quiz-v1) es compartido entre home y /quote en el mismo origen:
-  // /quote debe retomar en el mismo paso 2 de 15 sin repetir el paso 1.
+  // /quote debe retomar en el mismo paso 2 de 15 sin repetir el paso 1. /quote no difiere
+  // el montaje (el cuestionario ES esa página, above the fold), así que aparece directo.
   await page.goto('/en/quote');
   await expect(page.getByText(stepTwo)).toBeVisible();
 });
@@ -107,10 +114,32 @@ test('un visitante a mitad de flujo que reabre la home no sufre robo de foco ni 
     },
   );
   await page.goto('/en');
-  // Confirma que la rehidratación sí ocurrió (retoma en 'propertyType', no en 'goal').
+  // Con la hidratación diferida (QuizDeferred) el cuestionario ni siquiera monta en la carga
+  // (vive muy por debajo del fold) — así que este chequeo "on load", hecho ANTES de cualquier
+  // scroll deliberado del test, es trivialmente cierto por construcción (nada montó todavía).
+  // Se deja igualmente: si algo llegara a montar antes de tiempo, aquí se detectaría.
+  expect(await page.evaluate(() => document.activeElement?.tagName)).toBe('BODY');
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  // Ahora sí se aproxima el quiz a propósito (dispara el IntersectionObserver de
+  // QuizDeferred, monta el Quiz real) y se confirma que la rehidratación ocurrió (retoma en
+  // 'propertyType', no en 'goal').
+  await page.locator('#quiz').scrollIntoViewIfNeeded();
   await expect(page.getByRole('heading', { name: en.quote.quiz.steps.propertyType.title })).toBeVisible();
-  const activeTag = await page.evaluate(() => document.activeElement?.tagName);
-  expect(activeTag).toBe('BODY');
-  const scrollY = await page.evaluate(() => window.scrollY);
-  expect(scrollY).toBe(0);
+  // ESTE es el aserto que de verdad ejercita el bug original (el de arriba es trivial con el
+  // diferido: nada había montado). El montaje + rehidratación de quiz.tsx ocurren justo ahora,
+  // detrás del `scrollIntoViewIfNeeded` de este test — `skipFocusRef` debe seguir suprimiendo
+  // el `headingRef.current?.focus()` de esa transición, así que no debe robar foco NI disparar
+  // un scroll adicional sobre el que provocó deliberadamente el test. Dos RAF dejan asentar el
+  // commit/paint del montaje antes de tomar la posición de referencia; una espera adicional
+  // detecta cualquier robo de foco/scroll retrasado a un tick posterior.
+  const settledScrollY = await page.evaluate(
+    () =>
+      new Promise<number>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve(window.scrollY))),
+      ),
+  );
+  await page.waitForTimeout(300);
+  expect(await page.evaluate(() => document.activeElement?.tagName)).toBe('BODY');
+  const scrollYAfterWait = await page.evaluate(() => window.scrollY);
+  expect(Math.abs(scrollYAfterWait - settledScrollY)).toBeLessThanOrEqual(50);
 });

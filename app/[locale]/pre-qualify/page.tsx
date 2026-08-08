@@ -5,7 +5,7 @@ import heroPrograms from '@/assets/img/hero-programs.jpg';
 import { PageHero } from '@/components/layout/page-hero';
 import { Container } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { Quiz } from '@/components/quiz/quiz';
+import { QuizDeferred } from '@/components/quiz/quiz-deferred';
 import { QuizThanksCtas } from '@/components/quiz/quiz-thanks-ctas';
 import type { QuizTexts } from '@/lib/quiz/texts';
 
@@ -51,7 +51,7 @@ export default async function PreQualifyPage({ params }: { params: Promise<{ loc
       <section id="quiz" className="border-t border-hairline">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
           <SectionHeading eyebrow={t('start.eyebrow')} title={t('start.title')} helper={t('start.helper')} />
-          <Quiz locale={locale} texts={texts} thanksCtas={<QuizThanksCtas />} />
+          <QuizDeferred locale={locale} texts={texts} thanksCtas={<QuizThanksCtas />} />
         </Container>
       </section>
     </>

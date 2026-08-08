@@ -29,6 +29,17 @@ jobs:
               issue_number: context.issue.number,
               body: `🔍 Preview: ${url}\n\n(Lighthouse ≥ 95 ×4 se verifica en este mismo workflow.)`,
             });
+      # Calienta el edge de Vercel (HTML + chunks + fuentes) antes de medir: el primer hit
+      # frío medía cache-miss del CDN y cold start, no la calidad de la página (ADR-0003).
+      - name: Calentar CDN
+        run: |
+          URL="${{ steps.deploy.outputs.url }}"
+          for p in /en /es /en/loan-options/fha-loans /es/opciones-de-prestamo/prestamos-fha /en/quote /es/cotizacion /en/contact /es/contacto; do
+            curl -s -o /dev/null -w "%{http_code} $p\n" "$URL$p"
+          done
+          curl -s "$URL/en" | grep -oE '/_next/static/[^"]+' | sort -u | while read -r a; do
+            curl -s -o /dev/null "$URL$a"
+          done
       - uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: lighthouserc.json

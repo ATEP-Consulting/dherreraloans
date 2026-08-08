@@ -1,10 +1,11 @@
 import { monthlyPayment } from '@/lib/mortgage';
 import { DTI_LIMITS, PMI_FACTOR_BY_SCORE, FHA_MIP, USDA_FEE, type Program, type CreditBand } from './constants';
+import { vaFundingFeePct, type VaUse } from './va';
 
 export type AffordabilityInput = {
   monthlyIncome: number; monthlyDebts: number; price: number; downPayment: number;
   annualRatePct: number; years: number; propertyTaxPct: number; insuranceYearly: number;
-  hoaMonthly: number; creditBand: CreditBand;
+  hoaMonthly: number; creditBand: CreditBand; vaUse?: VaUse;
 };
 export type AffordabilityResult = {
   loanAmount: number; monthlyPI: number; monthlyTax: number; monthlyInsurance: number;
@@ -12,15 +13,19 @@ export type AffordabilityResult = {
   frontDti: number; backDti: number; limits: { front: number; back: number }; withinLimits: boolean;
 };
 
-// Simplificaciones (documentadas en la spec §3.4): FHA/USDA financian el upfront fee en el
-// préstamo; el fee mensual (PMI/MIP/anual USDA) se calcula sobre el préstamo BASE; VA no
-// lleva fee mensual (el funding fee se trata en lib/calc/va.ts, PR F).
+// Simplificaciones (documentadas en la spec §3.4): FHA/USDA/VA financian el upfront fee en el
+// préstamo (VA usa la tabla de tramos de vaFundingFeePct, purpose 'purchase'); el fee mensual
+// (PMI/MIP/anual USDA) se calcula sobre el préstamo BASE; VA no lleva fee mensual, solo el
+// upfront financiado.
 export function affordability(input: AffordabilityInput, program: Program): AffordabilityResult | null {
   const { monthlyIncome, monthlyDebts, price, downPayment, annualRatePct, years } = input;
   if (monthlyIncome <= 0 || monthlyDebts < 0 || price <= 0 || downPayment < 0 || downPayment >= price || years <= 0 || annualRatePct < 0) return null;
   const base = price - downPayment;
   const downPct = (downPayment / price) * 100;
-  const upfrontPct = program === 'fha' ? FHA_MIP.upfrontPct : program === 'usda' ? USDA_FEE.upfrontPct : 0;
+  const upfrontPct =
+    program === 'fha' ? FHA_MIP.upfrontPct :
+    program === 'usda' ? USDA_FEE.upfrontPct :
+    program === 'va' ? vaFundingFeePct(input.vaUse ?? 'first', downPct, 'purchase') : 0;
   const upfrontFee = base * (upfrontPct / 100);
   const loanAmount = base + upfrontFee;
   const monthlyPI = monthlyPayment(loanAmount, annualRatePct, years);

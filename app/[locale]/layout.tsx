@@ -15,13 +15,17 @@ const spectral = Spectral({
   style: ['normal', 'italic'],
   subsets: ['latin'],
   variable: '--font-spectral',
-  display: 'swap',
+  // 'optional': el h1 del hero es el LCP; un swap tardío repinta y dispara LCP >2.5s con throttling (gate ADR-0003)
+  // preload:false — los preloads de fuente encadenan el LCP simulado (Lantern) y compiten con recursos críticos; con optional el fallback ajustado pinta al instante.
+  display: 'optional',
+  preload: false,
 });
 const instrument = Instrument_Sans({
   weight: ['400', '500', '600'],
   subsets: ['latin'],
   variable: '--font-instrument',
   display: 'swap',
+  preload: false,
 });
 
 export function generateStaticParams() {

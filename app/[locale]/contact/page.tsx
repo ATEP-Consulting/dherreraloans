@@ -9,7 +9,7 @@ import { SectionHeading } from '@/components/ui/section-heading';
 import { CtaBand } from '@/components/ui/cta-band';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
-import { Quiz } from '@/components/quiz/quiz';
+import { QuizDeferred } from '@/components/quiz/quiz-deferred';
 import { QuizThanksCtas } from '@/components/quiz/quiz-thanks-ctas';
 import type { QuizTexts } from '@/lib/quiz/texts';
 
@@ -71,7 +71,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       <section className="border-t border-hairline">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
           <SectionHeading eyebrow={t('quizLead.eyebrow')} title={t('quizLead.title')} />
-          <Quiz locale={locale} texts={quizTexts} thanksCtas={<QuizThanksCtas />} />
+          <QuizDeferred locale={locale} texts={quizTexts} thanksCtas={<QuizThanksCtas />} />
         </Container>
       </section>
       <CtaBand />

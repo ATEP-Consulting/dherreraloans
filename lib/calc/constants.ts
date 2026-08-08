@@ -24,6 +24,14 @@ export type Program = keyof typeof DTI_LIMITS;
 export const FHA_MIP = { upfrontPct: 1.75, annualPct: 0.55 } as const; // ⚠︎ estándar mercado
 export const USDA_FEE = { upfrontPct: 1.0, annualPct: 0.35 } as const; // ⚠︎ estándar mercado
 
+// Genera un array de valores igualmente espaciados para los <select> de %/plazos de DSCR y
+// Fix & Flip (§desglose «Variantes → 7/8»: rangos y pasos exactos, ej. 6.000%-9.000% en pasos
+// de 0.125). Redondeo a 3 decimales para evitar errores de coma flotante (0.1 + 0.2 !== 0.3).
+export function steppedRange(start: number, end: number, step: number): number[] {
+  const count = Math.round((end - start) / step);
+  return Array.from({ length: count + 1 }, (_, i) => Math.round((start + i * step) * 1000) / 1000);
+}
+
 // Tabla VA por tramos de entrada (§desglose, tabla VA funding fee).
 export const VA_FUNDING_FEE = {
   purchase: {
