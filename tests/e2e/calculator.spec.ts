@@ -85,7 +85,7 @@ test('VA refinance: IRRRL oculta el cash-out y usa fee 0.50%', async ({ page }) 
   await expect(page.locator('div[aria-live="polite"]')).toContainText(vaRefi.feeLabel.replace('{pct}', '0.50'));
 });
 
-test('las 8 pestañas responden y DSCR calcula 0.45 con los defaults', async ({ page }) => {
+test('las 8 pestañas responden y DSCR/Flip calculan con los defaults', async ({ page }) => {
   await page.goto('/en/calculator');
   const tabs = en.calculator.calc.tabs;
   for (const id of Object.keys(tabs) as (keyof typeof tabs)[]) {
@@ -95,6 +95,10 @@ test('las 8 pestañas responden y DSCR calcula 0.45 con los defaults', async ({ 
     if (id === 'dscr') {
       // NOI 16,000 (28,500 renta efectiva - 12,500 gastos) / deuda anual ≈35,225 (400k@8%/30a) ≈ 0.45.
       await expect(page.getByText('0.45')).toBeVisible();
+    }
+    if (id === 'flip') {
+      // Net profit con los defaults (precio 500k/reno 75k/ARV 750k/9 meses/LTV 80%/10%/2%/3%/5%) = $79,250.
+      await expect(page.getByText('$79,250')).toBeVisible();
     }
   }
 });
