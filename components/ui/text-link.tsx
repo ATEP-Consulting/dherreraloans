@@ -12,7 +12,10 @@ type Props = {
   children: ReactNode;
 };
 
-const base = 'font-sans text-sm font-medium border-b pb-px transition';
+// `w-fit self-start`: el subrayado (border-b) debe ceñirse al texto. Sin esto, dentro de un
+// contenedor flex/grid en columna el enlace se estira a todo el ancho (align-items: stretch) y
+// la línea se prolongaba metros más allá de la palabra.
+const base = 'w-fit self-start font-sans text-sm font-medium border-b pb-px transition';
 const tones = {
   azure: 'text-azure border-azure hover:text-navy hover:border-navy',
   paper: 'text-paper border-paper-a55 hover:border-paper',
