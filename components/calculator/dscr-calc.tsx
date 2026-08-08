@@ -218,29 +218,29 @@ export function DscrCalc({ texts, locale }: { texts: DscrCalcTexts; locale: stri
 
   const results = result ? (
     <>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6">
         <div className="flex flex-col gap-1">
-          <CalcKpi label={texts.kpiCashFlowLabel} value={money(result.cashFlow)} tone={result.cashFlow < 0 ? 'error' : 'default'} />
+          <CalcKpi label={texts.kpiCashFlowLabel} value={money(result.cashFlow)} tone={result.cashFlow < 0 ? 'error' : 'default'} reserveLabel />
         </div>
         <div className="flex flex-col gap-1">
-          <CalcKpi label={texts.kpiCapRateLabel} value={pct(result.capRatePct)} />
+          <CalcKpi label={texts.kpiCapRateLabel} value={pct(result.capRatePct)} reserveLabel />
         </div>
         <div className="flex flex-col gap-1">
           <CalcKpi
             label={texts.kpiCashOnCashLabel}
             value={result.cashOnCashPct === null ? na : pct(result.cashOnCashPct)}
-            tone={result.cashOnCashPct !== null && result.cashOnCashPct < 0 ? 'error' : 'default'}
+            tone={result.cashOnCashPct !== null && result.cashOnCashPct < 0 ? 'error' : 'default'} reserveLabel
           />
         </div>
         <div className="flex flex-col gap-1">
           <CalcKpi
             label={texts.kpiDscrLabel}
             value={result.dscr === null ? na : result.dscr.toFixed(2)}
-            tone={result.dscr !== null && result.dscr < 1 ? 'error' : 'default'}
+            tone={result.dscr !== null && result.dscr < 1 ? 'error' : 'default'} reserveLabel
           />
         </div>
       </div>
-      <div className="flex flex-col gap-2 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-2.5 pt-2">
         <CalcKpiLabel>{texts.breakdownTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4"><dt>{texts.breakdownLoanLabel}</dt><dd className="tabular-nums">{money(result.loanAmount)}</dd></div>
@@ -250,7 +250,7 @@ export function DscrCalc({ texts, locale }: { texts: DscrCalcTexts; locale: stri
           <div className="flex justify-between gap-4"><dt>{texts.breakdownOriginationLabel}</dt><dd className="tabular-nums">{money(result.originationFee)}</dd></div>
         </dl>
       </div>
-      <div className="flex flex-col gap-2 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-2.5 pt-2">
         <CalcKpiLabel>{texts.metricsTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4"><dt>{texts.metricsClosingLabel}</dt><dd className="tabular-nums">{money(result.totalClosingCosts)}</dd></div>
@@ -261,7 +261,7 @@ export function DscrCalc({ texts, locale }: { texts: DscrCalcTexts; locale: stri
           <div className="flex justify-between gap-4"><dt>{texts.metricsNoiLabel}</dt><dd className="tabular-nums">{money(result.noi)}</dd></div>
         </dl>
       </div>
-      <div className="flex flex-col gap-3 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-3 pt-2">
         <CalcKpiLabel>{texts.definitionsTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-3 font-sans text-sm leading-[1.7] text-body">
           <div><dt className="font-medium text-ink">{texts.kpiCashFlowLabel}</dt><dd>{texts.cashFlowDefinition}</dd></div>

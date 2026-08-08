@@ -48,7 +48,9 @@ export function CalcTabs({ locale, texts }: { locale: string; texts: CalcSuiteTe
 
   return (
     <div className="flex flex-col gap-8">
-      <div role="tablist" className="flex flex-wrap gap-px border border-hairline bg-hairline">
+      {/* Píldoras con aire, sin caja de fondo: el contenedor con `bg-hairline` dejaba a la vista
+          un bloque gris allí donde la última fila no llegaba al borde (hasta 1017 px). */}
+      <div role="tablist" className="flex flex-wrap gap-2">
         {TAB_IDS.map((id, index) => (
           <button
             key={id}
@@ -62,7 +64,7 @@ export function CalcTabs({ locale, texts }: { locale: string; texts: CalcSuiteTe
             tabIndex={active === id ? 0 : -1}
             onClick={() => selectTab(id)}
             onKeyDown={(e) => onKeyDown(e, index)}
-            className={`px-4 py-3 font-sans text-micro font-medium uppercase tracking-label ${active === id ? 'bg-navy text-paper' : 'bg-paper text-body hover:bg-sand'}`}
+            className={`px-4 py-3 font-sans text-micro font-medium uppercase tracking-label transition-colors ${active === id ? 'bg-navy text-paper' : 'bg-sand text-body hover:bg-hairline'}`}
           >
             {texts.tabs[id]}
           </button>

@@ -82,14 +82,14 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
   // Selector de programa: grupo de botones tipo radio (aria-pressed), no un tablist anidado
   // dentro del tabpanel de CalcTabs — la semántica de "pestañas dentro de pestañas" viola APG.
   const programTabs = (
-    <div role="group" aria-label={texts.programGroupLabel} className="flex flex-wrap gap-px border border-hairline bg-hairline">
+    <div role="group" aria-label={texts.programGroupLabel} className="flex flex-wrap gap-2">
       {PROGRAMS.map((p) => (
         <button
           key={p}
           type="button"
           aria-pressed={program === p}
           onClick={() => setProgram(p)}
-          className={`px-3 py-2 font-sans text-micro font-medium uppercase tracking-label ${program === p ? 'bg-navy text-paper' : 'bg-paper text-body hover:bg-sand'}`}
+          className={`border border-hairline px-3 py-2 font-sans text-micro font-medium uppercase tracking-label transition-colors ${program === p ? 'border-navy bg-navy text-paper' : 'bg-paper text-body hover:bg-sand'}`}
         >
           {texts.programs[p]}
         </button>
@@ -157,21 +157,21 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
         centerValue={money(result.totalMonthly, 2)}
       />
       {result.upfrontFee > 0 ? (
-        <dl className="flex flex-col gap-2 border-t border-hairline pt-4 font-sans text-sm text-body">
+        <dl className="flex flex-col gap-2 pt-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4">
             <dt>{texts.upfrontLabel}</dt>
             <dd className="tabular-nums">{money(result.upfrontFee)}</dd>
           </div>
         </dl>
       ) : null}
-      <div className="flex flex-col gap-2 border-t border-hairline pt-4 font-sans text-sm text-body">
+      <div className="flex flex-col gap-2 pt-2 font-sans text-sm text-body">
         <p>{texts.dtiYours.replace('{front}', result.frontDti.toFixed(2)).replace('{back}', result.backDti.toFixed(2))}</p>
         <p>{texts.dtiAllowed.replace('{maxFront}', String(result.limits.front)).replace('{maxBack}', String(result.limits.back))}</p>
         <p className={`font-medium ${result.withinLimits ? 'text-ink' : 'text-error'}`}>
           {result.withinLimits ? texts.dtiOk : texts.dtiOver}
         </p>
       </div>
-      <p className="border-t border-hairline pt-4 font-sans text-sm leading-[1.7] text-body">
+      <p className="pt-2 font-sans text-sm leading-[1.7] text-body">
         {texts.summary
           .replace('{total}', money(result.totalMonthly, 2))
           .replace('{program}', texts.programs[program])

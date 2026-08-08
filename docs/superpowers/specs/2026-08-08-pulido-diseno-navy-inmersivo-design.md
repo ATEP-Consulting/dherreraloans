@@ -134,3 +134,14 @@ Mockups aprobados del companion: `visual-direction.html` (dirección A), `home-r
 - **Contact**: los cuatro canales pasan a **rejilla 2×2 sin líneas** y la nota de placeholders se integra como pie de la banda navy → **desaparece la banda blanca** que cortaba la página.
 - **Marquesina**: al ancho del contenedor (como el resto de secciones) con `mask-image` que difumina entrada y salida, el lead fijo fuera del bucle (repetido parecía texto roto) y **4 pases con desplazamiento de -25%** para que no aparezca hueco en pantallas anchas.
 - **Hero de la home**: el segundo CTA pasa de WhatsApp a **Apply Online** (`Button` gana variante `outline`).
+
+## Enmienda 2026-08-08 · Arreglo de `/calculator`
+
+Auditoría con sonda a 1792/1280/390 px sobre las 8 pestañas (el problema solo se veía en pantallas anchas, donde `text-h2` es fluido y el panel estaba capado a 416 px).
+
+- **Pestañas**: el contenedor tenía `bg-hairline` + `gap-px`, así que allí donde la última fila no llegaba al borde asomaba un bloque gris — **1018 px medidos** en 1280. Ahora son píldoras con `gap-2` y sin caja (activa navy, inactiva sand). Igual en los subprogramas de Affordability.
+- **KPI**: valor de `text-h2` fluido (44 px) a **tamaño fijo** 28/32 px, y `sm:min-h-[2lh]` en la etiqueta para que los valores queden alineados cuando una etiqueta ocupa una línea y otra dos. En móvil van a **una columna** (con 134 px la etiqueta se partía en tres líneas y volvía a descuadrar).
+- **Panel**: `max-w-[880px]` → `max-w-[1120px]` con `lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]` (el panel pasa de 416 a 664 px), fondo `plate` y `h-fit` para que no se estire al alto del formulario.
+- **Desrayado** (directriz del proyecto): fuera los 21 separadores `border-t border-hairline` internos de los paneles de resultado; la separación es aire.
+- **Copy**: el hero decía «the interactive calculator is coming online shortly» con las ocho calculadoras ya en producción. Reescrito EN/ES.
+- Verificado: cero desborde horizontal y cero solapes en las 8 pestañas × 3 anchos.

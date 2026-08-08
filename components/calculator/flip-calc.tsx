@@ -177,25 +177,25 @@ export function FlipCalc({ texts, locale }: { texts: FlipCalcTexts; locale: stri
 
   const results = result ? (
     <>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6">
         <div className="flex flex-col gap-1">
-          <CalcKpi label={texts.kpiEquityLabel} value={money(result.equityNeeded)} />
+          <CalcKpi label={texts.kpiEquityLabel} value={money(result.equityNeeded)} reserveLabel />
         </div>
         <div className="flex flex-col gap-1">
-          <CalcKpi label={texts.kpiNetProfitLabel} value={money(result.netProfit)} tone={result.netProfit < 0 ? 'error' : 'default'} />
+          <CalcKpi label={texts.kpiNetProfitLabel} value={money(result.netProfit)} tone={result.netProfit < 0 ? 'error' : 'default'} reserveLabel />
         </div>
         <div className="flex flex-col gap-1">
           <CalcKpi
             label={texts.kpiRoiLabel}
             value={result.roiPct === null ? na : pct(result.roiPct)}
-            tone={result.roiPct !== null && result.roiPct < 0 ? 'error' : 'default'}
+            tone={result.roiPct !== null && result.roiPct < 0 ? 'error' : 'default'} reserveLabel
           />
         </div>
         <div className="flex flex-col gap-1">
-          <CalcKpi label={texts.kpiLtarvLabel} value={pct(result.ltarvPct)} />
+          <CalcKpi label={texts.kpiLtarvLabel} value={pct(result.ltarvPct)} reserveLabel />
         </div>
       </div>
-      <div className="flex flex-col gap-2 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-2.5 pt-2">
         <CalcKpiLabel>{texts.breakdownTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4"><dt>{texts.breakdownLoanLabel}</dt><dd className="tabular-nums">{money(result.loanAmount)}</dd></div>
@@ -207,7 +207,7 @@ export function FlipCalc({ texts, locale }: { texts: FlipCalcTexts; locale: stri
           <div className="flex justify-between gap-4"><dt>{texts.breakdownCostToSellLabel}</dt><dd className="tabular-nums">{money(result.costToSell)}</dd></div>
         </dl>
       </div>
-      <div className="flex flex-col gap-2 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-2.5 pt-2">
         <CalcKpiLabel>{texts.metricsTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4"><dt>{texts.metricsClosingLabel}</dt><dd className="tabular-nums">{money(result.originationFee + result.otherClosing)}</dd></div>
@@ -216,7 +216,7 @@ export function FlipCalc({ texts, locale }: { texts: FlipCalcTexts; locale: stri
           <div className="flex justify-between gap-4"><dt>{texts.metricsCashInDealLabel}</dt><dd className="tabular-nums">{money(result.cashInDeal)}</dd></div>
         </dl>
       </div>
-      <div className="flex flex-col gap-3 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-3 pt-2">
         <CalcKpiLabel>{texts.definitionsTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-3 font-sans text-sm leading-[1.7] text-body">
           <div><dt className="font-medium text-ink">{texts.kpiNetProfitLabel}</dt><dd>{texts.netProfitDefinition}</dd></div>

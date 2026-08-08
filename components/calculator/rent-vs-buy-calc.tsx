@@ -162,11 +162,11 @@ export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; lo
           </table>
         </div>
       </div>
-      <div className="flex flex-col gap-1 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-1 pt-2">
         <CalcKpi label={texts.gainLabel.replace('{years}', String(horizon))} value={money(Math.abs(yearData.gain))} />
         <p className="font-sans text-sm text-body">{yearData.gain >= 0 ? texts.gainBuyWins : texts.gainRentWins}</p>
       </div>
-      <p className="border-t border-hairline pt-4 font-sans text-sm leading-[1.7] text-body">
+      <p className="pt-2 font-sans text-sm leading-[1.7] text-body">
         {result.crossoverYear !== null
           ? texts.verdictCrossover.replace('{year}', String(result.crossoverYear))
           : texts.verdictNoCrossover.replace('{years}', String(horizon))}
