@@ -43,7 +43,7 @@
       "bodyMobile": "Respuestas claras, en español o en inglés, antes de comprometerte a nada.",
       "imageAlt": "Casa de Florida con exterior luminoso"
     },
-    "cities": { "lead": "Trabajo con compradores en toda Florida", "list": "— Miami · Fort Lauderdale · Orlando · Tampa · Naples" },
+    "cities": { "lead": "Trabajo con compradores en toda Florida", "items": ["Miami", "Fort Lauderdale", "Orlando", "Tampa", "Naples"] },
     "tellUs": { "eyebrow": "Tu historia", "title": "Cuéntame en qué punto estás — yo trazo el camino.", "helper": "Unas pocas preguntas, cero compromiso. Tus respuestas se quedan en este dispositivo hasta que pulses enviar." },
     "programsIndex": { "eyebrow": "Índice — Sección I", "title": "Programas de préstamo", "helper": "Cinco maneras de financiar una casa en Florida. Si ninguna encaja, hablamos igual.", "rowLabel": "No. {number}" },
     "about": {
