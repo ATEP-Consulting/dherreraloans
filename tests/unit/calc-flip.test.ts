@@ -31,4 +31,25 @@ describe('flipMetrics', () => {
   it('ARV 0 → null', () => {
     expect(flipMetrics({ ...input, arv: 0 })).toBeNull();
   });
+  it('annualRatePct negativo → null', () => {
+    expect(flipMetrics({ ...input, annualRatePct: -1 })).toBeNull();
+  });
+  it('cashInDeal 0 (sin financiación ni costos) → roiPct null pero otras métricas válidas', () => {
+    const r = flipMetrics({
+      purchasePrice: 500000,
+      renovationCost: 0,
+      arv: 750000,
+      months: 9,
+      taxesYearly: 0,
+      insuranceYearly: 0,
+      ltvPct: 100,
+      annualRatePct: 0,
+      originationPct: 0,
+      otherClosingPct: 0,
+      costToSellPct: 5,
+    })!;
+    expect(r.cashInDeal).toBe(0);
+    expect(r.roiPct).toBeNull();
+    expect(r.netProfit).toBeCloseTo(212500, 0);
+  });
 });

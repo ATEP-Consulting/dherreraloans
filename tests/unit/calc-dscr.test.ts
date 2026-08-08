@@ -32,4 +32,21 @@ describe('dscrMetrics', () => {
   it('sin rentas → null', () => {
     expect(dscrMetrics({ ...input, monthlyRents: [] })).toBeNull();
   });
+  it('annualRatePct negativo → null', () => {
+    expect(dscrMetrics({ ...input, annualRatePct: -1 })).toBeNull();
+  });
+  it('ltvPct 0 → dscr null pero otras métricas válidas', () => {
+    const r = dscrMetrics({ ...input, ltvPct: 0 })!;
+    expect(r.loanAmount).toBe(0);
+    expect(r.dscr).toBeNull();
+    expect(r.noi).toBeCloseTo(16000, 0);
+  });
+  it('ltvPct 100 y costos 0 → cashOnCashPct null pero otras métricas válidas', () => {
+    const r = dscrMetrics({ ...input, ltvPct: 100, closingCosts: 0, originationPct: 0 })!;
+    expect(r.loanAmount).toBe(500000);
+    expect(r.downPayment).toBe(0);
+    expect(r.cashNeeded).toBe(0);
+    expect(r.cashOnCashPct).toBeNull();
+    expect(r.noi).toBeCloseTo(16000, 0);
+  });
 });

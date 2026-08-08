@@ -23,7 +23,7 @@ export type FlipResult = {
   equityNeeded: number;
   cashInDeal: number;
   netProfit: number;
-  roiPct: number;
+  roiPct: number | null;
   ltarvPct: number;
 };
 
@@ -31,7 +31,7 @@ export type FlipResult = {
 // comprador (modelo de la referencia: Borrower Equity Needed la incluye).
 export function flipMetrics(input: FlipInput): FlipResult | null {
   const { purchasePrice, renovationCost, arv, months, ltvPct, annualRatePct } = input;
-  if (purchasePrice <= 0 || arv <= 0 || months <= 0 || renovationCost < 0 || ltvPct < 0 || ltvPct > 100) return null;
+  if (purchasePrice <= 0 || arv <= 0 || months <= 0 || renovationCost < 0 || ltvPct < 0 || ltvPct > 100 || annualRatePct < 0) return null;
   const loanAmount = purchasePrice * (ltvPct / 100);
   const downPayment = purchasePrice - loanAmount;
   const monthlyInterest = (loanAmount * (annualRatePct / 100)) / 12;
@@ -55,7 +55,7 @@ export function flipMetrics(input: FlipInput): FlipResult | null {
     equityNeeded,
     cashInDeal,
     netProfit,
-    roiPct: (netProfit / cashInDeal) * 100,
+    roiPct: cashInDeal > 0 ? (netProfit / cashInDeal) * 100 : null,
     ltarvPct: (loanAmount / arv) * 100,
   };
 }

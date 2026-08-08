@@ -27,14 +27,14 @@ export type DscrResult = {
   cashFlow: number;
   capRatePct: number;
   cashNeeded: number;
-  cashOnCashPct: number;
-  dscr: number;
+  cashOnCashPct: number | null;
+  dscr: number | null;
   pricePerUnit: number;
 };
 
 export function dscrMetrics(input: DscrInput): DscrResult | null {
   const { value, monthlyRents, ltvPct, annualRatePct, years } = input;
-  if (value <= 0 || monthlyRents.length === 0 || monthlyRents.some((r) => r < 0) || ltvPct < 0 || ltvPct > 100 || years <= 0)
+  if (value <= 0 || monthlyRents.length === 0 || monthlyRents.some((r) => r < 0) || ltvPct < 0 || ltvPct > 100 || years <= 0 || annualRatePct < 0)
     return null;
   const loanAmount = value * (ltvPct / 100);
   const downPayment = value - loanAmount;
@@ -59,8 +59,8 @@ export function dscrMetrics(input: DscrInput): DscrResult | null {
     cashFlow,
     capRatePct: (noi / value) * 100,
     cashNeeded,
-    cashOnCashPct: (cashFlow / cashNeeded) * 100,
-    dscr: noi / debtServiceYearly,
+    cashOnCashPct: cashNeeded > 0 ? (cashFlow / cashNeeded) * 100 : null,
+    dscr: debtServiceYearly > 0 ? noi / debtServiceYearly : null,
     pricePerUnit: value / monthlyRents.length,
   };
 }
