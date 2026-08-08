@@ -943,15 +943,33 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Get in touch by phone, email or WhatsApp.",
+    "description": "Reach David by WhatsApp, phone or email — he answers personally, in English or Spanish.",
     "heading": "Contact",
-    "heroTitle": "Let's talk about your mortgage.",
-    "heroSub": "Call, text, email, or WhatsApp — whichever is easiest for you. I answer personally, in English or Spanish.",
-    "phone": { "label": "Phone" },
-    "email": { "label": "Email" },
-    "whatsapp": { "label": "WhatsApp", "note": "Fastest way to reach me — most messages get a same-day reply." },
-    "pendingNote": "The phone number and email above are placeholders while we confirm David's business contact details.",
-    "quizLead": { "eyebrow": "Or start here", "title": "Prefer to skip the phone tag? Tell me your situation." }
+    "eyebrow": "Direct contact · Miami, FL",
+    "heroTitle": "Choose how you'd rather talk to me",
+    "heroSub": "No call center, no ticket queue: your message reaches me. In English or in Spanish.",
+    "imageAlt": "Miami home at dusk, warm light in the windows",
+    "badgeLabel": "Your loan originator",
+    "badgeValue": "David Herrera · NMLS #{nmls}",
+    "whatsapp": {
+      "label": "WhatsApp",
+      "action": "Message me now",
+      "note": "Fastest way to reach me — most messages get a same-day reply."
+    },
+    "phone": {
+      "label": "Call",
+      "note": "Ten minutes is usually enough to know where you stand."
+    },
+    "email": {
+      "label": "Email",
+      "note": "Best for documents or longer questions."
+    },
+    "form": {
+      "label": "Form",
+      "action": "Tell me your situation",
+      "note": "Two minutes, no credit impact — I reply with real numbers."
+    },
+    "pendingNote": "The phone number and email above are placeholders while we confirm David's business contact details."
   },
   "legal": {
     "privacy": {

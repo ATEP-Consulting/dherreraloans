@@ -1,17 +1,12 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
-import { PHONE_DISPLAY, PHONE_TEL, EMAIL, whatsAppHref } from '@/lib/site';
+import { PHONE_DISPLAY, PHONE_TEL, EMAIL, NMLS_ID, whatsAppHref } from '@/lib/site';
 import heroPersonal from '@/assets/img/hero-personal.jpg';
-import { PageHero } from '@/components/layout/page-hero';
-import { Eyebrow } from '@/components/ui/eyebrow';
-import { SectionHeading } from '@/components/ui/section-heading';
-import { CtaBand } from '@/components/ui/cta-band';
-import { Button } from '@/components/ui/button';
+import { SiteHeader } from '@/components/layout/site-header';
+import { ContactSwitchboard, type ContactChannel } from '@/components/ui/contact-switchboard';
 import { Container } from '@/components/ui/container';
-import { QuizDeferred } from '@/components/quiz/quiz-deferred';
-import { QuizThanksCtas } from '@/components/quiz/quiz-thanks-ctas';
-import type { QuizTexts } from '@/lib/quiz/texts';
+import { CtaBand } from '@/components/ui/cta-band';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -22,58 +17,37 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return buildPageMetadata({ locale, namespace: 'contact', pathname: '/contact' });
 }
 
-const plateClass =
-  'flex flex-col gap-2 border border-ink bg-plate p-6 transition hover:bg-sand';
-
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('contact');
   const tc = await getTranslations('common');
-  const tq = await getTranslations('quote');
-  const quizTexts = tq.raw('quiz') as QuizTexts;
 
+  const channels: ContactChannel[] = [
+    { key: 'whatsapp', label: t('whatsapp.label'), value: t('whatsapp.action'), note: t('whatsapp.note'), href: whatsAppHref(tc('cta.whatsAppMessage')) },
+    { key: 'phone', label: t('phone.label'), value: PHONE_DISPLAY, note: t('phone.note'), href: `tel:${PHONE_TEL}` },
+    { key: 'email', label: t('email.label'), value: EMAIL, note: t('email.note'), href: `mailto:${EMAIL}` },
+    { key: 'form', label: t('form.label'), value: t('form.action'), note: t('form.note'), href: '/quote', internal: true },
+  ];
+
+  // Contact no usa PageHero: el conmutador ES la portada de la página (concepto A),
+  // así que monta el header global por su cuenta.
   return (
     <>
-      <PageHero
-        locale={locale}
-        pathname="/contact"
-        image={heroPersonal}
-        imageAlt={t('title')}
-        eyebrow={t('title')}
+      <SiteHeader locale={locale} pathname="/contact" />
+      <ContactSwitchboard
+        eyebrow={t('eyebrow')}
         title={t('heroTitle')}
         body={t('heroSub')}
+        channels={channels}
+        image={heroPersonal}
+        imageAlt={t('imageAlt')}
+        badgeLabel={t('badgeLabel')}
+        badgeValue={t('badgeValue', { nmls: NMLS_ID })}
       />
-      <section>
-        <Container className="px-5 py-10 lg:px-[72px] lg:py-16">
-          <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
-            <a href={`tel:${PHONE_TEL}`} className={plateClass}>
-              <Eyebrow>{t('phone.label')}</Eyebrow>
-              <span className="font-display text-h3 font-light text-ink">{PHONE_DISPLAY}</span>
-            </a>
-            <a href={`mailto:${EMAIL}`} className={plateClass}>
-              <Eyebrow>{t('email.label')}</Eyebrow>
-              <span className="break-all font-display text-h3 font-light text-ink">{EMAIL}</span>
-            </a>
-            <a href={whatsAppHref(tc('cta.whatsAppMessage'))} target="_blank" rel="noopener" className={plateClass}>
-              <Eyebrow>{t('whatsapp.label')}</Eyebrow>
-              <span className="font-sans text-base leading-[1.5] text-body">{t('whatsapp.note')}</span>
-            </a>
-          </div>
-          <p className="mt-6 max-w-[65ch] font-sans text-fine italic text-muted">{t('pendingNote')}</p>
-          <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-5">
-            <Button href="/quote" variant="navy">
-              {tc('cta.quote')}
-            </Button>
-          </div>
-        </Container>
-      </section>
-      <section className="border-t border-hairline">
-        <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
-          <div className="reveal-rise">
-            <SectionHeading eyebrow={t('quizLead.eyebrow')} title={t('quizLead.title')} />
-          </div>
-          <QuizDeferred locale={locale} texts={quizTexts} thanksCtas={<QuizThanksCtas />} />
+      <section className="border-b border-hairline bg-paper">
+        <Container className="px-5 py-5 lg:px-[72px]">
+          <p className="max-w-[75ch] font-sans text-fine italic text-muted">{t('pendingNote')}</p>
         </Container>
       </section>
       <CtaBand />
