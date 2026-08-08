@@ -84,13 +84,13 @@ PR F (VA + inversor):
 **Interfaces:**
 - Produces: `APPLY_URL: string` exportada de `lib/site.ts`; `<ActionCards />` server component sin props (lee `home.actionCards` de next-intl).
 
-- [ ] **Step 1: Crear rama**
+- [x] **Step 1: Crear rama**
 
 ```bash
 git checkout main && git pull && git checkout -b feat/fase-2-5-envoltorios
 ```
 
-- [ ] **Step 2: Añadir `APPLY_URL` a `lib/site.ts`** (junto a los placeholders de teléfono/email existentes):
+- [x] **Step 2: Añadir `APPLY_URL` a `lib/site.ts`** (junto a los placeholders de teléfono/email existentes):
 
 ```ts
 // Solicitud 1003 online (POS externo). PLACEHOLDER OBVIO hasta que David confirme su
@@ -98,7 +98,7 @@ git checkout main && git pull && git checkout -b feat/fase-2-5-envoltorios
 export const APPLY_URL = 'https://example.com/solicitud-online-PENDIENTE';
 ```
 
-- [ ] **Step 3: Crear `components/ui/action-cards.tsx`** — server component, tres tarjetas equivalentes al trío de cierre de aimsmtg (§desglose «Flujo 4», punto 4): quote interno, apply externo, calculadora. Grid 1→3 columnas, borde `hairline`, patrón visual de `IndexRow`/cards Fachada (borde 1px, radius 0, sin sombras):
+- [x] **Step 3: Crear `components/ui/action-cards.tsx`** — server component, tres tarjetas equivalentes al trío de cierre de aimsmtg (§desglose «Flujo 4», punto 4): quote interno, apply externo, calculadora. Grid 1→3 columnas, borde `hairline`, patrón visual de `IndexRow`/cards Fachada (borde 1px, radius 0, sin sombras):
 
 ```tsx
 import { getTranslations } from 'next-intl/server';
@@ -139,7 +139,7 @@ export async function ActionCards() {
 
 Nota: si `text-h3` no existe como token, usar el token de heading intermedio que exista en `globals.css` (comprobar antes; no crear tokens nuevos).
 
-- [ ] **Step 4: Messages.** En `messages/en.json`, dentro de `home`, añadir:
+- [x] **Step 4: Messages.** En `messages/en.json`, dentro de `home`, añadir:
 
 ```json
 "actionCards": {
@@ -159,9 +159,9 @@ En `messages/es.json` (mismas claves exactas):
 }
 ```
 
-- [ ] **Step 5: Integrar en `app/[locale]/page.tsx`**: importar `ActionCards` y renderizarla entre el `<Band>` de about y `<CtaBand />`.
+- [x] **Step 5: Integrar en `app/[locale]/page.tsx`**: importar `ActionCards` y renderizarla entre el `<Band>` de about y `<CtaBand />`.
 
-- [ ] **Step 6: Verificar y commit**
+- [x] **Step 6: Verificar y commit**
 
 ```bash
 npm run lint && npx tsc --noEmit && npm test
@@ -180,7 +180,7 @@ Expected: paridad i18n en verde (claves EN=ES).
 **Interfaces:**
 - Consumes: `<Quiz locale texts thanksCtas />` de `components/quiz/quiz.tsx` (props exactas: ver `app/[locale]/quote/page.tsx`), `QuizTexts` de `lib/quiz/texts.ts`.
 
-- [ ] **Step 1: Sección en home.** En `app/[locale]/page.tsx`, entre `<CitiesStrip>` y la sección del índice de programas (patrón aimsmtg §desglose «Flujo 4»: el funnel va en el primer tercio), añadir — reutilizando los textos del quiz del namespace `quote` para no duplicar el árbol `quiz` en messages:
+- [x] **Step 1: Sección en home.** En `app/[locale]/page.tsx`, entre `<CitiesStrip>` y la sección del índice de programas (patrón aimsmtg §desglose «Flujo 4»: el funnel va en el primer tercio), añadir — reutilizando los textos del quiz del namespace `quote` para no duplicar el árbol `quiz` en messages:
 
 ```tsx
 // imports nuevos:
@@ -198,9 +198,9 @@ const quizTexts = tq.raw('quiz') as QuizTexts;
 </section>
 ```
 
-- [ ] **Step 2: Messages `home.tellUs`.** EN: `{ "eyebrow": "Your story", "title": "Tell me where you are — I'll map the way.", "helper": "A few questions, zero commitment. Your answers stay on this device until you hit send." }` · ES (mismas claves): `{ "eyebrow": "Tu historia", "title": "Cuéntame en qué punto estás — yo trazo el camino.", "helper": "Unas pocas preguntas, cero compromiso. Tus respuestas se quedan en este dispositivo hasta que pulses enviar." }`
+- [x] **Step 2: Messages `home.tellUs`.** EN: `{ "eyebrow": "Your story", "title": "Tell me where you are — I'll map the way.", "helper": "A few questions, zero commitment. Your answers stay on this device until you hit send." }` · ES (mismas claves): `{ "eyebrow": "Tu historia", "title": "Cuéntame en qué punto estás — yo trazo el camino.", "helper": "Unas pocas preguntas, cero compromiso. Tus respuestas se quedan en este dispositivo hasta que pulses enviar." }`
 
-- [ ] **Step 3: e2e.** Añadir a `tests/e2e/home.spec.ts` (estilo de los specs existentes — mirar `quiz.spec.ts` para los selectores del quiz):
+- [x] **Step 3: e2e.** Añadir a `tests/e2e/home.spec.ts` (estilo de los specs existentes — mirar `quiz.spec.ts` para los selectores del quiz):
 
 ```ts
 test('el quiz embebido en home avanza y comparte progreso con /quote', async ({ page }) => {
@@ -215,7 +215,7 @@ test('el quiz embebido en home avanza y comparte progreso con /quote', async ({ 
 
 Ajustar los selectores a los reales de `quiz.spec.ts` (roles/nombres accesibles del quiz) — el contrato es: avanzar en home Y retomar en /quote.
 
-- [ ] **Step 4: Presupuesto JS de home**
+- [x] **Step 4: Presupuesto JS de home**
 
 ```bash
 npm run build && node scripts/measure-first-load.mjs .next/server/app/en.html
@@ -223,7 +223,7 @@ npm run build && node scripts/measure-first-load.mjs .next/server/app/en.html
 
 Expected: TOTAL ≤ 170 KB gz (home paga ahora el chunk del quiz). Si el archivo del HTML de home tiene otro nombre en `.next/server/app/`, localizarlo con `ls .next/server/app/*.html`.
 
-- [ ] **Step 5: e2e + commit**
+- [x] **Step 5: e2e + commit**
 
 ```bash
 npm run test:e2e -- home && git add -A && git commit -m "feat: cuestionario embebido en la home con progreso compartido"
@@ -241,13 +241,13 @@ npm run test:e2e -- home && git add -A && git commit -m "feat: cuestionario embe
 **Interfaces:**
 - Produces: pathname interno `'/pre-qualify'` (slug es `'/precalificacion'`) disponible para `Link`/nav.
 
-- [ ] **Step 1: Ruta.** En `config/routes.mjs` añadir a `pathnames`:
+- [x] **Step 1: Ruta.** En `config/routes.mjs` añadir a `pathnames`:
 
 ```js
 '/pre-qualify': { en: '/pre-qualify', es: '/precalificacion' },
 ```
 
-- [ ] **Step 2: Namespace `prequalify` en messages.** Estructura calcada del namespace `quote` (title, description, heading, heroTitle, heroSub) + secciones educativas propias. El contenido educativo se basa en §desglose «Flujo 2 — /mortgage-prequalified/» (precualificación te hace comprador serio; qué mira un prestamista: historial de pago, ingresos, deudas; consejo de revisar tu crédito) con redacción PROPIA. EN:
+- [x] **Step 2: Namespace `prequalify` en messages.** Estructura calcada del namespace `quote` (title, description, heading, heroTitle, heroSub) + secciones educativas propias. El contenido educativo se basa en §desglose «Flujo 2 — /mortgage-prequalified/» (precualificación te hace comprador serio; qué mira un prestamista: historial de pago, ingresos, deudas; consejo de revisar tu crédito) con redacción PROPIA. EN:
 
 ```json
 "prequalify": {
@@ -293,13 +293,13 @@ ES (mismas claves exactas):
 }
 ```
 
-- [ ] **Step 3: Página.** Crear `app/[locale]/pre-qualify/page.tsx` clonando la estructura de `app/[locale]/quote/page.tsx` (mismo `generateStaticParams`/`generateMetadata` con `namespace: 'prequalify'`, `pathname: '/pre-qualify'`, mismo `PageHero` + imagen existente de assets) y añadiendo entre el hero y el quiz dos bloques editoriales con `SectionHeading` (`why`, `credit`) dentro de `Container`, y un tercer `SectionHeading` (`start`) inmediatamente antes de `<Quiz …>` (mismas props/thanksCtas que en /quote).
+- [x] **Step 3: Página.** Crear `app/[locale]/pre-qualify/page.tsx` clonando la estructura de `app/[locale]/quote/page.tsx` (mismo `generateStaticParams`/`generateMetadata` con `namespace: 'prequalify'`, `pathname: '/pre-qualify'`, mismo `PageHero` + imagen existente de assets) y añadiendo entre el hero y el quiz dos bloques editoriales con `SectionHeading` (`why`, `credit`) dentro de `Container`, y un tercer `SectionHeading` (`start`) inmediatamente antes de `<Quiz …>` (mismas props/thanksCtas que en /quote).
 
-- [ ] **Step 4: Nav.** En `components/layout/nav-links.tsx` añadir el item Pre-Qualify (leer el patrón del archivo: los items usan claves de `common.nav.*` — añadir `"prequalify": "Pre-Qualify"` / `"prequalify": "Precalificación"` en `common.nav` de ambos messages y colocarlo entre Quote/Calculator siguiendo el orden del menú aimsmtg §desglose «Header/nav»). Comprobar `components/layout/mobile-nav.tsx` por si duplica la lista.
+- [x] **Step 4: Nav.** En `components/layout/nav-links.tsx` añadir el item Pre-Qualify (leer el patrón del archivo: los items usan claves de `common.nav.*` — añadir `"prequalify": "Pre-Qualify"` / `"prequalify": "Precalificación"` en `common.nav` de ambos messages y colocarlo entre Quote/Calculator siguiendo el orden del menú aimsmtg §desglose «Header/nav»). Comprobar `components/layout/mobile-nav.tsx` por si duplica la lista.
 
-- [ ] **Step 5: Tests de contadores.** `npm test` — los tests de rutas/sitemap/OG fallarán con los contadores viejos: actualizar en `tests/unit/routes.test.ts`, `tests/unit/sitemap.test.ts` y `tests/unit/metadata-og.test.ts` las aserciones de total de rutas estáticas/OG de 42 a 44 (una ruta nueva × 2 locales). Si algún test deriva el contador de `config/routes.mjs` automáticamente, no tocarlo.
+- [x] **Step 5: Tests de contadores.** `npm test` — los tests de rutas/sitemap/OG fallarán con los contadores viejos: actualizar en `tests/unit/routes.test.ts`, `tests/unit/sitemap.test.ts` y `tests/unit/metadata-og.test.ts` las aserciones de total de rutas estáticas/OG de 42 a 44 (una ruta nueva × 2 locales). Si algún test deriva el contador de `config/routes.mjs` automáticamente, no tocarlo.
 
-- [ ] **Step 6: Verificar estático + commit**
+- [x] **Step 6: Verificar estático + commit**
 
 ```bash
 npm run build && npm run check:static && node scripts/measure-first-load.mjs .next/server/app/en/pre-qualify.html
@@ -315,9 +315,9 @@ Expected: check:static en verde con 44 rutas; presupuesto ≤ 170.
 - Modify: `messages/en.json`, `messages/es.json` (clave `contact.quizLead`; eliminar `contact.quoteNudge`)
 - Create: `tests/e2e/prequalify.spec.ts`
 
-- [ ] **Step 1: Contacto.** En `app/[locale]/contact/page.tsx`: sustituir el bloque `quoteNudge` por una sección con `SectionHeading` (usa `contact.quizLead`) + `<Quiz>` (mismas props que /quote). Añadir `"quizLead": { "eyebrow": "Or start here", "title": "Prefer to skip the phone tag? Tell me your situation." }` / ES `{ "eyebrow": "O empieza aquí", "title": "¿Prefieres saltarte el teléfono? Cuéntame tu situación." }` y borrar `quoteNudge` de AMBOS locales (paridad).
+- [x] **Step 1: Contacto.** En `app/[locale]/contact/page.tsx`: sustituir el bloque `quoteNudge` por una sección con `SectionHeading` (usa `contact.quizLead`) + `<Quiz>` (mismas props que /quote). Añadir `"quizLead": { "eyebrow": "Or start here", "title": "Prefer to skip the phone tag? Tell me your situation." }` / ES `{ "eyebrow": "O empieza aquí", "title": "¿Prefieres saltarte el teléfono? Cuéntame tu situación." }` y borrar `quoteNudge` de AMBOS locales (paridad).
 
-- [ ] **Step 2: e2e nuevo** `tests/e2e/prequalify.spec.ts`:
+- [x] **Step 2: e2e nuevo** `tests/e2e/prequalify.spec.ts`:
 
 ```ts
 import { test, expect } from '@playwright/test';
@@ -337,7 +337,7 @@ test('la versión en español existe con slug propio', async ({ page }) => {
 
 (Selector del radio: igualar al usado en `quiz.spec.ts`.)
 
-- [ ] **Step 3: Presupuestos de las 4 rutas con quiz**
+- [x] **Step 3: Presupuestos de las 4 rutas con quiz**
 
 ```bash
 npm run build
@@ -346,7 +346,7 @@ for r in en.html en/quote.html en/contact.html en/pre-qualify.html; do node scri
 
 Expected: todas ≤ 170 KB gz. Si `/quote` supera 170 por arrastre de imports nuevos, revisar que home/contact/pre-qualify no hayan metido imports en módulos compartidos con el quiz.
 
-- [ ] **Step 4: Gate completo + PR D**
+- [x] **Step 4: Gate completo + PR D**
 
 ```bash
 npm run lint && npx next typegen && npx tsc --noEmit && npm test && npm run build && npm run check:static && npm run test:e2e
@@ -371,9 +371,9 @@ Expected: checks verdes (quality + preview Lighthouse) → squash merge antes de
 - Consumes: `monthlyPayment(principal, annualRatePct, years)` de `lib/mortgage.ts`.
 - Produces: `affordability(input: AffordabilityInput, program: Program): AffordabilityResult | null`; constantes `DEFAULTS`, `PMI_FACTOR_BY_SCORE`, `DTI_LIMITS`, `FHA_MIP`, `USDA_FEE`, `VA_FUNDING_FEE`, `CREDIT_BANDS`.
 
-- [ ] **Step 1: Rama** — `git checkout main && git pull && git checkout -b feat/fase-2-5-calculadoras-nucleo`
+- [x] **Step 1: Rama** — `git checkout main && git pull && git checkout -b feat/fase-2-5-calculadoras-nucleo`
 
-- [ ] **Step 2: Constantes.** Crear `lib/calc/constants.ts` — ÚNICA fuente de la configuración de negocio (valores de §desglose «Proveedor/tecnología → Config inyectada» y «Variantes → Affordability»; los marcados ⚠︎ son estándar de mercado o configuración del broker de referencia — **validar con David antes de Fase 4**):
+- [x] **Step 2: Constantes.** Crear `lib/calc/constants.ts` — ÚNICA fuente de la configuración de negocio (valores de §desglose «Proveedor/tecnología → Config inyectada» y «Variantes → Affordability»; los marcados ⚠︎ son estándar de mercado o configuración del broker de referencia — **validar con David antes de Fase 4**):
 
 ```ts
 // Configuración de negocio de las calculadoras. ⚠︎ = copiado de la referencia o
@@ -413,7 +413,7 @@ export const VA_FUNDING_FEE = {
 } as const;
 ```
 
-- [ ] **Step 3: Test que falla.** `tests/unit/calc-affordability.test.ts` (estilo de `tests/unit/mortgage.test.ts`; casos calculados a mano):
+- [x] **Step 3: Test que falla.** `tests/unit/calc-affordability.test.ts` (estilo de `tests/unit/mortgage.test.ts`; casos calculados a mano):
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -457,9 +457,9 @@ describe('affordability', () => {
 });
 ```
 
-- [ ] **Step 4: Ver el fallo** — `npm test -- calc-affordability` → FAIL (módulo no existe).
+- [x] **Step 4: Ver el fallo** — `npm test -- calc-affordability` → FAIL (módulo no existe).
 
-- [ ] **Step 5: Implementar** `lib/calc/affordability.ts`:
+- [x] **Step 5: Implementar** `lib/calc/affordability.ts`:
 
 ```ts
 import { monthlyPayment } from '@/lib/mortgage';
@@ -509,7 +509,7 @@ export function affordability(input: AffordabilityInput, program: Program): Affo
 }
 ```
 
-- [ ] **Step 6: Verde + commit** — `npm test -- calc-affordability` → PASS · `git add -A && git commit -m "feat: constantes de negocio y motor affordability con DTI por programa"`
+- [x] **Step 6: Verde + commit** — `npm test -- calc-affordability` → PASS · `git add -A && git commit -m "feat: constantes de negocio y motor affordability con DTI por programa"`
 
 ### Task 6: `lib/calc/purchase.ts` (TDD) — PITI + amortización anticipada
 
@@ -518,7 +518,7 @@ export function affordability(input: AffordabilityInput, program: Program): Affo
 **Interfaces:**
 - Produces: `purchaseBreakdown(input: PurchaseInput): PurchaseResult | null` con `PurchaseResult = { principal, monthlyPI, breakdown: { pi, tax, insurance, hoa, pmi, extra }, totalMonthly, totalInterest, totalCost, payoffMonths, monthsSaved, interestSaved }`.
 
-- [ ] **Step 1: Test que falla:**
+- [x] **Step 1: Test que falla:**
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -547,9 +547,9 @@ describe('purchaseBreakdown', () => {
 });
 ```
 
-- [ ] **Step 2: FAIL** — `npm test -- calc-purchase`.
+- [x] **Step 2: FAIL** — `npm test -- calc-purchase`.
 
-- [ ] **Step 3: Implementar** `lib/calc/purchase.ts`:
+- [x] **Step 3: Implementar** `lib/calc/purchase.ts`:
 
 ```ts
 import { monthlyPayment } from '@/lib/mortgage';
@@ -605,7 +605,7 @@ export function purchaseBreakdown(input: PurchaseInput): PurchaseResult | null {
 }
 ```
 
-- [ ] **Step 4: PASS + commit** — `git add -A && git commit -m "feat: motor purchase con PITI y simulación de amortización anticipada"`
+- [x] **Step 4: PASS + commit** — `git add -A && git commit -m "feat: motor purchase con PITI y simulación de amortización anticipada"`
 
 ### Task 7: `lib/calc/refinance.ts` (TDD)
 
@@ -614,7 +614,7 @@ export function purchaseBreakdown(input: PurchaseInput): PurchaseResult | null {
 **Interfaces:**
 - Produces: `refinanceComparison(current: CurrentLoan, next: NewLoan): RefinanceResult | null` con `CurrentLoan = { balance, annualRatePct, remainingYears }`, `NewLoan = { annualRatePct, years, cashOut, costs, financeCosts }`, `RefinanceResult = { currentMonthly, newMonthly, monthlySavings, newLoanAmount, currentRemainingInterest, newTotalInterest, interestDifference, breakEvenMonths }` (`breakEvenMonths: number | null` — null si no hay ahorro mensual).
 
-- [ ] **Step 1: Test que falla:**
+- [x] **Step 1: Test que falla:**
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -643,7 +643,7 @@ describe('refinanceComparison', () => {
 });
 ```
 
-- [ ] **Step 2: FAIL · Step 3: Implementar:**
+- [x] **Step 2: FAIL · Step 3: Implementar:**
 
 ```ts
 import { monthlyPayment } from '@/lib/mortgage';
@@ -673,7 +673,7 @@ export function refinanceComparison(current: CurrentLoan, next: NewLoan): Refina
 }
 ```
 
-- [ ] **Step 4: PASS + commit** — `git add -A && git commit -m "feat: motor refinance con comparativa de cuota, interés y break-even"`
+- [x] **Step 4: PASS + commit** — `git add -A && git commit -m "feat: motor refinance con comparativa de cuota, interés y break-even"`
 
 ### Task 8: `lib/calc/rent-vs-buy.ts` (TDD)
 
@@ -682,7 +682,7 @@ export function refinanceComparison(current: CurrentLoan, next: NewLoan): Refina
 **Interfaces:**
 - Produces: `rentVsBuy(input: RentVsBuyInput, horizonYears: number): RentVsBuyResult | null` con serie anual `years: { year, buyNetCost, rentCost, equity, gain }[]` y `crossoverYear: number | null` (primer año con `gain > 0`).
 
-- [ ] **Step 1: Test que falla:**
+- [x] **Step 1: Test que falla:**
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -712,7 +712,7 @@ describe('rentVsBuy', () => {
 });
 ```
 
-- [ ] **Step 2: FAIL · Step 3: Implementar:**
+- [x] **Step 2: FAIL · Step 3: Implementar:**
 
 ```ts
 import { monthlyPayment } from '@/lib/mortgage';
@@ -754,7 +754,7 @@ export function rentVsBuy(input: RentVsBuyInput, horizonYears: number): RentVsBu
 }
 ```
 
-- [ ] **Step 4: PASS + commit** — `git add -A && git commit -m "feat: motor rent vs buy con proyección anual y año de cruce"`
+- [x] **Step 4: PASS + commit** — `git add -A && git commit -m "feat: motor rent vs buy con proyección anual y año de cruce"`
 
 ### Task 9: Infraestructura UI — pestañas, layout, donut; la calculadora actual pasa a variante Purchase
 
@@ -766,7 +766,7 @@ export function rentVsBuy(input: RentVsBuyInput, horizonYears: number): RentVsBu
 - Produces: `CalcTabs({ locale, texts })` client component — único punto de entrada de la página; `CalcLayout({ form, results })`; `CalcDonut({ segments, centerLabel, centerValue })` con `segments: { label: string; value: number; swatchClass: string }[]`.
 - Consumes: `Field`, `MoneyInput`, `PercentInput`, `SelectField` de `components/ui/form/`; `formatMoney` de `lib/format.ts`.
 
-- [ ] **Step 1: `calc-layout.tsx`** — extraer el layout dos-columnas ya existente en `mortgage-calculator.tsx` (grid `lg:grid-cols-2`, panel de resultados con `aria-live="polite"`, borde `ink`, disclaimer al pie):
+- [x] **Step 1: `calc-layout.tsx`** — extraer el layout dos-columnas ya existente en `mortgage-calculator.tsx` (grid `lg:grid-cols-2`, panel de resultados con `aria-live="polite"`, borde `ink`, disclaimer al pie):
 
 ```tsx
 'use client';
@@ -785,7 +785,7 @@ export function CalcLayout({ form, results, disclaimer }: { form: ReactNode; res
 }
 ```
 
-- [ ] **Step 2: `calc-donut.tsx`** — donut SVG puro (paridad con el «Payment Breakdown» de aimsmtg, sin Chart.js). Colores con tokens existentes vía clases (`text-navy`, `text-sand`, `text-ink`, `text-muted` … como `stroke-current`):
+- [x] **Step 2: `calc-donut.tsx`** — donut SVG puro (paridad con el «Payment Breakdown» de aimsmtg, sin Chart.js). Colores con tokens existentes vía clases (`text-navy`, `text-sand`, `text-ink`, `text-muted` … como `stroke-current`):
 
 ```tsx
 'use client';
@@ -825,9 +825,9 @@ export function CalcDonut({ segments, centerLabel, centerValue }: { segments: Se
 }
 ```
 
-- [ ] **Step 3: Renombrar** `mortgage-calculator.tsx` → `purchase-calc.tsx` (export `PurchaseCalc`, tipo `PurchaseCalcTexts`), migrarlo a `CalcLayout` + `CalcDonut` y ampliarlo con los campos de la variante Purchase de §desglose «Variantes → 2»: PMI anual, tax, insurance, HOA, extra mensual (todos `MoneyInput`/`PercentInput` con defaults de `DEFAULTS`) llamando a `purchaseBreakdown`. Resultados: total mensual grande + donut (segmentos P&I/tax/seguro/HOA/PMI/extra) + bloque «Early payoff»: si `extraMonthly > 0`, mostrar `monthsSaved` e `interestSaved` formateados.
+- [x] **Step 3: Renombrar** `mortgage-calculator.tsx` → `purchase-calc.tsx` (export `PurchaseCalc`, tipo `PurchaseCalcTexts`), migrarlo a `CalcLayout` + `CalcDonut` y ampliarlo con los campos de la variante Purchase de §desglose «Variantes → 2»: PMI anual, tax, insurance, HOA, extra mensual (todos `MoneyInput`/`PercentInput` con defaults de `DEFAULTS`) llamando a `purchaseBreakdown`. Resultados: total mensual grande + donut (segmentos P&I/tax/seguro/HOA/PMI/extra) + bloque «Early payoff»: si `extraMonthly > 0`, mostrar `monthsSaved` e `interestSaved` formateados.
 
-- [ ] **Step 4: `calc-tabs.tsx`** — client component con las pestañas (PR E: 4; PR F añade 4):
+- [x] **Step 4: `calc-tabs.tsx`** — client component con las pestañas (PR E: 4; PR F añade 4):
 
 ```tsx
 'use client';
@@ -867,11 +867,11 @@ export function CalcTabs({ locale, texts }: { locale: string; texts: CalcSuiteTe
 }
 ```
 
-- [ ] **Step 5: Página.** `app/[locale]/calculator/page.tsx` pasa a montar `<CalcTabs locale={locale} texts={t.raw('calc') as CalcSuiteTexts} />` (patrón `t.raw` idéntico al quiz). Reestructurar el namespace `calculator.calc` de messages: `tabs { afford, purchase, refi, rentBuy }` + subárboles por variante (los de purchase ya existen: moverlos bajo `calc.purchase`).
+- [x] **Step 5: Página.** `app/[locale]/calculator/page.tsx` pasa a montar `<CalcTabs locale={locale} texts={t.raw('calc') as CalcSuiteTexts} />` (patrón `t.raw` idéntico al quiz). Reestructurar el namespace `calculator.calc` de messages: `tabs { afford, purchase, refi, rentBuy }` + subárboles por variante (los de purchase ya existen: moverlos bajo `calc.purchase`).
 
-- [ ] **Step 6: Messages de pestañas.** EN `"tabs": { "afford": "Affordability", "purchase": "Purchase", "refi": "Refinance", "rentBuy": "Rent vs. buy" }` · ES `"tabs": { "afford": "Capacidad de compra", "purchase": "Compra", "refi": "Refinanciamiento", "rentBuy": "Rentar vs. comprar" }`.
+- [x] **Step 6: Messages de pestañas.** EN `"tabs": { "afford": "Affordability", "purchase": "Purchase", "refi": "Refinance", "rentBuy": "Rent vs. buy" }` · ES `"tabs": { "afford": "Capacidad de compra", "purchase": "Compra", "refi": "Refinanciamiento", "rentBuy": "Rentar vs. comprar" }`.
 
-- [ ] **Step 7: Verificar + commit.** `npm run lint && npx tsc --noEmit && npm test` (los componentes Affordability/Refinance/RentVsBuy aún no existen: crear en este paso stubs mínimos que rendericen `null` para que compile, se implementan en Tasks 10-11). `git add -A && git commit -m "feat: pestañas de calculadora, layout común y donut SVG; purchase con amortización anticipada"`
+- [x] **Step 7: Verificar + commit.** `npm run lint && npx tsc --noEmit && npm test` (los componentes Affordability/Refinance/RentVsBuy aún no existen: crear en este paso stubs mínimos que rendericen `null` para que compile, se implementan en Tasks 10-11). `git add -A && git commit -m "feat: pestañas de calculadora, layout común y donut SVG; purchase con amortización anticipada"`
 
 ### Task 10: Variante Affordability (5 subprogramas)
 
@@ -881,24 +881,24 @@ export function CalcTabs({ locale, texts }: { locale: string; texts: CalcSuiteTe
 - Consumes: `affordability`, `DEFAULTS`, `CREDIT_BANDS`, `DTI_LIMITS` (Task 5); `CalcLayout`, `CalcDonut` (Task 9).
 - Produces: `AffordabilityCalc({ locale, texts })` + tipo `AffordabilityCalcTexts`.
 
-- [ ] **Step 1: Componente.** Sub-pestañas de programa (radio-group estilizado con los 5 programas, mismo patrón de botones que `CalcTabs`), formulario con los campos comunes de §desglose «Affordability → Inputs comunes» (ingreso mensual, deudas mensuales con hint explicativo, precio, entrada, tipo, plazo, tax %, seguro anual, HOA) usando `MoneyInput`/`PercentInput`/`SelectField` con `DEFAULTS`; select de credit score solo para conventional/jumbo (opciones `CREDIT_BANDS`). Estado con `useState` por campo (patrón exacto de `purchase-calc`). Resultados: total mensual + donut (P&I/tax/seguro/HOA/fee del programa) + bloque DTI: «tu DTI X% / Y%» vs «máximo del programa» con `withinLimits` marcando el estado (texto, no solo color) + resumen en prosa (patrón del summary de aimsmtg, redacción propia) + aviso «confirma estos números conmigo» (YMYL).
-- [ ] **Step 2: Messages `calculator.calc.afford`** — claves: `programs { conventional, fha, va, usda, jumbo }`, labels de los 9 campos, `debtsHint`, `dtiYours`, `dtiAllowed`, `dtiOk`, `dtiOver`, `feeLabel { pmi, mip, usda, none }`, `upfrontLabel`, `summary` (con placeholders `{total}`, `{program}`, `{front}`, `{back}`, `{maxFront}`, `{maxBack}`), `confirm`. Redactar EN/ES propios (paridad exacta de claves; el hint de deudas explica qué incluir/excluir como el tooltip de la referencia, con palabras nuestras).
-- [ ] **Step 3: Verificar + commit** — `npm run lint && npx tsc --noEmit && npm test && git add -A && git commit -m "feat: calculadora affordability con 5 programas y veredicto DTI"`
+- [x] **Step 1: Componente.** Sub-pestañas de programa (radio-group estilizado con los 5 programas, mismo patrón de botones que `CalcTabs`), formulario con los campos comunes de §desglose «Affordability → Inputs comunes» (ingreso mensual, deudas mensuales con hint explicativo, precio, entrada, tipo, plazo, tax %, seguro anual, HOA) usando `MoneyInput`/`PercentInput`/`SelectField` con `DEFAULTS`; select de credit score solo para conventional/jumbo (opciones `CREDIT_BANDS`). Estado con `useState` por campo (patrón exacto de `purchase-calc`). Resultados: total mensual + donut (P&I/tax/seguro/HOA/fee del programa) + bloque DTI: «tu DTI X% / Y%» vs «máximo del programa» con `withinLimits` marcando el estado (texto, no solo color) + resumen en prosa (patrón del summary de aimsmtg, redacción propia) + aviso «confirma estos números conmigo» (YMYL).
+- [x] **Step 2: Messages `calculator.calc.afford`** — claves: `programs { conventional, fha, va, usda, jumbo }`, labels de los 9 campos, `debtsHint`, `dtiYours`, `dtiAllowed`, `dtiOk`, `dtiOver`, `feeLabel { pmi, mip, usda, none }`, `upfrontLabel`, `summary` (con placeholders `{total}`, `{program}`, `{front}`, `{back}`, `{maxFront}`, `{maxBack}`), `confirm`. Redactar EN/ES propios (paridad exacta de claves; el hint de deudas explica qué incluir/excluir como el tooltip de la referencia, con palabras nuestras).
+- [x] **Step 3: Verificar + commit** — `npm run lint && npx tsc --noEmit && npm test && git add -A && git commit -m "feat: calculadora affordability con 5 programas y veredicto DTI"`
 
 ### Task 11: Variantes Refinance y Rent vs Buy
 
 **Files:** Create `components/calculator/refinance-calc.tsx`, `components/calculator/rent-vs-buy-calc.tsx` · Modify `messages/{en,es}.json`
 
-- [ ] **Step 1: `RefinanceCalc`.** Dos grupos de campos («Tu préstamo actual»: balance, tipo, años restantes · «El nuevo préstamo»: tipo, plazo, cash out, costes, radio financiar-costes/pagar-aparte — §desglose «Variantes → 3») con defaults del test de Task 7 (250000 · 7 % · 25 · 5.5 % · 30 · 0 · 1000 · financiados). Resultados: dos KPIs grandes (ahorro mensual y diferencia de interés total, en negativo mostrar aviso de que sube), comparativa cuota actual/nueva, break-even en meses (o texto «no se recupera» si null).
-- [ ] **Step 2: `RentVsBuyCalc`.** Campos en 3 grupos (hipoteca / supuestos de compra / supuestos de alquiler, §desglose «Variantes → 4») + `SelectField` de horizonte (1-15 años). Resultados: tabla comparativa del año elegido (coste comprar vs alquilar, equity, ganancia) + frase de veredicto con el año de cruce («a partir del año N, comprar gana») o su ausencia.
-- [ ] **Step 3: Messages** `calculator.calc.refi` y `calculator.calc.rentBuy` (labels de todos los campos + KPIs + veredictos, EN/ES paridad).
-- [ ] **Step 4: Verificar + commit** — `git add -A && git commit -m "feat: calculadoras refinance y rent vs buy"`
+- [x] **Step 1: `RefinanceCalc`.** Dos grupos de campos («Tu préstamo actual»: balance, tipo, años restantes · «El nuevo préstamo»: tipo, plazo, cash out, costes, radio financiar-costes/pagar-aparte — §desglose «Variantes → 3») con defaults del test de Task 7 (250000 · 7 % · 25 · 5.5 % · 30 · 0 · 1000 · financiados). Resultados: dos KPIs grandes (ahorro mensual y diferencia de interés total, en negativo mostrar aviso de que sube), comparativa cuota actual/nueva, break-even en meses (o texto «no se recupera» si null).
+- [x] **Step 2: `RentVsBuyCalc`.** Campos en 3 grupos (hipoteca / supuestos de compra / supuestos de alquiler, §desglose «Variantes → 4») + `SelectField` de horizonte (1-15 años). Resultados: tabla comparativa del año elegido (coste comprar vs alquilar, equity, ganancia) + frase de veredicto con el año de cruce («a partir del año N, comprar gana») o su ausencia.
+- [x] **Step 3: Messages** `calculator.calc.refi` y `calculator.calc.rentBuy` (labels de todos los campos + KPIs + veredictos, EN/ES paridad).
+- [x] **Step 4: Verificar + commit** — `git add -A && git commit -m "feat: calculadoras refinance y rent vs buy"`
 
 ### Task 12: e2e de la suite, presupuesto y PR E
 
 **Files:** Modify `tests/e2e/calculator.spec.ts`
 
-- [ ] **Step 1: e2e.** Añadir a `calculator.spec.ts`:
+- [x] **Step 1: e2e.** Añadir a `calculator.spec.ts`:
 
 ```ts
 test('las pestañas cambian de variante y affordability calcula con defaults', async ({ page }) => {
@@ -914,8 +914,8 @@ test('las pestañas cambian de variante y affordability calcula con defaults', a
 
 (Redondeos: usar los formatos reales que emita `formatMoney` — ajustar el texto esperado tras el primer run visual, manteniendo la aserción numérica.)
 
-- [ ] **Step 2: Presupuesto** — `npm run build && node scripts/measure-first-load.mjs .next/server/app/en/calculator.html` → Expected ≤ 175 KB gz. Si excede: mover `AffordabilityCalc`… a `next/dynamic` por pestaña ANTES de tocar nada más, y re-medir.
-- [ ] **Step 3: Gate completo + PR E** — gate de Global Constraints, `git push -u origin feat/fase-2-5-calculadoras-nucleo`, `gh pr create --title "Fase 2.5 · PR E: suite de calculadoras — affordability, purchase, refinance y rent vs buy"`. Squash merge antes de PR F.
+- [x] **Step 2: Presupuesto** — `npm run build && node scripts/measure-first-load.mjs .next/server/app/en/calculator.html` → Expected ≤ 175 KB gz. Si excede: mover `AffordabilityCalc`… a `next/dynamic` por pestaña ANTES de tocar nada más, y re-medir.
+- [x] **Step 3: Gate completo + PR E** — gate de Global Constraints, `git push -u origin feat/fase-2-5-calculadoras-nucleo`, `gh pr create --title "Fase 2.5 · PR E: suite de calculadoras — affordability, purchase, refinance y rent vs buy"`. Squash merge antes de PR F.
 
 ---
 
@@ -929,9 +929,9 @@ test('las pestañas cambian de variante y affordability calcula con defaults', a
 - Consumes: `VA_FUNDING_FEE` de `lib/calc/constants.ts` (Task 5).
 - Produces: `vaFundingFeePct(use: VaUse, downPct: number, purpose: VaPurpose): number` con `VaUse = 'first' | 'subsequent' | 'exempt'`, `VaPurpose = 'purchase' | 'cashOut' | 'irrrl'`; `vaFinalLoan(base: number, feePct: number): number`.
 
-- [ ] **Step 1: Rama** — `git checkout main && git pull && git checkout -b feat/fase-2-5-calculadoras-avanzadas`
+- [x] **Step 1: Rama** — `git checkout main && git pull && git checkout -b feat/fase-2-5-calculadoras-avanzadas`
 
-- [ ] **Step 2: Test que falla** (tabla completa de §desglose «tabla VA funding fee»):
+- [x] **Step 2: Test que falla** (tabla completa de §desglose «tabla VA funding fee»):
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -963,7 +963,7 @@ describe('vaFinalLoan', () => {
 });
 ```
 
-- [ ] **Step 3: FAIL · Step 4: Implementar:**
+- [x] **Step 3: FAIL · Step 4: Implementar:**
 
 ```ts
 import { VA_FUNDING_FEE } from './constants';
@@ -984,7 +984,7 @@ export function vaFinalLoan(base: number, feePct: number): number {
 }
 ```
 
-- [ ] **Step 5: PASS + commit** — `git add -A && git commit -m "feat: funding fee VA por tramos y préstamo final financiado"`
+- [x] **Step 5: PASS + commit** — `git add -A && git commit -m "feat: funding fee VA por tramos y préstamo final financiado"`
 
 ### Task 14: Variantes VA Purchase y VA Refinance
 
@@ -996,10 +996,10 @@ export function vaFinalLoan(base: number, feePct: number): number {
 - Consumes: `purchaseBreakdown` (Task 6), `refinanceComparison` (Task 7), `vaFundingFeePct`/`vaFinalLoan` (Task 13), `CalcLayout`/`CalcDonut` (Task 9).
 - Produces: `VaPurchaseCalc({ locale, texts })`, `VaRefinanceCalc({ locale, texts })` + sus tipos de texts; `CalcSuiteTexts` y `TAB_IDS` de `calc-tabs.tsx` ampliados con `vaPurchase | vaRefi | dscr | flip` (los componentes DSCR/Flip entran como stubs `null` hasta la Task 16, para que compile).
 
-- [ ] **Step 1: `VaPurchaseCalc`** — como `PurchaseCalc` (§desglose «Variantes → 5») con: select «Uso del beneficio VA» (`first`/`subsequent`/`exempt`), SIN campo PMI, fee calculado con `vaFundingFeePct(use, downPct, 'purchase')`, línea readonly «Funding fee (X %): $Y» y «Préstamo final: $Z» (`vaFinalLoan`); el desglose llama a `purchaseBreakdown` con `price` ajustado para que el principal sea el préstamo final y `pmiYearly: 0`.
-- [ ] **Step 2: `VaRefinanceCalc`** — como `RefinanceCalc` (§desglose «Variantes → 6») con: select «Propósito» (`cashOut`/`irrrl` — con IRRRL el campo cash-out se oculta y fuerza 0) + select de uso VA; el fee se financia: `newLoanAmount` pasa a `vaFinalLoan(balance + cashOut + costes financiados, fee)` — implementar componiendo `refinanceComparison` con el balance ya inflado y mostrando el fee como línea propia.
-- [ ] **Step 3: Pestañas y messages.** `TAB_IDS = ['afford', 'purchase', 'refi', 'rentBuy', 'vaPurchase', 'vaRefi', 'dscr', 'flip']`; messages `calculator.calc.tabs` añade EN `"vaPurchase": "VA purchase", "vaRefi": "VA refinance", "dscr": "Rental (DSCR)", "flip": "Fix & flip"` · ES `"vaPurchase": "Compra VA", "vaRefi": "Refinanciamiento VA", "dscr": "Renta (DSCR)", "flip": "Comprar y remodelar"`; subárboles `vaPurchase.*` y `vaRefi.*` con los labels nuevos (uso VA, propósito, fee, préstamo final) EN/ES.
-- [ ] **Step 4: Verificar + commit** — `npm run lint && npx tsc --noEmit && npm test && git add -A && git commit -m "feat: calculadoras VA purchase y VA refinance con funding fee financiado"`
+- [x] **Step 1: `VaPurchaseCalc`** — como `PurchaseCalc` (§desglose «Variantes → 5») con: select «Uso del beneficio VA» (`first`/`subsequent`/`exempt`), SIN campo PMI, fee calculado con `vaFundingFeePct(use, downPct, 'purchase')`, línea readonly «Funding fee (X %): $Y» y «Préstamo final: $Z» (`vaFinalLoan`); el desglose llama a `purchaseBreakdown` con `price` ajustado para que el principal sea el préstamo final y `pmiYearly: 0`.
+- [x] **Step 2: `VaRefinanceCalc`** — como `RefinanceCalc` (§desglose «Variantes → 6») con: select «Propósito» (`cashOut`/`irrrl` — con IRRRL el campo cash-out se oculta y fuerza 0) + select de uso VA; el fee se financia: `newLoanAmount` pasa a `vaFinalLoan(balance + cashOut + costes financiados, fee)` — implementar componiendo `refinanceComparison` con el balance ya inflado y mostrando el fee como línea propia.
+- [x] **Step 3: Pestañas y messages.** `TAB_IDS = ['afford', 'purchase', 'refi', 'rentBuy', 'vaPurchase', 'vaRefi', 'dscr', 'flip']`; messages `calculator.calc.tabs` añade EN `"vaPurchase": "VA purchase", "vaRefi": "VA refinance", "dscr": "Rental (DSCR)", "flip": "Fix & flip"` · ES `"vaPurchase": "Compra VA", "vaRefi": "Refinanciamiento VA", "dscr": "Renta (DSCR)", "flip": "Comprar y remodelar"`; subárboles `vaPurchase.*` y `vaRefi.*` con los labels nuevos (uso VA, propósito, fee, préstamo final) EN/ES.
+- [x] **Step 4: Verificar + commit** — `npm run lint && npx tsc --noEmit && npm test && git add -A && git commit -m "feat: calculadoras VA purchase y VA refinance con funding fee financiado"`
 
 ### Task 15: `lib/calc/dscr.ts` y `lib/calc/flip.ts` (TDD)
 
@@ -1008,7 +1008,7 @@ export function vaFinalLoan(base: number, feePct: number): number {
 **Interfaces:**
 - Produces: `dscrMetrics(input: DscrInput): DscrResult | null` y `flipMetrics(input: FlipInput): FlipResult | null` (tipos completos en los pasos).
 
-- [ ] **Step 1: Test DSCR que falla** (caso = defaults de §desglose «Variantes → 7», verificado a mano):
+- [x] **Step 1: Test DSCR que falla** (caso = defaults de §desglose «Variantes → 7», verificado a mano):
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -1038,7 +1038,7 @@ describe('dscrMetrics', () => {
 });
 ```
 
-- [ ] **Step 2: FAIL · Step 3: Implementar `dscr.ts`:**
+- [x] **Step 2: FAIL · Step 3: Implementar `dscr.ts`:**
 
 ```ts
 import { monthlyPayment } from '@/lib/mortgage';
@@ -1080,7 +1080,7 @@ export function dscrMetrics(input: DscrInput): DscrResult | null {
 }
 ```
 
-- [ ] **Step 4: Test Flip que falla** (caso = defaults de §desglose «Variantes → 8», interés simple sobre el préstamo, impuestos/seguro prorrateados al plazo):
+- [x] **Step 4: Test Flip que falla** (caso = defaults de §desglose «Variantes → 8», interés simple sobre el préstamo, impuestos/seguro prorrateados al plazo):
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -1111,7 +1111,7 @@ describe('flipMetrics', () => {
 });
 ```
 
-- [ ] **Step 5: Implementar `flip.ts`:**
+- [x] **Step 5: Implementar `flip.ts`:**
 
 ```ts
 export type FlipInput = {
@@ -1150,7 +1150,7 @@ export function flipMetrics(input: FlipInput): FlipResult | null {
 }
 ```
 
-- [ ] **Step 6: PASS ×2 + commit** — `npm test -- calc-dscr calc-flip` → PASS · `git add -A && git commit -m "feat: motores DSCR y fix & flip con métricas de inversión"`
+- [x] **Step 6: PASS ×2 + commit** — `npm test -- calc-dscr calc-flip` → PASS · `git add -A && git commit -m "feat: motores DSCR y fix & flip con métricas de inversión"`
 
 ### Task 16: Variantes DSCR y Fix & Flip (UI)
 
@@ -1159,16 +1159,16 @@ export function flipMetrics(input: FlipInput): FlipResult | null {
 **Interfaces:**
 - Consumes: `dscrMetrics`, `flipMetrics` (Task 15); `CalcLayout` (Task 9); `SelectField`/`MoneyInput`/`PercentInput`.
 
-- [ ] **Step 1: `DscrCalc`.** Campos según §desglose «Variantes → 7»: select nº de unidades (1-4; renderiza un `MoneyInput` de renta por unidad), radio compra/refi (solo etiqueta el resumen), valor, impuestos, seguro, HOA, selects de vacancia (3-20 %), reparaciones anuales ($300-$1000), utilities, LTV (0-80 en pasos de 5), tipo (6-9 % en pasos de 0.125), origination (0-3 % en pasos de 0.25), closing costs. Resultados: 4 KPIs (cash flow, cap rate, cash-on-cash, DSCR) + listas «desglose del préstamo» y «métricas» + las definiciones didácticas de cada métrica (redacción PROPIA de las definiciones de la referencia; la de DSCR debe explicar el umbral 1.0).
-- [ ] **Step 2: `FlipCalc`.** Campos según §desglose «Variantes → 8»: precio, coste de renovación, ARV, select plazo (1-18 meses), impuestos, seguro, selects LTV (65-90), tipo (9-12), origination (2-3), otros costes de cierre (2-4), coste de venta (1-7). Resultados: 4 KPIs (equity necesaria, beneficio neto, ROI, LTARV) + desglose. Sustituir los stubs de la Task 14 por los componentes reales en `calc-tabs.tsx`.
-- [ ] **Step 3: Messages** `calculator.calc.dscr.*` y `calculator.calc.flip.*` (labels + KPIs + definiciones, EN/ES paridad de claves).
-- [ ] **Step 4: Verificar + commit** — `git add -A && git commit -m "feat: calculadoras DSCR y fix & flip"`
+- [x] **Step 1: `DscrCalc`.** Campos según §desglose «Variantes → 7»: select nº de unidades (1-4; renderiza un `MoneyInput` de renta por unidad), radio compra/refi (solo etiqueta el resumen), valor, impuestos, seguro, HOA, selects de vacancia (3-20 %), reparaciones anuales ($300-$1000), utilities, LTV (0-80 en pasos de 5), tipo (6-9 % en pasos de 0.125), origination (0-3 % en pasos de 0.25), closing costs. Resultados: 4 KPIs (cash flow, cap rate, cash-on-cash, DSCR) + listas «desglose del préstamo» y «métricas» + las definiciones didácticas de cada métrica (redacción PROPIA de las definiciones de la referencia; la de DSCR debe explicar el umbral 1.0).
+- [x] **Step 2: `FlipCalc`.** Campos según §desglose «Variantes → 8»: precio, coste de renovación, ARV, select plazo (1-18 meses), impuestos, seguro, selects LTV (65-90), tipo (9-12), origination (2-3), otros costes de cierre (2-4), coste de venta (1-7). Resultados: 4 KPIs (equity necesaria, beneficio neto, ROI, LTARV) + desglose. Sustituir los stubs de la Task 14 por los componentes reales en `calc-tabs.tsx`.
+- [x] **Step 3: Messages** `calculator.calc.dscr.*` y `calculator.calc.flip.*` (labels + KPIs + definiciones, EN/ES paridad de claves).
+- [x] **Step 4: Verificar + commit** — `git add -A && git commit -m "feat: calculadoras DSCR y fix & flip"`
 
 ### Task 17: e2e final, presupuesto y PR F
 
 **Files:** Modify `tests/e2e/calculator.spec.ts`
 
-- [ ] **Step 1: e2e.** Añadir:
+- [x] **Step 1: e2e.** Añadir:
 
 ```ts
 test('las 8 pestañas responden y las variantes VA/inversor calculan', async ({ page }) => {
@@ -1182,15 +1182,15 @@ test('las 8 pestañas responden y las variantes VA/inversor calculan', async ({ 
 });
 ```
 
-- [ ] **Step 2: Presupuesto** — `npm run build && node scripts/measure-first-load.mjs .next/server/app/en/calculator.html` → ≤ 175 KB gz; si excede, `next/dynamic` para las 4 variantes de este PR y re-medir.
-- [ ] **Step 3: Gate completo + PR F** — gate de Global Constraints, push, `gh pr create --title "Fase 2.5 · PR F: calculadoras VA, DSCR y fix & flip — suite completa"`. Squash merge.
-- [ ] **Step 4: Cierre de fase** — marcar los checkboxes de este plan, commit `docs: Fase 2.5 completada — plan con checkboxes cerrados`. La fase siguiente es el pulido de diseño previo a la demo (fuera de este plan).
+- [x] **Step 2: Presupuesto** — `npm run build && node scripts/measure-first-load.mjs .next/server/app/en/calculator.html` → ≤ 175 KB gz; si excede, `next/dynamic` para las 4 variantes de este PR y re-medir.
+- [x] **Step 3: Gate completo + PR F** — gate de Global Constraints, push, `gh pr create --title "Fase 2.5 · PR F: calculadoras VA, DSCR y fix & flip — suite completa"`. Squash merge.
+- [x] **Step 4: Cierre de fase** — marcar los checkboxes de este plan, commit `docs: Fase 2.5 completada — plan con checkboxes cerrados`. La fase siguiente es el pulido de diseño previo a la demo (fuera de este plan).
 
 ---
 
 ## Checks finales de la fase (después del merge de PR F)
 
-- [ ] `npm run check:static` → 44 rutas, todas prerenderizadas.
-- [ ] Presupuestos: `/` ≤ 170 · `/quote` ≤ 170 · `/contact` ≤ 170 · `/pre-qualify` ≤ 170 · `/calculator` ≤ 175 (KB gz, medidos y anotados en el PR).
-- [ ] Paridad funcional contra §desglose: 4 envoltorios del quiz (quote, pre-qualify, home, contact) · 8 variantes de calculadora (5 subprogramas en affordability) · 12 programas · trío de tarjetas · callout global. Excluido y documentado: Reviews (falta dato de David), Blog/Learning ampliado, staff.
-- [ ] Todas las constantes ⚠︎ de `lib/calc/constants.ts` en la lista de preguntas para la demo con David (spec §8).
+- [x] `npm run check:static` → 44 rutas, todas prerenderizadas.
+- [x] Presupuestos: `/` ≤ 170 · `/quote` ≤ 170 · `/contact` ≤ 170 · `/pre-qualify` ≤ 170 · `/calculator` ≤ 175 (KB gz, medidos y anotados en el PR).
+- [x] Paridad funcional contra §desglose: 4 envoltorios del quiz (quote, pre-qualify, home, contact) · 8 variantes de calculadora (5 subprogramas en affordability) · 12 programas · trío de tarjetas · callout global. Excluido y documentado: Reviews (falta dato de David), Blog/Learning ampliado, staff.
+- [x] Todas las constantes ⚠︎ de `lib/calc/constants.ts` en la lista de preguntas para la demo con David (spec §8).
