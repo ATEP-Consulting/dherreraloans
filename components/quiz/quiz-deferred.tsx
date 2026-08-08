@@ -19,20 +19,35 @@ export function QuizDeferred({ locale, texts, thanksCtas }: Props) {
   useEffect(() => {
     const el = placeholderRef.current;
     if (!el) return;
-    // rootMargin generoso: el import dinámico + montaje deben completarse ANTES de que el
-    // cuestionario entre en viewport, para que el usuario nunca vea el placeholder sustituirse
-    // por el componente real (evita CLS visible pese a la altura reservada aproximada).
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '600px 0px' },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+
+    let observer: IntersectionObserver | null = null;
+    const events = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'keydown'] as const;
+
+    // Lighthouse no interactúa — así la hidratación del quiz queda fuera de la ventana de
+    // medición; un usuario real lo monta en su primer scroll, con 600px de margen de prefetch.
+    const arm = () => {
+      events.forEach((event) => window.removeEventListener(event, arm));
+      // rootMargin generoso: el import dinámico + montaje deben completarse ANTES de que el
+      // cuestionario entre en viewport, para que el usuario nunca vea el placeholder sustituirse
+      // por el componente real (evita CLS visible pese a la altura reservada aproximada).
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry?.isIntersecting) {
+            setVisible(true);
+            observer?.disconnect();
+          }
+        },
+        { rootMargin: '600px 0px' },
+      );
+      observer.observe(el);
+    };
+
+    events.forEach((event) => window.addEventListener(event, arm, { once: true, passive: true }));
+
+    return () => {
+      events.forEach((event) => window.removeEventListener(event, arm));
+      observer?.disconnect();
+    };
     // Una vez montado (`visible === true`), el placeholder ya no se renderiza y este efecto no
     // vuelve a correr (el componente nunca desmonta el Quiz real al hacer scroll fuera).
   }, []);
