@@ -45,7 +45,12 @@
     },
     "cities": { "lead": "Trabajo con compradores en toda Florida", "items": ["Miami", "Fort Lauderdale", "Orlando", "Tampa", "Naples"] },
     "tellUs": { "eyebrow": "Tu historia", "title": "Cuéntame en qué punto estás — yo trazo el camino.", "helper": "Unas pocas preguntas, cero compromiso. Tus respuestas se quedan en este dispositivo hasta que pulses enviar." },
-    "programsIndex": { "eyebrow": "Índice — Sección I", "title": "Programas de préstamo", "helper": "Cinco maneras de financiar una casa en Florida. Si ninguna encaja, hablamos igual.", "rowLabel": "No. {number}" },
+    "programsIndex": { "eyebrow": "Índice — Sección I", "title": "Programas de préstamo", "helper": "Cinco maneras de financiar una casa en Florida. Si ninguna encaja, hablamos igual.", "rowLabel": "No. {number}", "viewAll": "Ver los 12 programas" },
+    "interlude": {
+      "quote": "«Una hipoteca no es un trámite: es la arquitectura financiera de tu casa.»",
+      "cite": "David Herrera · NMLS #1459301",
+      "imageAlt": "Vista aérea de la costa residencial de Miami"
+    },
     "about": {
       "eyebrow": "Sección II — Una persona, no un portal",
       "title": "Una sola persona responde tus preguntas. La misma, siempre.",
