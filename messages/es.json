@@ -17,6 +17,8 @@
     "topStrip": { "left": "David Herrera — Originador de Préstamos Hipotecarios", "right": "NMLS #{nmls} · Miami, Florida" },
     "cta": { "quote": "Obtén tu cotización", "apply": "Aplica online", "whatsApp": "WhatsApp — respondo en el día", "whatsAppMessage": "Hola David, encontré tu página web y me gustaría hablar sobre una hipoteca." },
     "menu": { "open": "Abrir menú", "close": "Cerrar menú" },
+    "programStats": { "eyebrow": "Datos clave" },
+    "related": { "title": "Otros programas a considerar" },
     "footer": {
       "explore": "Explora",
       "legal": "Legal",
@@ -88,7 +90,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para un préstamo FHA?",
-        "body": "Necesitas comprobante de ingresos, dos años de historial laboral y un puntaje de crédito que cumpla el mínimo del programa — flexible, pero no sin requisitos. La casa tiene que ser tu residencia principal, no una propiedad de alquiler ni de vacaciones. Una bancarrota o una ejecución hipotecaria anterior no te descalifica automáticamente, pero hay un período de espera que confirmo contigo caso por caso. Te digo qué documentos reunir antes de que empieces a ver casas."
+        "body": "Necesitas comprobante de ingresos, dos años de historial laboral y un puntaje de crédito que cumpla el mínimo del programa — flexible, pero no sin requisitos. La casa tiene que ser tu residencia principal, no una propiedad de alquiler ni de vacaciones. Una bancarrota o una ejecución hipotecaria anterior no te descalifica automáticamente, pero hay un período de espera que confirmo contigo caso por caso. Te digo qué documentos reunir antes de que empieces a ver casas.",
+        "items": [
+          "Comprobante de ingresos y dos años de historial laboral.",
+          "Un puntaje de crédito que cumpla el mínimo del programa.",
+          "La casa debe ser tu residencia principal."
+        ]
       },
       "how": {
         "title": "Cómo funciona un préstamo FHA",
@@ -116,7 +123,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para un préstamo convencional?",
-        "body": "Los prestamistas generalmente buscan un puntaje de crédito más alto que el que pide FHA, junto con ingresos estables y dos años de historial laboral. La entrada empieza alrededor de 3%, aunque una entrada mayor puede bajar tu tasa y eliminar el seguro hipotecario antes. Puedes usarlo para tu residencia principal, una segunda casa o una propiedad de inversión, algo que FHA no permite. Reviso tu reporte de crédito contigo antes de aplicar, para que no haya sorpresas."
+        "body": "Los prestamistas generalmente buscan un puntaje de crédito más alto que el que pide FHA, junto con ingresos estables y dos años de historial laboral. La entrada empieza alrededor de 3%, aunque una entrada mayor puede bajar tu tasa y eliminar el seguro hipotecario antes. Puedes usarlo para tu residencia principal, una segunda casa o una propiedad de inversión, algo que FHA no permite. Reviso tu reporte de crédito contigo antes de aplicar, para que no haya sorpresas.",
+        "items": [
+          "Un puntaje de crédito más alto que el que pide FHA.",
+          "Dos años de historial laboral estable.",
+          "Una entrada que empieza alrededor de 3%."
+        ]
       },
       "how": {
         "title": "Cómo funciona un préstamo convencional",
@@ -144,7 +156,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para un préstamo VA?",
-        "body": "Necesitas un Certificado de Elegibilidad, que confirma que tu servicio cumple los requisitos del programa — te ayudo a solicitarlo si todavía no lo tienes. El VA no exige una entrada mínima ni un puntaje de crédito mínimo fijo, aunque cada prestamista aplica sus propios criterios. La casa debe ser tu residencia principal. La flexibilidad de crédito es real, pero tus ingresos y deudas todavía tienen que sostener el pago."
+        "body": "Necesitas un Certificado de Elegibilidad, que confirma que tu servicio cumple los requisitos del programa — te ayudo a solicitarlo si todavía no lo tienes. El VA no exige una entrada mínima ni un puntaje de crédito mínimo fijo, aunque cada prestamista aplica sus propios criterios. La casa debe ser tu residencia principal. La flexibilidad de crédito es real, pero tus ingresos y deudas todavía tienen que sostener el pago.",
+        "items": [
+          "Un Certificado de Elegibilidad que confirme tu servicio.",
+          "Sin entrada mínima exigida por el VA.",
+          "La casa debe ser tu residencia principal."
+        ]
       },
       "how": {
         "title": "Cómo funciona un préstamo VA",
@@ -172,7 +189,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para la asistencia de primer comprador?",
-        "body": "Generalmente necesitas estar comprando tu primera casa — o tu primera casa en varios años, dependiendo del programa — y el ingreso de tu hogar debe estar dentro de los límites del programa. Pasas por la misma aprobación de crédito e ingresos que cualquier préstamo FHA o convencional. Algunos programas piden un curso corto de educación para compradores, que te indico si aplica en tu caso. Te digo desde el principio para cuáles programas es probable que califiques."
+        "body": "Generalmente necesitas estar comprando tu primera casa — o tu primera casa en varios años, dependiendo del programa — y el ingreso de tu hogar debe estar dentro de los límites del programa. Pasas por la misma aprobación de crédito e ingresos que cualquier préstamo FHA o convencional. Algunos programas piden un curso corto de educación para compradores, que te indico si aplica en tu caso. Te digo desde el principio para cuáles programas es probable que califiques.",
+        "items": [
+          "Comprar tu primera casa, o la primera en varios años.",
+          "Ingreso del hogar dentro de los límites del programa.",
+          "La misma aprobación de crédito e ingresos que FHA o convencional."
+        ]
       },
       "how": {
         "title": "Cómo funciona la asistencia de primer comprador",
@@ -200,7 +222,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para refinanciar?",
-        "body": "Necesitas suficiente valor acumulado en tu casa — la cantidad exacta depende del tipo de refinanciamiento — junto con ingresos y crédito que sostengan el nuevo préstamo. Un refinanciamiento con retiro de efectivo generalmente requiere más valor acumulado que uno solo de tasa y plazo. Se aplican costos de cierre, similares a los de una compra, así que calculo cuánto tiempo toma recuperar esa inversión. Si los números no te favorecen, te lo digo."
+        "body": "Necesitas suficiente valor acumulado en tu casa — la cantidad exacta depende del tipo de refinanciamiento — junto con ingresos y crédito que sostengan el nuevo préstamo. Un refinanciamiento con retiro de efectivo generalmente requiere más valor acumulado que uno solo de tasa y plazo. Se aplican costos de cierre, similares a los de una compra, así que calculo cuánto tiempo toma recuperar esa inversión. Si los números no te favorecen, te lo digo.",
+        "items": [
+          "Suficiente valor acumulado para sostener el nuevo préstamo.",
+          "Ingresos y crédito que califiquen para el nuevo monto.",
+          "Costos de cierre, similares a los de una compra."
+        ]
       },
       "how": {
         "title": "Cómo funciona un refinanciamiento",
@@ -228,7 +255,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para una hipoteca de tasa fija?",
-        "body": "Lo mismo que pide el programa base con el que califiques: ingresos verificables, deudas manejables y un perfil de crédito acorde al tipo de préstamo — flexible con FHA, más exigente con convencional. Elegir tasa fija no añade requisitos extra. Lo importante es escoger el plazo: uno más corto cuesta más al mes y mucho menos en intereses totales, y te enseño ambos números antes de decidir."
+        "body": "Lo mismo que pide el programa base con el que califiques: ingresos verificables, deudas manejables y un perfil de crédito acorde al tipo de préstamo — flexible con FHA, más exigente con convencional. Elegir tasa fija no añade requisitos extra. Lo importante es escoger el plazo: uno más corto cuesta más al mes y mucho menos en intereses totales, y te enseño ambos números antes de decidir.",
+        "items": [
+          "Ingresos verificables y deudas manejables.",
+          "Un perfil de crédito acorde al tipo de préstamo base.",
+          "Un plazo a elegir — más corto cuesta más al mes, menos en intereses totales."
+        ]
       },
       "how": {
         "title": "Cómo funciona una hipoteca de tasa fija",
@@ -256,7 +288,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para un préstamo USDA?",
-        "body": "Lo primero que reviso es la propiedad — tiene que estar dentro de una zona elegible USDA, que en Florida cubre más pueblos y periferias de las que la mayoría de los compradores imagina. A partir de ahí, el ingreso de tu hogar tiene que quedar por debajo del límite del programa, que varía según la zona y el tamaño de la familia. Todavía necesitas ingresos estables, un perfil de crédito aceptable, y la casa tiene que ser tu residencia principal. Reviso la dirección y tus números juntos antes de avanzar, para no perder tiempo persiguiendo una casa que no calificaría."
+        "body": "Lo primero que reviso es la propiedad — tiene que estar dentro de una zona elegible USDA, que en Florida cubre más pueblos y periferias de las que la mayoría de los compradores imagina. A partir de ahí, el ingreso de tu hogar tiene que quedar por debajo del límite del programa, que varía según la zona y el tamaño de la familia. Todavía necesitas ingresos estables, un perfil de crédito aceptable, y la casa tiene que ser tu residencia principal. Reviso la dirección y tus números juntos antes de avanzar, para no perder tiempo persiguiendo una casa que no calificaría.",
+        "items": [
+          "Una propiedad dentro de una zona elegible USDA.",
+          "Ingreso del hogar por debajo del límite del programa.",
+          "La casa debe ser tu residencia principal."
+        ]
       },
       "how": {
         "title": "Cómo funciona un préstamo USDA",
@@ -284,7 +321,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para un préstamo jumbo?",
-        "body": "Espera un estándar más alto en todo: un puntaje de crédito más fuerte, una relación deuda-ingreso más baja, y reservas documentadas — ahorros que te quedan después del cierre — que un préstamo conforme no exigiría. La entrada normalmente es mayor que la de los programas de entrada baja, aunque la cifra exacta depende del monto del préstamo y tu perfil. Reviso el límite conforme vigente para tu condado antes de empezar, porque cambia y determina si tu préstamo se considera jumbo. La documentación de ingresos y activos suele ser más detallada, y te explico exactamente qué reunir."
+        "body": "Espera un estándar más alto en todo: un puntaje de crédito más fuerte, una relación deuda-ingreso más baja, y reservas documentadas — ahorros que te quedan después del cierre — que un préstamo conforme no exigiría. La entrada normalmente es mayor que la de los programas de entrada baja, aunque la cifra exacta depende del monto del préstamo y tu perfil. Reviso el límite conforme vigente para tu condado antes de empezar, porque cambia y determina si tu préstamo se considera jumbo. La documentación de ingresos y activos suele ser más detallada, y te explico exactamente qué reunir.",
+        "items": [
+          "Un puntaje de crédito más fuerte que el de los préstamos conformes.",
+          "Una relación deuda-ingreso más baja.",
+          "Reservas de efectivo documentadas después del cierre."
+        ]
       },
       "how": {
         "title": "Cómo funciona un préstamo jumbo",
@@ -312,7 +354,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para comprar con entrada baja?",
-        "body": "Lo que necesitas depende por completo de cuál camino te conviene: FHA pide un crédito más flexible, convencional premia un puntaje más fuerte con una tasa menor, y VA o USDA pueden eliminar la entrada por completo si calificas. En todos los casos, los prestamistas todavía quieren ingresos estables y deudas manejables — una entrada baja no significa menos revisión en lo demás. Si un 20% de entrada no es realista para ti ahora mismo, dímelo desde el principio; eso cambia con qué programas empiezo a calcular primero, y si un programa de asistencia tiene sentido para tu situación. El cuestionario de cotización suele ser la forma más rápida de ver dónde estás parado."
+        "body": "Lo que necesitas depende por completo de cuál camino te conviene: FHA pide un crédito más flexible, convencional premia un puntaje más fuerte con una tasa menor, y VA o USDA pueden eliminar la entrada por completo si calificas. En todos los casos, los prestamistas todavía quieren ingresos estables y deudas manejables — una entrada baja no significa menos revisión en lo demás. Si un 20% de entrada no es realista para ti ahora mismo, dímelo desde el principio; eso cambia con qué programas empiezo a calcular primero, y si un programa de asistencia tiene sentido para tu situación. El cuestionario de cotización suele ser la forma más rápida de ver dónde estás parado.",
+        "items": [
+          "Ingresos estables y deudas manejables, sin importar el programa.",
+          "Un perfil de crédito que encaje con FHA, convencional, VA o USDA.",
+          "Una entrada desde 3%, o $0 con VA o USDA."
+        ]
       },
       "how": {
         "title": "Cómo se comparan las opciones de entrada baja",
@@ -340,7 +387,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para un préstamo de propiedad de inversión?",
-        "body": "Espera una entrada mayor de la que pondrías en una residencia principal, junto con un perfil de crédito que respalde el riesgo adicional que asume el prestamista. Normalmente se piden reservas de efectivo después del cierre — suficientes para cubrir varios meses de pago. Si vamos por el camino de un programa que te califica por el ingreso de renta, voy a necesitar un estimado de renta de mercado para la propiedad, que normalmente da un tasador. Te explico los dos enfoques — por ingreso personal y por la propiedad — y te muestro cuál te da mejor resultado antes de comprometernos con uno."
+        "body": "Espera una entrada mayor de la que pondrías en una residencia principal, junto con un perfil de crédito que respalde el riesgo adicional que asume el prestamista. Normalmente se piden reservas de efectivo después del cierre — suficientes para cubrir varios meses de pago. Si vamos por el camino de un programa que te califica por el ingreso de renta, voy a necesitar un estimado de renta de mercado para la propiedad, que normalmente da un tasador. Te explico los dos enfoques — por ingreso personal y por la propiedad — y te muestro cuál te da mejor resultado antes de comprometernos con uno.",
+        "items": [
+          "Una entrada mayor que la de una residencia principal.",
+          "Reservas de efectivo después del cierre, para varios meses de pago.",
+          "Un estimado de renta de mercado, si calificas por ingreso de renta."
+        ]
       },
       "how": {
         "title": "Cómo funciona un préstamo de propiedad de inversión",
@@ -368,7 +420,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para un refinanciamiento cash-out?",
-        "body": "Necesitas suficiente plusvalía para sacar efectivo y todavía dejar el porcentaje requerido — lo calculo contigo usando tu balance actual y un valor actualizado de la casa. Tus ingresos y tu crédito tienen que sostener el monto nuevo y mayor del préstamo, igual que en cualquier refinanciamiento. Sé honesto contigo mismo sobre las contrapartidas desde el inicio: tu balance sube, tu cuota mensual puede subir, se aplican costos de cierre, y el plazo del préstamo se reinicia desde cero. Si los números no te favorecen claramente para lo que quieres lograr, te lo digo antes de empezar el papeleo. Si marcaste cash-out como lo que buscas en mi cuestionario, aquí es exactamente donde retomamos eso."
+        "body": "Necesitas suficiente plusvalía para sacar efectivo y todavía dejar el porcentaje requerido — lo calculo contigo usando tu balance actual y un valor actualizado de la casa. Tus ingresos y tu crédito tienen que sostener el monto nuevo y mayor del préstamo, igual que en cualquier refinanciamiento. Sé honesto contigo mismo sobre las contrapartidas desde el inicio: tu balance sube, tu cuota mensual puede subir, se aplican costos de cierre, y el plazo del préstamo se reinicia desde cero. Si los números no te favorecen claramente para lo que quieres lograr, te lo digo antes de empezar el papeleo. Si marcaste cash-out como lo que buscas en mi cuestionario, aquí es exactamente donde retomamos eso.",
+        "items": [
+          "Suficiente plusvalía para sacar efectivo y aun así cumplir el mínimo requerido.",
+          "Ingresos y crédito que sostengan el nuevo monto, más alto, del préstamo.",
+          "Costos de cierre, y un plazo del préstamo que se reinicia desde cero."
+        ]
       },
       "how": {
         "title": "Cómo funciona un refinanciamiento cash-out",
@@ -396,7 +453,12 @@
       },
       "required": {
         "title": "¿Qué necesitas para un refinanciamiento VA?",
-        "body": "Para un IRRRL necesitas un préstamo VA existente al día y un beneficio neto claro — una tasa menor, una cuota menor, o pasar a tasa fija — porque las reglas de VA exigen que el refinanciamiento realmente te ayude. Un refinanciamiento cash-out VA se parece más a un refinanciamiento estándar: suficiente plusvalía, ingresos y crédito que sostengan el préstamo nuevo, y un Certificado de Elegibilidad ligado a tu servicio, tu servicio activo, o, para algunos, el de tu cónyuge. En la mayoría de los casos se aplica una cuota de financiamiento, con exenciones para algunos prestatarios con discapacidad relacionada con el servicio, que reviso contigo desde el inicio."
+        "body": "Para un IRRRL necesitas un préstamo VA existente al día y un beneficio neto claro — una tasa menor, una cuota menor, o pasar a tasa fija — porque las reglas de VA exigen que el refinanciamiento realmente te ayude. Un refinanciamiento cash-out VA se parece más a un refinanciamiento estándar: suficiente plusvalía, ingresos y crédito que sostengan el préstamo nuevo, y un Certificado de Elegibilidad ligado a tu servicio, tu servicio activo, o, para algunos, el de tu cónyuge. En la mayoría de los casos se aplica una cuota de financiamiento, con exenciones para algunos prestatarios con discapacidad relacionada con el servicio, que reviso contigo desde el inicio.",
+        "items": [
+          "Un préstamo VA existente al día, para un IRRRL.",
+          "Un Certificado de Elegibilidad ligado a tu servicio.",
+          "Una cuota de financiamiento en la mayoría de los casos, exenta para algunos veteranos con discapacidad."
+        ]
       },
       "how": {
         "title": "Cómo funciona un refinanciamiento VA",

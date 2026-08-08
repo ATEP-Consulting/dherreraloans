@@ -17,6 +17,8 @@
     "topStrip": { "left": "David Herrera — Mortgage Loan Originator", "right": "NMLS #{nmls} · Miami, Florida" },
     "cta": { "quote": "Get a Quote", "apply": "Apply Online", "whatsApp": "WhatsApp — same-day reply", "whatsAppMessage": "Hi David, I found your website and I'd like to talk about a mortgage." },
     "menu": { "open": "Open menu", "close": "Close menu" },
+    "programStats": { "eyebrow": "Key facts" },
+    "related": { "title": "Other programs to consider" },
     "footer": {
       "explore": "Explore",
       "legal": "Legal",
@@ -88,7 +90,12 @@
       },
       "required": {
         "title": "What do you need for an FHA loan?",
-        "body": "You'll need proof of income, two years of work history, and a credit score that meets the program minimum — flexible, but not without requirements. The home has to be your primary residence, not a rental or vacation property. A past bankruptcy or foreclosure doesn't automatically disqualify you, but there's a waiting period I'll confirm with you case by case. I'll tell you which documents to gather before you start looking at homes."
+        "body": "You'll need proof of income, two years of work history, and a credit score that meets the program minimum — flexible, but not without requirements. The home has to be your primary residence, not a rental or vacation property. A past bankruptcy or foreclosure doesn't automatically disqualify you, but there's a waiting period I'll confirm with you case by case. I'll tell you which documents to gather before you start looking at homes.",
+        "items": [
+          "Proof of income and two years of work history.",
+          "A credit score that meets the program minimum.",
+          "The home must be your primary residence."
+        ]
       },
       "how": {
         "title": "How an FHA loan works",
@@ -116,7 +123,12 @@
       },
       "required": {
         "title": "What do you need for a conventional loan?",
-        "body": "Lenders generally look for a stronger credit score than FHA requires, along with steady income and two years of employment history. Down payments start around 3%, though a larger down payment can lower your rate and remove mortgage insurance sooner. You can use it for a primary residence, a second home, or an investment property, which FHA doesn't allow. I'll walk through your credit report with you before we apply, so there are no surprises."
+        "body": "Lenders generally look for a stronger credit score than FHA requires, along with steady income and two years of employment history. Down payments start around 3%, though a larger down payment can lower your rate and remove mortgage insurance sooner. You can use it for a primary residence, a second home, or an investment property, which FHA doesn't allow. I'll walk through your credit report with you before we apply, so there are no surprises.",
+        "items": [
+          "A stronger credit score than FHA typically requires.",
+          "Two years of steady employment history.",
+          "A down payment starting around 3%."
+        ]
       },
       "how": {
         "title": "How a conventional loan works",
@@ -144,7 +156,12 @@
       },
       "required": {
         "title": "What do you need for a VA loan?",
-        "body": "You'll need a Certificate of Eligibility, which confirms your service meets the program's requirements — I can help you request it if you don't already have one. There's no minimum down payment and no fixed minimum credit score from the VA itself, though lenders apply their own guidelines. The home must be your primary residence. Credit flexibility is real, but your income and debt still have to support the payment."
+        "body": "You'll need a Certificate of Eligibility, which confirms your service meets the program's requirements — I can help you request it if you don't already have one. There's no minimum down payment and no fixed minimum credit score from the VA itself, though lenders apply their own guidelines. The home must be your primary residence. Credit flexibility is real, but your income and debt still have to support the payment.",
+        "items": [
+          "A Certificate of Eligibility confirming your service.",
+          "No minimum down payment required by the VA.",
+          "The home must be your primary residence."
+        ]
       },
       "how": {
         "title": "How a VA loan works",
@@ -172,7 +189,12 @@
       },
       "required": {
         "title": "What do you need for first-time buyer assistance?",
-        "body": "You'll generally need to be purchasing your first home — or your first home in several years, depending on the program — and your household income has to fall within the program's limits. You'll still go through the same credit and income approval as any FHA or conventional loan. Some programs require a short homebuyer education course, which I'll point you to if it applies. I'll tell you upfront which programs you're likely to qualify for."
+        "body": "You'll generally need to be purchasing your first home — or your first home in several years, depending on the program — and your household income has to fall within the program's limits. You'll still go through the same credit and income approval as any FHA or conventional loan. Some programs require a short homebuyer education course, which I'll point you to if it applies. I'll tell you upfront which programs you're likely to qualify for.",
+        "items": [
+          "Purchasing your first home, or your first in several years.",
+          "Household income within the program's limits.",
+          "The same credit and income approval as FHA or conventional."
+        ]
       },
       "how": {
         "title": "How first-time buyer assistance works",
@@ -200,7 +222,12 @@
       },
       "required": {
         "title": "What do you need to refinance?",
-        "body": "You'll need enough equity in your home — the exact amount depends on the type of refinance — along with income and credit that support the new loan. A cash-out refinance usually requires more equity than a rate-and-term refinance. Closing costs apply, similar to a purchase, so I run the numbers to see how long it takes to break even. If the math doesn't work in your favor, I'll say so."
+        "body": "You'll need enough equity in your home — the exact amount depends on the type of refinance — along with income and credit that support the new loan. A cash-out refinance usually requires more equity than a rate-and-term refinance. Closing costs apply, similar to a purchase, so I run the numbers to see how long it takes to break even. If the math doesn't work in your favor, I'll say so.",
+        "items": [
+          "Enough equity to support the new loan.",
+          "Income and credit that qualify for the new loan amount.",
+          "Closing costs, similar to a home purchase."
+        ]
       },
       "how": {
         "title": "How a refinance works",
@@ -228,7 +255,12 @@
       },
       "required": {
         "title": "What do you need for a fixed rate mortgage?",
-        "body": "The same fundamentals as the underlying program you qualify for: verifiable income, a manageable debt load, and a credit profile that fits the loan type — flexible with FHA, stricter with conventional. There's no extra requirement for choosing fixed over adjustable. What matters is picking the term: a shorter term costs more per month and far less in total interest, and I'll show you both numbers before you decide."
+        "body": "The same fundamentals as the underlying program you qualify for: verifiable income, a manageable debt load, and a credit profile that fits the loan type — flexible with FHA, stricter with conventional. There's no extra requirement for choosing fixed over adjustable. What matters is picking the term: a shorter term costs more per month and far less in total interest, and I'll show you both numbers before you decide.",
+        "items": [
+          "Verifiable income and a manageable debt load.",
+          "A credit profile that fits the underlying loan type.",
+          "A term you choose — shorter costs more monthly, less in total interest."
+        ]
       },
       "how": {
         "title": "How a fixed rate mortgage works",
@@ -256,7 +288,12 @@
       },
       "required": {
         "title": "What do you need for a USDA loan?",
-        "body": "The property is the first thing I check — it has to fall inside a USDA-eligible area, which in Florida covers more towns and outskirts than most buyers expect. From there, your household income needs to stay under the program's limit, which varies by area and family size. You'll still need steady income, an acceptable credit profile, and the home has to be your primary residence. I run the address and your numbers together before we go any further, so we don't waste time chasing a home that won't qualify."
+        "body": "The property is the first thing I check — it has to fall inside a USDA-eligible area, which in Florida covers more towns and outskirts than most buyers expect. From there, your household income needs to stay under the program's limit, which varies by area and family size. You'll still need steady income, an acceptable credit profile, and the home has to be your primary residence. I run the address and your numbers together before we go any further, so we don't waste time chasing a home that won't qualify.",
+        "items": [
+          "A property located inside a USDA-eligible area.",
+          "Household income under the program's limit.",
+          "The home must be your primary residence."
+        ]
       },
       "how": {
         "title": "How a USDA loan works",
@@ -284,7 +321,12 @@
       },
       "required": {
         "title": "What do you need for a jumbo loan?",
-        "body": "Expect a higher bar across the board: a stronger credit score, a lower debt-to-income ratio, and documented reserves — savings left over after closing — that a conforming loan wouldn't ask for. The down payment typically runs higher than the low-down-payment programs allow, though the exact number depends on the loan amount and your profile. I'll pull the current conforming limit for your county before we start, since it changes and determines whether your loan is even considered jumbo. Income and asset documentation tend to be more thorough, and I walk you through exactly what to gather."
+        "body": "Expect a higher bar across the board: a stronger credit score, a lower debt-to-income ratio, and documented reserves — savings left over after closing — that a conforming loan wouldn't ask for. The down payment typically runs higher than the low-down-payment programs allow, though the exact number depends on the loan amount and your profile. I'll pull the current conforming limit for your county before we start, since it changes and determines whether your loan is even considered jumbo. Income and asset documentation tend to be more thorough, and I walk you through exactly what to gather.",
+        "items": [
+          "A stronger credit score than conforming loans require.",
+          "A lower debt-to-income ratio.",
+          "Documented cash reserves after closing."
+        ]
       },
       "how": {
         "title": "How a jumbo loan works",
@@ -312,7 +354,12 @@
       },
       "required": {
         "title": "What do you need for a low down payment purchase?",
-        "body": "What you need depends entirely on which path fits: FHA asks for more flexible credit, conventional rewards a stronger score with a lower rate, and VA or USDA can eliminate the down payment altogether if you qualify. In every case, lenders still want steady income and manageable debt — a low down payment doesn't mean low scrutiny elsewhere. If a 20% down payment isn't realistic right now, tell me that upfront; it changes which programs I run the numbers on first, and whether assistance programs make sense for your situation. The quote questionnaire is usually the fastest way to see where you land."
+        "body": "What you need depends entirely on which path fits: FHA asks for more flexible credit, conventional rewards a stronger score with a lower rate, and VA or USDA can eliminate the down payment altogether if you qualify. In every case, lenders still want steady income and manageable debt — a low down payment doesn't mean low scrutiny elsewhere. If a 20% down payment isn't realistic right now, tell me that upfront; it changes which programs I run the numbers on first, and whether assistance programs make sense for your situation. The quote questionnaire is usually the fastest way to see where you land.",
+        "items": [
+          "Steady income and manageable debt, regardless of the program.",
+          "A credit profile that fits FHA, conventional, VA, or USDA.",
+          "A down payment as low as 3%, or $0 with VA or USDA."
+        ]
       },
       "how": {
         "title": "How low down payment options compare",
@@ -340,7 +387,12 @@
       },
       "required": {
         "title": "What do you need for an investment property loan?",
-        "body": "Expect a larger down payment than you'd put on a primary residence, along with a credit profile that supports the higher risk lenders take on. Cash reserves after closing are usually required — enough to cover several months of payments. If we go the route of a program that qualifies you on rental income, I'll need a market rent estimate for the property, which an appraiser typically provides. I'll walk through both approaches — income-based and property-based — and show you which one gets you a better result before we commit to either."
+        "body": "Expect a larger down payment than you'd put on a primary residence, along with a credit profile that supports the higher risk lenders take on. Cash reserves after closing are usually required — enough to cover several months of payments. If we go the route of a program that qualifies you on rental income, I'll need a market rent estimate for the property, which an appraiser typically provides. I'll walk through both approaches — income-based and property-based — and show you which one gets you a better result before we commit to either.",
+        "items": [
+          "A larger down payment than a primary residence requires.",
+          "Cash reserves after closing, covering several months of payments.",
+          "A market rent estimate, if qualifying on rental income."
+        ]
       },
       "how": {
         "title": "How an investment property loan works",
@@ -368,7 +420,12 @@
       },
       "required": {
         "title": "What do you need for a cash-out refinance?",
-        "body": "You need enough equity to both cash out and still leave the required amount behind — I'll calculate that with you using your current balance and an updated home value. Income and credit have to support the new, larger loan amount, same as any refinance. Be honest about the trade-offs going in: your balance goes up, your monthly payment can go up, closing costs apply, and the loan term resets from day one. If the numbers don't clearly work in your favor for what you're trying to do, I'll tell you before we start the paperwork. If you marked cash-out as what you're after in my questionnaire, this is exactly where we pick that up."
+        "body": "You need enough equity to both cash out and still leave the required amount behind — I'll calculate that with you using your current balance and an updated home value. Income and credit have to support the new, larger loan amount, same as any refinance. Be honest about the trade-offs going in: your balance goes up, your monthly payment can go up, closing costs apply, and the loan term resets from day one. If the numbers don't clearly work in your favor for what you're trying to do, I'll tell you before we start the paperwork. If you marked cash-out as what you're after in my questionnaire, this is exactly where we pick that up.",
+        "items": [
+          "Enough equity to cash out and still meet the required minimum.",
+          "Income and credit that support the new, larger loan amount.",
+          "Closing costs, and a loan term that resets from day one."
+        ]
       },
       "how": {
         "title": "How a cash-out refinance works",
@@ -396,7 +453,12 @@
       },
       "required": {
         "title": "What do you need for a VA refinance?",
-        "body": "For an IRRRL, you need an existing VA loan in good standing and a clear net benefit — a lower rate, payment, or a move to fixed — since VA rules require the refinance to actually help you. A VA cash-out refinance has more in common with a standard refinance: enough equity, income and credit that support the new loan, and a Certificate of Eligibility tied to your service, active duty, or, for some, your spouse's. A funding fee applies in most cases, with exemptions for some borrowers with a service-connected disability, which I'll check for you upfront."
+        "body": "For an IRRRL, you need an existing VA loan in good standing and a clear net benefit — a lower rate, payment, or a move to fixed — since VA rules require the refinance to actually help you. A VA cash-out refinance has more in common with a standard refinance: enough equity, income and credit that support the new loan, and a Certificate of Eligibility tied to your service, active duty, or, for some, your spouse's. A funding fee applies in most cases, with exemptions for some borrowers with a service-connected disability, which I'll check for you upfront.",
+        "items": [
+          "An existing VA loan in good standing, for an IRRRL.",
+          "A Certificate of Eligibility tied to your service.",
+          "A funding fee in most cases, waived for some disabled veterans."
+        ]
       },
       "how": {
         "title": "How a VA refinance works",
