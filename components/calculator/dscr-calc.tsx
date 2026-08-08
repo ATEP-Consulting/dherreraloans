@@ -219,18 +219,26 @@ export function DscrCalc({ texts, locale }: { texts: DscrCalcTexts; locale: stri
   const results = result ? (
     <>
       <div className="grid grid-cols-2 gap-6">
-        <CalcKpi label={texts.kpiCashFlowLabel} value={money(result.cashFlow)} tone={result.cashFlow < 0 ? 'error' : 'default'} />
-        <CalcKpi label={texts.kpiCapRateLabel} value={pct(result.capRatePct)} />
-        <CalcKpi
-          label={texts.kpiCashOnCashLabel}
-          value={result.cashOnCashPct === null ? na : pct(result.cashOnCashPct)}
-          tone={result.cashOnCashPct !== null && result.cashOnCashPct < 0 ? 'error' : 'default'}
-        />
-        <CalcKpi
-          label={texts.kpiDscrLabel}
-          value={result.dscr === null ? na : result.dscr.toFixed(2)}
-          tone={result.dscr !== null && result.dscr < 1 ? 'error' : 'default'}
-        />
+        <div className="flex flex-col gap-1">
+          <CalcKpi label={texts.kpiCashFlowLabel} value={money(result.cashFlow)} tone={result.cashFlow < 0 ? 'error' : 'default'} />
+        </div>
+        <div className="flex flex-col gap-1">
+          <CalcKpi label={texts.kpiCapRateLabel} value={pct(result.capRatePct)} />
+        </div>
+        <div className="flex flex-col gap-1">
+          <CalcKpi
+            label={texts.kpiCashOnCashLabel}
+            value={result.cashOnCashPct === null ? na : pct(result.cashOnCashPct)}
+            tone={result.cashOnCashPct !== null && result.cashOnCashPct < 0 ? 'error' : 'default'}
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <CalcKpi
+            label={texts.kpiDscrLabel}
+            value={result.dscr === null ? na : result.dscr.toFixed(2)}
+            tone={result.dscr !== null && result.dscr < 1 ? 'error' : 'default'}
+          />
+        </div>
       </div>
       <div className="flex flex-col gap-2 border-t border-hairline pt-4">
         <CalcKpiLabel>{texts.breakdownTitle}</CalcKpiLabel>

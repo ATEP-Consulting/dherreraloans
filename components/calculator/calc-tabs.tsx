@@ -10,7 +10,6 @@ import { DscrCalc, type DscrCalcTexts } from './dscr-calc';
 import { FlipCalc, type FlipCalcTexts } from './flip-calc';
 
 const TAB_IDS = ['afford', 'purchase', 'refi', 'rentBuy', 'vaPurchase', 'vaRefi', 'dscr', 'flip'] as const;
-const VISIBLE_TAB_IDS = TAB_IDS;
 
 export type CalcSuiteTexts = {
   tabs: Record<(typeof TAB_IDS)[number], string>;
@@ -27,30 +26,30 @@ const TABPANEL_ID = 'calc-tabpanel';
 // cambia con la pestaña activa), así que todas las pestañas apuntan al mismo aria-controls y el
 // panel anuncia su nombre vía aria-labelledby apuntando a la pestaña activa.
 export function CalcTabs({ locale, texts }: { locale: string; texts: CalcSuiteTexts }) {
-  const [active, setActive] = useState<(typeof VISIBLE_TAB_IDS)[number]>('afford');
-  const tabRefs = useRef<Partial<Record<(typeof VISIBLE_TAB_IDS)[number], HTMLButtonElement | null>>>({});
+  const [active, setActive] = useState<(typeof TAB_IDS)[number]>('afford');
+  const tabRefs = useRef<Partial<Record<(typeof TAB_IDS)[number], HTMLButtonElement | null>>>({});
 
-  function selectTab(id: (typeof VISIBLE_TAB_IDS)[number]) {
+  function selectTab(id: (typeof TAB_IDS)[number]) {
     setActive(id);
     tabRefs.current[id]?.focus();
   }
 
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let nextIndex: number | null = null;
-    if (event.key === 'ArrowRight') nextIndex = (index + 1) % VISIBLE_TAB_IDS.length;
-    else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + VISIBLE_TAB_IDS.length) % VISIBLE_TAB_IDS.length;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % TAB_IDS.length;
+    else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + TAB_IDS.length) % TAB_IDS.length;
     else if (event.key === 'Home') nextIndex = 0;
-    else if (event.key === 'End') nextIndex = VISIBLE_TAB_IDS.length - 1;
+    else if (event.key === 'End') nextIndex = TAB_IDS.length - 1;
     if (nextIndex !== null) {
       event.preventDefault();
-      selectTab(VISIBLE_TAB_IDS[nextIndex]);
+      selectTab(TAB_IDS[nextIndex]);
     }
   }
 
   return (
     <div className="flex flex-col gap-8">
       <div role="tablist" className="flex flex-wrap gap-px border border-hairline bg-hairline">
-        {VISIBLE_TAB_IDS.map((id, index) => (
+        {TAB_IDS.map((id, index) => (
           <button
             key={id}
             ref={(el) => {

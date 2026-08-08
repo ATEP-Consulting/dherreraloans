@@ -178,14 +178,22 @@ export function FlipCalc({ texts, locale }: { texts: FlipCalcTexts; locale: stri
   const results = result ? (
     <>
       <div className="grid grid-cols-2 gap-6">
-        <CalcKpi label={texts.kpiEquityLabel} value={money(result.equityNeeded)} />
-        <CalcKpi label={texts.kpiNetProfitLabel} value={money(result.netProfit)} tone={result.netProfit < 0 ? 'error' : 'default'} />
-        <CalcKpi
-          label={texts.kpiRoiLabel}
-          value={result.roiPct === null ? na : pct(result.roiPct)}
-          tone={result.roiPct !== null && result.roiPct < 0 ? 'error' : 'default'}
-        />
-        <CalcKpi label={texts.kpiLtarvLabel} value={pct(result.ltarvPct)} />
+        <div className="flex flex-col gap-1">
+          <CalcKpi label={texts.kpiEquityLabel} value={money(result.equityNeeded)} />
+        </div>
+        <div className="flex flex-col gap-1">
+          <CalcKpi label={texts.kpiNetProfitLabel} value={money(result.netProfit)} tone={result.netProfit < 0 ? 'error' : 'default'} />
+        </div>
+        <div className="flex flex-col gap-1">
+          <CalcKpi
+            label={texts.kpiRoiLabel}
+            value={result.roiPct === null ? na : pct(result.roiPct)}
+            tone={result.roiPct !== null && result.roiPct < 0 ? 'error' : 'default'}
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <CalcKpi label={texts.kpiLtarvLabel} value={pct(result.ltarvPct)} />
+        </div>
       </div>
       <div className="flex flex-col gap-2 border-t border-hairline pt-4">
         <CalcKpiLabel>{texts.breakdownTitle}</CalcKpiLabel>
