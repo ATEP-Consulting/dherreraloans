@@ -3,10 +3,12 @@ import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
 import { faqPageJsonLd } from '@/lib/jsonld';
 import heroPrograms from '@/assets/img/hero-programs.jpg';
+import interludeSkyline from '@/assets/img/interlude-skyline.jpg';
 import { PageHero } from '@/components/layout/page-hero';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Container } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/section-heading';
+import { Interlude } from '@/components/ui/interlude';
 import { CtaBand } from '@/components/ui/cta-band';
 
 export function generateStaticParams() {
@@ -40,11 +42,14 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
       {items.map((item, i) => (
         <section key={item.q} className={i > 0 ? 'border-t border-hairline' : undefined}>
           <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-14">
-            <SectionHeading eyebrow={t('title')} title={item.q} />
+            <div className="reveal-rise">
+              <SectionHeading eyebrow={t('title')} title={item.q} />
+            </div>
             <p className="max-w-[65ch] font-sans text-base leading-[1.7] text-body">{item.a}</p>
           </Container>
         </section>
       ))}
+      <Interlude image={interludeSkyline} alt={t('interludeAlt')} />
       <CtaBand />
       <JsonLd data={faqPageJsonLd(locale)} />
     </>

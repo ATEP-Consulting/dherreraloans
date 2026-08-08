@@ -12,6 +12,9 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { Container } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { CtaBand } from '@/components/ui/cta-band';
+import { Band } from '@/components/ui/band';
+import { ProgramStats } from '@/components/ui/program-stats';
+import { IndexRow } from '@/components/ui/index-row';
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -43,6 +46,10 @@ export default async function ProgramPage({
   if (!key) notFound();
   const t = await getTranslations(`programs.${key}`);
   const tc = await getTranslations('common');
+  const tp = await getTranslations('programs');
+  const programKeys = Object.keys(programSlugs);
+  const programIndex = programKeys.indexOf(key);
+  const relatedKeys = [1, 2, 3].map((offset) => programKeys[(programIndex + offset) % programKeys.length]);
 
   return (
     <>
@@ -81,6 +88,11 @@ export default async function ProgramPage({
           </ol>
         </Container>
       </nav>
+      <ProgramStats
+        eyebrow={tc('programStats.eyebrow')}
+        stat={t('stat')}
+        items={(t.raw('required.items') as string[]).slice(0, 3)}
+      />
       <section>
         <Container className="px-5 py-10 lg:px-[72px] lg:py-16">
           <p className="max-w-[65ch] font-sans text-lede leading-[1.65] text-body">{t('intro')}</p>
@@ -88,28 +100,49 @@ export default async function ProgramPage({
       </section>
       <section className="border-t border-hairline">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-14">
-          <SectionHeading eyebrow={t('indexName')} title={t('whatIs.title')} />
+          <div className="reveal-rise">
+            <SectionHeading eyebrow={t('indexName')} title={t('whatIs.title')} />
+          </div>
           <p className="max-w-[65ch] font-sans text-base leading-[1.7] text-body">{t('whatIs.body')}</p>
         </Container>
       </section>
       <section className="border-t border-hairline">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-14">
-          <SectionHeading eyebrow={t('indexName')} title={t('required.title')} />
+          <div className="reveal-rise">
+            <SectionHeading eyebrow={t('indexName')} title={t('required.title')} />
+          </div>
           <p className="max-w-[65ch] font-sans text-base leading-[1.7] text-body">{t('required.body')}</p>
         </Container>
       </section>
       <section className="border-t border-hairline">
         <Container className="px-5 py-10 lg:px-[72px] lg:py-14">
-          <h2 className="max-w-[65ch] font-display text-h2 font-light text-ink">{t('how.title')}</h2>
-          <ul className="mt-6 max-w-[65ch]">
+          <h2 className="reveal-rise max-w-[65ch] font-display text-h2 font-light text-ink">{t('how.title')}</h2>
+          <ul className="reveal-stagger mt-6 max-w-[65ch]">
             {t.raw('how.items').map((item: string) => (
-              <li key={item} className="border-b border-hairline py-4 font-sans text-base text-body">
+              <li key={item} className="reveal-left border-b border-hairline py-4 font-sans text-base text-body">
                 {item}
               </li>
             ))}
           </ul>
         </Container>
       </section>
+      <Band tone="navy">
+        <div className="flex flex-col gap-6">
+          <h2 className="reveal-rise font-display text-h3 font-light text-paper">{tc('related.title')}</h2>
+          <div className="reveal-stagger flex flex-col">
+            {relatedKeys.map((k) => (
+              <IndexRow
+                key={k}
+                tone="navy"
+                className="reveal-left"
+                name={tp(`${k}.indexName`)}
+                stat={tp(`${k}.stat`)}
+                href={{ pathname: '/loan-options/[program]', params: { program: slugFor(locale, k) } }}
+              />
+            ))}
+          </div>
+        </div>
+      </Band>
       <CtaBand />
       <JsonLd data={mortgageLoanJsonLd(locale, key)} />
       <JsonLd data={breadcrumbJsonLd(locale, key)} />
