@@ -3,19 +3,8 @@ import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
 import { programSlugs } from '@/config/routes.mjs';
 import { slugFor } from '@/lib/programs';
+import { PROGRAM_IMAGES, type ProgramKey } from '@/lib/program-images';
 import heroPrograms from '@/assets/img/hero-programs.jpg';
-import programFha from '@/assets/img/program-fha.jpg';
-import programConventional from '@/assets/img/program-conventional.jpg';
-import programVa from '@/assets/img/program-va.jpg';
-import programFirstTime from '@/assets/img/program-firstTimeHomebuyer.jpg';
-import programRefinance from '@/assets/img/program-refinance.jpg';
-import programFixedRate from '@/assets/img/program-fixedRate.jpg';
-import programUsda from '@/assets/img/program-usda.jpg';
-import programJumbo from '@/assets/img/program-jumbo.jpg';
-import programLowDown from '@/assets/img/program-lowDownPayment.jpg';
-import programInvestment from '@/assets/img/program-investment.jpg';
-import programCashOut from '@/assets/img/program-cashOutRefinance.jpg';
-import programVaRefi from '@/assets/img/program-vaRefinance.jpg';
 import { PageHero } from '@/components/layout/page-hero';
 import { Container } from '@/components/ui/container';
 import { Band } from '@/components/ui/band';
@@ -36,29 +25,15 @@ export default async function LoanOptionsPage({ params }: { params: Promise<{ lo
   const t = await getTranslations('loanOptions');
   const th = await getTranslations('home');
   const tp = await getTranslations('programs');
-  const programKeys = Object.keys(programSlugs);
+  const programKeys = Object.keys(programSlugs) as ProgramKey[];
 
-  const programImages = {
-    fha: programFha,
-    conventional: programConventional,
-    va: programVa,
-    firstTimeHomebuyer: programFirstTime,
-    refinance: programRefinance,
-    fixedRate: programFixedRate,
-    usda: programUsda,
-    jumbo: programJumbo,
-    lowDownPayment: programLowDown,
-    investment: programInvestment,
-    cashOutRefinance: programCashOut,
-    vaRefinance: programVaRefi,
-  } as const;
   const items: ProgramsIndexItem[] = programKeys.map((key, i) => ({
     key,
     number: th('programsIndex.rowLabel', { number: i + 1 }),
     name: tp(`${key}.indexName`),
     stat: tp(`${key}.stat`),
     description: tp(`${key}.blurb`),
-    image: programImages[key as keyof typeof programImages],
+    image: PROGRAM_IMAGES[key],
     href: { pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } },
   }));
 
