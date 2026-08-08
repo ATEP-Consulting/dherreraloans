@@ -31,3 +31,31 @@ test('funciona en ES con su copy', async ({ page }) => {
   await expect(page.locator('div[aria-live="polite"]')).toContainText('599');
   await expect(page.locator('div[aria-live="polite"]')).toContainText(es.calculator.calc.purchase.disclaimer);
 });
+
+test('las pestañas cambian de variante y affordability calcula con defaults', async ({ page }) => {
+  await page.goto('/en/calculator');
+  // affordability es la pestaña por defecto y calcula de entrada con sus valores DEFAULTS
+  await expect(page.getByRole('tab', { name: en.calculator.calc.tabs.afford, exact: true })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
+  // total mensual con defaults (price 200k/0% down/5%/30a + tax/seguro/PMI) = 1350.31
+  // (el importe se repite en el <p> del resultado y en el centro del donut SVG, de ahí toContainText sobre el panel)
+  await expect(page.locator('div[aria-live="polite"]')).toContainText('$1,350.31');
+
+  await page.getByRole('tab', { name: en.calculator.calc.tabs.refi, exact: true }).click();
+  await expect(page.getByRole('tab', { name: en.calculator.calc.tabs.refi, exact: true })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
+  // ahorro mensual con defaults (250k/7%/25a restantes → 5.5%/30a) = 341.80
+  await expect(page.locator('div[aria-live="polite"]')).toContainText('$341.80');
+
+  await page.getByRole('tab', { name: en.calculator.calc.tabs.rentBuy, exact: true }).click();
+  await expect(page.getByRole('tab', { name: en.calculator.calc.tabs.rentBuy, exact: true })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
+  await expect(page.getByRole('tabpanel')).toBeVisible();
+  await expect(page.getByText(en.calculator.calc.rentBuy.comparisonTitle.replace('{years}', '5'))).toBeVisible();
+});
