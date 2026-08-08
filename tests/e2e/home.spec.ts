@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import en from '../../messages/en.json';
 import es from '../../messages/es.json';
-import { APPLY_URL } from '../../lib/site';
+import { APPLY_URL, EMAIL } from '../../lib/site';
 
 test('índice de la home: 5 destacados y enlace al índice completo', async ({ page }) => {
   await page.goto('/en');
@@ -64,16 +64,24 @@ test('about: NMLS del originador y enlace a Consumer Access, con FinancialServic
   expect(ld.join('')).toContain('"FinancialService"');
 });
 
-test('contact: teléfono placeholder y enlace de WhatsApp con deep link', async ({ page }) => {
+test('contact: el conmutador ofrece los cuatro canales con sus destinos', async ({ page }) => {
   await page.goto('/en/contact');
+  const c = en.contact;
+  await expect(page.getByRole('link', { name: c.whatsapp.action })).toHaveAttribute(
+    'href',
+    /wa\.me\/13050000000/,
+  );
   await expect(page.getByRole('link', { name: '+1 (305) 000-0000' })).toHaveAttribute(
     'href',
     'tel:+13050000000',
   );
-  await expect(page.getByRole('link', { name: en.contact.whatsapp.note })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: new RegExp(c.email.note) })).toHaveAttribute(
     'href',
-    /wa\.me\/13050000000/,
+    `mailto:${EMAIL}`,
   );
+  await expect(page.getByRole('link', { name: c.form.action })).toHaveAttribute('href', '/en/quote');
+  // La nota de placeholders sigue visible: el teléfono y el email aún no son reales.
+  await expect(page.getByText(c.pendingNote)).toBeVisible();
 });
 
 test('el quiz embebido en home avanza y comparte progreso con /quote', async ({ page }) => {

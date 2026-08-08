@@ -943,15 +943,33 @@
   },
   "contact": {
     "title": "Contacto",
-    "description": "Comunícate por teléfono, email o WhatsApp.",
+    "description": "Habla con David por WhatsApp, teléfono o email — responde él, en inglés o en español.",
     "heading": "Contacto",
-    "heroTitle": "Hablemos de tu hipoteca.",
-    "heroSub": "Llama, escribe, envía un email o un WhatsApp — lo que te resulte más fácil. Contesto en persona, en español o en inglés.",
-    "phone": { "label": "Teléfono" },
-    "email": { "label": "Email" },
-    "whatsapp": { "label": "WhatsApp", "note": "La forma más rápida de encontrarme — la mayoría de los mensajes reciben respuesta el mismo día." },
-    "pendingNote": "El teléfono y el email de arriba son provisionales mientras confirmamos los datos de contacto de David con la empresa.",
-    "quizLead": { "eyebrow": "O empieza aquí", "title": "¿Prefieres saltarte el teléfono? Cuéntame tu situación." }
+    "eyebrow": "Contacto directo · Miami, FL",
+    "heroTitle": "Elige cómo prefieres hablar conmigo",
+    "heroSub": "Sin centro de llamadas ni tickets: tu mensaje llega a mí. En inglés o en español.",
+    "imageAlt": "Casa de Miami al atardecer, con luz cálida en las ventanas",
+    "badgeLabel": "Tu originador",
+    "badgeValue": "David Herrera · NMLS #{nmls}",
+    "whatsapp": {
+      "label": "WhatsApp",
+      "action": "Escríbeme ahora",
+      "note": "La vía más rápida: la mayoría de mensajes tienen respuesta el mismo día."
+    },
+    "phone": {
+      "label": "Llamar",
+      "note": "Diez minutos suelen bastar para saber dónde estás."
+    },
+    "email": {
+      "label": "Email",
+      "note": "Ideal para documentos o preguntas largas."
+    },
+    "form": {
+      "label": "Formulario",
+      "action": "Cuéntame tu caso",
+      "note": "Dos minutos, sin afectar tu crédito — te respondo con números reales."
+    },
+    "pendingNote": "El teléfono y el email de arriba son provisionales mientras confirmamos los datos de contacto de David."
   },
   "legal": {
     "privacy": {
