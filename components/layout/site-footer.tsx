@@ -62,7 +62,7 @@ export async function SiteFooter({ locale }: Props) {
             </TextLink>
           </div>
 
-          <EhoMark label={t('footer.eho')} />
+          <EhoMark label={t('footer.eho')} tone="paper" />
         </div>
 
         <p className="mt-6 max-w-[1100px] font-sans text-fine leading-relaxed text-paper-a55">
