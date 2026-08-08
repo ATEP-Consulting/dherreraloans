@@ -178,7 +178,7 @@ export function RentVsBuyCalc({ texts, locale }: { texts: RentVsBuyCalcTexts; lo
       </div>
       <div className="flex flex-col gap-1 border-t border-hairline pt-4">
         <p className={kpiLabel}>{texts.gainLabel.replace('{years}', String(horizon))}</p>
-        <p className={`${kpiValue} ${yearData.gain >= 0 ? 'text-ink' : 'text-error'}`}>{money(Math.abs(yearData.gain))}</p>
+        <p className={`${kpiValue} text-ink`}>{money(Math.abs(yearData.gain))}</p>
         <p className="font-sans text-sm text-body">{yearData.gain >= 0 ? texts.gainBuyWins : texts.gainRentWins}</p>
       </div>
       <p className="border-t border-hairline pt-4 font-sans text-sm leading-[1.7] text-body">
