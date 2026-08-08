@@ -3,11 +3,12 @@ import en from '../../messages/en.json';
 import es from '../../messages/es.json';
 import { APPLY_URL } from '../../lib/site';
 
-test('la home monta las filas del índice con enlaces a programas', async ({ page }) => {
+test('índice de la home: 5 destacados y enlace al índice completo', async ({ page }) => {
   await page.goto('/en');
-  const rows = page.locator('a[href^="/en/loan-options/"]');
-  await expect(rows).toHaveCount(Object.keys(en.programs).length);
-  await expect(rows.first()).toContainText(en.programs.fha.indexName);
+  for (const key of ['conventional', 'fha', 'va', 'jumbo', 'investment'] as const) {
+    await expect(page.getByRole('link', { name: new RegExp(en.programs[key].indexName) })).toBeVisible();
+  }
+  await expect(page.getByRole('link', { name: en.home.programsIndex.viewAll })).toBeVisible();
 });
 
 test('CTAs del hero: quote interno y WhatsApp con deep link', async ({ page }) => {
