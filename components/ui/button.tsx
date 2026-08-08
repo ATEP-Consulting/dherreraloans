@@ -3,7 +3,7 @@ import { Link } from '@/i18n/routing';
 
 type Props = {
   href: string | { pathname: string; params?: Record<string, string> };
-  variant: 'paper' | 'navy';
+  variant: 'paper' | 'navy' | 'outline';
   size?: 'md' | 'lg';
   external?: boolean;
   children: ReactNode;
@@ -11,11 +11,15 @@ type Props = {
 
 const base =
   'inline-flex items-center justify-center font-sans text-btn font-semibold uppercase tracking-button transition hover:brightness-95';
-const variants = { paper: 'bg-paper text-navy', navy: 'bg-navy text-paper' };
+const variants = {
+  paper: 'bg-paper text-navy',
+  navy: 'bg-navy text-paper',
+  outline: 'border border-paper-a55 text-paper hover:bg-paper-a25',
+};
 const sizes = { md: 'px-[26px] py-3.5', lg: 'px-9 py-[18px]' };
 
 /** Clases del Button expuestas para elementos no-link (p. ej. <button> del quiz) que deben verse idénticos. */
-export function buttonVariantClass(variant: 'paper' | 'navy', size: 'md' | 'lg' = 'md'): string {
+export function buttonVariantClass(variant: 'paper' | 'navy' | 'outline', size: 'md' | 'lg' = 'md'): string {
   return `${base} ${variants[variant]} ${sizes[size]}`;
 }
 

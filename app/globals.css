@@ -171,9 +171,14 @@ body {
 /* Anclas (#quiz) no deben quedar bajo el header fijo */
 html { scroll-padding-top: 7rem; }
 
-/* ── Marquesina de ciudades ── */
-@keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee { overflow: hidden; }
+/* ── Marquesina de ciudades ──
+   4 pases idénticos y desplazamiento de -25%: el bucle es continuo y siempre quedan 3
+   pases cubriendo el ancho (cero huecos). La máscara difumina entrada y salida. */
+@keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-25%); } }
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
 .marquee-track { display: flex; width: max-content; animation: marquee-scroll var(--duration-marquee) linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 .marquee:focus-within .marquee-track { animation-play-state: paused; }
