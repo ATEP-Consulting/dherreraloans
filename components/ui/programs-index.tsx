@@ -19,9 +19,11 @@ type Props = {
 
 export function ProgramsIndex({ items, viewAll }: Props) {
   return (
-    <div className="grid items-start gap-6 lg:grid-cols-[1fr_300px] lg:gap-16">
+    <div className="pindex grid items-start gap-6 lg:grid-cols-[1fr_300px] lg:gap-16">
       <div>
-        {/* Filas como hijas DIRECTAS de .pindex-rows: el :has(> a:hover) del preview depende de ello */}
+        {/* Filas como hijas DIRECTAS de .pindex-rows: el :has(.pindex-rows > a:hover) del
+            preview depende de ello. .pindex-rows y .pindex-preview NO son hermanos (columnas
+            distintas del grid) — por eso el :has() ancla en la raíz .pindex, no en `~`. */}
         <div className="pindex-rows reveal-stagger flex flex-col">
           {items.map((item) => (
             <IndexRow key={item.key} tone="navy" className="reveal-left" number={item.number} name={item.name} stat={item.stat} href={item.href}>

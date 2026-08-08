@@ -31,6 +31,7 @@
   --ease-curtain: cubic-bezier(0.7, 0, 0.2, 1);
   --duration-marquee: 28s;
   --duration-page-enter: 0.55s;
+  --duration-preview: 0.5s; /* ProgramsIndex: fundido entre fotos de preview */
   --duration-view-transition: 300ms; /* SPIKE Task 16 — cross-fade de navegación */
 
   /* Tipografía */
@@ -132,26 +133,30 @@ body {
 .marquee { overflow: hidden; }
 .marquee-track { display: flex; width: max-content; animation: marquee-scroll var(--duration-marquee) linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
-/* ── ProgramsIndex: panel de preview fotográfica (CSS-only via :has) ── */
+/* ── ProgramsIndex: panel de preview fotográfica (CSS-only via :has) ──
+   .pindex es la raíz del grid exterior (components/ui/programs-index.tsx): .pindex-rows
+   y .pindex-preview son AMBOS descendientes suyos (no hermanos directos — viven en columnas
+   distintas del grid), así que el :has() ancla en la raíz común en vez de usar `~`. */
 .pindex-preview { display: none; }
 @media (min-width: 61.25rem) {
   .pindex-preview { display: block; position: sticky; top: 24px; overflow: hidden; }
-  .pindex-preview > * { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s ease; }
+  .pindex-preview > * { position: absolute; inset: 0; opacity: 0; transition: opacity var(--duration-preview) var(--ease-expo); }
   .pindex-preview > :first-child { position: relative; opacity: 1; }
-  .pindex-rows:has(> a:nth-child(1):hover) ~ .pindex-preview > :nth-child(1),
-  .pindex-rows:has(> a:nth-child(2):hover) ~ .pindex-preview > :nth-child(2),
-  .pindex-rows:has(> a:nth-child(3):hover) ~ .pindex-preview > :nth-child(3),
-  .pindex-rows:has(> a:nth-child(4):hover) ~ .pindex-preview > :nth-child(4),
-  .pindex-rows:has(> a:nth-child(5):hover) ~ .pindex-preview > :nth-child(5),
-  .pindex-rows:has(> a:nth-child(6):hover) ~ .pindex-preview > :nth-child(6),
-  .pindex-rows:has(> a:nth-child(7):hover) ~ .pindex-preview > :nth-child(7),
-  .pindex-rows:has(> a:nth-child(8):hover) ~ .pindex-preview > :nth-child(8),
-  .pindex-rows:has(> a:nth-child(9):hover) ~ .pindex-preview > :nth-child(9),
-  .pindex-rows:has(> a:nth-child(10):hover) ~ .pindex-preview > :nth-child(10),
-  .pindex-rows:has(> a:nth-child(11):hover) ~ .pindex-preview > :nth-child(11),
-  .pindex-rows:has(> a:nth-child(12):hover) ~ .pindex-preview > :nth-child(12) { opacity: 1; }
+  .pindex:has(.pindex-rows > a:nth-child(1):hover) .pindex-preview > :nth-child(1),
+  .pindex:has(.pindex-rows > a:nth-child(2):hover) .pindex-preview > :nth-child(2),
+  .pindex:has(.pindex-rows > a:nth-child(3):hover) .pindex-preview > :nth-child(3),
+  .pindex:has(.pindex-rows > a:nth-child(4):hover) .pindex-preview > :nth-child(4),
+  .pindex:has(.pindex-rows > a:nth-child(5):hover) .pindex-preview > :nth-child(5),
+  .pindex:has(.pindex-rows > a:nth-child(6):hover) .pindex-preview > :nth-child(6),
+  .pindex:has(.pindex-rows > a:nth-child(7):hover) .pindex-preview > :nth-child(7),
+  .pindex:has(.pindex-rows > a:nth-child(8):hover) .pindex-preview > :nth-child(8),
+  .pindex:has(.pindex-rows > a:nth-child(9):hover) .pindex-preview > :nth-child(9),
+  .pindex:has(.pindex-rows > a:nth-child(10):hover) .pindex-preview > :nth-child(10),
+  .pindex:has(.pindex-rows > a:nth-child(11):hover) .pindex-preview > :nth-child(11),
+  .pindex:has(.pindex-rows > a:nth-child(12):hover) .pindex-preview > :nth-child(12) { opacity: 1; }
 }
 
 /* ── Entrada de página (template.tsx). SOLO transform: el hero es el LCP ── */

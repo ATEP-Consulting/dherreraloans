@@ -6,11 +6,7 @@ import { financialServiceJsonLd } from '@/lib/jsonld';
 import heroHome from '@/assets/img/hero-home.jpg';
 import davidImg from '@/assets/img/david.png';
 import interludeMiami from '@/assets/img/interlude-miami.jpg';
-import programConventional from '@/assets/img/program-conventional.jpg';
-import programFha from '@/assets/img/program-fha.jpg';
-import programVa from '@/assets/img/program-va.jpg';
-import programJumbo from '@/assets/img/program-jumbo.jpg';
-import programInvestment from '@/assets/img/program-investment.jpg';
+import { PROGRAM_IMAGES } from '@/lib/program-images';
 import { PageHero } from '@/components/layout/page-hero';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
@@ -49,19 +45,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const tq = await getTranslations('quote');
   const quizTexts = tq.raw('quiz') as QuizTexts;
   const em = { em: (c: React.ReactNode) => <em>{c}</em> };
-  const featuredImages = {
-    conventional: programConventional,
-    fha: programFha,
-    va: programVa,
-    jumbo: programJumbo,
-    investment: programInvestment,
-  } as const;
   const featured: ProgramsIndexItem[] = FEATURED_PROGRAM_KEYS.map((key, i) => ({
     key,
     number: t('programsIndex.rowLabel', { number: i + 1 }),
     name: tp(`${key}.indexName`),
     stat: tp(`${key}.stat`),
-    image: featuredImages[key],
+    image: PROGRAM_IMAGES[key],
     href: { pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } },
   }));
 

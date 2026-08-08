@@ -15,7 +15,7 @@ const tones = {
 
 export function Band({ tone, glow, children }: Props) {
   return (
-    <div className={`relative overflow-hidden ${tones[tone]}`}>
+    <div className={`relative overflow-clip ${tones[tone]}`}>
       {glow ? <div aria-hidden className="absolute inset-0 [background:var(--glow-cta)]" /> : null}
       <Container className="relative px-5 lg:px-[72px]">{children}</Container>
     </div>

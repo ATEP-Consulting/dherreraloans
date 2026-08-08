@@ -144,3 +144,23 @@ test('un visitante a mitad de flujo que reabre la home no sufre robo de foco ni 
   const scrollYAfterWait = await page.evaluate(() => window.scrollY);
   expect(Math.abs(scrollYAfterWait - settledScrollY)).toBeLessThanOrEqual(50);
 });
+
+test.describe('preview del índice (desktop)', () => {
+  // Forzamos viewport desktop: el proyecto e2e por defecto es mobile-chrome (Pixel 7), donde
+  // .pindex-preview es `display: none` y la interacción bajo prueba no existe.
+  test.use({ viewport: { width: 1280, height: 800 } });
+
+  test('hover en una fila cambia la foto de preview', async ({ page }) => {
+    // Excepción justificada al principio de "sin selectores CSS" de este spec: la interacción
+    // ES CSS puro (:has(...) + opacity, sin JS ni estado semántico) y no tiene handle accesible
+    // — el panel es `aria-hidden` a propósito (es decorativo, la foto ya está en la fila).
+    await page.goto('/en');
+    const rows = page.locator('.pindex-rows > a');
+    const panel = page.locator('.pindex-preview > div');
+    // Antes del hover: la primera foto es la visible (regla `:first-child`), la tercera no.
+    await expect(panel.nth(2)).toHaveCSS('opacity', '0');
+    await rows.nth(2).hover();
+    // `expect.poll`-like: el auto-retry de toHaveCSS absorbe la transición de --duration-preview.
+    await expect(panel.nth(2)).toHaveCSS('opacity', '1');
+  });
+});
