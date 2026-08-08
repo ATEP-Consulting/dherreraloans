@@ -477,22 +477,41 @@
       "body": "Una estimación de pago hipotecario cubre el principal y los intereses — lo que pides prestado, más lo que cuesta pedirlo prestado, repartido en el plazo del préstamo. No incluye impuestos de propiedad, seguro de vivienda ni cuotas de HOA, que varían según la propiedad y cambian tu pago total. Siempre te muestro el número completo, no solo la parte que se ve más pequeña."
     },
     "calc": {
-      "sectionTitle": "Haz tus números",
-      "priceLabel": "Precio de la casa",
-      "downLabel": "Entrada",
-      "downPct": "{pct} del precio",
-      "rateLabel": "Tasa de interés",
-      "termLabel": "Plazo",
-      "termOption": "{years} años",
-      "resultLabel": "Cuota mensual (P&I)",
-      "resultEmpty": "Completa los números de arriba para ver tu cuota.",
-      "firstSplitLabel": "Tu primer pago",
-      "interestLabel": "Intereses",
-      "principalLabel": "Capital",
-      "totalInterestLabel": "Total de intereses en la vida del préstamo",
-      "totalCostLabel": "Coste total (capital + intereses)",
-      "errorDown": "La entrada debe ser menor que el precio de la casa.",
-      "disclaimer": "Estimación educativa. Solo capital e intereses — no incluye taxes, seguro ni HOA. No es una oferta de préstamo ni una precalificación."
+      "tabs": {
+        "afford": "Capacidad de compra",
+        "purchase": "Compra",
+        "refi": "Refinanciamiento",
+        "rentBuy": "Rentar vs. comprar"
+      },
+      "purchase": {
+        "sectionTitle": "Haz tus números",
+        "priceLabel": "Precio de la casa",
+        "downLabel": "Entrada",
+        "downPct": "{pct} del precio",
+        "rateLabel": "Tasa de interés",
+        "termLabel": "Plazo",
+        "termOption": "{years} años",
+        "pmiLabel": "PMI (anual)",
+        "taxLabel": "Impuesto de propiedad (anual)",
+        "insuranceLabel": "Seguro de vivienda (anual)",
+        "hoaLabel": "Cuota de HOA (mensual)",
+        "extraLabel": "Pago extra (mensual)",
+        "resultLabel": "Cuota mensual total",
+        "resultEmpty": "Completa los números de arriba para ver tu cuota.",
+        "breakdownPiLabel": "Capital e intereses",
+        "breakdownTaxLabel": "Impuesto de propiedad",
+        "breakdownInsuranceLabel": "Seguro",
+        "breakdownHoaLabel": "Cuota de HOA",
+        "breakdownPmiLabel": "PMI",
+        "breakdownExtraLabel": "Pago extra",
+        "totalInterestLabel": "Total de intereses en la vida del préstamo",
+        "totalCostLabel": "Coste total (capital + intereses)",
+        "earlyPayoffTitle": "Amortización anticipada",
+        "monthsSavedLabel": "Meses ahorrados",
+        "interestSavedLabel": "Intereses ahorrados",
+        "errorDown": "La entrada debe ser menor que el precio de la casa.",
+        "disclaimer": "Estimación educativa. Incluye capital, intereses, taxes, seguro, HOA y PMI cuando se ingresan. No es una oferta de préstamo ni una precalificación."
+      }
     }
   },
   "learn": {

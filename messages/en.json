@@ -477,22 +477,41 @@
       "body": "A mortgage payment estimate covers principal and interest — what you borrow, plus what it costs to borrow it, spread over the loan term. It won't include property taxes, homeowners insurance, or HOA dues, which vary by property and change your total payment. I always show you the full number, not just the part that looks smaller."
     },
     "calc": {
-      "sectionTitle": "Run your numbers",
-      "priceLabel": "Home price",
-      "downLabel": "Down payment",
-      "downPct": "{pct} of the price",
-      "rateLabel": "Interest rate",
-      "termLabel": "Loan term",
-      "termOption": "{years} years",
-      "resultLabel": "Monthly payment (P&I)",
-      "resultEmpty": "Fill in the numbers above to see your payment.",
-      "firstSplitLabel": "Your first payment",
-      "interestLabel": "Interest",
-      "principalLabel": "Principal",
-      "totalInterestLabel": "Total interest over the life of the loan",
-      "totalCostLabel": "Total cost (principal + interest)",
-      "errorDown": "The down payment must be smaller than the home price.",
-      "disclaimer": "Estimate for educational purposes only. Principal & interest — excludes taxes, insurance, and HOA. Not a loan offer or a pre-qualification."
+      "tabs": {
+        "afford": "Affordability",
+        "purchase": "Purchase",
+        "refi": "Refinance",
+        "rentBuy": "Rent vs. buy"
+      },
+      "purchase": {
+        "sectionTitle": "Run your numbers",
+        "priceLabel": "Home price",
+        "downLabel": "Down payment",
+        "downPct": "{pct} of the price",
+        "rateLabel": "Interest rate",
+        "termLabel": "Loan term",
+        "termOption": "{years} years",
+        "pmiLabel": "PMI (yearly)",
+        "taxLabel": "Property tax (yearly)",
+        "insuranceLabel": "Homeowners insurance (yearly)",
+        "hoaLabel": "HOA dues (monthly)",
+        "extraLabel": "Extra payment (monthly)",
+        "resultLabel": "Total monthly payment",
+        "resultEmpty": "Fill in the numbers above to see your payment.",
+        "breakdownPiLabel": "Principal & interest",
+        "breakdownTaxLabel": "Property tax",
+        "breakdownInsuranceLabel": "Insurance",
+        "breakdownHoaLabel": "HOA dues",
+        "breakdownPmiLabel": "PMI",
+        "breakdownExtraLabel": "Extra payment",
+        "totalInterestLabel": "Total interest over the life of the loan",
+        "totalCostLabel": "Total cost (principal + interest)",
+        "earlyPayoffTitle": "Early payoff",
+        "monthsSavedLabel": "Months saved",
+        "interestSavedLabel": "Interest saved",
+        "errorDown": "The down payment must be smaller than the home price.",
+        "disclaimer": "Estimate for educational purposes only. Includes principal, interest, taxes, insurance, HOA and PMI where entered. Not a loan offer or a pre-qualification."
+      }
     }
   },
   "learn": {
