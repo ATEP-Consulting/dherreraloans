@@ -15,7 +15,8 @@ const spectral = Spectral({
   style: ['normal', 'italic'],
   subsets: ['latin'],
   variable: '--font-spectral',
-  display: 'swap',
+  // 'optional': el h1 del hero es el LCP; un swap tardío repinta y dispara LCP >2.5s con throttling (gate ADR-0003)
+  display: 'optional',
 });
 const instrument = Instrument_Sans({
   weight: ['400', '500', '600'],
