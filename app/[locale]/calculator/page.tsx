@@ -6,7 +6,7 @@ import { PageHero } from '@/components/layout/page-hero';
 import { Container } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { CtaBand } from '@/components/ui/cta-band';
-import { MortgageCalculator, type CalculatorTexts } from '@/components/calculator/mortgage-calculator';
+import { CalcTabs, type CalcSuiteTexts } from '@/components/calculator/calc-tabs';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -43,7 +43,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ loc
         <Container className="px-5 py-10 lg:px-[72px] lg:py-14">
           <SectionHeading eyebrow={t('title')} title={t('calc.sectionTitle')} />
           <div className="mt-8">
-            <MortgageCalculator texts={t.raw('calc') as CalculatorTexts} locale={locale} />
+            <CalcTabs locale={locale} texts={t.raw('calc') as CalcSuiteTexts} />
           </div>
         </Container>
       </section>
