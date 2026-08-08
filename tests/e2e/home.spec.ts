@@ -198,6 +198,16 @@ test.describe('header y motion (desktop)', () => {
     await expect(nav.locator('ul a')).toHaveCount(12);
   });
 
+  test('máscaras y cortinas se revelan tras saltar al fondo (regresión clip-path × IO)', async ({ page }) => {
+    // Bug histórico: armar con clip-path daba área 0 y el IntersectionObserver jamás
+    // veía intersecar al elemento (fotos y titulares invisibles). Armado = opacity;
+    // lo saltado por encima lo marca sweepAbove.
+    await page.goto('/en');
+    await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+    await expect(page.locator('.reveal-mask').last()).toHaveClass(/\bin\b/); // titular CTA final
+    await expect(page.locator('.reveal-curtain').first()).toHaveClass(/\bin\b/); // interludio (foto)
+  });
+
   test('reveals: animan POR TIEMPO al entrar en viewport (no scrubbed)', async ({ page }) => {
     await page.goto('/en');
     const el = page.locator('.reveal-rise').first(); // cabecera del quiz, bajo el fold en 800px
