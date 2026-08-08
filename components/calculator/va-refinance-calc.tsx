@@ -10,15 +10,15 @@ import { SelectField } from '@/components/ui/form/select-field';
 import { TextInput } from '@/components/ui/form/text-input';
 import { ChoiceCard } from '@/components/ui/form/choice-card';
 import { CalcLayout, CalcGroupTitle, CalcKpi, CalcKpiLabel, kpiLabelClass } from './calc-layout';
+import { VaUseField, type VaUseFieldTexts } from './va-use-field';
 
 type VaRefiPurpose = Extract<VaPurpose, 'cashOut' | 'irrrl'>;
 
-export type VaRefinanceCalcTexts = {
+export type VaRefinanceCalcTexts = VaUseFieldTexts & {
   currentTitle: string; newTitle: string;
   currentBalanceLabel: string; currentRateLabel: string; currentYearsLabel: string;
   newRateLabel: string; newYearsLabel: string; newYearsOption: string;
   purposeLabel: string; purposeOptions: Record<VaRefiPurpose, string>;
-  vaUseLabel: string; vaUseOptions: Record<VaUse, string>;
   cashOutLabel: string; costsLabel: string;
   financeCostsLabel: string; financeCostsIncluded: string; financeCostsOutOfPocket: string;
   resultEmpty: string;
@@ -33,7 +33,6 @@ export type VaRefinanceCalcTexts = {
 
 const NEW_TERMS = [30, 20, 15] as const;
 const PURPOSES: VaRefiPurpose[] = ['cashOut', 'irrrl'];
-const VA_USES: VaUse[] = ['first', 'subsequent', 'exempt'];
 
 export function VaRefinanceCalc({ texts, locale }: { texts: VaRefinanceCalcTexts; locale: string }) {
   const [balance, setBalance] = useState<number | null>(250000);
@@ -103,14 +102,7 @@ export function VaRefinanceCalc({ texts, locale }: { texts: VaRefinanceCalcTexts
           options={PURPOSES.map((p) => ({ value: p, label: texts.purposeOptions[p] }))}
         />
       </Field>
-      <Field label={texts.vaUseLabel} htmlFor="va-refi-use">
-        <SelectField
-          id="va-refi-use"
-          value={vaUse}
-          onChange={(e) => setVaUse(e.target.value as VaUse)}
-          options={VA_USES.map((use) => ({ value: use, label: texts.vaUseOptions[use] }))}
-        />
-      </Field>
+      <VaUseField id="va-refi-use" value={vaUse} onChange={setVaUse} texts={texts} />
       <Field label={texts.newRateLabel} htmlFor="va-refi-new-rate">
         <PercentInput id="va-refi-new-rate" value={newRate} onValueChange={setNewRate} />
       </Field>

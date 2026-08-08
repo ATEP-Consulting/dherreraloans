@@ -59,3 +59,28 @@ test('las pestañas cambian de variante y affordability calcula con defaults', a
   await expect(page.getByRole('tabpanel')).toBeVisible();
   await expect(page.getByText(en.calculator.calc.rentBuy.comparisonTitle.replace('{years}', '5'))).toBeVisible();
 });
+
+test('VA purchase: funding fee financiado y P&I sobre el préstamo final, tax sobre el valor real', async ({ page }) => {
+  await page.goto('/en/calculator');
+  await page.getByRole('tab', { name: en.calculator.calc.tabs.vaPurchase, exact: true }).click();
+  const result = page.locator('div[aria-live="polite"]');
+  const vaPurchase = en.calculator.calc.vaPurchase;
+  // Defaults: price 200000, down 0, rate 5%, 30a, first-use → fee 2.15%, final loan 204300.
+  await expect(result).toContainText(vaPurchase.feeLabel.replace('{pct}', '2.15'));
+  await expect(result).toContainText('$4,300');
+  await expect(result).toContainText('$204,300'); // finalLoanLabel
+  // Total mensual CORREGIDO: P&I sobre 204300 (1096.73, no 1073.64 sobre el préstamo base) +
+  // tax sobre el precio REAL de 200000 (100.00, no sobre 204300) + seguro (100.00) = 1296.73.
+  await expect(result).toContainText('$1,296.73');
+});
+
+test('VA refinance: IRRRL oculta el cash-out y usa fee 0.50%', async ({ page }) => {
+  await page.goto('/en/calculator');
+  await page.getByRole('tab', { name: en.calculator.calc.tabs.vaRefi, exact: true }).click();
+  const vaRefi = en.calculator.calc.vaRefi;
+  await expect(page.getByLabel(vaRefi.cashOutLabel)).toBeVisible();
+
+  await page.getByLabel(vaRefi.purposeLabel).selectOption('irrrl');
+  await expect(page.getByLabel(vaRefi.cashOutLabel)).toHaveCount(0);
+  await expect(page.locator('div[aria-live="polite"]')).toContainText(vaRefi.feeLabel.replace('{pct}', '0.50'));
+});

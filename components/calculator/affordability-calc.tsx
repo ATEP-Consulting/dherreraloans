@@ -11,15 +11,15 @@ import { SelectField } from '@/components/ui/form/select-field';
 import { CalcLayout, CalcKpi } from './calc-layout';
 import { CalcDonut } from './calc-donut';
 import { LoanBasicsFields, downPaymentError } from './loan-basics-fields';
+import { VaUseField, type VaUseFieldTexts } from './va-use-field';
 
-export type AffordabilityCalcTexts = {
+export type AffordabilityCalcTexts = VaUseFieldTexts & {
   programs: Record<Program, string>;
   programGroupLabel: string;
   incomeLabel: string; debtsLabel: string; debtsHint: string;
   priceLabel: string; downLabel: string; downPct: string;
   rateLabel: string; termLabel: string; termOption: string;
   taxLabel: string; insuranceLabel: string; hoaLabel: string; creditLabel: string;
-  vaUseLabel: string; vaUseOptions: Record<VaUse, string>;
   resultLabel: string; resultEmpty: string; errorDown: string;
   breakdownPiLabel: string; breakdownTaxLabel: string; breakdownInsuranceLabel: string; breakdownHoaLabel: string;
   feeLabel: { pmi: string; mip: string; usda: string; none: string };
@@ -27,8 +27,6 @@ export type AffordabilityCalcTexts = {
   dtiYours: string; dtiAllowed: string; dtiOk: string; dtiOver: string;
   summary: string; confirm: string;
 };
-
-const VA_USES: VaUse[] = ['first', 'subsequent', 'exempt'];
 
 const TERMS = [30, 20, 15] as const;
 const PROGRAMS: Program[] = ['conventional', 'fha', 'va', 'usda', 'jumbo'];
@@ -140,16 +138,7 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
           />
         </Field>
       ) : null}
-      {showVaUse ? (
-        <Field label={texts.vaUseLabel} htmlFor="afford-va-use">
-          <SelectField
-            id="afford-va-use"
-            value={vaUse}
-            onChange={(e) => setVaUse(e.target.value as VaUse)}
-            options={VA_USES.map((use) => ({ value: use, label: texts.vaUseOptions[use] }))}
-          />
-        </Field>
-      ) : null}
+      {showVaUse ? <VaUseField id="afford-va-use" value={vaUse} onChange={setVaUse} texts={texts} /> : null}
     </>
   );
 

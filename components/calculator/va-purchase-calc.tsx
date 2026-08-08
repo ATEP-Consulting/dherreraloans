@@ -1,21 +1,19 @@
 'use client';
 import { useState } from 'react';
-import { purchaseBreakdown } from '@/lib/calc/purchase';
-import { vaFundingFeePct, vaFinalLoan, type VaUse } from '@/lib/calc/va';
+import { vaPurchaseBreakdown, type VaUse } from '@/lib/calc/va';
 import { DEFAULTS } from '@/lib/calc/constants';
 import { formatMoney } from '@/lib/format';
 import { Field } from '@/components/ui/form/field';
 import { MoneyInput } from '@/components/ui/form/money-input';
 import { PercentInput } from '@/components/ui/form/percent-input';
-import { SelectField } from '@/components/ui/form/select-field';
 import { CalcLayout, CalcKpi, CalcKpiLabel } from './calc-layout';
 import { CalcDonut } from './calc-donut';
 import { LoanBasicsFields, downPaymentError } from './loan-basics-fields';
+import { VaUseField, type VaUseFieldTexts } from './va-use-field';
 
-export type VaPurchaseCalcTexts = {
+export type VaPurchaseCalcTexts = VaUseFieldTexts & {
   priceLabel: string; downLabel: string; downPct: string;
   rateLabel: string; termLabel: string; termOption: string;
-  vaUseLabel: string; vaUseOptions: Record<VaUse, string>;
   taxLabel: string; insuranceLabel: string; hoaLabel: string; extraLabel: string;
   resultLabel: string; resultEmpty: string;
   breakdownPiLabel: string; breakdownTaxLabel: string; breakdownInsuranceLabel: string;
@@ -27,7 +25,6 @@ export type VaPurchaseCalcTexts = {
 };
 
 const TERMS = [30, 20, 15] as const;
-const VA_USES: VaUse[] = ['first', 'subsequent', 'exempt'];
 
 export function VaPurchaseCalc({ texts, locale }: { texts: VaPurchaseCalcTexts; locale: string }) {
   const [price, setPrice] = useState<number | null>(DEFAULTS.price);
@@ -52,29 +49,10 @@ export function VaPurchaseCalc({ texts, locale }: { texts: VaPurchaseCalcTexts; 
     hoaMonthly !== null &&
     extraMonthly !== null &&
     !downError
-      ? (() => {
-          const base = price - down;
-          const downPct = (down / price) * 100;
-          const feePct = vaFundingFeePct(vaUse, downPct, 'purchase');
-          const finalLoan = vaFinalLoan(base, feePct);
-          // Truco: purchaseBreakdown deriva el principal como price − downPayment, así que le
-          // pasamos price = finalLoan + down para que el principal sea el préstamo final (con el
-          // funding fee ya financiado). Esto también desplaza la base del property tax de
-          // finalLoan+down en vez del valor real de la vivienda — simplificación aceptable dado
-          // que el fee es pequeño (≤3.3%) frente al valor de la propiedad.
-          const breakdown = purchaseBreakdown({
-            price: finalLoan + down,
-            downPayment: down,
-            annualRatePct: rate,
-            years,
-            pmiYearly: 0,
-            propertyTaxPct,
-            insuranceYearly,
-            hoaMonthly,
-            extraMonthly,
-          });
-          return breakdown ? { ...breakdown, feePct, feeAmount: finalLoan - base, finalLoan } : null;
-        })()
+      ? vaPurchaseBreakdown({
+          price, downPayment: down, annualRatePct: rate, years, vaUse,
+          propertyTaxPct, insuranceYearly, hoaMonthly, extraMonthly,
+        })
       : null;
 
   const form = (
@@ -93,14 +71,7 @@ export function VaPurchaseCalc({ texts, locale }: { texts: VaPurchaseCalcTexts; 
         onYearsChange={setYears}
         terms={TERMS}
       />
-      <Field label={texts.vaUseLabel} htmlFor="va-purchase-use">
-        <SelectField
-          id="va-purchase-use"
-          value={vaUse}
-          onChange={(e) => setVaUse(e.target.value as VaUse)}
-          options={VA_USES.map((use) => ({ value: use, label: texts.vaUseOptions[use] }))}
-        />
-      </Field>
+      <VaUseField id="va-purchase-use" value={vaUse} onChange={setVaUse} texts={texts} />
       <Field label={texts.taxLabel} htmlFor="va-purchase-tax">
         <PercentInput id="va-purchase-tax" value={propertyTaxPct} onValueChange={setPropertyTaxPct} />
       </Field>
