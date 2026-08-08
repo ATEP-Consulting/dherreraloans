@@ -108,10 +108,11 @@ body {
    `js-reveal` en <html> solo se pone con JS activo y sin prefers-reduced-motion →
    sin JS, o con reduced-motion, todo el contenido es estático y visible. */
 @media (prefers-reduced-motion: no-preference) {
-  .js-reveal :is(.reveal-rise, .reveal-left):not(.in) { opacity: 0; }
-  .js-reveal .reveal-mask:not(.in) { clip-path: inset(0 0 100% 0); }
-  .js-reveal .reveal-curtain:not(.in) { clip-path: inset(0 100% 0 0); }
-  .js-reveal .reveal-curtain-l:not(.in) { clip-path: inset(0 0 0 100%); }
+  /* El estado armado es SIEMPRE opacity:0 — nunca clip-path: Chromium aplica el
+     clip-path del propio elemento a la geometría del IntersectionObserver, y un
+     elemento recortado a área cero jamás intersecta (bug circular: estar oculto
+     le impedía revelarse). El clip solo existe DENTRO de los keyframes. */
+  .js-reveal :is(.reveal-rise, .reveal-left, .reveal-mask, .reveal-curtain, .reveal-curtain-l):not(.in) { opacity: 0; }
 
   .js-reveal .reveal-rise.in { animation: reveal-rise 0.9s var(--ease-expo) both; }
   .js-reveal .reveal-mask.in { animation: reveal-mask 1.1s var(--ease-expo) both; }

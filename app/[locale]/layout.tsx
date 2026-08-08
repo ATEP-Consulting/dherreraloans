@@ -78,7 +78,7 @@ export default async function LocaleLayout({
 var SEL='.reveal-rise,.reveal-mask,.reveal-left,.reveal-curtain,.reveal-curtain-l,.reveal-stagger';
 var io=('IntersectionObserver'in window)?new IntersectionObserver(function(es){
   es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-},{rootMargin:'0px 0px -12% 0px',threshold:0.05}):null;
+},{rootMargin:'0px 0px -12% 0px',threshold:0.01}):null;
 function arm(root){
   if(!io)return;
   root.querySelectorAll(SEL).forEach(function(el){
@@ -88,7 +88,17 @@ function arm(root){
     el.dataset.rv='1';io.observe(el);
   });
 }
-arm(document);
+/* Lo que ya quedó POR ENCIMA del viewport (recarga con scroll restaurado, saltos)
+   se marca revelado al instante: nunca va a "entrar" desde abajo. */
+function sweepAbove(){
+  if(!io)return;
+  document.querySelectorAll('[data-rv]').forEach(function(el){
+    if(!el.classList.contains('in')&&el.getBoundingClientRect().bottom<0){el.classList.add('in');io.unobserve(el);}
+  });
+}
+arm(document);sweepAbove();
+addEventListener('load',sweepAbove,{once:true});
+addEventListener('scroll',sweepAbove,{once:true,passive:true});
 new MutationObserver(function(){arm(document)}).observe(document.body,{childList:true,subtree:true});
 var onS=function(){document.documentElement.classList.toggle('hdr-solid',window.scrollY>8)};
 addEventListener('scroll',onS,{passive:true});onS();
