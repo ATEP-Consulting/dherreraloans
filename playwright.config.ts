@@ -2,7 +2,10 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: 'tests/e2e',
-  use: { baseURL: 'http://localhost:3000' },
+  use: {
+    baseURL: 'http://localhost:3000',
+    reducedMotion: 'reduce', // los reveals scroll-driven no deben condicionar los asserts
+  } as any,
   projects: [{ name: 'mobile-chrome', use: { ...devices['Pixel 7'] } }], // mobile-first
   reporter: process.env.CI ? [['html', { open: 'never' }], ['list']] : 'list',
   webServer: {
