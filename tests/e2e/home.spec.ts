@@ -11,11 +11,14 @@ test('índice de la home: 5 destacados y enlace al índice completo', async ({ p
   await expect(page.getByRole('link', { name: en.home.programsIndex.viewAll })).toBeVisible();
 });
 
-test('CTAs del hero: quote interno y WhatsApp con deep link', async ({ page }) => {
+test('CTAs del hero: cotización interna y solicitud externa', async ({ page }) => {
   await page.goto('/en');
-  await expect(page.getByRole('link', { name: en.common.cta.quote }).first()).toHaveAttribute('href', '/en/quote');
-  const wa = page.getByRole('link', { name: en.common.cta.whatsApp });
-  await expect(wa).toHaveAttribute('href', /wa\.me\/13050000000/);
+  // Ambos CTA existen también en el header fijo, que el PageHero monta ANTES del contenido
+  // del hero: el último del DOM es el del hero.
+  await expect(page.getByRole('link', { name: en.common.cta.quote }).last()).toHaveAttribute('href', '/en/quote');
+  const apply = page.getByRole('link', { name: en.common.cta.apply }).last();
+  await expect(apply).toHaveAttribute('href', APPLY_URL);
+  await expect(apply).toHaveAttribute('rel', /noopener/);
 });
 
 test('Apply Online apunta a APPLY_URL con noopener', async ({ page }) => {
@@ -151,31 +154,6 @@ test('un visitante a mitad de flujo que reabre la home no sufre robo de foco ni 
   expect(await page.evaluate(() => document.activeElement?.tagName)).toBe('BODY');
   const scrollYAfterWait = await page.evaluate(() => window.scrollY);
   expect(Math.abs(scrollYAfterWait - settledScrollY)).toBeLessThanOrEqual(50);
-});
-
-test.describe('preview del índice (desktop)', () => {
-  // Forzamos viewport desktop: el proyecto e2e por defecto es mobile-chrome (Pixel 7), donde
-  // .pindex-preview es `display: none` y la interacción bajo prueba no existe. isMobile/hasTouch
-  // fuera para que :hover sea estable (la emulación táctil no lo mantiene).
-  test.use({ viewport: { width: 1280, height: 800 }, isMobile: false, hasTouch: false });
-
-  test('hover en una fila cambia la foto de preview', async ({ page }) => {
-    // Excepción justificada al principio de "sin selectores CSS" de este spec: la interacción
-    // ES CSS puro (:has(...) + opacity, sin JS ni estado semántico) y no tiene handle accesible
-    // — el panel es `aria-hidden` a propósito (es decorativo, la foto ya está en la fila).
-    await page.goto('/en');
-    const rows = page.locator('.pindex-rows > a');
-    const panel = page.locator('.pindex-preview > div');
-    // Antes del hover: la primera foto es la visible (regla `:first-child`), la tercera no.
-    await expect(panel.nth(2)).toHaveCSS('opacity', '0');
-    await rows.nth(2).hover();
-    // `expect.poll`-like: el auto-retry de toHaveCSS absorbe la transición de --duration-preview.
-    await expect(panel.nth(2)).toHaveCSS('opacity', '1');
-    // Y la foto debe OCUPAR el panel: con el primer hijo en position:relative su caja medía
-    // 0 y el <Image fill> salía a altura 0 — visible para el CSS, invisible para el ojo.
-    const box = await panel.nth(2).locator('img').boundingBox();
-    expect(box?.height ?? 0).toBeGreaterThan(200);
-  });
 });
 
 test.describe('header y motion (desktop)', () => {

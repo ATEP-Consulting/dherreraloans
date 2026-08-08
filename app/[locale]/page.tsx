@@ -6,15 +6,13 @@ import { financialServiceJsonLd } from '@/lib/jsonld';
 import heroHome from '@/assets/img/hero-home.jpg';
 import davidImg from '@/assets/img/david.png';
 import interludeMiami from '@/assets/img/interlude-miami.jpg';
-import { PROGRAM_IMAGES } from '@/lib/program-images';
 import { PageHero } from '@/components/layout/page-hero';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
-import { WhatsAppButton } from '@/components/ui/whatsapp-button';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { Marquee } from '@/components/ui/marquee';
 import { Interlude } from '@/components/ui/interlude';
-import { ProgramsIndex, type ProgramsIndexItem } from '@/components/ui/programs-index';
+import { ProgramGrid, type ProgramGridItem } from '@/components/ui/program-grid';
 import { Band } from '@/components/ui/band';
 import { CtaBand } from '@/components/ui/cta-band';
 import { PhotoPlate } from '@/components/ui/photo-plate';
@@ -25,7 +23,7 @@ import { QuizDeferred } from '@/components/quiz/quiz-deferred';
 import { QuizThanksCtas } from '@/components/quiz/quiz-thanks-ctas';
 import type { QuizTexts } from '@/lib/quiz/texts';
 import { FEATURED_PROGRAM_KEYS, slugFor } from '@/lib/programs';
-import { INSTAGRAM_URL } from '@/lib/site';
+import { APPLY_URL, INSTAGRAM_URL } from '@/lib/site';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -45,12 +43,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const tq = await getTranslations('quote');
   const quizTexts = tq.raw('quiz') as QuizTexts;
   const em = { em: (c: React.ReactNode) => <em>{c}</em> };
-  const featured: ProgramsIndexItem[] = FEATURED_PROGRAM_KEYS.map((key, i) => ({
+  const featured: ProgramGridItem[] = FEATURED_PROGRAM_KEYS.map((key) => ({
     key,
-    number: t('programsIndex.rowLabel', { number: i + 1 }),
     name: tp(`${key}.indexName`),
     stat: tp(`${key}.stat`),
-    image: PROGRAM_IMAGES[key],
     href: { pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } },
   }));
 
@@ -70,7 +66,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         ctas={
           <>
             <Button href="/quote" variant="paper" size="lg">{tc('cta.quote')}</Button>
-            <WhatsAppButton label={tc('cta.whatsApp')} message={tc('cta.whatsAppMessage')} />
+            <Button href={APPLY_URL} variant="outline" size="lg" external>{tc('cta.apply')}</Button>
           </>
         }
       />
@@ -88,7 +84,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <div className="reveal-rise">
             <SectionHeading tone="navy" eyebrow={t('programsIndex.eyebrow')} title={t('programsIndex.title')} helper={t('programsIndex.helper')} />
           </div>
-          <ProgramsIndex items={featured} viewAll={{ label: t('programsIndex.viewAll') }} />
+          <ProgramGrid items={featured} viewAll={{ label: t('programsIndex.viewAll') }} />
         </div>
       </Band>
       <Interlude image={interludeMiami} alt={t('interlude.imageAlt')} quote={t('interlude.quote')} cite={t('interlude.cite')} />

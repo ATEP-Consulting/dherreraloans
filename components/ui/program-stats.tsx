@@ -15,9 +15,11 @@ export function ProgramStats({ eyebrow, stat, items }: Props) {
           <Eyebrow tone="azure-light">{eyebrow}</Eyebrow>
           <p className="reveal-mask font-display text-h2 font-light text-paper">{stat}</p>
         </div>
-        <ul className="reveal-stagger flex flex-col">
+        {/* Sin bordes por item: la separación es aire y una viñeta azure (enmienda «desrayado») */}
+        <ul className="reveal-stagger flex flex-col gap-4">
           {items.map((item) => (
-            <li key={item} className="reveal-left border-b border-paper-a15 py-3.5 font-sans text-sm leading-relaxed text-paper-a85">
+            <li key={item} className="reveal-left flex gap-3 font-sans text-sm leading-relaxed text-paper-a85">
+              <span aria-hidden className="mt-[7px] size-1.5 shrink-0 bg-azure-soft" />
               {item}
             </li>
           ))}

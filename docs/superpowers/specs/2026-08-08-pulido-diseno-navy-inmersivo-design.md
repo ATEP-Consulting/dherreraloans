@@ -122,3 +122,15 @@ Mockups aprobados del companion: `visual-direction.html` (dirección A), `home-r
 ## Corrección 2026-08-08 · La preview del índice nunca se veía
 
 `.pindex-preview > :first-child` era `position: relative` sin altura propia y sus hijos absolutos, así que el `<Image fill>` de dentro se dimensionaba contra una caja de **altura 0**: el panel fotográfico del índice (home y `/loan-options`) existía, cambiaba de opacidad al hover y aun así **no mostraba nada**. Todas las capas pasan a `position: absolute` contra el panel (que ya tiene `h-[340px]`). El e2e de la preview comprobaba solo `opacity` — pasaba con la foto invisible — y ahora exige además que la imagen mida más de 200 px de alto.
+
+## Enmienda 2026-08-08 · «Desrayado» del sistema (feedback de Pablo sobre las líneas)
+
+**Problema:** cada fila de índice sumaba un borde inferior **y** una guía punteada, así que doce programas eran veinticuatro líneas horizontales: el sitio se veía rayado y las páginas kilométricas («parecen pegotes»).
+
+- **`ProgramGrid`** (rejilla tipográfica, **cero líneas**): nombre en Spectral + dato en versalitas, separación por aire. Se usa en la home (5 destacados + «ver los 12») y en los programas relacionados de las fichas.
+- **`ProgramGroups`** (elegido por Pablo para `/loan-options`): los doce ordenados por intención — **Comprar / Refinanciar / Inversión y montos altos** — con una sola línea fina bajo cada título de grupo (tres en total, no veinticuatro). La agrupación vive en `PROGRAM_GROUPS` (`lib/programs.ts`) y un test unit garantiza que cubre las 12 claves sin duplicados, así que un programa nuevo no puede quedarse huérfano. Copy en `loanOptions.groups.*`.
+- **Fuera la preview fotográfica** del índice (era lo que Pablo no quería al lado): se eliminan `ProgramsIndex`, `IndexRow`, `lib/program-images.ts`, el bloque CSS `.pindex-*` y los 12 `assets/img/program-*.jpg`.
+- **`ProgramStats`** (datos clave de ficha): fuera los bordes por item; viñeta azure + aire.
+- **Contact**: los cuatro canales pasan a **rejilla 2×2 sin líneas** y la nota de placeholders se integra como pie de la banda navy → **desaparece la banda blanca** que cortaba la página.
+- **Marquesina**: al ancho del contenedor (como el resto de secciones) con `mask-image` que difumina entrada y salida, el lead fijo fuera del bucle (repetido parecía texto roto) y **4 pases con desplazamiento de -25%** para que no aparezca hueco en pantallas anchas.
+- **Hero de la home**: el segundo CTA pasa de WhatsApp a **Apply Online** (`Button` gana variante `outline`).

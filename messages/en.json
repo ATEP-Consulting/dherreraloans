@@ -77,7 +77,12 @@
     "title": "Loan Options",
     "description": "Explore mortgage programs available in Florida.",
     "heading": "Loan Options",
-    "helper": "Every program here is available across Florida. Compare them below, or tell me your situation and I'll point you to the right one."
+    "helper": "Every program here is available across Florida. Compare them below, or tell me your situation and I'll point you to the right one.",
+    "groups": {
+      "buying": "Buying a home",
+      "refinancing": "Refinancing",
+      "investors": "Investors & large loans"
+    }
   },
   "programs": {
     "fha": {
