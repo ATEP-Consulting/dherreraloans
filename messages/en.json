@@ -482,7 +482,11 @@
         "afford": "Affordability",
         "purchase": "Purchase",
         "refi": "Refinance",
-        "rentBuy": "Rent vs. buy"
+        "rentBuy": "Rent vs. buy",
+        "vaPurchase": "VA purchase",
+        "vaRefi": "VA refinance",
+        "dscr": "Rental (DSCR)",
+        "flip": "Fix & flip"
       },
       "afford": {
         "programs": {
@@ -506,6 +510,12 @@
         "insuranceLabel": "Homeowners insurance (yearly)",
         "hoaLabel": "HOA dues (monthly)",
         "creditLabel": "Credit score",
+        "vaUseLabel": "This is my...",
+        "vaUseOptions": {
+          "first": "First time using a VA loan",
+          "subsequent": "I've used a VA loan before",
+          "exempt": "I'm exempt from the VA funding fee"
+        },
         "resultLabel": "Total monthly payment",
         "resultEmpty": "Fill in the numbers above to see your estimated payment.",
         "errorDown": "The down payment must be smaller than the home price.",
@@ -619,6 +629,83 @@
         "verdictCrossover": "From year {year} on, buying becomes the cheaper option.",
         "verdictNoCrossover": "With these numbers, renting stays cheaper through year {years}.",
         "disclaimer": "Estimate for educational purposes only, based on the assumptions entered above. Actual costs vary with the market, your loan terms, and how long you stay in the home."
+      },
+      "vaPurchase": {
+        "priceLabel": "Home value",
+        "downLabel": "Down payment",
+        "downPct": "{pct} of the price",
+        "rateLabel": "Interest rate",
+        "termLabel": "Loan term",
+        "termOption": "{years} years",
+        "vaUseLabel": "This is my...",
+        "vaUseOptions": {
+          "first": "First time using a VA loan",
+          "subsequent": "I've used a VA loan before",
+          "exempt": "I'm exempt from the VA funding fee"
+        },
+        "taxLabel": "Property tax (yearly % of value)",
+        "insuranceLabel": "Homeowners insurance (yearly)",
+        "hoaLabel": "HOA dues (monthly)",
+        "extraLabel": "Extra payment (monthly)",
+        "resultLabel": "Total monthly payment",
+        "resultEmpty": "Fill in the numbers above to see your payment.",
+        "breakdownPiLabel": "Principal & interest",
+        "breakdownTaxLabel": "Property tax",
+        "breakdownInsuranceLabel": "Insurance",
+        "breakdownHoaLabel": "HOA dues",
+        "breakdownExtraLabel": "Extra payment",
+        "feeLabel": "VA funding fee ({pct}%)",
+        "finalLoanLabel": "Final loan amount",
+        "totalInterestLabel": "Total interest over the life of the loan",
+        "totalCostLabel": "Total cost (principal + interest)",
+        "earlyPayoffTitle": "Early payoff",
+        "monthsSavedLabel": "Months saved",
+        "interestSavedLabel": "Interest saved",
+        "errorDown": "The down payment must be smaller than the home price.",
+        "disclaimer": "Estimate for educational purposes only. Includes principal, interest, taxes, insurance, HOA and the VA funding fee financed into the loan. Not a loan offer or a pre-qualification, and not a determination of VA eligibility."
+      },
+      "vaRefi": {
+        "currentTitle": "Your current loan",
+        "newTitle": "The new loan",
+        "currentBalanceLabel": "Current loan balance",
+        "currentRateLabel": "Current interest rate",
+        "currentYearsLabel": "Years remaining on current loan",
+        "newRateLabel": "New interest rate",
+        "newYearsLabel": "New loan term",
+        "newYearsOption": "{years} years",
+        "purposeLabel": "VA refinance purpose",
+        "purposeOptions": {
+          "cashOut": "Cash-out refinance",
+          "irrrl": "Interest rate reduction (IRRRL)"
+        },
+        "vaUseLabel": "This is my...",
+        "vaUseOptions": {
+          "first": "First time using a VA loan",
+          "subsequent": "I've used a VA loan before",
+          "exempt": "I'm exempt from the VA funding fee"
+        },
+        "cashOutLabel": "Cash out amount",
+        "costsLabel": "Refinance costs",
+        "financeCostsLabel": "How do you want to pay the refinance costs?",
+        "financeCostsIncluded": "Roll them into the new loan",
+        "financeCostsOutOfPocket": "Pay them out of pocket",
+        "resultEmpty": "Fill in the numbers above to compare your current and new loan.",
+        "feeLabel": "VA funding fee ({pct}%)",
+        "savingsLabel": "Estimated monthly savings",
+        "savingsWarning": "Your monthly payment would go up with these numbers.",
+        "interestDiffLabel": "Total interest difference",
+        "interestDiffWarning": "You'd pay more interest overall with these numbers.",
+        "comparisonTitle": "Monthly payment comparison",
+        "currentMonthlyLabel": "Current payment",
+        "newMonthlyLabel": "New payment",
+        "newLoanAmountLabel": "New loan amount",
+        "interestComparisonTitle": "Total interest comparison",
+        "currentInterestLabel": "Remaining interest on current loan",
+        "newInterestLabel": "Total interest on new loan",
+        "breakEvenLabel": "Time to recoup refinance costs",
+        "breakEvenMonths": "About {months} months",
+        "breakEvenNever": "These costs aren't recovered by the monthly savings.",
+        "disclaimer": "Estimate for educational purposes only, comparing your current loan to the new terms entered above, with the VA funding fee financed into the new loan. Not a loan offer or a pre-qualification, and not a determination of VA eligibility."
       }
     }
   },

@@ -36,4 +36,15 @@ describe('affordability', () => {
     expect(affordability({ ...base, monthlyIncome: 0 }, 'conventional')).toBeNull();
     expect(affordability({ ...base, downPayment: 200000 }, 'conventional')).toBeNull();
   });
+  it('va: primer uso 0% de entrada financia el funding fee (2.15% del préstamo base)', () => {
+    const r = affordability({ ...base, vaUse: 'first' }, 'va')!;
+    expect(r.upfrontFee).toBeCloseTo(4300, 0);            // 200000 × 2.15%
+    expect(r.loanAmount).toBeCloseTo(204300, 0);
+    expect(r.monthlyFee).toBe(0);                          // VA no lleva fee mensual
+  });
+  it('va: exento no financia funding fee', () => {
+    const r = affordability({ ...base, vaUse: 'exempt' }, 'va')!;
+    expect(r.upfrontFee).toBe(0);
+    expect(r.loanAmount).toBe(200000);
+  });
 });

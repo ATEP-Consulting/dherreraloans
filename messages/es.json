@@ -482,7 +482,11 @@
         "afford": "Capacidad de compra",
         "purchase": "Compra",
         "refi": "Refinanciamiento",
-        "rentBuy": "Rentar vs. comprar"
+        "rentBuy": "Rentar vs. comprar",
+        "vaPurchase": "Compra VA",
+        "vaRefi": "Refinanciamiento VA",
+        "dscr": "Renta (DSCR)",
+        "flip": "Comprar y remodelar"
       },
       "afford": {
         "programs": {
@@ -506,6 +510,12 @@
         "insuranceLabel": "Seguro de vivienda (anual)",
         "hoaLabel": "Cuota de HOA (mensual)",
         "creditLabel": "Puntaje de crédito",
+        "vaUseLabel": "Mi situación es...",
+        "vaUseOptions": {
+          "first": "Primera vez que uso un préstamo VA",
+          "subsequent": "Ya he usado un préstamo VA antes",
+          "exempt": "Estoy exento de la cuota de financiamiento VA"
+        },
         "resultLabel": "Cuota mensual total",
         "resultEmpty": "Completa los números de arriba para ver tu cuota estimada.",
         "errorDown": "La entrada debe ser menor que el precio de la casa.",
@@ -619,6 +629,83 @@
         "verdictCrossover": "A partir del año {year}, comprar se vuelve la opción más barata.",
         "verdictNoCrossover": "Con estos números, alquilar sigue siendo más barato durante todo el horizonte de {years} años.",
         "disclaimer": "Estimación educativa basada en los supuestos ingresados arriba. Los costes reales varían según el mercado, las condiciones de tu préstamo y cuánto tiempo te quedes en la vivienda."
+      },
+      "vaPurchase": {
+        "priceLabel": "Valor de la vivienda",
+        "downLabel": "Entrada",
+        "downPct": "{pct} del precio",
+        "rateLabel": "Tasa de interés",
+        "termLabel": "Plazo",
+        "termOption": "{years} años",
+        "vaUseLabel": "Mi situación es...",
+        "vaUseOptions": {
+          "first": "Primera vez que uso un préstamo VA",
+          "subsequent": "Ya he usado un préstamo VA antes",
+          "exempt": "Estoy exento de la cuota de financiamiento VA"
+        },
+        "taxLabel": "Impuesto de propiedad (% del valor, anual)",
+        "insuranceLabel": "Seguro de vivienda (anual)",
+        "hoaLabel": "Cuota de HOA (mensual)",
+        "extraLabel": "Pago extra (mensual)",
+        "resultLabel": "Cuota mensual total",
+        "resultEmpty": "Completa los números de arriba para ver tu cuota.",
+        "breakdownPiLabel": "Capital e intereses",
+        "breakdownTaxLabel": "Impuesto de propiedad",
+        "breakdownInsuranceLabel": "Seguro",
+        "breakdownHoaLabel": "Cuota de HOA",
+        "breakdownExtraLabel": "Pago extra",
+        "feeLabel": "Cuota de financiamiento VA ({pct}%)",
+        "finalLoanLabel": "Monto final del préstamo",
+        "totalInterestLabel": "Total de intereses en la vida del préstamo",
+        "totalCostLabel": "Coste total (capital + intereses)",
+        "earlyPayoffTitle": "Amortización anticipada",
+        "monthsSavedLabel": "Meses ahorrados",
+        "interestSavedLabel": "Intereses ahorrados",
+        "errorDown": "La entrada debe ser menor que el precio de la casa.",
+        "disclaimer": "Estimación educativa. Incluye capital, intereses, taxes, seguro, HOA y la cuota de financiamiento VA financiada en el préstamo. No es una oferta de préstamo ni una precalificación, ni una determinación de elegibilidad VA."
+      },
+      "vaRefi": {
+        "currentTitle": "Tu préstamo actual",
+        "newTitle": "El nuevo préstamo",
+        "currentBalanceLabel": "Saldo actual del préstamo",
+        "currentRateLabel": "Tasa de interés actual",
+        "currentYearsLabel": "Años restantes del préstamo actual",
+        "newRateLabel": "Nueva tasa de interés",
+        "newYearsLabel": "Plazo del nuevo préstamo",
+        "newYearsOption": "{years} años",
+        "purposeLabel": "Propósito del refinanciamiento VA",
+        "purposeOptions": {
+          "cashOut": "Refinanciamiento con cash out",
+          "irrrl": "Reducción de tasa de interés (IRRRL)"
+        },
+        "vaUseLabel": "Mi situación es...",
+        "vaUseOptions": {
+          "first": "Primera vez que uso un préstamo VA",
+          "subsequent": "Ya he usado un préstamo VA antes",
+          "exempt": "Estoy exento de la cuota de financiamiento VA"
+        },
+        "cashOutLabel": "Monto de cash out",
+        "costsLabel": "Costes de refinanciamiento",
+        "financeCostsLabel": "¿Cómo quieres pagar los costes de refinanciamiento?",
+        "financeCostsIncluded": "Incluirlos en el nuevo préstamo",
+        "financeCostsOutOfPocket": "Pagarlos aparte",
+        "resultEmpty": "Completa los números de arriba para comparar tu préstamo actual con el nuevo.",
+        "feeLabel": "Cuota de financiamiento VA ({pct}%)",
+        "savingsLabel": "Ahorro mensual estimado",
+        "savingsWarning": "Tu cuota mensual subiría con estos números.",
+        "interestDiffLabel": "Diferencia de interés total",
+        "interestDiffWarning": "Pagarías más interés en total con estos números.",
+        "comparisonTitle": "Comparativa de cuotas mensuales",
+        "currentMonthlyLabel": "Cuota actual",
+        "newMonthlyLabel": "Cuota nueva",
+        "newLoanAmountLabel": "Monto del nuevo préstamo",
+        "interestComparisonTitle": "Comparativa de interés total",
+        "currentInterestLabel": "Interés restante del préstamo actual",
+        "newInterestLabel": "Interés total del nuevo préstamo",
+        "breakEvenLabel": "Tiempo para recuperar los costes",
+        "breakEvenMonths": "Unos {months} meses",
+        "breakEvenNever": "El ahorro mensual no llega a recuperar estos costes.",
+        "disclaimer": "Estimación educativa que compara tu préstamo actual con las condiciones nuevas ingresadas arriba, con la cuota de financiamiento VA financiada en el nuevo préstamo. No es una oferta de préstamo ni una precalificación, ni una determinación de elegibilidad VA."
       }
     }
   },

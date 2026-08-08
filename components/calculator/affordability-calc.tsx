@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { affordability } from '@/lib/calc/affordability';
 import { DEFAULTS, CREDIT_BANDS, type Program, type CreditBand } from '@/lib/calc/constants';
+import type { VaUse } from '@/lib/calc/va';
 import { formatMoney } from '@/lib/format';
 import { Field } from '@/components/ui/form/field';
 import { MoneyInput } from '@/components/ui/form/money-input';
@@ -18,6 +19,7 @@ export type AffordabilityCalcTexts = {
   priceLabel: string; downLabel: string; downPct: string;
   rateLabel: string; termLabel: string; termOption: string;
   taxLabel: string; insuranceLabel: string; hoaLabel: string; creditLabel: string;
+  vaUseLabel: string; vaUseOptions: Record<VaUse, string>;
   resultLabel: string; resultEmpty: string; errorDown: string;
   breakdownPiLabel: string; breakdownTaxLabel: string; breakdownInsuranceLabel: string; breakdownHoaLabel: string;
   feeLabel: { pmi: string; mip: string; usda: string; none: string };
@@ -25,6 +27,8 @@ export type AffordabilityCalcTexts = {
   dtiYours: string; dtiAllowed: string; dtiOk: string; dtiOver: string;
   summary: string; confirm: string;
 };
+
+const VA_USES: VaUse[] = ['first', 'subsequent', 'exempt'];
 
 const TERMS = [30, 20, 15] as const;
 const PROGRAMS: Program[] = ['conventional', 'fha', 'va', 'usda', 'jumbo'];
@@ -50,10 +54,12 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
   const [insuranceYearly, setInsuranceYearly] = useState<number | null>(DEFAULTS.insuranceYearly);
   const [hoa, setHoa] = useState<number | null>(0);
   const [creditBand, setCreditBand] = useState<CreditBand>('760+');
+  const [vaUse, setVaUse] = useState<VaUse>('first');
 
   const downError = downPaymentError(price, down);
   const money = (v: number, d = 0) => formatMoney(v, locale, d);
   const showCredit = program === 'conventional' || program === 'jumbo';
+  const showVaUse = program === 'va';
 
   const result =
     income !== null &&
@@ -69,7 +75,7 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
           {
             monthlyIncome: income, monthlyDebts: debts, price, downPayment: down,
             annualRatePct: rate, years, propertyTaxPct: taxPct, insuranceYearly,
-            hoaMonthly: hoa, creditBand,
+            hoaMonthly: hoa, creditBand, vaUse,
           },
           program,
         )
@@ -131,6 +137,16 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
             value={creditBand}
             onChange={(e) => setCreditBand(e.target.value as CreditBand)}
             options={CREDIT_BANDS.map((band) => ({ value: band, label: band }))}
+          />
+        </Field>
+      ) : null}
+      {showVaUse ? (
+        <Field label={texts.vaUseLabel} htmlFor="afford-va-use">
+          <SelectField
+            id="afford-va-use"
+            value={vaUse}
+            onChange={(e) => setVaUse(e.target.value as VaUse)}
+            options={VA_USES.map((use) => ({ value: use, label: texts.vaUseOptions[use] }))}
           />
         </Field>
       ) : null}
