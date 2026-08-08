@@ -115,16 +115,31 @@ test('un visitante a mitad de flujo que reabre la home no sufre robo de foco ni 
   );
   await page.goto('/en');
   // Con la hidratación diferida (QuizDeferred) el cuestionario ni siquiera monta en la carga
-  // (vive muy por debajo del fold) — así que este chequeo, hecho ANTES de cualquier scroll
-  // deliberado del test, es la comprobación más estricta posible: nada puede robar foco ni
-  // hacer scroll si nada montó todavía.
-  const activeTag = await page.evaluate(() => document.activeElement?.tagName);
-  expect(activeTag).toBe('BODY');
-  const scrollY = await page.evaluate(() => window.scrollY);
-  expect(scrollY).toBe(0);
+  // (vive muy por debajo del fold) — así que este chequeo "on load", hecho ANTES de cualquier
+  // scroll deliberado del test, es trivialmente cierto por construcción (nada montó todavía).
+  // Se deja igualmente: si algo llegara a montar antes de tiempo, aquí se detectaría.
+  expect(await page.evaluate(() => document.activeElement?.tagName)).toBe('BODY');
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
   // Ahora sí se aproxima el quiz a propósito (dispara el IntersectionObserver de
-  // QuizDeferred) y se confirma que la rehidratación ocurrió (retoma en 'propertyType', no
-  // en 'goal') — el resto del efecto de foco de quiz.tsx sigue cubierto: montar no roba foco.
+  // QuizDeferred, monta el Quiz real) y se confirma que la rehidratación ocurrió (retoma en
+  // 'propertyType', no en 'goal').
   await page.locator('#quiz').scrollIntoViewIfNeeded();
   await expect(page.getByRole('heading', { name: en.quote.quiz.steps.propertyType.title })).toBeVisible();
+  // ESTE es el aserto que de verdad ejercita el bug original (el de arriba es trivial con el
+  // diferido: nada había montado). El montaje + rehidratación de quiz.tsx ocurren justo ahora,
+  // detrás del `scrollIntoViewIfNeeded` de este test — `skipFocusRef` debe seguir suprimiendo
+  // el `headingRef.current?.focus()` de esa transición, así que no debe robar foco NI disparar
+  // un scroll adicional sobre el que provocó deliberadamente el test. Dos RAF dejan asentar el
+  // commit/paint del montaje antes de tomar la posición de referencia; una espera adicional
+  // detecta cualquier robo de foco/scroll retrasado a un tick posterior.
+  const settledScrollY = await page.evaluate(
+    () =>
+      new Promise<number>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve(window.scrollY))),
+      ),
+  );
+  await page.waitForTimeout(300);
+  expect(await page.evaluate(() => document.activeElement?.tagName)).toBe('BODY');
+  const scrollYAfterWait = await page.evaluate(() => window.scrollY);
+  expect(Math.abs(scrollYAfterWait - settledScrollY)).toBeLessThanOrEqual(50);
 });
