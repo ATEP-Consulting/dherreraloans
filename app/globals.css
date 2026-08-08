@@ -133,6 +133,26 @@ body {
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
+/* ── ProgramsIndex: panel de preview fotográfica (CSS-only via :has) ── */
+.pindex-preview { display: none; }
+@media (min-width: 61.25rem) {
+  .pindex-preview { display: block; position: sticky; top: 24px; overflow: hidden; }
+  .pindex-preview > * { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s ease; }
+  .pindex-preview > :first-child { position: relative; opacity: 1; }
+  .pindex-rows:has(> a:nth-child(1):hover) ~ .pindex-preview > :nth-child(1),
+  .pindex-rows:has(> a:nth-child(2):hover) ~ .pindex-preview > :nth-child(2),
+  .pindex-rows:has(> a:nth-child(3):hover) ~ .pindex-preview > :nth-child(3),
+  .pindex-rows:has(> a:nth-child(4):hover) ~ .pindex-preview > :nth-child(4),
+  .pindex-rows:has(> a:nth-child(5):hover) ~ .pindex-preview > :nth-child(5),
+  .pindex-rows:has(> a:nth-child(6):hover) ~ .pindex-preview > :nth-child(6),
+  .pindex-rows:has(> a:nth-child(7):hover) ~ .pindex-preview > :nth-child(7),
+  .pindex-rows:has(> a:nth-child(8):hover) ~ .pindex-preview > :nth-child(8),
+  .pindex-rows:has(> a:nth-child(9):hover) ~ .pindex-preview > :nth-child(9),
+  .pindex-rows:has(> a:nth-child(10):hover) ~ .pindex-preview > :nth-child(10),
+  .pindex-rows:has(> a:nth-child(11):hover) ~ .pindex-preview > :nth-child(11),
+  .pindex-rows:has(> a:nth-child(12):hover) ~ .pindex-preview > :nth-child(12) { opacity: 1; }
+}
+
 /* ── Entrada de página (template.tsx). SOLO transform: el hero es el LCP ── */
 @keyframes page-enter { from { transform: translateY(12px); } to { transform: none; } }
 @media (prefers-reduced-motion: no-preference) {
