@@ -110,12 +110,12 @@ export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; loca
         centerLabel={texts.resultLabel}
         centerValue={money(result.totalMonthly, 2)}
       />
-      <dl className="flex flex-col gap-2 border-t border-hairline pt-4 font-sans text-sm text-body">
+      <dl className="flex flex-col gap-2 pt-2 font-sans text-sm text-body">
         <div className="flex justify-between gap-4"><dt>{texts.totalInterestLabel}</dt><dd className="tabular-nums">{money(result.totalInterest)}</dd></div>
         <div className="flex justify-between gap-4"><dt>{texts.totalCostLabel}</dt><dd className="tabular-nums">{money(result.totalCost)}</dd></div>
       </dl>
       {extraMonthly !== null && extraMonthly > 0 ? (
-        <div className="flex flex-col gap-2 border-t border-hairline pt-4">
+        <div className="flex flex-col gap-2.5 pt-2">
           <CalcKpiLabel>{texts.earlyPayoffTitle}</CalcKpiLabel>
           <dl className="flex flex-col gap-2 font-sans text-sm text-body">
             <div className="flex justify-between gap-4"><dt>{texts.monthsSavedLabel}</dt><dd className="tabular-nums">{result.monthsSaved}</dd></div>

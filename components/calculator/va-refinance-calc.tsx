@@ -144,17 +144,17 @@ export function VaRefinanceCalc({ texts, locale }: { texts: VaRefinanceCalcTexts
 
   const results = result ? (
     <>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6">
         <div className="flex flex-col gap-1">
-          <CalcKpi label={texts.savingsLabel} value={money(result.monthlySavings, 2)} tone={result.monthlySavings < 0 ? 'error' : 'default'} />
+          <CalcKpi label={texts.savingsLabel} value={money(result.monthlySavings, 2)} tone={result.monthlySavings < 0 ? 'error' : 'default'} reserveLabel />
           {result.monthlySavings < 0 ? <p className="font-sans text-fine font-medium text-error">{texts.savingsWarning}</p> : null}
         </div>
         <div className="flex flex-col gap-1">
-          <CalcKpi label={texts.interestDiffLabel} value={money(result.interestDifference)} tone={result.interestDifference < 0 ? 'error' : 'default'} />
+          <CalcKpi label={texts.interestDiffLabel} value={money(result.interestDifference)} tone={result.interestDifference < 0 ? 'error' : 'default'} reserveLabel />
           {result.interestDifference < 0 ? <p className="font-sans text-fine font-medium text-error">{texts.interestDiffWarning}</p> : null}
         </div>
       </div>
-      <div className="flex flex-col gap-2 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-2.5 pt-2">
         <CalcKpiLabel>{texts.comparisonTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4"><dt>{texts.currentMonthlyLabel}</dt><dd className="tabular-nums">{money(result.currentMonthly, 2)}</dd></div>
@@ -163,14 +163,14 @@ export function VaRefinanceCalc({ texts, locale }: { texts: VaRefinanceCalcTexts
           <div className="flex justify-between gap-4"><dt>{texts.newLoanAmountLabel}</dt><dd className="tabular-nums">{money(result.newLoanAmount)}</dd></div>
         </dl>
       </div>
-      <div className="flex flex-col gap-2 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-2.5 pt-2">
         <CalcKpiLabel>{texts.interestComparisonTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4"><dt>{texts.currentInterestLabel}</dt><dd className="tabular-nums">{money(result.currentRemainingInterest)}</dd></div>
           <div className="flex justify-between gap-4"><dt>{texts.newInterestLabel}</dt><dd className="tabular-nums">{money(result.newTotalInterest)}</dd></div>
         </dl>
       </div>
-      <div className="flex flex-col gap-2 border-t border-hairline pt-4">
+      <div className="flex flex-col gap-2.5 pt-2">
         <CalcKpiLabel>{texts.breakEvenLabel}</CalcKpiLabel>
         <p className="font-sans text-sm text-body">
           {result.breakEvenMonths !== null ? texts.breakEvenMonths.replace('{months}', String(result.breakEvenMonths)) : texts.breakEvenNever}
