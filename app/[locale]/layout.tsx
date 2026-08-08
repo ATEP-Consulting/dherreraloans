@@ -100,7 +100,14 @@ arm(document);sweepAbove();
 addEventListener('load',sweepAbove,{once:true});
 addEventListener('scroll',sweepAbove,{once:true,passive:true});
 new MutationObserver(function(){arm(document)}).observe(document.body,{childList:true,subtree:true});
-var onS=function(){document.documentElement.classList.toggle('hdr-solid',window.scrollY>8)};
+/* Histéresis 90/30: con un umbral único, el micro-scroll del trackpad alternaba el
+   estado varias veces por gesto y el header temblaba. */
+var solid=false;
+var onS=function(){
+  var y=window.scrollY;
+  if(!solid&&y>90){solid=true;document.documentElement.classList.add('hdr-solid');}
+  else if(solid&&y<30){solid=false;document.documentElement.classList.remove('hdr-solid');}
+};
 addEventListener('scroll',onS,{passive:true});onS();
 })();`,
           }}

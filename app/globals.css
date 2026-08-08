@@ -151,10 +151,19 @@ body {
   background: var(--color-paper);
   border-bottom: 1px solid var(--color-hairline);
 }
-.site-header .hdr-logo-dark { display: none; }
-.hdr-solid .site-header .hdr-logo-dark { display: block; }
-.hdr-solid .site-header .hdr-logo-light { display: none; }
-.hdr-solid .site-header .hdr-topstrip { display: none; }
+/* Logos: cross-fade, nunca swap de display (un corte seco parpadea al cambiar de estado) */
+.site-header :is(.hdr-logo-light, .hdr-logo-dark) { transition: opacity 0.3s ease; }
+.site-header .hdr-logo-dark { opacity: 0; }
+.hdr-solid .site-header .hdr-logo-dark { opacity: 1; }
+.hdr-solid .site-header .hdr-logo-light { opacity: 0; }
+/* Franja superior: colapsa con transición (grid-template-rows 1fr→0fr). Con `display:none`
+   la fila del logo saltaba 43px de golpe y, sin histéresis en el umbral, temblaba. */
+.hdr-topstrip { display: none; }
+@media (min-width: 61.25rem) {
+  .hdr-topstrip { display: grid; grid-template-rows: 1fr; overflow: hidden; transition: grid-template-rows 0.3s var(--ease-expo); }
+  .hdr-topstrip > * { min-height: 0; }
+  .hdr-solid .hdr-topstrip { grid-template-rows: 0fr; }
+}
 /* CTA del header: paper sobre el hero, navy sobre paper */
 .hdr-solid .site-header .hdr-cta a { background: var(--color-navy); color: var(--color-paper); }
 /* El panel móvil es navy siempre: restaura las vars dentro del panel */
