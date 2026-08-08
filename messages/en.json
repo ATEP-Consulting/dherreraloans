@@ -949,8 +949,10 @@
     "heroTitle": "Choose how you'd rather talk to me",
     "heroSub": "No call center, no ticket queue: your message reaches me. In English or in Spanish.",
     "imageAlt": "Miami home at dusk, warm light in the windows",
-    "badgeLabel": "Your loan originator",
-    "badgeValue": "David Herrera · NMLS #{nmls}",
+    "channels": {
+      "eyebrow": "Four ways in",
+      "title": "Pick whichever suits you"
+    },
     "whatsapp": {
       "label": "WhatsApp",
       "action": "Message me now",

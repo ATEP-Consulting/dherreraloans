@@ -1,10 +1,12 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
-import { PHONE_DISPLAY, PHONE_TEL, EMAIL, NMLS_ID, whatsAppHref } from '@/lib/site';
+import { PHONE_DISPLAY, PHONE_TEL, EMAIL, whatsAppHref } from '@/lib/site';
 import heroPersonal from '@/assets/img/hero-personal.jpg';
-import { SiteHeader } from '@/components/layout/site-header';
-import { ContactSwitchboard, type ContactChannel } from '@/components/ui/contact-switchboard';
+import { PageHero } from '@/components/layout/page-hero';
+import { Band } from '@/components/ui/band';
+import { SectionHeading } from '@/components/ui/section-heading';
+import { ContactChannels, type ContactChannel } from '@/components/ui/contact-channels';
 import { Container } from '@/components/ui/container';
 import { CtaBand } from '@/components/ui/cta-band';
 
@@ -30,21 +32,25 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
     { key: 'form', label: t('form.label'), value: t('form.action'), note: t('form.note'), href: '/quote', internal: true },
   ];
 
-  // Contact no usa PageHero: el conmutador ES la portada de la página (concepto A),
-  // así que monta el header global por su cuenta.
   return (
     <>
-      <SiteHeader locale={locale} pathname="/contact" />
-      <ContactSwitchboard
+      <PageHero
+        locale={locale}
+        pathname="/contact"
+        image={heroPersonal}
+        imageAlt={t('imageAlt')}
         eyebrow={t('eyebrow')}
         title={t('heroTitle')}
         body={t('heroSub')}
-        channels={channels}
-        image={heroPersonal}
-        imageAlt={t('imageAlt')}
-        badgeLabel={t('badgeLabel')}
-        badgeValue={t('badgeValue', { nmls: NMLS_ID })}
       />
+      <Band tone="navy">
+        <div className="flex flex-col gap-8">
+          <div className="reveal-rise">
+            <SectionHeading tone="navy" eyebrow={t('channels.eyebrow')} title={t('channels.title')} />
+          </div>
+          <ContactChannels channels={channels} />
+        </div>
+      </Band>
       <section className="border-b border-hairline bg-paper">
         <Container className="px-5 py-5 lg:px-[72px]">
           <p className="max-w-[75ch] font-sans text-fine italic text-muted">{t('pendingNote')}</p>

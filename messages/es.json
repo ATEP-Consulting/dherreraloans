@@ -949,8 +949,10 @@
     "heroTitle": "Elige cómo prefieres hablar conmigo",
     "heroSub": "Sin centro de llamadas ni tickets: tu mensaje llega a mí. En inglés o en español.",
     "imageAlt": "Casa de Miami al atardecer, con luz cálida en las ventanas",
-    "badgeLabel": "Tu originador",
-    "badgeValue": "David Herrera · NMLS #{nmls}",
+    "channels": {
+      "eyebrow": "Cuatro vías",
+      "title": "Elige la que te venga mejor"
+    },
     "whatsapp": {
       "label": "WhatsApp",
       "action": "Escríbeme ahora",
