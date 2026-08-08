@@ -1080,9 +1080,9 @@ Run: gate local completo. Después `git push -u origin redesign/superficies-func
 
 Contexto verificado: Next 16 soporta View Transitions en App Router **sin flag**; la API es de React (`ViewTransition`), presente en el React vendorizado de Next pero **no exportada ni tipada** por `react@19.2.8` estable → sin shim, `tsc --noEmit` rompe.
 
-- [ ] **Step 1: Leer la guía oficial** — `node_modules/next/dist/docs/01-app/02-guides/view-transitions.md` entera antes de escribir código; seguir sus imports/props EXACTOS (no los de blogs).
+- [x] **Step 1: Leer la guía oficial** — `node_modules/next/dist/docs/01-app/02-guides/view-transitions.md` entera antes de escribir código; seguir sus imports/props EXACTOS (no los de blogs).
 
-- [ ] **Step 2: Shim de tipos mínimo** (ajustar el nombre del export al que indique la guía):
+- [x] **Step 2: Shim de tipos mínimo** (ajustar el nombre del export al que indique la guía):
 
 ```ts
 // types/react-experimental.d.ts — SOLO mientras react estable no exporte ViewTransition
@@ -1098,11 +1098,13 @@ declare module 'react' {
 }
 ```
 
-- [ ] **Step 3: Aplicar al `<main>` del layout** según la guía + CSS de la transición (cross-fade 300ms `var(--ease-expo)`, `@media (prefers-reduced-motion: reduce)` lo anula, `::view-transition { pointer-events: none }`).
+Export confirmado sin ajustes: `grep -n ViewTransition node_modules/next/dist/compiled/react/cjs/react.production.js` → `exports.ViewTransition = REACT_VIEW_TRANSITION_TYPE;` (línea 395) — mismo nombre que importa la guía.
 
-- [ ] **Step 4: Verificar runtime real** — `npm run build && npm run start` y navegar: si `ViewTransition` es `undefined` en runtime (React estable local vs vendorizado), el spike FALLA → documentar y abandonar.
+- [x] **Step 3: Aplicar al `<main>` del layout** según la guía + CSS de la transición (cross-fade 300ms `var(--ease-expo)`, `@media (prefers-reduced-motion: reduce)` lo anula, `::view-transition { pointer-events: none }`). **Desviación documentada:** la guía dice explícitamente *"Put the wrapper in each `page.tsx`, not the layout. Layouts persist across navigations, so enter and exit never fire there."* `<main>` de `app/[locale]/layout.tsx` persiste entre rutas, así que se aplicó en su lugar a los `template.tsx` existentes (root + `loan-options/`), que sí se remontan por navegación — es la traducción arquitectónica más fiel a la guía sin tocar cada `page.tsx`. `.page-enter` (CSS de entrada) se conserva como fallback y se neutraliza vía `@supports (view-transition-name: none)` en navegadores compatibles, para no animar dos veces a la vez. Detalle completo en `.superpowers/sdd/2026-08-08-pulido-diseno-navy-inmersivo/task-16-report.md`.
 
-- [ ] **Step 5: Gate + decisión** — gate local completo + PR de preview para medir Lighthouse. Criterio del spec: si CUALQUIER categoría baja de 0.95 o hay flakiness, cerrar el PR sin merge y anotar el resultado en `docs/superpowers/plans/` (este fichero, sección Notas). Si todo verde y la transición aporta, merge como los demás.
+- [x] **Step 4: Verificar runtime real** — `npm run build && npm run start` y navegar: si `ViewTransition` es `undefined` en runtime (React estable local vs vendorizado), el spike FALLA → documentar y abandonar. **No falló**: build y start OK, `curl` 200 en varias rutas, `npx playwright test tests/e2e/smoke.spec.ts` 7/7 (incluida navegación client-side que fuerza una Transition — si `ViewTransition` fuese `undefined` React lanzaría "Element type is invalid" y el test fallaría), suite e2e completa 34/34. Verificación adicional: script Playwright ad hoc confirmó `document.startViewTransition` invocado exactamente 1 vez al navegar, cero errores de consola/página.
+
+- [x] **Step 5a (gate local):** `npm run lint`, `npx next typegen && npx tsc --noEmit`, `npm test` (110/110), `npm run build`, `npm run check:static` (44 rutas), `npm run test:e2e` (34/34) — todo PASS. PR de preview abierto para medir Lighthouse (pendiente del controller). Criterio del spec sigue vigente: si CUALQUIER categoría baja de 0.95 o hay flakiness, cerrar el PR sin merge.
 
 ---
 
@@ -1116,4 +1118,4 @@ declare module 'react' {
 
 ## Notas
 
-- (Reservado para el resultado del spike de View Transitions.)
+- **Resultado del spike de View Transitions (Task 16, rama `spike/view-transitions`):** FUNCIONAL en runtime. El shim de tipos (`types/react-experimental.d.ts`) y `<ViewTransition>` (import `{ ViewTransition } from 'react'`, resuelto por Next al React vendorizado) funcionan sin errores en build, `next start` y Playwright (smoke + suite completa, 34/34), incluida verificación directa de que `document.startViewTransition` se invoca al navegar. Se aplicó en `template.tsx` (root + `loan-options/`) en vez de en `<main>` del layout, siguiendo la advertencia explícita de la guía oficial sobre layouts persistentes. `.page-enter` se conserva como fallback CSS-only, neutralizado en navegadores compatibles vía `@supports (view-transition-name: none)`. PR de evaluación abierto (`Rediseño · PR D (spike): View Transitions`) para medir Lighthouse en preview — veredicto final (merge o cierre sin mergear) pendiente de esa medición, según el criterio ya pactado (cualquier categoría < 0.95 → se cierra). Detalle completo: `.superpowers/sdd/2026-08-08-pulido-diseno-navy-inmersivo/task-16-report.md`.
