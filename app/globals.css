@@ -29,6 +29,8 @@
   /* Curvas de motion escenográfico (spec 2026-08-08) */
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-curtain: cubic-bezier(0.7, 0, 0.2, 1);
+  --duration-marquee: 28s;
+  --duration-page-enter: 0.55s;
 
   /* Tipografía */
   --font-display: var(--font-spectral), Georgia, serif;
@@ -127,12 +129,12 @@ body {
 /* ── Marquesina de ciudades ── */
 @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee { overflow: hidden; }
-.marquee-track { display: flex; width: max-content; animation: marquee-scroll 28s linear infinite; }
+.marquee-track { display: flex; width: max-content; animation: marquee-scroll var(--duration-marquee) linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
 /* ── Entrada de página (template.tsx). SOLO transform: el hero es el LCP ── */
 @keyframes page-enter { from { transform: translateY(12px); } to { transform: none; } }
 @media (prefers-reduced-motion: no-preference) {
-  .page-enter { animation: page-enter 0.55s var(--ease-expo); }
+  .page-enter { animation: page-enter var(--duration-page-enter) var(--ease-expo); }
 }
