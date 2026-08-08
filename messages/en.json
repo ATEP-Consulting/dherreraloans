@@ -13,6 +13,12 @@
       "breadcrumb": "You are here",
       "primary": "Main navigation"
     },
+    "megaMenu": {
+      "eyebrow": "Loan programs",
+      "title": "Financing for every path",
+      "description": "From a first home to an investment portfolio — twelve programs, one originator who answers.",
+      "viewAll": "See all loan options →"
+    },
     "localeSwitcher": { "en": "English", "es": "Español", "label": "Language" },
     "topStrip": { "left": "David Herrera — Mortgage Loan Originator", "right": "NMLS #{nmls} · Miami, Florida" },
     "cta": { "quote": "Get a Quote", "apply": "Apply Online", "whatsApp": "WhatsApp — same-day reply", "whatsAppMessage": "Hi David, I found your website and I'd like to talk about a mortgage." },

@@ -147,8 +147,9 @@ test('un visitante a mitad de flujo que reabre la home no sufre robo de foco ni 
 
 test.describe('preview del índice (desktop)', () => {
   // Forzamos viewport desktop: el proyecto e2e por defecto es mobile-chrome (Pixel 7), donde
-  // .pindex-preview es `display: none` y la interacción bajo prueba no existe.
-  test.use({ viewport: { width: 1280, height: 800 } });
+  // .pindex-preview es `display: none` y la interacción bajo prueba no existe. isMobile/hasTouch
+  // fuera para que :hover sea estable (la emulación táctil no lo mantiene).
+  test.use({ viewport: { width: 1280, height: 800 }, isMobile: false, hasTouch: false });
 
   test('hover en una fila cambia la foto de preview', async ({ page }) => {
     // Excepción justificada al principio de "sin selectores CSS" de este spec: la interacción
@@ -162,5 +163,49 @@ test.describe('preview del índice (desktop)', () => {
     await rows.nth(2).hover();
     // `expect.poll`-like: el auto-retry de toHaveCSS absorbe la transición de --duration-preview.
     await expect(panel.nth(2)).toHaveCSS('opacity', '1');
+  });
+});
+
+test.describe('header y motion (desktop)', () => {
+  // Viewport desktop + motion real: este bloque verifica precisamente el comportamiento
+  // animado, así que anula el reducedMotion:'reduce' global del config. isMobile/hasTouch
+  // fuera: el proyecto es Pixel 7 y la emulación táctil no mantiene :hover.
+  test.use({
+    viewport: { width: 1280, height: 800 },
+    isMobile: false,
+    hasTouch: false,
+    contextOptions: { reducedMotion: 'no-preference' },
+  });
+
+  test('el header es transparente en top y sólido al scrollear', async ({ page }) => {
+    await page.goto('/en');
+    const html = page.locator('html');
+    await expect(html).not.toHaveClass(/hdr-solid/);
+    await page.mouse.wheel(0, 600);
+    await expect(html).toHaveClass(/hdr-solid/);
+    await page.mouse.wheel(0, -600);
+    await expect(html).not.toHaveClass(/hdr-solid/);
+  });
+
+  test('mega-menú: hover en Loan Options despliega los 12 programas', async ({ page }) => {
+    await page.goto('/en');
+    const nav = page.getByRole('navigation', { name: en.common.nav.primary });
+    const fhaInMega = nav.getByRole('link', { name: new RegExp(en.programs.fha.indexName) });
+    await expect(fhaInMega).toBeHidden();
+    await nav.getByRole('link', { name: en.common.nav.loanOptions, exact: true }).hover();
+    await expect(fhaInMega).toBeVisible();
+    await expect(nav.getByRole('link', { name: en.common.megaMenu.viewAll })).toBeVisible();
+    await expect(nav.locator('ul a')).toHaveCount(12);
+  });
+
+  test('reveals: animan POR TIEMPO al entrar en viewport (no scrubbed)', async ({ page }) => {
+    await page.goto('/en');
+    const el = page.locator('.reveal-rise').first(); // cabecera del quiz, bajo el fold en 800px
+    await expect(el).toHaveCSS('opacity', '0'); // armado por html.js-reveal, aún sin intersecar
+    await el.scrollIntoViewIfNeeded();
+    // Con el scroll ya QUIETO, la opacidad debe llegar a 1 por sí sola (animación por tiempo).
+    await expect
+      .poll(() => el.evaluate((n) => parseFloat(getComputedStyle(n).opacity)), { timeout: 4000 })
+      .toBeGreaterThan(0.95);
   });
 });
