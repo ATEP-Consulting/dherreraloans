@@ -18,7 +18,7 @@ Web bilingüe (EN/ES) de captación de leads hipotecarios para David Herrera, lo
 - **Componentización total** (ADR-0010 + requisito del cliente): todo valor de estilo es un token `@theme` en `app/globals.css`; todo elemento repetido vive en `components/ui|layout/`. Cambiar un color = tocar UN token. Estilos ad hoc = defecto Important en review.
 - **Todo texto visible en `messages/{en,es}.json`** (paridad testeada). Datos no-copy (NMLS, URLs, teléfono) en `lib/site.ts`.
 - **Todas las páginas prerenderizadas** (`npm run check:static`); rutas desde `config/routes.mjs` (fuente única).
-- **Todas las páginas abren con `PageHero`** (excepción: `/contact`, que monta `SiteHeader` + `ContactSwitchboard` porque el conmutador de canales ES su portada) (foto full-bleed + header integrado); contenido capado a 1440px centrado (`--container-max`), fondos a sangre; hero de home 100svh.
+- **Todas las páginas abren con `PageHero`** (sin excepciones; el header vive en `components/layout/site-header.tsx` y `PageHero` lo monta) (foto full-bleed + header integrado); contenido capado a 1440px centrado (`--container-max`), fondos a sangre; hero de home 100svh.
 - Cero client components propios; interactividad CSS-only.
 - Teléfono/email son placeholders obvios hasta recibir datos reales del cliente.
 

@@ -171,6 +171,10 @@ test.describe('preview del índice (desktop)', () => {
     await rows.nth(2).hover();
     // `expect.poll`-like: el auto-retry de toHaveCSS absorbe la transición de --duration-preview.
     await expect(panel.nth(2)).toHaveCSS('opacity', '1');
+    // Y la foto debe OCUPAR el panel: con el primer hijo en position:relative su caja medía
+    // 0 y el <Image fill> salía a altura 0 — visible para el CSS, invisible para el ojo.
+    const box = await panel.nth(2).locator('img').boundingBox();
+    expect(box?.height ?? 0).toBeGreaterThan(200);
   });
 });
 

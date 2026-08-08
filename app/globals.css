@@ -186,8 +186,11 @@ html { scroll-padding-top: 7rem; }
 .pindex-preview { display: none; }
 @media (min-width: 61.25rem) {
   .pindex-preview { display: block; position: sticky; top: 24px; overflow: hidden; }
+  /* TODAS las capas absolutas contra el panel (que ya tiene altura propia): con el primer
+     hijo en `position: relative` su caja medía 0 y el <Image fill> de dentro salía con
+     altura 0 — la preview existía pero no se veía nunca. */
   .pindex-preview > * { position: absolute; inset: 0; opacity: 0; transition: opacity var(--duration-preview) var(--ease-expo); }
-  .pindex-preview > :first-child { position: relative; opacity: 1; }
+  .pindex-preview > :first-child { opacity: 1; }
   .pindex:has(.pindex-rows > a:nth-child(1):hover) .pindex-preview > :nth-child(1),
   .pindex:has(.pindex-rows > a:nth-child(2):hover) .pindex-preview > :nth-child(2),
   .pindex:has(.pindex-rows > a:nth-child(3):hover) .pindex-preview > :nth-child(3),

@@ -106,12 +106,19 @@ Mockups aprobados del companion: `visual-direction.html` (dirección A), `home-r
 3. **Mega-menú «Loan Options»** (referencia: luisroyuelanutricionistas.com): panel a ancho completo bajo el header (CSS-only, hover/focus-within, `visibility` para accesibilidad y e2e) con cabecera+descripción (claves nuevas `common.megaMenu.*`) y los 12 programas (nombre+stat).
 4. **Hero interior con más aire:** `min-h` 420/480 → 500/580 + `pt` de compensación del header fijo. **Numeral del índice:** columna 56→80px (respiro tras «No. N»).
 
-## Enmienda 2026-08-08 · Contact como conmutador de canales (concepto A validado en companion)
+## Enmienda 2026-08-08 · Contact: canales dentro del sistema (homogénea)
 
-**Problema:** la página era hero + tres tarjetas planas + quiz; percibida como sosa. **Objetivo elegido por Pablo:** que el visitante contacte YA por su canal preferido (la página es un conmutador, no un folleto).
+**Problema:** la página era hero + tres tarjetas planas + quiz; percibida como sosa. **Objetivo elegido por Pablo:** que el visitante contacte YA por su canal preferido.
 
-- **`ContactSwitchboard`** (`components/ui/`): split `lg:min-h-svh` — columna navy con eyebrow + h1 + lede + **cuatro canales como filas grandes** (WhatsApp, llamar, email, formulario) con icono SVG en caja que se invierte al hover, desplazamiento lateral y flecha; columna derecha con foto (velo navy) y **placa paper de David + NMLS**. En móvil: encabezado y canales primero, foto al cierre (ningún canal bajo el fold). Los canales **no llevan clases reveal** (son controles: siempre visibles); el motion va en el encabezado (`reveal-rise`) y la foto (`reveal-curtain-l`).
-- **`SiteHeader`** (`components/layout/`): el header se extrae de `PageHero` a su propio componente (no pertenece al hero y ya era `fixed`). `PageHero` lo monta igual que antes — cero cambios de comportamiento en las 11 páginas restantes — y Contact lo monta por su cuenta al no usar `PageHero`. Recibe `locale`/`pathname`/`params` porque `LangToggle` necesita la ruta gemela y el layout, server component, no tiene acceso a ella.
-- **Contact pierde el quiz embebido:** el 4º canal enlaza a `/quote` (envoltorio dedicado). Menos peso y sin duplicar el quiz en cuatro páginas.
-- **Copy:** `contact.*` reescrito (eyebrow, heroTitle/heroSub, `imageAlt`, `badgeLabel`/`badgeValue`, y `label`/`action`/`note` por canal); desaparece `quizLead`. La `pendingNote` de los placeholders sale del split a una banda paper propia (más legible y deja el conmutador cuadrado en un viewport de 800 px).
-- **Verificado:** sección 800 px en viewport 800 (cuatro canales dentro, placa visible), áreas táctiles de 96–115 px en móvil, e2e de los cuatro destinos + nota de placeholders.
+**Primera iteración (descartada):** un split a pantalla completa que sustituía al `PageHero` (concepto A del companion). Funcionaba, pero **rompía la homogeneidad del sitio** — el requisito de origen es que todas las páginas abran con el mismo `PageHero`, y una sola página distinta de doce se lee como error, no como decisión. Pablo lo detectó y se revirtió.
+
+**Solución vigente:** el efecto conmutador se consigue DENTRO del sistema.
+- `/contact` = `PageHero` estándar (foto a sangre, eyebrow, titular display, lede) → **banda navy full-bleed con los cuatro canales** (WhatsApp, llamar, email, formulario a `/quote`) → banda paper con la nota de placeholders → `CtaBand`.
+- **`ContactChannels`** (`components/ui/`): filas con la **misma métrica y comportamiento que `IndexRow` en tono navy** (borde `paper-a15`, guía punteada, hover que desplaza la fila y subraya el dato, nota en segunda línea indentada); el icono SVG del canal ocupa el lugar del numeral y la etiqueta del canal el del stat. Resultado: la banda de Contact y el índice de programas se leen como hermanas. Sin clases reveal en las filas (son controles).
+- **`SiteHeader`** (`components/layout/`): el header se extrae de `PageHero` a su propio componente — correcto de por sí (el header no pertenece al hero y ya era `fixed`) y se conserva; `PageHero` lo monta, así que **no hay excepciones a la regla del `PageHero`**.
+- **Contact pierde el quiz embebido:** el 4º canal enlaza a `/quote`. Menos peso y sin duplicar el quiz en cuatro páginas.
+- **Copy:** `contact.*` reescrito (eyebrow, heroTitle/heroSub, `imageAlt`, `channels.eyebrow/title` y `label`/`action`/`note` por canal); desaparece `quizLead`.
+
+## Corrección 2026-08-08 · La preview del índice nunca se veía
+
+`.pindex-preview > :first-child` era `position: relative` sin altura propia y sus hijos absolutos, así que el `<Image fill>` de dentro se dimensionaba contra una caja de **altura 0**: el panel fotográfico del índice (home y `/loan-options`) existía, cambiaba de opacidad al hover y aun así **no mostraba nada**. Todas las capas pasan a `position: absolute` contra el panel (que ya tiene `h-[340px]`). El e2e de la preview comprobaba solo `opacity` — pasaba con la foto invisible — y ahora exige además que la imagen mida más de 200 px de alto.
