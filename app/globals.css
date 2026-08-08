@@ -31,6 +31,7 @@
   --ease-curtain: cubic-bezier(0.7, 0, 0.2, 1);
   --duration-marquee: 28s;
   --duration-page-enter: 0.55s;
+  --duration-view-transition: 300ms; /* SPIKE Task 16 — cross-fade de navegación */
 
   /* Tipografía */
   --font-display: var(--font-spectral), Georgia, serif;
@@ -157,4 +158,33 @@ body {
 @keyframes page-enter { from { transform: translateY(12px); } to { transform: none; } }
 @media (prefers-reduced-motion: no-preference) {
   .page-enter { animation: page-enter var(--duration-page-enter) var(--ease-expo); }
+}
+
+/* ── SPIKE Task 16 (rama spike/view-transitions) — cross-fade real de navegación ──
+   <ViewTransition> (React) envuelve el contenido en los template.tsx. Sin nombre propio:
+   usa los pseudo-elementos autogenerados del navegador vía selector universal, igual que
+   la receta de la guía oficial (node_modules/next/dist/docs/.../view-transitions.md,
+   sección "Respecting reduced motion"). Descartable en bloque si el spike se abandona. */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: var(--duration-view-transition);
+  animation-timing-function: var(--ease-expo);
+}
+::view-transition {
+  /* Restaura la interactividad durante la transición (recomendación de la guía) */
+  pointer-events: none;
+}
+@supports (view-transition-name: none) {
+  /* El navegador soporta la View Transitions API → el cross-fade sustituye a .page-enter
+     para no animar dos veces (slide + fade) a la vez. */
+  .page-enter { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
 }
