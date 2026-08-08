@@ -158,12 +158,14 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
         centerLabel={texts.resultLabel}
         centerValue={money(result.totalMonthly, 2)}
       />
-      <dl className="flex flex-col gap-2 border-t border-hairline pt-4 font-sans text-sm text-body">
-        <div className="flex justify-between gap-4">
-          <dt>{texts.upfrontLabel}</dt>
-          <dd className="tabular-nums">{money(result.upfrontFee)}</dd>
-        </div>
-      </dl>
+      {result.upfrontFee > 0 ? (
+        <dl className="flex flex-col gap-2 border-t border-hairline pt-4 font-sans text-sm text-body">
+          <div className="flex justify-between gap-4">
+            <dt>{texts.upfrontLabel}</dt>
+            <dd className="tabular-nums">{money(result.upfrontFee)}</dd>
+          </div>
+        </dl>
+      ) : null}
       <div className="flex flex-col gap-2 border-t border-hairline pt-4 font-sans text-sm text-body">
         <p>{texts.dtiYours.replace('{front}', result.frontDti.toFixed(2)).replace('{back}', result.backDti.toFixed(2))}</p>
         <p>{texts.dtiAllowed.replace('{maxFront}', String(result.limits.front)).replace('{maxBack}', String(result.limits.back))}</p>
