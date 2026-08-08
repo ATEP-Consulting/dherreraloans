@@ -19,7 +19,7 @@ import { PhotoPlate } from '@/components/ui/photo-plate';
 import { TextLink } from '@/components/ui/text-link';
 import { Container } from '@/components/ui/container';
 import { ActionCards } from '@/components/ui/action-cards';
-import { Quiz } from '@/components/quiz/quiz';
+import { QuizDeferred } from '@/components/quiz/quiz-deferred';
 import { QuizThanksCtas } from '@/components/quiz/quiz-thanks-ctas';
 import type { QuizTexts } from '@/lib/quiz/texts';
 import { slugFor } from '@/lib/programs';
@@ -69,7 +69,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section id="quiz">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
           <SectionHeading eyebrow={t('tellUs.eyebrow')} title={t('tellUs.title')} helper={t('tellUs.helper')} />
-          <Quiz locale={locale} texts={quizTexts} thanksCtas={<QuizThanksCtas />} />
+          <QuizDeferred locale={locale} texts={quizTexts} thanksCtas={<QuizThanksCtas />} />
         </Container>
       </section>
       <section>
