@@ -48,7 +48,8 @@ export default async function ProgramPage({
   const tc = await getTranslations('common');
   const tp = await getTranslations('programs');
   const programKeys = Object.keys(programSlugs);
-  const relatedKeys = programKeys.filter((k) => k !== key).slice(0, 3);
+  const programIndex = programKeys.indexOf(key);
+  const relatedKeys = [1, 2, 3].map((offset) => programKeys[(programIndex + offset) % programKeys.length]);
 
   return (
     <>
