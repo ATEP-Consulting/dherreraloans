@@ -38,7 +38,7 @@ export function IndexRow({ number, name, stat, href, tone = 'paper', className =
       className={`group flex flex-wrap items-baseline border-b py-4 lg:py-[21px] ${c.row} ${className}`}
     >
       {number ? (
-        <span className={`hidden w-14 shrink-0 font-display text-[22px] font-extralight lg:inline ${c.number}`}>{number}</span>
+        <span className={`hidden w-20 shrink-0 font-display text-[22px] font-extralight lg:inline ${c.number}`}>{number}</span>
       ) : null}
       <span className={`font-display text-index font-light ${c.name}`}>{name}</span>
       <span aria-hidden className={`mx-3 flex-1 -translate-y-1 border-b border-dotted lg:mx-4 ${c.fill}`} />

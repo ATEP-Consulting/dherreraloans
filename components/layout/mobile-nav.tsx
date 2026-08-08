@@ -21,12 +21,12 @@ export async function MobileNav() {
           stroke="currentColor"
           strokeWidth="1.8"
           aria-hidden="true"
-          className="text-paper"
+          className="text-(--hfg)"
         >
           <path d="M4 7h16M4 12h16M4 17h16" />
         </svg>
       </summary>
-      <div className="absolute inset-x-0 top-full flex flex-col gap-5 border-t border-paper-a25 bg-navy px-5 py-6">
+      <div className="hdr-mobile-panel absolute inset-x-0 top-full flex flex-col gap-5 border-t border-paper-a25 bg-navy px-5 py-6">
         <NavLinks />
         <TextLink href={APPLY_URL} external tone="paper">
           {t('cta.apply')}

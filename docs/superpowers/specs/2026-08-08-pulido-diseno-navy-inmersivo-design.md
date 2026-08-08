@@ -98,3 +98,10 @@ Cero client components nuevos (se mantiene la regla del proyecto). Todo CSS.
 ## Referencias locales (no versionadas)
 
 Mockups aprobados del companion: `visual-direction.html` (dirección A), `home-rhythm.html` (opción 2), `motion-style.html` (opción 3), `home-full.html` (home completa aprobada). Viven en `.superpowers/brainstorm/94878-1786182921/content/` (gitignored); si se pierden, este spec es la descripción canónica.
+
+## Enmienda 2026-08-08 (post-verificación visual de Pablo)
+
+1. **Motion:** los reveals scrubbed con `animation-timeline: view()` se percibían como «sin animación» a velocidad de scroll real (verificado con sonda: la animación completaba dentro del gesto). Sustituidos por animaciones **por tiempo** (0.9–1.1s, mismas keyframes/easings) disparadas al entrar en viewport por un IntersectionObserver **vanilla inline** en el layout (~30 líneas, no es client component; re-escanea en navegaciones client-side vía MutationObserver). `html.js-reveal` se arma pre-paint solo con JS y sin `prefers-reduced-motion`; sin JS o con reduced-motion todo es estático visible. Beneficio: también anima en Firefox.
+2. **Header fijo con estado:** el header (con TopStrip) pasa a `position: fixed`; transparente integrado con el hero en top 0, y con `hdr-solid` (scroll > 8px, script del layout) fondo paper, texto ink, logo oscuro (`logo.png`) y top-strip plegado. Colores vía vars `--hfg/--hfg-mut/--hbr` en `.site-header`.
+3. **Mega-menú «Loan Options»** (referencia: luisroyuelanutricionistas.com): panel a ancho completo bajo el header (CSS-only, hover/focus-within, `visibility` para accesibilidad y e2e) con cabecera+descripción (claves nuevas `common.megaMenu.*`) y los 12 programas (nombre+stat).
+4. **Hero interior con más aire:** `min-h` 420/480 → 500/580 + `pt` de compensación del header fijo. **Numeral del índice:** columna 56→80px (respiro tras «No. N»).

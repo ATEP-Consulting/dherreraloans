@@ -13,6 +13,12 @@
       "breadcrumb": "Estás aquí",
       "primary": "Navegación principal"
     },
+    "megaMenu": {
+      "eyebrow": "Programas de préstamo",
+      "title": "Financiación para cada camino",
+      "description": "De la primera casa a la cartera de inversión: doce programas y un originador que responde.",
+      "viewAll": "Ver todas las opciones →"
+    },
     "localeSwitcher": { "en": "English", "es": "Español", "label": "Idioma" },
     "topStrip": { "left": "David Herrera — Originador de Préstamos Hipotecarios", "right": "NMLS #{nmls} · Miami, Florida" },
     "cta": { "quote": "Obtén tu cotización", "apply": "Aplica online", "whatsApp": "WhatsApp — respondo en el día", "whatsAppMessage": "Hola David, encontré tu página web y me gustaría hablar sobre una hipoteca." },

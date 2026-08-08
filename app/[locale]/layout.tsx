@@ -57,11 +57,44 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${spectral.variable} ${instrument.variable}`}>
       <body className="min-h-svh bg-paper text-ink antialiased">
+        {/* Pre-paint: arma los reveals solo con JS activo y sin reduced-motion (evita FOUC).
+            Vanilla inline, no es un client component (ADR-0010 / spec 2026-08-08, enmienda motion). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-reveal')}catch(e){}",
+          }}
+        />
         <JsonLd data={personJsonLd()} />
         <NextIntlClientProvider messages={{ common: messages.common }}>
           <main>{children}</main>
           <SiteFooter locale={locale} />
         </NextIntlClientProvider>
+        {/* Observer de reveals (dispara animaciones POR TIEMPO al entrar en viewport, una vez;
+            re-escanea tras navegaciones client-side vía MutationObserver) + estado del header. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){
+var SEL='.reveal-rise,.reveal-mask,.reveal-left,.reveal-curtain,.reveal-curtain-l,.reveal-stagger';
+var io=('IntersectionObserver'in window)?new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{rootMargin:'0px 0px -12% 0px',threshold:0.05}):null;
+function arm(root){
+  if(!io)return;
+  root.querySelectorAll(SEL).forEach(function(el){
+    if(el.classList.contains('in')||el.dataset.rv)return;
+    var st=el.closest('.reveal-stagger');
+    if(st&&st!==el)return; /* los hijos de un stagger los dispara el contenedor */
+    el.dataset.rv='1';io.observe(el);
+  });
+}
+arm(document);
+new MutationObserver(function(){arm(document)}).observe(document.body,{childList:true,subtree:true});
+var onS=function(){document.documentElement.classList.toggle('hdr-solid',window.scrollY>8)};
+addEventListener('scroll',onS,{passive:true});onS();
+})();`,
+          }}
+        />
       </body>
     </html>
   );
