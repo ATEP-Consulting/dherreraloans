@@ -8,7 +8,7 @@ import { PercentInput } from '@/components/ui/form/percent-input';
 import { SelectField } from '@/components/ui/form/select-field';
 import { TextInput } from '@/components/ui/form/text-input';
 import { ChoiceCard } from '@/components/ui/form/choice-card';
-import { CalcLayout } from './calc-layout';
+import { CalcLayout, CalcGroupTitle, CalcKpi, CalcKpiLabel, kpiLabelClass } from './calc-layout';
 
 export type RefinanceCalcTexts = {
   currentTitle: string; newTitle: string;
@@ -26,10 +26,6 @@ export type RefinanceCalcTexts = {
 };
 
 const NEW_TERMS = [30, 20, 15] as const;
-
-const groupTitle = 'font-sans text-micro font-semibold uppercase tracking-label text-ink border-b border-hairline pb-2';
-const kpiLabel = 'font-sans text-micro font-medium uppercase tracking-label text-muted';
-const kpiValue = 'font-display text-h2 font-light tabular-nums';
 
 export function RefinanceCalc({ texts, locale }: { texts: RefinanceCalcTexts; locale: string }) {
   const [balance, setBalance] = useState<number | null>(250000);
@@ -58,7 +54,7 @@ export function RefinanceCalc({ texts, locale }: { texts: RefinanceCalcTexts; lo
 
   const form = (
     <>
-      <h3 className={groupTitle}>{texts.currentTitle}</h3>
+      <CalcGroupTitle>{texts.currentTitle}</CalcGroupTitle>
       <Field label={texts.currentBalanceLabel} htmlFor="refi-balance">
         <MoneyInput id="refi-balance" value={balance} onValueChange={setBalance} locale={locale} />
       </Field>
@@ -76,7 +72,7 @@ export function RefinanceCalc({ texts, locale }: { texts: RefinanceCalcTexts; lo
         />
       </Field>
 
-      <h3 className={groupTitle}>{texts.newTitle}</h3>
+      <CalcGroupTitle>{texts.newTitle}</CalcGroupTitle>
       <Field label={texts.newRateLabel} htmlFor="refi-new-rate">
         <PercentInput id="refi-new-rate" value={newRate} onValueChange={setNewRate} />
       </Field>
@@ -95,7 +91,7 @@ export function RefinanceCalc({ texts, locale }: { texts: RefinanceCalcTexts; lo
         <MoneyInput id="refi-costs" value={costs} onValueChange={setCosts} locale={locale} />
       </Field>
       <fieldset className="flex flex-col gap-2.5">
-        <legend className={kpiLabel}>{texts.financeCostsLabel}</legend>
+        <legend className={kpiLabelClass}>{texts.financeCostsLabel}</legend>
         <ChoiceCard
           name="refi-finance-costs"
           value="included"
@@ -118,18 +114,16 @@ export function RefinanceCalc({ texts, locale }: { texts: RefinanceCalcTexts; lo
     <>
       <div className="grid grid-cols-2 gap-6">
         <div className="flex flex-col gap-1">
-          <p className={kpiLabel}>{texts.savingsLabel}</p>
-          <p className={`${kpiValue} ${result.monthlySavings < 0 ? 'text-error' : 'text-ink'}`}>{money(result.monthlySavings, 2)}</p>
+          <CalcKpi label={texts.savingsLabel} value={money(result.monthlySavings, 2)} tone={result.monthlySavings < 0 ? 'error' : 'default'} />
           {result.monthlySavings < 0 ? <p className="font-sans text-fine font-medium text-error">{texts.savingsWarning}</p> : null}
         </div>
         <div className="flex flex-col gap-1">
-          <p className={kpiLabel}>{texts.interestDiffLabel}</p>
-          <p className={`${kpiValue} ${result.interestDifference < 0 ? 'text-error' : 'text-ink'}`}>{money(result.interestDifference)}</p>
+          <CalcKpi label={texts.interestDiffLabel} value={money(result.interestDifference)} tone={result.interestDifference < 0 ? 'error' : 'default'} />
           {result.interestDifference < 0 ? <p className="font-sans text-fine font-medium text-error">{texts.interestDiffWarning}</p> : null}
         </div>
       </div>
       <div className="flex flex-col gap-2 border-t border-hairline pt-4">
-        <p className={kpiLabel}>{texts.comparisonTitle}</p>
+        <CalcKpiLabel>{texts.comparisonTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4"><dt>{texts.currentMonthlyLabel}</dt><dd className="tabular-nums">{money(result.currentMonthly, 2)}</dd></div>
           <div className="flex justify-between gap-4"><dt>{texts.newMonthlyLabel}</dt><dd className="tabular-nums">{money(result.newMonthly, 2)}</dd></div>
@@ -137,14 +131,14 @@ export function RefinanceCalc({ texts, locale }: { texts: RefinanceCalcTexts; lo
         </dl>
       </div>
       <div className="flex flex-col gap-2 border-t border-hairline pt-4">
-        <p className={kpiLabel}>{texts.interestComparisonTitle}</p>
+        <CalcKpiLabel>{texts.interestComparisonTitle}</CalcKpiLabel>
         <dl className="flex flex-col gap-2 font-sans text-sm text-body">
           <div className="flex justify-between gap-4"><dt>{texts.currentInterestLabel}</dt><dd className="tabular-nums">{money(result.currentRemainingInterest)}</dd></div>
           <div className="flex justify-between gap-4"><dt>{texts.newInterestLabel}</dt><dd className="tabular-nums">{money(result.newTotalInterest)}</dd></div>
         </dl>
       </div>
       <div className="flex flex-col gap-2 border-t border-hairline pt-4">
-        <p className={kpiLabel}>{texts.breakEvenLabel}</p>
+        <CalcKpiLabel>{texts.breakEvenLabel}</CalcKpiLabel>
         <p className="font-sans text-sm text-body">
           {result.breakEvenMonths !== null ? texts.breakEvenMonths.replace('{months}', String(result.breakEvenMonths)) : texts.breakEvenNever}
         </p>

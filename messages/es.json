@@ -492,6 +492,7 @@
           "usda": "USDA",
           "jumbo": "Jumbo"
         },
+        "programGroupLabel": "Programa de préstamo",
         "incomeLabel": "Ingreso mensual bruto",
         "debtsLabel": "Deudas mensuales",
         "debtsHint": "Incluye los pagos mínimos de préstamos de auto, tarjetas de crédito y préstamos estudiantiles. No incluyas renta ni servicios.",

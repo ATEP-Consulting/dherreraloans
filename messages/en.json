@@ -492,6 +492,7 @@
           "usda": "USDA",
           "jumbo": "Jumbo"
         },
+        "programGroupLabel": "Loan program",
         "incomeLabel": "Gross monthly income",
         "debtsLabel": "Monthly debts",
         "debtsHint": "Include minimum payments on auto loans, credit cards and student loans. Leave out rent and utilities.",

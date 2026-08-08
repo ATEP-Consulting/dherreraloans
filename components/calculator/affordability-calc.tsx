@@ -7,11 +7,13 @@ import { Field } from '@/components/ui/form/field';
 import { MoneyInput } from '@/components/ui/form/money-input';
 import { PercentInput } from '@/components/ui/form/percent-input';
 import { SelectField } from '@/components/ui/form/select-field';
-import { CalcLayout } from './calc-layout';
+import { CalcLayout, CalcKpi } from './calc-layout';
 import { CalcDonut } from './calc-donut';
+import { LoanBasicsFields, downPaymentError } from './loan-basics-fields';
 
 export type AffordabilityCalcTexts = {
   programs: Record<Program, string>;
+  programGroupLabel: string;
   incomeLabel: string; debtsLabel: string; debtsHint: string;
   priceLabel: string; downLabel: string; downPct: string;
   rateLabel: string; termLabel: string; termOption: string;
@@ -49,8 +51,7 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
   const [hoa, setHoa] = useState<number | null>(0);
   const [creditBand, setCreditBand] = useState<CreditBand>('760+');
 
-  const downError = price !== null && down !== null && down >= price;
-  const pct = price && down ? `${((down / price) * 100).toFixed(1)}%` : null;
+  const downError = downPaymentError(price, down);
   const money = (v: number, d = 0) => formatMoney(v, locale, d);
   const showCredit = program === 'conventional' || program === 'jumbo';
 
@@ -74,14 +75,15 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
         )
       : null;
 
+  // Selector de programa: grupo de botones tipo radio (aria-pressed), no un tablist anidado
+  // dentro del tabpanel de CalcTabs — la semántica de "pestañas dentro de pestañas" viola APG.
   const programTabs = (
-    <div role="tablist" className="flex flex-wrap gap-px border border-hairline bg-hairline">
+    <div role="group" aria-label={texts.programGroupLabel} className="flex flex-wrap gap-px border border-hairline bg-hairline">
       {PROGRAMS.map((p) => (
         <button
           key={p}
           type="button"
-          role="tab"
-          aria-selected={program === p}
+          aria-pressed={program === p}
           onClick={() => setProgram(p)}
           className={`px-3 py-2 font-sans text-micro font-medium uppercase tracking-label ${program === p ? 'bg-navy text-paper' : 'bg-paper text-body hover:bg-sand'}`}
         >
@@ -99,28 +101,20 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
       <Field label={texts.debtsLabel} htmlFor="afford-debts" hint={texts.debtsHint}>
         <MoneyInput id="afford-debts" value={debts} onValueChange={setDebts} locale={locale} />
       </Field>
-      <Field label={texts.priceLabel} htmlFor="afford-price">
-        <MoneyInput id="afford-price" value={price} onValueChange={setPrice} locale={locale} />
-      </Field>
-      <Field
-        label={texts.downLabel}
-        htmlFor="afford-down"
-        hint={pct ? texts.downPct.replace('{pct}', pct) : undefined}
-        error={downError ? texts.errorDown : undefined}
-      >
-        <MoneyInput id="afford-down" value={down} onValueChange={setDown} locale={locale} invalid={downError} />
-      </Field>
-      <Field label={texts.rateLabel} htmlFor="afford-rate">
-        <PercentInput id="afford-rate" value={rate} onValueChange={setRate} />
-      </Field>
-      <Field label={texts.termLabel} htmlFor="afford-term">
-        <SelectField
-          id="afford-term"
-          value={String(years)}
-          onChange={(e) => setYears(Number(e.target.value) as (typeof TERMS)[number])}
-          options={TERMS.map((y) => ({ value: String(y), label: texts.termOption.replace('{years}', String(y)) }))}
-        />
-      </Field>
+      <LoanBasicsFields
+        idPrefix="afford"
+        locale={locale}
+        texts={texts}
+        price={price}
+        onPriceChange={setPrice}
+        down={down}
+        onDownChange={setDown}
+        rate={rate}
+        onRateChange={setRate}
+        years={years}
+        onYearsChange={setYears}
+        terms={TERMS}
+      />
       <Field label={texts.taxLabel} htmlFor="afford-tax">
         <PercentInput id="afford-tax" value={taxPct} onValueChange={setTaxPct} />
       </Field>
@@ -145,8 +139,7 @@ export function AffordabilityCalc({ texts, locale }: { texts: AffordabilityCalcT
 
   const results = result ? (
     <>
-      <p className="font-sans text-micro font-medium uppercase tracking-label text-muted">{texts.resultLabel}</p>
-      <p className="font-display text-h2 font-light tabular-nums text-ink">{money(result.totalMonthly, 2)}</p>
+      <CalcKpi label={texts.resultLabel} value={money(result.totalMonthly, 2)} />
       <CalcDonut
         segments={[
           { label: `${texts.breakdownPiLabel} · ${money(result.monthlyPI, 2)}`, value: result.monthlyPI, swatchClass: 'text-navy' },

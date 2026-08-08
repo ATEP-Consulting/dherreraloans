@@ -6,9 +6,9 @@ import { formatMoney } from '@/lib/format';
 import { Field } from '@/components/ui/form/field';
 import { MoneyInput } from '@/components/ui/form/money-input';
 import { PercentInput } from '@/components/ui/form/percent-input';
-import { SelectField } from '@/components/ui/form/select-field';
-import { CalcLayout } from './calc-layout';
+import { CalcLayout, CalcKpi, CalcKpiLabel } from './calc-layout';
 import { CalcDonut } from './calc-donut';
+import { LoanBasicsFields, downPaymentError } from './loan-basics-fields';
 
 export type PurchaseCalcTexts = {
   priceLabel: string; downLabel: string; downPct: string;
@@ -35,8 +35,7 @@ export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; loca
   const [hoaMonthly, setHoaMonthly] = useState<number | null>(0);
   const [extraMonthly, setExtraMonthly] = useState<number | null>(0);
 
-  const downError = price !== null && down !== null && down >= price;
-  const pct = price && down ? `${((down / price) * 100).toFixed(1)}%` : null;
+  const downError = downPaymentError(price, down);
   const money = (v: number, d = 0) => formatMoney(v, locale, d);
 
   const result =
@@ -64,28 +63,20 @@ export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; loca
 
   const form = (
     <>
-      <Field label={texts.priceLabel} htmlFor="calc-price">
-        <MoneyInput id="calc-price" value={price} onValueChange={setPrice} locale={locale} />
-      </Field>
-      <Field
-        label={texts.downLabel}
-        htmlFor="calc-down"
-        hint={pct ? texts.downPct.replace('{pct}', pct) : undefined}
-        error={downError ? texts.errorDown : undefined}
-      >
-        <MoneyInput id="calc-down" value={down} onValueChange={setDown} locale={locale} invalid={downError} />
-      </Field>
-      <Field label={texts.rateLabel} htmlFor="calc-rate">
-        <PercentInput id="calc-rate" value={rate} onValueChange={setRate} />
-      </Field>
-      <Field label={texts.termLabel} htmlFor="calc-term">
-        <SelectField
-          id="calc-term"
-          value={String(years)}
-          onChange={(e) => setYears(Number(e.target.value) as (typeof TERMS)[number])}
-          options={TERMS.map((y) => ({ value: String(y), label: texts.termOption.replace('{years}', String(y)) }))}
-        />
-      </Field>
+      <LoanBasicsFields
+        idPrefix="calc"
+        locale={locale}
+        texts={texts}
+        price={price}
+        onPriceChange={setPrice}
+        down={down}
+        onDownChange={setDown}
+        rate={rate}
+        onRateChange={setRate}
+        years={years}
+        onYearsChange={setYears}
+        terms={TERMS}
+      />
       <Field label={texts.pmiLabel} htmlFor="calc-pmi">
         <MoneyInput id="calc-pmi" value={pmiYearly} onValueChange={setPmiYearly} locale={locale} />
       </Field>
@@ -106,8 +97,7 @@ export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; loca
 
   const results = result ? (
     <>
-      <p className="font-sans text-micro font-medium uppercase tracking-label text-muted">{texts.resultLabel}</p>
-      <p className="font-display text-h2 font-light tabular-nums text-ink">{money(result.totalMonthly, 2)}</p>
+      <CalcKpi label={texts.resultLabel} value={money(result.totalMonthly, 2)} />
       <CalcDonut
         segments={[
           { label: `${texts.breakdownPiLabel} · ${money(result.breakdown.pi, 2)}`, value: result.breakdown.pi, swatchClass: 'text-navy' },
@@ -126,7 +116,7 @@ export function PurchaseCalc({ texts, locale }: { texts: PurchaseCalcTexts; loca
       </dl>
       {extraMonthly !== null && extraMonthly > 0 ? (
         <div className="flex flex-col gap-2 border-t border-hairline pt-4">
-          <p className="font-sans text-micro font-medium uppercase tracking-label text-muted">{texts.earlyPayoffTitle}</p>
+          <CalcKpiLabel>{texts.earlyPayoffTitle}</CalcKpiLabel>
           <dl className="flex flex-col gap-2 font-sans text-sm text-body">
             <div className="flex justify-between gap-4"><dt>{texts.monthsSavedLabel}</dt><dd className="tabular-nums">{result.monthsSaved}</dd></div>
             <div className="flex justify-between gap-4"><dt>{texts.interestSavedLabel}</dt><dd className="tabular-nums">{money(result.interestSaved)}</dd></div>
