@@ -1,18 +1,24 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildPageMetadata } from '@/lib/metadata';
-import { programSlugs } from '@/config/routes.mjs';
 import { NMLS_ID } from '@/lib/site';
 import { financialServiceJsonLd } from '@/lib/jsonld';
 import heroHome from '@/assets/img/hero-home.jpg';
 import davidImg from '@/assets/img/david.png';
+import interludeMiami from '@/assets/img/interlude-miami.jpg';
+import programConventional from '@/assets/img/program-conventional.jpg';
+import programFha from '@/assets/img/program-fha.jpg';
+import programVa from '@/assets/img/program-va.jpg';
+import programJumbo from '@/assets/img/program-jumbo.jpg';
+import programInvestment from '@/assets/img/program-investment.jpg';
 import { PageHero } from '@/components/layout/page-hero';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { WhatsAppButton } from '@/components/ui/whatsapp-button';
-import { CitiesStrip } from '@/components/ui/cities-strip';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { IndexRow } from '@/components/ui/index-row';
+import { Marquee } from '@/components/ui/marquee';
+import { Interlude } from '@/components/ui/interlude';
+import { ProgramsIndex, type ProgramsIndexItem } from '@/components/ui/programs-index';
 import { Band } from '@/components/ui/band';
 import { CtaBand } from '@/components/ui/cta-band';
 import { PhotoPlate } from '@/components/ui/photo-plate';
@@ -22,7 +28,7 @@ import { ActionCards } from '@/components/ui/action-cards';
 import { QuizDeferred } from '@/components/quiz/quiz-deferred';
 import { QuizThanksCtas } from '@/components/quiz/quiz-thanks-ctas';
 import type { QuizTexts } from '@/lib/quiz/texts';
-import { slugFor } from '@/lib/programs';
+import { FEATURED_PROGRAM_KEYS, slugFor } from '@/lib/programs';
 import { INSTAGRAM_URL } from '@/lib/site';
 
 export function generateStaticParams() {
@@ -42,8 +48,22 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const tp = await getTranslations('programs');
   const tq = await getTranslations('quote');
   const quizTexts = tq.raw('quiz') as QuizTexts;
-  const programKeys = Object.keys(programSlugs);
   const em = { em: (c: React.ReactNode) => <em>{c}</em> };
+  const featuredImages = {
+    conventional: programConventional,
+    fha: programFha,
+    va: programVa,
+    jumbo: programJumbo,
+    investment: programInvestment,
+  } as const;
+  const featured: ProgramsIndexItem[] = FEATURED_PROGRAM_KEYS.map((key, i) => ({
+    key,
+    number: t('programsIndex.rowLabel', { number: i + 1 }),
+    name: tp(`${key}.indexName`),
+    stat: tp(`${key}.stat`),
+    image: featuredImages[key],
+    href: { pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } },
+  }));
 
   return (
     <>
@@ -65,33 +85,30 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </>
         }
       />
-      <CitiesStrip lead={t('cities.lead')} list={t('cities.list')} />
+      <Marquee lead={t('cities.lead')} items={t.raw('cities.items') as string[]} />
       <section id="quiz">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
-          <SectionHeading eyebrow={t('tellUs.eyebrow')} title={t('tellUs.title')} helper={t('tellUs.helper')} />
+          <div className="reveal-rise">
+            <SectionHeading eyebrow={t('tellUs.eyebrow')} title={t('tellUs.title')} helper={t('tellUs.helper')} />
+          </div>
           <QuizDeferred locale={locale} texts={quizTexts} thanksCtas={<QuizThanksCtas />} />
         </Container>
       </section>
-      <section>
-        <Container className="grid gap-6 px-5 py-8 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-[72px]">
-          <SectionHeading eyebrow={t('programsIndex.eyebrow')} title={t('programsIndex.title')} helper={t('programsIndex.helper')} />
-          <div className="flex flex-col">
-            {programKeys.map((key, i) => (
-              <IndexRow
-                key={key}
-                number={t('programsIndex.rowLabel', { number: i + 1 })}
-                name={tp(`${key}.indexName`)}
-                stat={tp(`${key}.stat`)}
-                href={{ pathname: '/loan-options/[program]', params: { program: slugFor(locale, key) } }}
-              />
-            ))}
+      <Band tone="navy">
+        <div className="flex flex-col gap-8">
+          <div className="reveal-rise">
+            <SectionHeading tone="navy" eyebrow={t('programsIndex.eyebrow')} title={t('programsIndex.title')} helper={t('programsIndex.helper')} />
           </div>
-        </Container>
-      </section>
+          <ProgramsIndex items={featured} viewAll={{ label: t('programsIndex.viewAll') }} />
+        </div>
+      </Band>
+      <Interlude image={interludeMiami} alt={t('interlude.imageAlt')} quote={t('interlude.quote')} cite={t('interlude.cite')} />
       <Band tone="sand">
         <div className="grid items-center gap-6 lg:grid-cols-[400px_1fr] lg:gap-16">
-          <PhotoPlate image={davidImg} alt={t('about.photoAlt')} caption={t('about.caption')} />
-          <div className="flex flex-col gap-4 lg:gap-5">
+          <div className="reveal-curtain-l">
+            <PhotoPlate image={davidImg} alt={t('about.photoAlt')} caption={t('about.caption')} />
+          </div>
+          <div className="reveal-rise flex flex-col gap-4 lg:gap-5">
             <SectionHeading eyebrow={t('about.eyebrow')} title={t('about.title')} />
             <p className="max-w-[620px] font-sans text-base leading-[1.7] text-body">{t('about.body')}</p>
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-5">

@@ -1,10 +1,16 @@
 type Props = {
   label: string;
+  tone?: 'muted' | 'paper';
 };
 
-export function EhoMark({ label }: Props) {
+const tones = {
+  muted: 'text-muted',
+  paper: 'text-paper-a75',
+};
+
+export function EhoMark({ label, tone = 'muted' }: Props) {
   return (
-    <div className="flex items-center gap-2 text-muted">
+    <div className={`flex items-center gap-2 ${tones[tone]}`}>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <path d="M12 3 3 10h2v10h14V10h2L12 3Z"></path>
         <path d="M9 13h6M9 16h6"></path>

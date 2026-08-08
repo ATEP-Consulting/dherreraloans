@@ -24,3 +24,6 @@ playwright-report/
 
 # Fuentes descargadas en runtime por scripts/generate-og.mjs
 scripts/.fonts/
+
+# Mockups del companion visual de brainstorming
+.superpowers/
