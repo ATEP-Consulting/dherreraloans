@@ -70,7 +70,9 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       </section>
       <section className="border-t border-hairline">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
-          <SectionHeading eyebrow={t('quizLead.eyebrow')} title={t('quizLead.title')} />
+          <div className="reveal-rise">
+            <SectionHeading eyebrow={t('quizLead.eyebrow')} title={t('quizLead.title')} />
+          </div>
           <QuizDeferred locale={locale} texts={quizTexts} thanksCtas={<QuizThanksCtas />} />
         </Container>
       </section>
