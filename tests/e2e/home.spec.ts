@@ -187,6 +187,40 @@ test.describe('header y motion (desktop)', () => {
     await expect(html).not.toHaveClass(/hdr-solid/);
   });
 
+  test('el header no tiembla: micro-scroll alrededor del umbral no alterna el estado', async ({ page }) => {
+    // Regresión: con umbral único (8px) y la franja plegándose por `display:none`, el
+    // micro-scroll del trackpad alternaba el estado varias veces por gesto y la fila del
+    // logo saltaba 43px. Ahora hay histéresis 90/30 y la franja colapsa con transición.
+    await page.goto('/en');
+    await page.evaluate(() => {
+      let n = 0;
+      new MutationObserver(() => {
+        document.body.dataset.hdrToggles = String(++n);
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    });
+    await page.mouse.wheel(0, 85); // justo por debajo del punto de disparo
+    for (const dy of [4, -6, 5, -4, 8, -8, 6, -5]) {
+      await page.mouse.wheel(0, dy);
+      await page.waitForTimeout(60);
+    }
+    const toggles = Number((await page.locator('body').getAttribute('data-hdr-toggles')) ?? 0);
+    expect(toggles).toBeLessThanOrEqual(1);
+  });
+
+  test('la franja superior colapsa al scrollear y vuelve arriba', async ({ page }) => {
+    await page.goto('/en');
+    const strip = page.locator('.hdr-topstrip');
+    expect((await strip.boundingBox())?.height).toBeGreaterThan(30);
+    await page.mouse.wheel(0, 400);
+    await expect
+      .poll(() => strip.evaluate((n: HTMLElement) => n.offsetHeight), { timeout: 3000 })
+      .toBe(0);
+    await page.mouse.wheel(0, -400);
+    await expect
+      .poll(() => strip.evaluate((n: HTMLElement) => n.offsetHeight), { timeout: 3000 })
+      .toBeGreaterThan(30);
+  });
+
   test('mega-menú: hover en Loan Options despliega los 12 programas', async ({ page }) => {
     await page.goto('/en');
     const nav = page.getByRole('navigation', { name: en.common.nav.primary });

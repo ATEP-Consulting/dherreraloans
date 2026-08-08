@@ -40,9 +40,9 @@ export async function PageHero({ locale, pathname, params, image, imageAlt, eyeb
         <TopStrip left={t('topStrip.left', { nmls: NMLS_ID })} right={t('topStrip.right', { nmls: NMLS_ID })} />
         <header className="relative border-b border-(--hbr) py-4 lg:border-0 lg:py-5">
           <Container className="flex items-center justify-between px-5 lg:px-[72px]">
-            <Link href="/" aria-label="DherreraLoans">
+            <Link href="/" aria-label="DherreraLoans" className="relative block">
               <Image src={logoLight} alt="DherreraLoans" className="hdr-logo-light h-11 w-auto lg:h-14" />
-              <Image src={logoDark} alt="DherreraLoans" className="hdr-logo-dark h-11 w-auto lg:h-14" />
+              <Image src={logoDark} alt="" aria-hidden className="hdr-logo-dark absolute inset-0 h-11 w-auto lg:h-14" />
             </Link>
             <nav aria-label={t('nav.primary')} className="hidden items-center gap-[34px] lg:flex">
               <NavLinks locale={locale} mega />
