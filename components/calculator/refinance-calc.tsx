@@ -4,6 +4,7 @@
 
 export type RefinanceCalcTexts = Record<string, never>;
 
-export function RefinanceCalc(_props: { locale: string; texts: RefinanceCalcTexts }) {
+export function RefinanceCalc(props: { locale: string; texts: RefinanceCalcTexts }) {
+  void props;
   return null;
 }

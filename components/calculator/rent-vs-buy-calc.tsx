@@ -4,6 +4,7 @@
 
 export type RentVsBuyCalcTexts = Record<string, never>;
 
-export function RentVsBuyCalc(_props: { locale: string; texts: RentVsBuyCalcTexts }) {
+export function RentVsBuyCalc(props: { locale: string; texts: RentVsBuyCalcTexts }) {
+  void props;
   return null;
 }

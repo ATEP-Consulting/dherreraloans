@@ -11,7 +11,7 @@ import { CalcLayout } from './calc-layout';
 import { CalcDonut } from './calc-donut';
 
 export type PurchaseCalcTexts = {
-  sectionTitle: string; priceLabel: string; downLabel: string; downPct: string;
+  priceLabel: string; downLabel: string; downPct: string;
   rateLabel: string; termLabel: string; termOption: string;
   pmiLabel: string; taxLabel: string; insuranceLabel: string; hoaLabel: string; extraLabel: string;
   resultLabel: string; resultEmpty: string;

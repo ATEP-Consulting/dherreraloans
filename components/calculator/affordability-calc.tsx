@@ -4,6 +4,7 @@
 
 export type AffordabilityCalcTexts = Record<string, never>;
 
-export function AffordabilityCalc(_props: { locale: string; texts: AffordabilityCalcTexts }) {
+export function AffordabilityCalc(props: { locale: string; texts: AffordabilityCalcTexts }) {
+  void props;
   return null;
 }

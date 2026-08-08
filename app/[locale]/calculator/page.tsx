@@ -41,7 +41,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ loc
       </section>
       <section className="border-t border-hairline">
         <Container className="px-5 py-10 lg:px-[72px] lg:py-14">
-          <SectionHeading eyebrow={t('title')} title={t('calc.purchase.sectionTitle')} />
+          <SectionHeading eyebrow={t('title')} title={t('calc.sectionTitle')} />
           <div className="mt-8">
             <CalcTabs locale={locale} texts={t.raw('calc') as CalcSuiteTexts} />
           </div>

@@ -477,6 +477,7 @@
       "body": "Una estimación de pago hipotecario cubre el principal y los intereses — lo que pides prestado, más lo que cuesta pedirlo prestado, repartido en el plazo del préstamo. No incluye impuestos de propiedad, seguro de vivienda ni cuotas de HOA, que varían según la propiedad y cambian tu pago total. Siempre te muestro el número completo, no solo la parte que se ve más pequeña."
     },
     "calc": {
+      "sectionTitle": "Haz tus números",
       "tabs": {
         "afford": "Capacidad de compra",
         "purchase": "Compra",
@@ -484,7 +485,6 @@
         "rentBuy": "Rentar vs. comprar"
       },
       "purchase": {
-        "sectionTitle": "Haz tus números",
         "priceLabel": "Precio de la casa",
         "downLabel": "Entrada",
         "downPct": "{pct} del precio",
