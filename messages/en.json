@@ -484,6 +484,48 @@
         "refi": "Refinance",
         "rentBuy": "Rent vs. buy"
       },
+      "afford": {
+        "programs": {
+          "conventional": "Conventional",
+          "fha": "FHA",
+          "va": "VA",
+          "usda": "USDA",
+          "jumbo": "Jumbo"
+        },
+        "incomeLabel": "Gross monthly income",
+        "debtsLabel": "Monthly debts",
+        "debtsHint": "Include minimum payments on auto loans, credit cards and student loans. Leave out rent and utilities.",
+        "priceLabel": "Home price",
+        "downLabel": "Down payment",
+        "downPct": "{pct} of the price",
+        "rateLabel": "Interest rate",
+        "termLabel": "Loan term",
+        "termOption": "{years} years",
+        "taxLabel": "Property tax (yearly)",
+        "insuranceLabel": "Homeowners insurance (yearly)",
+        "hoaLabel": "HOA dues (monthly)",
+        "creditLabel": "Credit score",
+        "resultLabel": "Total monthly payment",
+        "resultEmpty": "Fill in the numbers above to see your estimated payment.",
+        "errorDown": "The down payment must be smaller than the home price.",
+        "breakdownPiLabel": "Principal & interest",
+        "breakdownTaxLabel": "Property tax",
+        "breakdownInsuranceLabel": "Insurance",
+        "breakdownHoaLabel": "HOA dues",
+        "feeLabel": {
+          "pmi": "PMI",
+          "mip": "MIP",
+          "usda": "USDA guarantee fee",
+          "none": "No monthly mortgage insurance"
+        },
+        "upfrontLabel": "Upfront fee financed into the loan",
+        "dtiYours": "Your debt-to-income ratio: {front}% front-end / {back}% back-end",
+        "dtiAllowed": "Program maximum: {maxFront}% / {maxBack}%",
+        "dtiOk": "Within this program's limits.",
+        "dtiOver": "Above this program's limits — let's talk about your options.",
+        "summary": "Based on these numbers, your estimated total monthly payment on a {program} loan would be {total}. Your debt-to-income ratio comes out to {front}%/{back}%, against a program maximum of {maxFront}%/{maxBack}%.",
+        "confirm": "Please confirm these numbers with me before making any decisions — the monthly debts figure is the one most often estimated incorrectly."
+      },
       "purchase": {
         "priceLabel": "Home price",
         "downLabel": "Down payment",

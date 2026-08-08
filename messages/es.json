@@ -484,6 +484,48 @@
         "refi": "Refinanciamiento",
         "rentBuy": "Rentar vs. comprar"
       },
+      "afford": {
+        "programs": {
+          "conventional": "Convencional",
+          "fha": "FHA",
+          "va": "VA",
+          "usda": "USDA",
+          "jumbo": "Jumbo"
+        },
+        "incomeLabel": "Ingreso mensual bruto",
+        "debtsLabel": "Deudas mensuales",
+        "debtsHint": "Incluye los pagos mínimos de préstamos de auto, tarjetas de crédito y préstamos estudiantiles. No incluyas renta ni servicios.",
+        "priceLabel": "Precio de la casa",
+        "downLabel": "Entrada",
+        "downPct": "{pct} del precio",
+        "rateLabel": "Tasa de interés",
+        "termLabel": "Plazo",
+        "termOption": "{years} años",
+        "taxLabel": "Impuesto de propiedad (anual)",
+        "insuranceLabel": "Seguro de vivienda (anual)",
+        "hoaLabel": "Cuota de HOA (mensual)",
+        "creditLabel": "Puntaje de crédito",
+        "resultLabel": "Cuota mensual total",
+        "resultEmpty": "Completa los números de arriba para ver tu cuota estimada.",
+        "errorDown": "La entrada debe ser menor que el precio de la casa.",
+        "breakdownPiLabel": "Capital e intereses",
+        "breakdownTaxLabel": "Impuesto de propiedad",
+        "breakdownInsuranceLabel": "Seguro",
+        "breakdownHoaLabel": "Cuota de HOA",
+        "feeLabel": {
+          "pmi": "PMI",
+          "mip": "MIP",
+          "usda": "Cuota de garantía USDA",
+          "none": "Sin seguro hipotecario mensual"
+        },
+        "upfrontLabel": "Cuota inicial financiada en el préstamo",
+        "dtiYours": "Tu proporción deuda-ingreso: {front}% frontal / {back}% total",
+        "dtiAllowed": "Máximo del programa: {maxFront}% / {maxBack}%",
+        "dtiOk": "Dentro del límite de este programa.",
+        "dtiOver": "Por encima del límite de este programa — hablemos de tus opciones.",
+        "summary": "Con estos números, tu cuota mensual total estimada en un préstamo {program} sería de {total}. Tu proporción deuda-ingreso queda en {front}%/{back}%, frente a un máximo del programa de {maxFront}%/{maxBack}%.",
+        "confirm": "Confirma estos números conmigo antes de tomar cualquier decisión — la cifra de deudas mensuales es la que más a menudo se calcula mal."
+      },
       "purchase": {
         "priceLabel": "Precio de la casa",
         "downLabel": "Entrada",
