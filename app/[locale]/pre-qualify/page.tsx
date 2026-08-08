@@ -54,7 +54,9 @@ export default async function PreQualifyPage({ params }: { params: Promise<{ loc
       </section>
       <section id="quiz" className="border-t border-hairline">
         <Container className="grid gap-6 px-5 py-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-[72px] lg:py-16">
-          <SectionHeading eyebrow={t('start.eyebrow')} title={t('start.title')} helper={t('start.helper')} />
+          <div className="reveal-rise">
+            <SectionHeading eyebrow={t('start.eyebrow')} title={t('start.title')} helper={t('start.helper')} />
+          </div>
           <QuizDeferred locale={locale} texts={texts} thanksCtas={<QuizThanksCtas />} />
         </Container>
       </section>
